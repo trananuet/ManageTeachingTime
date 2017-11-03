@@ -1,0 +1,16 @@
+{
+    "name": "ManageCategory",
+    "alias": "managecategory",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\ManageCategory\\Providers\\ManageCategoryServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
