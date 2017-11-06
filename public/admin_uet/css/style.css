@@ -1,0 +1,109 @@
+/* CSS */
+
+.manage_teaching_time_left {
+    background: #d3d4ce;
+    ;
+}
+
+.manage_teaching_time_right {
+    background: #eeebf1;
+}
+
+tbody {
+    background: #f5f5f5;
+}
+
+.table-rating,
+.table-candidate {
+    background: #4d9cca;
+    color: #fff;
+}
+
+.table-assessor {
+    background: #1aa8aa;
+    color: #fff;
+}
+
+a {
+    outline: none;
+}
+
+
+/*NAV*/
+
+.navbar-inverse {
+    background-color: #b82126;
+    border-color: #080808;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #e27d19;
+}
+
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #e27d19;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffb9b9;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffb9b9;
+    font-size: 25px;
+}
+
+.navbar-nav li:hover {
+    background: #ce6a08;
+}
+
+
+/*END NAV */
+
+
+/*MANAGER_LEFT*/
+
+.collapse-account ul li,
+.collapse-manager ul li {
+    list-style: none;
+    list-style-type: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.collapse-account ul li a,
+.collapse-manager ul li a {
+    text-decoration: none;
+    line-height: 30px;
+}
+
+.collapse-account ul li a:hover,
+.collapse-manager ul li a:hover {
+    color: #ba2226;
+}
+
+.logo-manage img {
+    width: 55%
+}
+
+.panel-title a {
+    text-decoration: none;
+}
+
+
+/*SCHOOL YEAR*/
+
+.search-year {
+    margin-top: 60px;
+}
+
+.table-school-year {
+    color: white;
+    background: #3191b4;
+    ;
+}
