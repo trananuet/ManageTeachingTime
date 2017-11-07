@@ -45,7 +45,25 @@
 <div class="col-md-12">
 	<div id="footer" class="block-short-wrapper">
 		<div id="footerIn" class="block-short-inner">
-
+			<div class="footer-company">
+				<h3>TRUNG TÂM MÁY TÍNH</h3>
+				<h4>Trường Đại học Công nghệ - Đại học quốc gia Hà Nội</h4>
+			</div>	
+			<div class="footer-address">
+				<i class="fa fa-map-marker" aria-hidden="true"></i>
+				144 Xuân Thủy, Quận Cầu Giấy, Thành phố Hà Nội -
+					<i class="fa fa-phone" aria-hidden="true"></i>
+					094 627 8350 - 
+					<i class="fa fa-envelope" aria-hidden="true"></i>
+					tranvananuet@gmail.com
+			</div>
+			<div class="footer-manager">
+				<b> Chịu trách nhiệm quản lý nội dung: </b>
+				<span>Ông Trần Văn An</span>
+			</div>
+			<div class="footer-copyright">
+				<span>@2017 zodiaconline.com | Giấy phép số 1669/GP-STTTT do Sở Thông tin và Truyền thông Hà Nội cấp ngày 12/06/2014.</span>
+			</div>
 		</div>
 	</div>
 </div>

@@ -23,7 +23,8 @@
             "App\\": "app/",
             "Modules\\": [
                 "modules/ManageCategory/",
-                "modules/User/"
+                "modules/User/",
+                "modules/Base/"
             ]
         }
     },

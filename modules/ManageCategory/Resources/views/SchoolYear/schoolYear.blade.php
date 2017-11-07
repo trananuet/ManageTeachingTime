@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('base::layouts.master')
 @section('nav')
-	@include('layouts.nav')
+	@include('base::layouts.nav')
 @endsection
 @section('css')
     <style>
@@ -16,10 +16,10 @@
 @endsection
 @section('content')
 <div class="col-md-12 relative manage_teaching_time">
-    <div class="col-md-3 manage_teaching_time_left" style=" min-height: 400px">
-        @include('layouts.manager-left')
+    <div class="col-md-3 manage_teaching_time_left">
+        @include('base::layouts.manager-left')
     </div>
-    <div class="col-md-9 manage_teaching_time_right" style=" min-height: 400px">
+    <div class="col-md-9 manage_teaching_time_right">
         <div class="school-top row">
             <div class="col-md-3">
                 <div class="form-group">
