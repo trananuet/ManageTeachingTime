@@ -20,7 +20,7 @@
 	{{--  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">   --}}
 	{{--  <link href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css" rel="stylesheet" type="text/css"> 
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/multiselect/multiple-select.css')}}">   --}}
-
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datatables/datatables.net-dt/css/jquery.dataTables.css')}}">  
 	<link rel="stylesheet" type="text/css" href="{{asset('/admin_uet/css/style.css')}}"> 
 	{{-- <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> --}}
 	{{--  <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
@@ -42,7 +42,7 @@
 {{-- FOOTER --}}
   {{--  <hr style="border: 1px solid #c3c5c5;">   --}}
 	<!-- Footer -->
-<div class="col-md-12">
+<div class="col-md-12" style="border-top: 1px solid #000;">
 	<div id="footer" class="block-short-wrapper">
 		<div id="footerIn" class="block-short-inner">
 			<div class="footer-company">
@@ -80,6 +80,7 @@
 {{--  <script src="{{asset('/node_modules/datetimepicker/locale-vi.js')}}"></script>  --}}
  
 <!-- Bootstrap Core JavaScript -->
+<script src="{{asset('/node_modules/datatables/datatables.net/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 {{--  <script src="{{asset('/node_modules/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>  --}}
 {{--  <script src="{{asset('/node_modules/datepicker/bootstrap-datepicker.js')}}"></script>  --}}
@@ -106,7 +107,7 @@
 <script src="{{asset('/node_modules/gantt/jquery.fn.gantt.js')}}"></script>  --}}
 {{--  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>  --}}
 
-
+ <script src="{{asset('/admin_uet/js/manage.js')}}"></script> 
 {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  --}}
 {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>  --}}
 

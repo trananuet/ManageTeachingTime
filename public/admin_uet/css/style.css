@@ -19,6 +19,11 @@ a {
     outline: none;
 }
 
+.check-box {
+    width: 20px;
+    height: 20px;
+}
+
 
 /*SCHOOL YEAR*/
 
@@ -28,8 +33,7 @@ a {
 
 .table-school-year {
     color: white;
-    background: #3191b4;
-    ;
+    background: #095c58;
 }
 
 .manage_teaching_time_left {
@@ -40,4 +44,10 @@ a {
 .manage_teaching_time_right {
     background: #eeebf1;
     min-height: 500px;
+}
+
+.add-school-years {
+    border-radius: 30px;
+    width: 55px;
+    height: 55px;
 }
