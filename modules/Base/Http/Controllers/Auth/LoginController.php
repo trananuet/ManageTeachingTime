@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Log;
+use File;
 
 class LoginController extends Controller
 {
@@ -36,7 +37,8 @@ class LoginController extends Controller
     * @return view
     */
     public function index(){
-        return view('base::auth.login');
+        $contents = File::get(storage_path('status\tes.txt'));
+        return view('base::auth.login',compact('contents'));
     }
 
     /**
@@ -72,4 +74,5 @@ class LoginController extends Controller
         // Log::info("END LOGOUT " . get_class() . " => " . __FUNCTION__ ."()");
         return redirect(route('home'));
     }
+
 }

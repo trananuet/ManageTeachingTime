@@ -1,56 +1,41 @@
 <style>
     .navbar-inverse {
-    background-color: #b82126;
-    border-color: #080808;
+    background-color: #56aaff;
+    border-color: #56aaff;
     }
-
-    .navbar-inverse .navbar-nav>.active>a,
-    .navbar-inverse .navbar-nav>.active>a:focus,
-    .navbar-inverse .navbar-nav>.active>a:hover {
-        color: #fff;
-        background-color: #e27d19;
+    a:hover {
+        color: black;
     }
-
-    .navbar-inverse .navbar-nav>.open>a,
-    .navbar-inverse .navbar-nav>.open>a:focus,
-    .navbar-inverse .navbar-nav>.open>a:hover {
-        color: #fff;
-        background-color: #e27d19;
-    }
-
-    .navbar-inverse .navbar-nav>li>a {
-        color: #ffb9b9;
-    }
-
-    .navbar-inverse .navbar-brand {
-        color: #ffb9b9;
-        font-size: 25px;
-    }
-
-    .navbar-nav li:hover {
-        background: #ce6a08;
-    }
-
 </style>
-<nav class="navbar navbar-inverse">
+<div id="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
+            <img src="{{asset('admin_uet/images/common/dhcn.png')}}" alt="Logo" style="height: 50px;">     
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
         </button>
-        <img src="{{asset('admin_uet/images/common/UET.png')}}" alt="Logo" style="height: 50px;">
-        </div>
+    </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav" id="nav-list">
-                <li class="active" id="homepage" style="margin-left: 25px;"><a href="{{route('home')}}">HỆ THỐNG QUẢN LÝ GIỜ GIẢNG</a></li>
-            </ul>
+            <span class="navbar-brand" style="color: white;">Hệ thống quản lí giờ giảng</span>
             @if(Auth::check())
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="" ><span><i class="fa fa-user" aria-hidden="true"></i> {{Auth::user()->name}}</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{ Auth::user()->name }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#"><i class="fa fa-address-card-o" aria-hidden="true"></i> Thông tin</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             @endif
+
         </div>
     </div>
 </nav>
