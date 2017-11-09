@@ -3,12 +3,14 @@
 	@include('base::layouts.nav')
 @endsection
 @section('content')
-<div class="col-md-12 relative manage_teaching_time">
-    <div class="col-md-3 manage_teaching_time_left">
-        @include('base::layouts.manager-left')
+    @include('base::layouts.manager-left')
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Thông báo</h1>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-9 manage_teaching_time_right">
-    <h3>HỆ THỐNG QUẢN LÝ GIỜ GIẢNG CỦA GIẢNG VIÊN</h3>
-    </div>    
-</div>
 @endsection
