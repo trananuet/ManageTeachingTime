@@ -4,7 +4,7 @@ namespace Modules\ManageCategory\Http\Controllers\SchoolYear;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Modules\ManageCategory\Entities\SchoolYear;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
 
@@ -25,7 +25,7 @@ class SchoolYearController extends Controller
     * @author AnTV
     * @return view
     */
-    public function createSchoolYear(Request $request){
+    public function createEditSchoolYear(Request $request){
         $school_year = SchoolYearRepository::saveSchoolYear($request);
         if($school_year == true) {
             return back();
@@ -41,11 +41,11 @@ class SchoolYearController extends Controller
     * @return view
     */
     public function delSchoolYear(Request $request){
-        // $this->validate($request, [
-        //     'checkbox' => 'required'
-        // ],[
-        //     'checkbox.required' => 'Bạn chưa chọn năm học nào.!!!'
-        // ]);
+        $this->validate($request, [
+            'checkbox' => 'required'
+        ],[
+            'checkbox.required' => 'Bạn chưa chọn năm học nào.!!!'
+        ]);
         $school_year = SchoolYearRepository::removeSchoolYear($request);
         if($school_year == true) {
             return redirect()->back();

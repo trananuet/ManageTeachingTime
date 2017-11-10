@@ -19,9 +19,8 @@ a {
     outline: none;
 }
 
-.check-box {
-    width: 20px;
-    height: 20px;
+.relative {
+    position: relative;
 }
 
 
@@ -33,7 +32,7 @@ a {
 
 .table-school-year {
     color: white;
-    background: #095c58;
+    background: #56aaff;
 }
 
 .manage_teaching_time_left {
@@ -50,4 +49,21 @@ a {
     border-radius: 30px;
     width: 55px;
     height: 55px;
+}
+
+.removeSchoolYear {
+    position: absolute;
+    z-index: 1000;
+    right: 76px;
+    top: -4px;
+}
+
+.checkbox-remove {
+    width: 15px;
+    height: 15px;
+}
+
+.input-search-custom {
+    margin-right: 183px;
+    border-radius: 6px;
 }
