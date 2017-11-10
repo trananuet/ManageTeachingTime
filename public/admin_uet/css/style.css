@@ -26,10 +26,6 @@ a {
 
 /*SCHOOL YEAR*/
 
-.search-year {
-    margin-top: 60px;
-}
-
 .table-school-year {
     color: white;
     background: #56aaff;
@@ -54,7 +50,7 @@ a {
 .removeSchoolYear {
     position: absolute;
     z-index: 1000;
-    right: 83px;
+    right: 89px;
     top: -4px;
 }
 
@@ -64,10 +60,24 @@ a {
 }
 
 .input-search-custom {
-    margin-right: 193px;
+    margin-right: 211px;
     border-radius: 6px;
 }
 
 .custom-input-form {
     width: 50%;
 }
+
+
+/*END SCHOOL YEAR */
+
+
+/*SEMESTER*/
+
+.table-semester {
+    color: white;
+    background: #56aaff;
+}
+
+
+/*END SEMESTER */

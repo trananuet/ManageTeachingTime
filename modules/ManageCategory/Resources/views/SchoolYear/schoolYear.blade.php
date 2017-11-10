@@ -22,7 +22,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div class="school-top row">
+            <div class="semester-top row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <hr>
@@ -91,7 +91,7 @@
                             <th class="">STT</th>
                             <th class="">Năm học</th>
                             <th class="">Tùy chọn</th>
-                            <th class=""><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
+                            <th class=""><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
                         </tr>
                     </thead>
                     <tbody>

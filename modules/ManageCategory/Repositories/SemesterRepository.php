@@ -14,7 +14,9 @@ class SemesterRepository
     */
     public static function getAllSemester()
     {
-        $semester = Semester::all();
+        $semester = Semester::selectRaw("semesters.*,school_years.name as schoolYear")
+                            ->leftjoin('school_years','school_years.yearID','=','semesters.yearID')
+                            ->get();
         return $semester;
     }
 
