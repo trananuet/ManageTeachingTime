@@ -32,23 +32,26 @@
                         <!-- LINE MODAL -->
                         <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                                <div class="modal-content">
+                                <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                     <div class="modal-header" style="background: #cbffd1">
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h3 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h3>
                                     </div>
                                     <form method="POST" action="{{route('school_year.save')}}">
                                     {{ csrf_field() }}
-                                        <div class="modal-body" style="margin-bottom: 80px;">
-                                            
+                                        <div class="modal-body">
                                             <!-- content goes here -->
-                                            <div class="col-md-6">
-                                                <label for="exampleInputEmail1">Năm học</label>
-                                                <input type="text" name="school_years" class="form-control" id="" placeholder="Năm học">
+                                            <div class="form-group row">
+                                                <label for="school_years" class="col-sm-3 col-form-label">Năm học</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="school_years" class="form-control" id="school_years" placeholder="Năm học">
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="exampleInputPassword1">Active</label>
-                                                <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active">
+                                            <div class="form-group row">
+                                                <label for="activeYears" class="col-sm-3 col-form-label">Active</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -101,25 +104,29 @@
                             </tr>
                             <div class="modal fade" id="modalEditSchoolYear{{$schoolyear->yearID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content">
+                                    <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                         <div class="modal-header" style="background: #cbffd1">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h3 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h3>
                                         </div>
                                         <form method="POST" action="{{route('school_year.save')}}">
                                         {{ csrf_field() }}
-                                            <div class="modal-body" style="margin-bottom: 80px;">
+                                            <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <input type="hidden" name="yearID" value="{{$schoolyear->yearID}}">
-                                                <div class="col-md-6">
-                                                    <label for="exampleInputEmail1">Năm học</label>
-                                                    <input type="text" name="school_years" class="form-control" id="" placeholder="Năm học" value="{{$schoolyear->name}}">
+                                                <div class="form-group row">
+                                                    <label for="school_years" class="col-sm-3 col-form-label">Năm học</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="school_years" class="form-control" id="school_years" placeholder="Năm học" value="{{$schoolyear->name}}">
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label for="exampleInputPassword1">Active</label>
-                                                    <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active" value="{{$schoolyear->active}}">
+                                                <div class="form-group row">
+                                                    <label for="activeYears" class="col-sm-3 col-form-label">Active</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active" value="{{$schoolyear->active}}">
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                </div>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
