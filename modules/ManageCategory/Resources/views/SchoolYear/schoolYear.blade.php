@@ -23,7 +23,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="school-top row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="form-group">
                         <hr>
                         <h3>Năm học</h3>
@@ -48,16 +48,16 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="exampleInputPassword1">Active</label>
-                                                <input type="text" class="form-control" id="activeYears" placeholder="Active">
+                                                <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                 <div class="btn-group col-md-3" role="group">
-                                                    <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button">Lưu</button>
+                                                    <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
                                                 </div>
                                                 <div class="btn-group col-md-3" role="group">
-                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button">Hủy</button>
+                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
                                                 </div>
                                                 <div class="btn-group btn-delete hidden" role="group">
                                                     <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
@@ -72,14 +72,23 @@
                 </div>
                 <hr/>
             </div>
-            <div class="school-content-table">
+            @if($errors->has('checkbox'))
+                <div class="alert alert-danger">
+                    <strong>{{$errors->first('checkbox')}}</strong>
+                </div>
+            @endif
+            <div class="school-content-table relative">
+                <form method="POST" action="{{route('school_year.remove')}}"> 
+                <button id="button" type="submit" class="btn btn-danger removeSchoolYear">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button> 
                 <table class="table table-hover table-condensed table-bordered " id ="school-years">
                     <thead class ="table-school-year">
                         <tr>
-                            <th class="">#</th>
+                            <th class="">STT</th>
                             <th class="">Năm học</th>
-                            <th class="">Sửa</th>
-                            <th class="">Xóa</th>
+                            <th class="">Tùy chọn</th>
+                            <th class=""><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,7 +97,7 @@
                                 <td>{{++$loop->index}}</td>
                                 <td>{{$schoolyear->name}}</td>
                                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSchoolYear{{$schoolyear->yearID}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
                             </tr>
                             <div class="modal fade" id="modalEditSchoolYear{{$schoolyear->yearID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -108,16 +117,16 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="exampleInputPassword1">Active</label>
-                                                    <input type="text" class="form-control" id="activeYears" placeholder="Active" value="{{$schoolyear->active}}">
+                                                    <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active" value="{{$schoolyear->active}}">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
-                                                        <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button">Lưu</button>
+                                                        <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
                                                     </div>
                                                     <div class="btn-group col-md-3" role="group">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button">Hủy</button>
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
                                                     </div>
                                                     <div class="btn-group btn-delete hidden" role="group">
                                                         <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
@@ -131,6 +140,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </form>
             </div>
         </div>
     </div>
