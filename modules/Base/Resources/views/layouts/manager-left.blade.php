@@ -336,7 +336,7 @@ table.dataTable thead .sorting:after {
                         <ul id="collapse-manager">
                             <li><i class="fa fa-arrow-circle-right" aria-hidden="true"></i><a href="{{route('school_year')}}"> Năm học</a>
                             </li>
-                            <li><i class="fa fa-arrow-circle-right" aria-hidden="true"></i><a href=""> Học kỳ</a></li>
+                            <li><i class="fa fa-arrow-circle-right" aria-hidden="true"></i><a href="{{route('semester')}}"> Học kỳ</a></li>
                         </ul>
                     </li>
                     <li>

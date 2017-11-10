@@ -17,7 +17,7 @@ class SchoolYearController extends Controller
     */
     public function getSchoolYear(){
         $school_years = SchoolYearRepository::getAllSchoolYear();
-        return view('managecategory::SchoolYear.SchoolYear',compact('school_years'));
+        return view('managecategory::SchoolYear.schoolYear',compact('school_years'));
     }
 
      /**

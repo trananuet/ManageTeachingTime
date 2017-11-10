@@ -54,16 +54,20 @@ a {
 .removeSchoolYear {
     position: absolute;
     z-index: 1000;
-    right: 76px;
+    right: 83px;
     top: -4px;
 }
 
 .checkbox-remove {
-    width: 15px;
-    height: 15px;
+    width: 17px;
+    height: 17px;
 }
 
 .input-search-custom {
     margin-right: 183px;
     border-radius: 6px;
+}
+
+.custom-input-form {
+    width: 50%;
 }

@@ -9,5 +9,6 @@ Route::group(['middleware' => 'web',
         Route::get('/school_year', 'SchoolYear\SchoolYearController@getSchoolYear')->name('school_year');
         Route::post('/save/school_year/', 'SchoolYear\SchoolYearController@createEditSchoolYear')->name('school_year.save');
         Route::post('/remove/school_year/', 'SchoolYear\SchoolYearController@delSchoolYear')->name('school_year.remove');
+        Route::get('/semester', 'Semester\SemesterController@getSemester')->name('semester');
     });
 });
