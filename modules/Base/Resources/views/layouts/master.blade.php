@@ -24,6 +24,11 @@
 	{{--  <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Alike+Angular" rel="stylesheet">  --}}
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datepicker/datepicker3.css')}}">  --}}
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/css/metisMenu.min.css')}}"> 
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/css/timeline.css')}}"> 
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/css/startmin.css')}}"> 
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/css/morris.css')}}"> 
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  
 	@yield('css')
 	
 	
@@ -40,12 +45,11 @@
 {{-- FOOTER --}}
   {{--  <hr style="border: 1px solid #c3c5c5;">   --}}
 	<!-- Footer -->
-<div class="col-md-12" style="border-top: 1px solid #000;">
+<div class="col-md-12">
 	<div id="footer" class="block-short-wrapper">
 		<div id="footerIn" class="block-short-inner">
 			<div class="footer-company">
-				<h3>TRUNG TÂM MÁY TÍNH</h3>
-				<h4>Trường Đại học Công nghệ - Đại học quốc gia Hà Nội</h4>
+				
 			</div>
 		</div>
 	</div>
@@ -55,6 +59,10 @@
 
 <!-- JS -->
 <script src="{{asset('/node_modules/jquery/dist/jquery.min.js')}}"></script>
+
+	<script src="{{asset('/node_modules/js/manage.js')}}"></script>
+<script src="{{asset('/node_modules/js/metisMenu.min.js')}}"></script>
+ <script src="{{asset('/node_modules/js/startmin.js')}}"></script>
 <!-- moment JS-->
 {{--  <script src="{{asset('/node_modules/datetimepicker/moment.min.js')}}"></script>  --}}
 {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>  --}}

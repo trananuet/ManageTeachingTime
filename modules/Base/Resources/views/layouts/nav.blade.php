@@ -1,29 +1,51 @@
 <style>
     .navbar-inverse {
-    background-color: #56aaff;
-    border-color: #56aaff;
+    background-color: #e5e5e5;
+    border-color: white;
+    }
+    a:active {
+        background: #007f7f !important;
+        color: white;
     }
     a:hover {
-        color: black;
+        background: #007f7f !important;
+        color: white;
+    }
+    .aim {
+        background: #e5e5e5;
+        color: white;
+    }
+    a {
+        color: #333;
+    }
+    .alogin {
+        background: white;
     }
 </style>
 <div id="wrapper">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <img src="{{asset('admin_uet/images/common/dhcn.png')}}" alt="Logo" style="height: 50px;">     
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="navbar-brand" style="color: #e5e5e5;"> .</span>
+            <img  class="pull-left" src="{{asset('admin_uet/images/common/dhcn.png')}}" alt="Logo" style="height: 50px;">   
+             <span class="navbar-brand" style="color: #007f7f;"> Hệ thống quản lí giờ giảng</span>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
+            <span class="icon-bar"></span>
         </button>
-    </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <span class="navbar-brand" style="color: white;">Hệ thống quản lí giờ giảng</span>
-            @if(Auth::check())
+    
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+           @if(Auth::check())
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user-circle-o" aria-hidden="true"></i>{{ Auth::user()->name }} <span class="caret"></span></a>
+                    <span class="aim dropdown-toggle" style="line-height: 50px;" data-toggle="dropdown"><span style="color: #007f7f;"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span><span class="caret"></span></span></span>
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a href="#"><i class="fa fa-address-card-o" aria-hidden="true"></i> Thông tin</a>
@@ -34,8 +56,7 @@
                     </ul>
                 </li>
             </ul>
-            @endif
 
-        </div>
-    </div>
-</nav>
+            @endif
+        </ul>
+    </nav>
