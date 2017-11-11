@@ -4,20 +4,17 @@
 @endsection
 @section('content')
 <br/><br/><br/><br/>
-<div class="col-md-12 box-page">
-	<div class="container">
-		<div class="row ">
-			<div class="col-md-7">
-				{!! $contents !!}
-			</div>
-			<div id="loginbox" class="mainbox col-md-5 col-sm-7 " style="height: 520px;">                    
-				<div class="panel panel-info" >
-					<div class="panel-heading">
-						<div class="panel-title text-center"><h2>Đăng nhập</h2></div>
-					</div>     
-
+		<div class="col-xs-12 col-sm-6 col-md-8" style="height: 520px;">                    
 					<div class="panel-body" >
-
+						<h4 style="color: black;font-weight: bold;">Thông Báo</h4><hr/>
+						<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+						{!! $contents !!}
+					</div>                     
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4" style="height: 520px;">                    
+				<div class="panel panel-info" >
+					<div class="panel-body" >
+						<h4 style="color: #007f7f;text-align: center;">Đăng Nhập</h4><hr/>
 						<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 						
 						<form class="form-horizontal" role="form" action ={{route('login')}} method ='POST' accept-charset='utf-8'>
@@ -31,21 +28,11 @@
 										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 										<input id="login-password" type="password" class="form-control" name="password" placeholder="Mật khẩu" >
 							</div>
-
-							<div class="input-group">
-								<div>
-									<label>
-										<input id="login-remember" type="checkbox" name="remember" value="1"> Ghi nhớ
-									</label>
-								</div>
-								
-
-							</div>
-
 							<div style="margin-top:10px" class="form-group">
-								<div class="col-sm-12 controls pull-left">
-										<button type="submit" class="btn btn-info">Đăng nhập</button>
-										<div class="forget-password" ><a href="#">Quên mật khẩu?</a></div>
+								<div class="col-sm-7 pull-left" ><a class="alogin" href="#">Quên mật khẩu?</a></div>
+								<div class="col-sm-5 controls pull-right">
+										<button type="submit" class="btn btn-info" style="background: #007f7f;"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</button>
+										
 								</div>
 								
 								<div class="clearfix"></div>
@@ -59,7 +46,5 @@
 					</div>                     
 				</div>  
 			</div>
-		</div>
-	</div>
-</div>
+
 @endsection
