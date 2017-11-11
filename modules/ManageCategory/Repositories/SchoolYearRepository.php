@@ -27,7 +27,7 @@ class SchoolYearRepository
     {
         DB::beginTransaction();
 		try {
-            if(isset($request->yearID)){
+            if(isset($request->yearID)) {
                 $schoolYear = SchoolYear::where('yearID', $request->yearID)->firstOrFail();
                 $schoolYear->name = $request->school_years;
                 $schoolYear->active = $request->active;
@@ -43,7 +43,7 @@ class SchoolYearRepository
                 return true;
             }
         }
-        catch(\Exception $ex){
+        catch(\Exception $ex) { 
 			DB::rollback();
 			return false;
 		}
@@ -52,15 +52,16 @@ class SchoolYearRepository
     * remove school year
     * @author AnTV
     * @param Illuminate\Http\Request $request
-    * @return Modules\Candidate\Repositories\CandidateRepository|static boolean
+    * @return Modules\ManageCategory\Repositories\SchoolYearRepository|static boolean
     */
-	public static function removeSchoolYear(Request $request){
+	public static function removeSchoolYear(Request $request)
+    {
 		DB::beginTransaction();
-		try{
+		try {
 			$checkbox = $request->all();
 			foreach($checkbox['checkbox'] as $id) {
 				$schoolYear = SchoolYear::where('yearID', $id);
-				if(!$schoolYear){
+				if(!$schoolYear) {
 					return false;
 				}
 				$schoolYear->delete();
@@ -68,7 +69,7 @@ class SchoolYearRepository
 			DB::commit();
 			return true;
 		}
-		catch(\Exception $ex){
+		catch(\Exception $ex) {
 			DB::rollback();
 			return false;
 		}

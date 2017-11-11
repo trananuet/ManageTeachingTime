@@ -23,6 +23,10 @@ a {
     position: relative;
 }
 
+.error {
+    color: #ff3f3f;
+}
+
 
 /*SCHOOL YEAR*/
 
@@ -77,6 +81,13 @@ a {
 .table-semester {
     color: white;
     background: #56aaff;
+}
+
+.removeSemester {
+    position: absolute;
+    z-index: 1000;
+    right: 68px;
+    top: -4px;
 }
 
 
