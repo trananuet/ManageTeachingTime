@@ -37,20 +37,20 @@
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
-                                    <form method="POST" action="{{route('school_year.save')}}">
+                                    <form method="POST" action="{{route('school_year.save')}}" id="formSchoolYearCreate">
                                     {{ csrf_field() }}
                                         <div class="modal-body">
                                             <!-- content goes here -->
                                             <div class="form-group row">
-                                                <label for="school_years" class="col-sm-3 col-form-label">Năm học</label>
+                                                <label for="schoolYearCreate" class="col-sm-3 col-form-label">Năm học</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="school_years" class="form-control" id="school_years" placeholder="Năm học">
+                                                    <input type="text" name="school_years" class="form-control" id="schoolYearCreate" placeholder="Năm học">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="activeYears" class="col-sm-3 col-form-label">Active</label>
+                                                <label for="activeYearsCreate" class="col-sm-3 col-form-label">Active</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active">
+                                                    <input type="text" name="active" class="form-control" id="activeYearsCreate" placeholder="Active">
                                                 </div>
                                             </div>
                                         </div>
@@ -81,11 +81,12 @@
                 </div>
             @endif
             <div class="school-content-table relative">
-                <form method="POST" action="{{route('school_year.remove')}}"> 
+                <form method="POST" action="{{route('school_year.remove')}}">
+                {{ csrf_field() }}
                 <button id="button" type="submit" class="btn btn-danger removeSchoolYear">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button> 
-                <table class="table table-hover table-condensed table-bordered " id ="school-years">
+                <table class="table table-hover table-condensed table-bordered " id="school-years">
                     <thead class ="table-school-year">
                         <tr>
                             <th class="">STT</th>
@@ -102,6 +103,7 @@
                                 <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSchoolYear{{$schoolyear->yearID}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
                                 <td><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
                             </tr>
+                </form>
                             <div class="modal fade" id="modalEditSchoolYear{{$schoolyear->yearID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
@@ -109,21 +111,21 @@
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('school_year.save')}}">
+                                        <form method="POST" action="{{route('school_year.save')}}" id="formSchoolYearEdit">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <input type="hidden" name="yearID" value="{{$schoolyear->yearID}}">
                                                 <div class="form-group row">
-                                                    <label for="school_years" class="col-sm-3 col-form-label">Năm học</label>
+                                                    <label for="schoolYearEdit" class="col-sm-3 col-form-label">Năm học</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="school_years" class="form-control" id="school_years" placeholder="Năm học" value="{{$schoolyear->name}}">
+                                                        <input type="text" name="school_years" class="form-control" id="schoolYearEdit" placeholder="Năm học" value="{{$schoolyear->name}}" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="activeYears" class="col-sm-3 col-form-label">Active</label>
+                                                    <label for="activeYearsEdit" class="col-sm-3 col-form-label">Active</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="active" class="form-control" id="activeYears" placeholder="Active" value="{{$schoolyear->active}}">
+                                                        <input type="text" name="active" class="form-control" id="activeYearsEdit" placeholder="Active" value="{{$schoolyear->active}}" required>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -147,7 +149,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                </form>
             </div>
         </div>
     </div>
@@ -158,5 +159,20 @@
     $(document).ready(function() {
         $('#school-years').DataTable();
     } );
+</script>
+<script src="{{asset('/node_modules/validatejs/jquery.validate.min.js')}}"></script>
+<script>   
+    $(function() {
+        $("#formSchoolYearCreate").validate({
+            rules: {
+                school_years: "required",
+                active: "required"
+                },
+            messages: {
+                school_years: "Vui lòng điền năm học.",
+                active: "Vui lòng điền active."
+            }
+        });
+    });
 </script>
 @endsection
