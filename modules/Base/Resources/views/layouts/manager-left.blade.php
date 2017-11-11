@@ -17,7 +17,7 @@
                         </ul>
                     </li>
                      <li>
-                        <a href="#"> Lịch sử<span class="fa arrow"></span></a>
+                        <a href="{{route('semester')}}"> Lịch sử<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="#"> Lịch sử tìm kiếm</a>
