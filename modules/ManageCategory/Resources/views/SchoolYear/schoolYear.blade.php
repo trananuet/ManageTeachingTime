@@ -35,7 +35,7 @@
                                 <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                     <div class="modal-header" style="background: #cbffd1">
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                        <h3 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h3>
+                                        <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
                                     <form method="POST" action="{{route('school_year.save')}}">
                                     {{ csrf_field() }}
@@ -107,7 +107,7 @@
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                         <div class="modal-header" style="background: #cbffd1">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <h3 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h3>
+                                            <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
                                         <form method="POST" action="{{route('school_year.save')}}">
                                         {{ csrf_field() }}

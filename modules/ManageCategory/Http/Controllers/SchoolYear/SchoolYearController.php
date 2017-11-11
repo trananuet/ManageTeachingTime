@@ -21,7 +21,7 @@ class SchoolYearController extends Controller
     }
 
      /**
-    * add school-years
+    * add edit school-years
     * @author AnTV
     * @return view
     */

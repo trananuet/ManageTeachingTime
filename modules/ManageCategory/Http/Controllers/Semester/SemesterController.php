@@ -24,4 +24,38 @@ class SemesterController extends Controller
         $semesters = SemesterRepository::getAllSemester();
         return view('managecategory::Semester.semester',compact('school_years','semesters'));
     }
+
+    /**
+    * add edit semester
+    * @author AnTV
+    * @return view
+    */
+    public function createEditSemester(Request $request){
+        $semester = SemesterRepository::saveSemester($request);
+        if($semester == true) {
+            return back();
+        } else {
+            return \Response::view('base::errors.500',array(),500);
+        }
+    }
+
+    /**
+    * remove school-years
+    * @author AnTV
+    * @param int $yearID
+    * @return view
+    */
+    public function delSemester(Request $request){
+        $this->validate($request, [
+            'checkbox' => 'required'
+        ],[
+            'checkbox.required' => 'Bạn chưa chọn học kỳ nào.!!!'
+        ]);
+        $semester = SemesterRepository::removeSemester($request);
+        if($semester == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
+    }
 }
