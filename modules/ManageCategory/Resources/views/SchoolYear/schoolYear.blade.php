@@ -22,7 +22,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div class="semester-top row">
+            <div class="box-top row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <hr>

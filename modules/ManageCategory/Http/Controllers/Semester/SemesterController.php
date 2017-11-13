@@ -58,4 +58,15 @@ class SemesterController extends Controller
              return \Response::view('base::errors.500',array(),500);
         }
     }
+
+    public function filterYear(Request $request){
+        $year = $request->year;
+        $schoolYear = SchoolYear::find($year);
+        $semesterFilter = SchoolYear::find($year)->semesters()->get();
+        session()->flash('schoolYear', $schoolYear);
+        session()->flash('semesterFilter', $semesterFilter);
+        // dd($schoolYear);
+        // dd($semesterFilter);
+        return redirect()->back();
+    }
 }

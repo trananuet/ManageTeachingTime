@@ -12,5 +12,6 @@ Route::group(['middleware' => 'web',
         Route::get('/semester', 'Semester\SemesterController@getSemester')->name('semester');
         Route::post('/semester/save', 'Semester\SemesterController@createEditSemester')->name('semester.save');
         Route::post('/semester/remove', 'Semester\SemesterController@delSemester')->name('semester.remove');
+        Route::post('/semester/filter_year', 'Semester\SemesterController@filterYear')->name('semester.filter');
     });
 });
