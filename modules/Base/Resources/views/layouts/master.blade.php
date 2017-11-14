@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/bootstrap/dist/css/bootstrap.min.css')}}">
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datetimepicker/bootstrap-datetimepicker.min.css')}}">  --}}
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/font-awesome/css/font-awesome.css')}}">
-	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/aos/aos.css')}}">   --}}
+	 <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css')}}">  
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/fselect/fselect.css')}}">  --}}
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/fselect/fselect.css')}}">  --}}
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/gantt/style.css')}}">   --}}
@@ -59,44 +59,13 @@
 
 <!-- JS -->
 <script src="{{asset('/node_modules/jquery/dist/jquery.min.js')}}"></script>
-
-{{--  <script src="{{asset('/node_modules/js/manage.js')}}"></script>  --}}
 <script src="{{asset('/node_modules/js/metisMenu.min.js')}}"></script>
 <script src="{{asset('/node_modules/js/startmin.js')}}"></script>
-<!-- moment JS-->
-{{--  <script src="{{asset('/node_modules/datetimepicker/moment.min.js')}}"></script>  --}}
-{{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>  --}}
-
-<!-- moment locale vi -->
-{{--  <script src="{{asset('/node_modules/datetimepicker/locale-vi.js')}}"></script>  --}}
- 
+<script src="{{asset('/node_modules/bootstrap-toggle/js/bootstrap-toggle.min.js')}}"></script>
 <!-- Bootstrap Core JavaScript -->
+<script src="{{asset('/node_modules/confirm/jquery.confirm.min.js')}}"></script>
 <script src="{{asset('/node_modules/datatables/datatables.net/js/jquery.dataTables.js')}}"></script>
 <script src="{{asset('/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-{{--  <script src="{{asset('/node_modules/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>  --}}
-{{--  <script src="{{asset('/node_modules/datepicker/bootstrap-datepicker.js')}}"></script>  --}}
-
-
-<!--  confirm js  -->
-{{--  <script src="{{asset('/node_modules/confirm/jquery.confirm.min.js')}}"></script>  --}}
-
-<!-- datemask -->
-{{--  <script src="{{asset('/node_modules/inputmask/jquery.inputmask.js')}}"></script>
-<script src="{{asset('/node_modules/inputmask/jquery.inputmask.date.extensions.js')}}"></script>  --}}
-
-<!-- datepicker -->
-{{--  <script src="{{asset('/node_modules/datetimepicker/datetimepicker.js')}}"></script>  --}}
-
-<!-- aos animation js -->
-{{--  <script src="{{asset('/node_modules/aos/aos.js')}}"></script>  --}}
-
-<!-- multi select -->
-{{--  <script src="{{asset('/node_modules/fselect/fselect.js')}}"></script>  --}}
-{{--  <script src="{{asset('/node_modules/multiselect/multiple-select.js')}}"></script>  --}}
-{{--  
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> 
-<script src="{{asset('/node_modules/gantt/jquery.fn.gantt.js')}}"></script>  --}}
-{{--  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>  --}}
 
  <script src="{{asset('/admin_uet/js/manage.js')}}"></script> 
 {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  --}}

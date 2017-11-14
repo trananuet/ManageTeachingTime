@@ -23,6 +23,7 @@ class SchoolYearController extends Controller
      /**
     * add edit school-years
     * @author AnTV
+    * @param $request
     * @return view
     */
     public function createEditSchoolYear(Request $request){
@@ -38,7 +39,7 @@ class SchoolYearController extends Controller
     /**
     * remove school-years
     * @author AnTV
-    * @param int $yearID
+    * @param $request
     * @return view
     */
     public function delSchoolYear(Request $request){
@@ -53,5 +54,23 @@ class SchoolYearController extends Controller
         } else {
              return \Response::view('base::errors.500',array(),500);
         }
+    }
+
+    /**
+    * filter active
+    * @author AnTV
+    * @param $request
+    * @return view
+    */
+    public function filterActive(Request $request){
+        $active = $request->filter_active;
+        if($active == 'on'){
+            $active = '1';
+        } else {
+            $active = '0';
+        }
+        $sch_year = SchoolYear::where('active',$active)->get();
+        session()->flash('sch_year', $sch_year);
+        return redirect()->back();
     }
 }

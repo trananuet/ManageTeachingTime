@@ -99,7 +99,7 @@
                 <hr/>
             </div>
         @if(session('schoolYear') && session('semesterFilter'))
-             @if($errors->has('checkbox'))
+            @if($errors->has('checkbox'))
                 <div class="alert alert-danger">
                     <strong>{{$errors->first('checkbox')}}</strong>
                 </div>
