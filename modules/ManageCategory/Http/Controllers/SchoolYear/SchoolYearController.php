@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Modules\ManageCategory\Entities\SchoolYear;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
+use Excel;
+use Illuminate\Support\Facades\Input;
 
 class SchoolYearController extends Controller
 {
@@ -72,5 +74,43 @@ class SchoolYearController extends Controller
         $sch_year = SchoolYear::where('active',$active)->get();
         session()->flash('sch_year', $sch_year);
         return redirect()->back();
+    }
+
+
+    /**
+    * filter import excel
+    * @author AnTV
+    * @param $request
+    * @return view
+    */
+    public function postImport(Request $request)
+    {
+      if($request->file('imported-file'))
+      {
+                $path = $request->file('imported-file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'name' => $row['name'],
+                  'active' => $row['active']
+                ];
+              }
+          }
+          if(!empty($dataArray))
+          {
+             SchoolYear::insert($dataArray);
+             return redirect()->back();
+           }
+         }
+       }
     }
 }
