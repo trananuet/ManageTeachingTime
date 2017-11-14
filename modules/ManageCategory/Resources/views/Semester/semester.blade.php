@@ -15,6 +15,9 @@
         .set-access-modal{
             background: #eeebf1;
         }
+        .cus, .rem, .stt{
+            width: 45px;
+        }
     </style>
 @endsection
 @section('content')
@@ -113,11 +116,11 @@
                     <table class="table table-hover table-condensed table-bordered " id ="semester">
                         <thead class ="table-semester">
                             <tr>
-                                <th class="">STT</th>
+                                <th class="stt">STT</th>
                                 <th class="">Học kỳ</th>
                                 <th class="">Năm học</th>
-                                <th class="">Tùy chọn</th>
-                                <th class=""><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
+                                <th class="css">Tùy chọn</th>
+                                <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -191,11 +194,11 @@
                     <table class="table table-hover table-condensed table-bordered " id ="semester">
                         <thead class ="table-semester">
                             <tr>
-                                <th class="">STT</th>
+                                <th class="stt">STT</th>
                                 <th class="">Học kỳ</th>
                                 <th class="">Năm học</th>
-                                <th class="">Tùy chọn</th>
-                                <th class=""><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
+                                <th class="cus">Tùy chọn</th>
+                                <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
                             </tr>
                         </thead>
                         <tbody>
