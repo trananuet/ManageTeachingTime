@@ -20,6 +20,10 @@
             height: 10px!important;
             float: right;
         }
+        .cus, .rem, .stt{
+            width: 45px;
+        }
+        
     </style>
 @endsection
 @section('content')
@@ -133,10 +137,10 @@
                     <table class="table table-hover table-condensed table-bordered" id="school-years">
                         <thead class ="table-school-year">
                             <tr>
-                                <th class="col-md-1">STT</th>
-                                <th class="col-md-4">Năm học</th>
-                                <th class="col-md-1">Tùy chọn</th>
-                                <th class="col-md-1"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
+                                <th class="stt">STT</th>
+                                <th class="">Năm học</th>
+                                <th class="cus">Tùy chọn</th>
+                                <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -212,10 +216,10 @@
                     <table class="table table-hover table-condensed table-bordered" id="school-years">
                         <thead class ="table-school-year">
                             <tr>
-                                <th class="col-md-1">STT</th>
-                                <th class="col-md-4">Năm học</th>
-                                <th class="col-md-1">Tùy chọn</th>
-                                <th class="col-md-1"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
+                                <th class="stt">STT</th>
+                                <th class="">Năm học</th>
+                                <th class="cus">Tùy chọn</th>
+                                <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -289,7 +293,9 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#school-years').DataTable();
+            $('#school-years').dataTable( {
+            "autoWidth": false
+            });
         } );
     </script>
     <script src="{{asset('/node_modules/validatejs/jquery.validate.min.js')}}"></script>

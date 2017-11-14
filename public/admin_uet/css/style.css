@@ -63,7 +63,7 @@ a {
 .removeSchoolYear {
     position: absolute;
     z-index: 1000;
-    right: 89px;
+    right: 25px;
     top: -4px;
 }
 
@@ -73,7 +73,7 @@ a {
 }
 
 .input-search-custom {
-    margin-right: 211px;
+    margin-right: 164px;
     border-radius: 6px;
 }
 
