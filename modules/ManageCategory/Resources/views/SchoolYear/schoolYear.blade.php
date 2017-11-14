@@ -32,26 +32,46 @@
                     <div class="form-group">
                         <hr>
                         <h3>Năm học</h3>
-                        <hr>
-                        <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
-                        <form method="POST" action="{{route('school_year.filterActive')}}">
-                            {{ csrf_field() }}
-                            @if(session('sch_year'))
-                            @foreach(session('sch_year') as $sclyear)
-                            @php
-                                if($sclyear->active == 1){
-                                    $sltBtn = 'checked';
-                                } else {
-                                    $sltBtn = null;
-                                }
-                            @endphp
-                            @endforeach
-                                <input class="check-active" name="filter_active" type="checkbox" {{$sltBtn}} data-toggle="toggle" data-on="active" data-off="not active" data-onstyle="success" data-offstyle="danger"  onchange='if(this.value != 0) { this.form.submit(); }'>
-                            @else
-                                <input class="check-active" name="filter_active" type="checkbox" checked data-toggle="toggle" data-on="Toàn bộ" data-off="not active" data-onstyle="success" data-offstyle="danger"  onchange='if(this.value != 0) { this.form.submit(); }'>
-                            @endif
-                            <button type="submit" class="hidden"></button>
-                        </form>
+                        <hr><br/>
+                        <div class="row">
+                            <div class="col-md-4 pull-left">
+                                <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
+                            </div>
+                            <div class="col-md-3 pull-right">
+                                <b>Thêm dữ liệu từ excel</b>
+                                <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
+                                    <div>
+                                        {{csrf_field()}}
+                                        <input type="file" name="imported-file"/>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-default" type="submit">Import</button>
+                                    </div>
+                                    </form>
+                            </div>
+                            <div class="col-md-4 pull-right">
+                                <form method="POST" action="{{route('school_year.filterActive')}}">
+                                 {{ csrf_field() }}
+                                    @if(session('sch_year'))
+                                    @foreach(session('sch_year') as $sclyear)
+                                    @php
+                                        if($sclyear->active == 1){
+                                            $sltBtn = 'checked';
+                                        } else {
+                                            $sltBtn = null;
+                                        }
+                                    @endphp
+                                    @endforeach
+                                        <input class="check-active" name="filter_active" type="checkbox" {{$sltBtn}} data-toggle="toggle" data-on="active" data-off="not active" data-onstyle="success" data-offstyle="danger"  onchange='if(this.value != 0) { this.form.submit(); }'>
+                                    @else
+                                        <input class="check-active" name="filter_active" type="checkbox" checked data-toggle="toggle" data-on="Toàn bộ" data-off="not active" data-onstyle="success" data-offstyle="danger"  onchange='if(this.value != 0) { this.form.submit(); }'>
+                                    @endif
+                                    <button type="submit" class="hidden"></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        
                         <!-- LINE MODAL -->
                         <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog">
