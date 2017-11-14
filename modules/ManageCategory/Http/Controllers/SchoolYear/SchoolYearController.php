@@ -26,6 +26,7 @@ class SchoolYearController extends Controller
     * @return view
     */
     public function createEditSchoolYear(Request $request){
+        // dd($request->active);
         $school_year = SchoolYearRepository::saveSchoolYear($request);
         if($school_year == true) {
             return back();

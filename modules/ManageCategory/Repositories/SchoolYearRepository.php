@@ -30,14 +30,24 @@ class SchoolYearRepository
             if(isset($request->yearID)) {
                 $schoolYear = SchoolYear::where('yearID', $request->yearID)->firstOrFail();
                 $schoolYear->name = $request->school_years;
-                $schoolYear->active = $request->active;
+                $active = $request->active;
+                if($active == 1){
+                    $schoolYear->active = '1';
+                } else {
+                    $schoolYear->active = '0';
+                }
                 $schoolYear->save();
                 DB::commit();
                 return true;
             } else {   
                 $schoolYear = new SchoolYear();
                 $schoolYear->name = $request->school_years;
-                $schoolYear->active = $request->active;
+                $active = $request->active;
+                if($active == 1 ){
+                    $schoolYear->active = '1';
+                } else {
+                    $schoolYear->active = '0';
+                }
                 $schoolYear->save();
                 DB::commit();
                 return true;

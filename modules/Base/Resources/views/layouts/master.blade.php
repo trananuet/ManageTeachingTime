@@ -60,9 +60,9 @@
 <!-- JS -->
 <script src="{{asset('/node_modules/jquery/dist/jquery.min.js')}}"></script>
 
-	<script src="{{asset('/node_modules/js/manage.js')}}"></script>
+{{--  <script src="{{asset('/node_modules/js/manage.js')}}"></script>  --}}
 <script src="{{asset('/node_modules/js/metisMenu.min.js')}}"></script>
- <script src="{{asset('/node_modules/js/startmin.js')}}"></script>
+<script src="{{asset('/node_modules/js/startmin.js')}}"></script>
 <!-- moment JS-->
 {{--  <script src="{{asset('/node_modules/datetimepicker/moment.min.js')}}"></script>  --}}
 {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>  --}}

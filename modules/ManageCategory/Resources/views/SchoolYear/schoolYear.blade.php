@@ -16,6 +16,7 @@
             background: #eeebf1;
         }
     </style>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
@@ -42,7 +43,7 @@
                                         <div class="modal-body">
                                             <!-- content goes here -->
                                             <div class="form-group row">
-                                                <label for="schoolYearCreate" class="col-sm-3 col-form-label">Năm học</label>
+                                                <label for="schoolYearCreate" class="col-sm-3 col-form-label">Năm học: </label>
                                                 <div class="col-sm-9">
                                                     <input type="text" name="school_years" class="form-control" id="schoolYearCreate" placeholder="Năm học">
                                                 </div>
@@ -50,9 +51,9 @@
                                             <div class="form-group row">
                                                 <label for="activeYearsCreate" class="col-sm-3 col-form-label">Active</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="active" class="form-control" id="activeYearsCreate" placeholder="Active">
+                                                    <input class="checkbox-common" type="checkbox" name="active" value ="1" id="activeYearsCreate">
                                                 </div>
-                                            </div>
+                                            </div> 
                                         </div>
                                         <div class="modal-footer">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -125,7 +126,15 @@
                                                 <div class="form-group row">
                                                     <label for="activeYearsEdit" class="col-sm-3 col-form-label">Active</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="active" class="form-control" id="activeYearsEdit" placeholder="Active" value="{{$schoolyear->active}}" required>
+                                                        {{--  <input type="text" name="active" class="form-control" id="activeYearsEdit" placeholder="Active" value="{{$schoolyear->active}}" required>  --}}
+                                                        @php
+                                                            if($schoolyear->active == 1){
+                                                                $selectBtn = 'checked';
+                                                            } else {
+                                                                $selectBtn = null;
+                                                            }
+                                                        @endphp
+                                                        <input class="checkbox-common" type="checkbox" name="active" value ="1" id="activeYearsEdit" {{$selectBtn}}>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -165,14 +174,13 @@
     $(function() {
         $("#formSchoolYearCreate").validate({
             rules: {
-                school_years: "required",
-                active: "required"
+                school_years: "required"
                 },
             messages: {
-                school_years: "Vui lòng điền năm học.",
-                active: "Vui lòng điền active."
+                school_years: "Vui lòng điền năm học."
             }
         });
     });
 </script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 @endsection
