@@ -45,13 +45,13 @@
 {{-- FOOTER --}}
   {{--  <hr style="border: 1px solid #c3c5c5;">   --}}
 	<!-- Footer -->
-<div class="col-md-12">
+
+<div class="col-md-12" style="background: #f7f4f4;border-top: 1px solid #c3c5c5;padding-left: 20px;">
 	<div id="footer" class="block-short-wrapper">
 		<div id="footerIn" class="block-short-inner">
 			<div class="footer-company">
-				<center>
 				<h3>Trung tâm máy tính</h3>
-				<h4>Hệ thống quản lí giờ giảng</h4></center>
+				<h4>Hệ thống quản lí giờ giảng</h4>
 			</div>
 		</div>
 	</div>
