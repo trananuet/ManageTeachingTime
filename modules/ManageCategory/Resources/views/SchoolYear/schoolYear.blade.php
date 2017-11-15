@@ -37,11 +37,19 @@
                         <hr>
                         <h3>Năm học</h3>
                         <hr><br/>
+                        @if(count($errors)>0)
+                                <div class="alert alert-danger">
+                                    @foreach($errors->all() as $err)
+                                    {{$err}}
+                                    @endforeach
+                                </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-4 pull-left">
                                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
                             </div>
                             <div class="col-md-3 pull-right">
+
                                 <b>Thêm dữ liệu từ excel</b>
                                 <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
                                     <div>
@@ -49,9 +57,10 @@
                                         <input type="file" name="imported-file"/>
                                     </div>
                                     <div>
-                                        <button class="btn btn-default" type="submit">Import</button>
+                                        <button class="btn btn-primary" name="import" type="submit">Import</button>
                                     </div>
                                     </form>
+
                             </div>
                             <div class="col-md-4 pull-right">
                                 <form method="POST" action="{{route('school_year.filterActive')}}">

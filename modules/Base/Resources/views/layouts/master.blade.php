@@ -49,7 +49,9 @@
 	<div id="footer" class="block-short-wrapper">
 		<div id="footerIn" class="block-short-inner">
 			<div class="footer-company">
-				
+				<center>
+				<h3>Trung tâm máy tính</h3>
+				<h4>Hệ thống quản lí giờ giảng</h4></center>
 			</div>
 		</div>
 	</div>
