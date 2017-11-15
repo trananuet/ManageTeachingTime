@@ -39,7 +39,7 @@ class User extends Authenticatable
      /**
      * Check current user has moderator role
      * @author AnTV
-     * @param
+     * @param ROLE_ADMIN <helpers/DefineHelper.php>
      * @return boolean
      */
     public function checkMod(){
@@ -47,7 +47,7 @@ class User extends Authenticatable
                             ->get();
         $check = false;
         for ($i=0; $i < count($listRole) ; $i++) { 
-            if($listRole[$i]->role_id >= 2){
+            if($listRole[$i]->role_id >= ROLE_ADMIN){
                 $check = true;
                 break;
             }

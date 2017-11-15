@@ -27,7 +27,11 @@
                 "modules/User/",
                 "modules/Base/"
             ]
-        }
+        },
+        "files": [
+            "helpers/CustomHelper.php",
+            "helpers/DefineHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
