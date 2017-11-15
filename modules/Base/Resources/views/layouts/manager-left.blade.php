@@ -16,7 +16,8 @@
                             </li>
                         </ul>
                     </li>
-                     <li>
+                    @if(Auth::user()->checkMod())
+                    <li>
                         <a href="#"> Lịch sử<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -25,6 +26,7 @@
                             
                         </ul>
                     </li>
+                    @endif
                 </ul>
 
             </div>
