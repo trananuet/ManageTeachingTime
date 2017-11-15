@@ -17,4 +17,5 @@ class DashboardController extends Controller
     public function index(){
         return view('base::dashboard.dashboard');
     }
+    
 }
