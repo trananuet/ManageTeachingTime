@@ -131,26 +131,26 @@
                 <div class="school-content-table relative">
                     <form method="POST" action="{{route('school_year.remove')}}" id="remove-scl-year">
                     {{ csrf_field() }}
-                    <button id="button-remove" type="submit" class="btn btn-danger removeSchoolYear">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button> 
-                    <table class="table table-hover table-condensed table-bordered" id="school-years">
-                        <thead class ="table-school-year">
-                            <tr>
-                                <th class="stt">STT</th>
-                                <th class="">Năm học</th>
-                                <th class="cus">Tùy chọn</th>
-                                <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach(session('sch_year') as $schoolyear)
+                        <button id="button-remove-year" type="submit" class="btn btn-danger removeSchoolYear">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button> 
+                        <table class="table table-hover table-condensed table-bordered" id="school-years">
+                            <thead class ="table-school-year">
                                 <tr>
-                                    <td>{{++$loop->index}}</td>
-                                    <td>{{$schoolyear->name}}</td>
-                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSchoolYear{{$schoolyear->yearID}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
-                                    <td><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
+                                    <th class="stt">STT</th>
+                                    <th class="">Năm học</th>
+                                    <th class="cus">Tùy chọn</th>
+                                    <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>
                                 </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(session('sch_year') as $schoolyear)
+                                    <tr>
+                                        <td>{{++$loop->index}}</td>
+                                        <td>{{$schoolyear->name}}</td>
+                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSchoolYear{{$schoolyear->yearID}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                                        <td><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
+                                    </tr>
                     </form>
                                 <div class="modal fade" id="modalEditSchoolYear{{$schoolyear->yearID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -312,7 +312,7 @@
         });
     </script>
     <script>
-        $("#button-remove").confirm({
+        $("#button-remove-year").confirm({
             title: "Xóa năm học?",
             text: "Bạn có chắn chắn xóa năm học? Ấn Yes để tiếp tục.",
             confirm: function(){
