@@ -86,9 +86,9 @@ class SchoolYearController extends Controller
     public function postImport(Request $request)
     {
         $this->validate($request, [
-            'import' => 'required'
+            'imported-file' => 'required'
         ],[
-            'import.required' => 'Bạn chưa chọn file'
+            'imported-file.required' => 'Bạn chưa chọn file'
         ]);
       if($request->file('imported-file'))
       {
@@ -113,7 +113,7 @@ class SchoolYearController extends Controller
           if(!empty($dataArray))
           {
              SchoolYear::insert($dataArray);
-             return redirect()->back();
+             return redirect()->back()->with('thongbao','Import thành công');
            }
          }
        }

@@ -44,6 +44,9 @@
                                     @endforeach
                                 </div>
                         @endif
+                        @if(Session::has('thongbao'))
+                            <div class="alert alert-success">{{Session::get('thongbao')}}</div>
+                        @endif
                         <div class="row">
                             <div class="col-md-4 pull-left">
                                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
