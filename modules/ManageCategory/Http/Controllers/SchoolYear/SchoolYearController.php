@@ -85,6 +85,11 @@ class SchoolYearController extends Controller
     */
     public function postImport(Request $request)
     {
+        $this->validate($request, [
+            'import' => 'required'
+        ],[
+            'import.required' => 'Bạn chưa chọn file'
+        ]);
       if($request->file('imported-file'))
       {
                 $path = $request->file('imported-file')->getRealPath();
