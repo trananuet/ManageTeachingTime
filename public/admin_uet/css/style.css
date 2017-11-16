@@ -39,9 +39,18 @@ a {
 
 /*SCHOOL YEAR*/
 
+.school-content-table {
+    margin-left: 115px;
+    margin-right: 115px;
+}
+
 .table-school-year {
     color: white;
     background: #56aaff;
+}
+
+.add-year-btn {
+    margin-left: 115px;
 }
 
 .manage_teaching_time_left {
@@ -73,7 +82,8 @@ a {
 }
 
 .input-search-custom {
-    margin-right: 164px;
+    width: 74%;
+    margin-right: 82px;
     border-radius: 6px;
 }
 
@@ -104,7 +114,7 @@ a {
 }
 
 .label-filter-year {
-    margin-top: 8px;
+    margin-top: 8 px;
     font-size: 14px;
 }
 

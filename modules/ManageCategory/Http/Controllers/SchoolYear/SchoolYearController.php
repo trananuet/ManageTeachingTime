@@ -59,25 +59,6 @@ class SchoolYearController extends Controller
     }
 
     /**
-    * filter active
-    * @author AnTV
-    * @param $request
-    * @return view
-    */
-    public function filterActive(Request $request){
-        $active = $request->filter_active;
-        if($active == 'on'){
-            $active = '1';
-        } else {
-            $active = '0';
-        }
-        $sch_year = SchoolYear::where('active',$active)->get();
-        session()->flash('sch_year', $sch_year);
-        return redirect()->back();
-    }
-
-
-    /**
     * filter import excel
     * @author AnTV
     * @param $request

@@ -9,7 +9,6 @@ Route::group(['middleware' => 'web',
         Route::get('/school_year', 'SchoolYear\SchoolYearController@getSchoolYear')->name('school_year');
         Route::post('/school_year/save', 'SchoolYear\SchoolYearController@createEditSchoolYear')->name('school_year.save');
         Route::post('/school_year/remove', 'SchoolYear\SchoolYearController@delSchoolYear')->name('school_year.remove');
-        Route::post('/school_year/filter_active', 'SchoolYear\SchoolYearController@filterActive')->name('school_year.filterActive');
         Route::post('/school_year/import', 'SchoolYear\SchoolYearController@postImport')->name('school_year.import');
 
         
