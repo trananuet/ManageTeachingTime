@@ -109,7 +109,7 @@ class SchoolYearController extends Controller
                   'active' => $row['active']
                 ];
               }
-          }
+          } 
           if(!empty($dataArray))
           {
              SchoolYear::insert($dataArray);
