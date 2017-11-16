@@ -45,53 +45,29 @@
                                 </div>
                         @endif
                         @if(Session::has('thongbao'))
-                            <div class="alert alert-success">{{Session::get('thongbao')}}</div>
+                            <div class="alert alert-success">{{Session::get('thongbao')}} {{count($dataArray)}} dữ liệu</div>
                         @endif
                         <div class="row">
                             <div class="col-md-4 pull-left">
                                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
                             </div>
-                            <div class="col-md-3 pull-right">
-
-                                <b>Thêm dữ liệu từ excel</b>
-                                <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
-                                    <div>
-                                        {{csrf_field()}}
-                                        <input type="file" name="imported-file"/>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary" name="import" type="submit">Import</button>
-                                    </div>
-                                    </form>
-
-                            </div>
-                            <div class="col-md-4 pull-right">
-                                <form method="POST" action="{{route('school_year.filterActive')}}">
-                                 {{ csrf_field() }}
-                                    @if(session('sch_year'))
-                                    @foreach(session('sch_year') as $sclyear)
-                                    @php
-                                        if($sclyear->active == 1){
-                                            $sltBtn = 'checked';
-                                        } else {
-                                            $sltBtn = null;
-                                        }
-                                    @endphp
-                                    @endforeach
-                                        <input class="check-active" name="filter_active" type="checkbox" {{$sltBtn}} data-toggle="toggle" data-on="active" data-off="not active" data-onstyle="success" data-offstyle="danger"  onchange='if(this.value != 0) { this.form.submit(); }'>
-                                    @else
-                                        <input class="check-active" name="filter_active" type="checkbox" checked data-toggle="toggle" data-on="Toàn bộ" data-off="not active" data-onstyle="success" data-offstyle="danger"  onchange='if(this.value != 0) { this.form.submit(); }'>
-                                    @endif
-                                    <button type="submit" class="hidden"></button>
-                                </form>
-                            </div>
                         </div>
                         <div class="clearfix"></div>
-                        
+
+                                     
                         <!-- LINE MODAL -->
                         <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                                <div class="modal-content" style="width: 80%; margin-left: 10%;">
+                                 <div>
+                          <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
+                          </ul>
+
+                          <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                                                
+                                <div class="modal-content" style="width: 100%;">
                                     <div class="modal-header" style="background: #cbffd1">
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
@@ -128,6 +104,39 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">
+                                <div class="modal-content" style="width: 100%;">
+                                    <div class="modal-header" style="background: #cbffd1">
+                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
+                                    </div>
+                                <br/>
+                                <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
+                                    <center><div>
+                                        {{csrf_field()}}
+                                        <input type="file" name="imported-file"/>
+                                    </div></center>
+                                    <br/>
+                                    <div class="modal-footer">
+                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                <div class="btn-group col-md-3" role="group">
+                                                     <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
+                                                </div>
+                                                <div class="btn-group col-md-3" role="group">
+                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div>
+                                       
+                                    </div>
+                                    </form></div>
+                          </div>
+                      </div>
+                        </div>          
+
+
                             </div>
                         </div>
                     </div>
@@ -332,5 +341,11 @@
                 console.log('true');
             }   
         });
+    </script>
+    <script>
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+            })
     </script>
 @endsection
