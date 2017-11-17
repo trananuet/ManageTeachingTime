@@ -92,9 +92,9 @@ class SchoolYearController extends Controller
               }
           } 
           if(!empty($dataArray))
-          {
-             SchoolYear::insert($dataArray);
-             return redirect()->back()->with('thongbao','Import thành công');
+          {             
+            SchoolYear::insert($dataArray);
+            return redirect()->back()->with('thongbao','Import thành công');
            }
          }
        }

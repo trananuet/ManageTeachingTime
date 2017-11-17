@@ -33,10 +33,21 @@
                         <hr>
                         <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary col-md-1">Thêm học kỳ</button>
                         <!-- LINE MODAL -->
+
+
+
                         <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+
                             <div class="modal-dialog">
-                                <div class="modal-content" style="width: 80%; margin-left: 10%;">
-                                    <div class="modal-header" style="background: #cbffd1">
+                                <div>
+                              <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
+                              </ul>
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">                                <div class="modal-content" style="width: 100%;">
+                                    <div class="modal-header" style="background: #56aaff">
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
@@ -75,6 +86,35 @@
                                         </div>
                                     </form>
                                 </div>
+                            </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                    
+                                     <div class="modal-content" style="width: 100%;">
+                                            <div class="modal-header" style="background: #56aaff">
+                                                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
+                                            </div>
+                                            <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data">
+                                            {{csrf_field()}}
+                                            <input type="file" name="imported-file"/>
+                                            </center>
+                                            <br/>
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
+                                                    </div>
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                </div>
+                              </div>
+                          </div>
+
                             </div>
                         </div>
                         <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">

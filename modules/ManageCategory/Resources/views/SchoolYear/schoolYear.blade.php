@@ -46,6 +46,7 @@
                         <hr>
                         <h3>Năm học</h3>
                         <hr><br/>
+                        <div class="row">
                         @if(count($errors)>0)
                                 <div class="alert alert-danger">
                                     @foreach($errors->all() as $err)
@@ -54,8 +55,9 @@
                                 </div>
                         @endif
                         @if(Session::has('thongbao'))
-                            <div class="alert alert-success">{{Session::get('thongbao')}} {{count($dataArray)}} dữ liệu</div>
+                            <div class="alert alert-success">{{Session::get('thongbao')}}  dữ liệu</div>
                         @endif
+                        </div>
                         <div class="row">
                             <div class="col-md-4 add-year-btn">
                                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
@@ -69,12 +71,11 @@
                                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
                                 </ul>
-
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                                                         
                                         <div class="modal-content" style="width: 100%;">
-                                            <div class="modal-header" style="background: #cbffd1">
+                                            <div class="modal-header" style="background: #56aaff">
                                                 <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                             </div>
@@ -113,21 +114,19 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="profile">
                                         <div class="modal-content" style="width: 100%;">
-                                            <div class="modal-header" style="background: #cbffd1">
+                                            <div class="modal-header" style="background: #56aaff">
                                                 <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                             </div>
-                                        </div>
-                                        <br/>
-                                        <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
+                                            <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
                                             {{csrf_field()}}
                                             <input type="file" name="imported-file"/>
-                                            </div></center>
+                                            </center>
                                             <br/>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
-                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
                                                     </div>
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
@@ -135,6 +134,7 @@
                                                 </div>
                                             </div>
                                         </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

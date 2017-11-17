@@ -69,4 +69,39 @@ class SemesterController extends Controller
         // dd($semesterFilter);
         return redirect()->back();
     }
+    public function postImport(Request $request)
+    {
+        $this->validate($request, [
+            'imported-file' => 'required'
+        ],[
+            'imported-file.required' => 'Bạn chưa chọn file'
+        ]);
+      if($request->file('imported-file'))
+      {
+                $path = $request->file('imported-file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'name' => $row['name'],
+                  'active' => $row['active']
+                ];
+              }
+          } 
+          if(!empty($dataArray))
+          {             
+            Semester::insert($dataArray);
+            return redirect()->back()->with('thongbao','Import thành công');
+           }
+         }
+       }
+    }
 }
