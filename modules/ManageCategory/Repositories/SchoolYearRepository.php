@@ -58,8 +58,9 @@ class SchoolYearRepository
 			return false;
 		}
     }
+
     /**
-    * remove school year
+    * remove check school year
     * @author AnTV
     * @param Illuminate\Http\Request $request
     * @return Modules\ManageCategory\Repositories\SchoolYearRepository|static boolean
@@ -84,4 +85,26 @@ class SchoolYearRepository
 			return false;
 		}
 	}
+
+    /**
+    * remove one school year
+    * @author AnTV
+    * @param int $yearID
+    * @return Modules\ManageCategory\Repositories\SchoolYearRepository|static boolean
+    */
+	public static function deleteSchoolYear($yearID)
+    {
+		DB::beginTransaction();
+		try {
+			$delSch = SchoolYear::findorFail($yearID);
+			$delSch->delete();
+			DB::commit();
+			return true;
+		}
+		catch(\Exception $ex) {
+			DB::rollback();
+			return false;
+		}
+	}
+
 }
