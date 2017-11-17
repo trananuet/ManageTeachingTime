@@ -39,7 +39,7 @@ class SchoolYearController extends Controller
     }
     
     /**
-    * remove school-years
+    * remove with check all school-years
     * @author AnTV
     * @param $request
     * @return view
@@ -57,6 +57,23 @@ class SchoolYearController extends Controller
              return \Response::view('base::errors.500',array(),500);
         }
     }
+
+    /**
+    * remove one school-years
+    * @author AnTV
+    * @param $yearID
+    * @return view
+    */
+    public function deleteOneSchoolYear($yearID){
+        $delSch = SchoolYear::findorFail($yearID);
+        $school_year = SchoolYearRepository::deleteSchoolYear($yearID);
+        if($school_year == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
+    }
+
 
     /**
     * filter import excel
