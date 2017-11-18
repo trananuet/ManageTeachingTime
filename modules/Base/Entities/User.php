@@ -47,7 +47,7 @@ class User extends Authenticatable
                             ->get();
         $check = false;
         for ($i=0; $i < count($listRole) ; $i++) { 
-            if($listRole[$i]->role_id >= ROLE_ADMIN){
+            if($listRole[$i]->role_id <= ROLE_ADMIN){
                 $check = true;
                 break;
             }

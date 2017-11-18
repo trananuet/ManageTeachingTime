@@ -82,9 +82,8 @@ a {
 }
 
 .input-search-custom {
-    width: 74%;
-    margin-right: 82px;
     border-radius: 6px;
+    width: 330px;
 }
 
 .custom-input-form {
@@ -96,7 +95,11 @@ a {
 }
 
 .box-remove-all {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.btn-remove {
+    margin-top: 20px;
 }
 
 

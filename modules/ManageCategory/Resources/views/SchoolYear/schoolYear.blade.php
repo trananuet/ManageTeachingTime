@@ -24,9 +24,6 @@
             float: right;
             text-align: left;
         }
-        .dataTables_wrapper .dataTables_filter input {
-            margin-left: 0px;
-        }
         .act, .stt{
             width: 50px;
         }
@@ -154,9 +151,13 @@
                     <button id="button-remove" type="submit" class="btn btn-danger removeSchoolYear">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>  --}}
-                <div class="box-remove-all">
-                    <button type="button" class="btn btn-primary active-btn-remove" id="btn-remove-all-schyear">Xóa nhiều năm học</button>
-                </div>
+                <form method="POST" action="{{route('school_year.remove')}}">
+                    {{ csrf_field() }}
+                    <div class="box-remove-all">
+                        <button type="button" class="btn btn-primary active-btn-remove" id="btn-remove-all-schyear">Xóa nhiều năm học</button>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-remove hidden" id="btn-active-revome">Xóa</button>
+                    </div>
                 <table class="table table-hover table-condensed table-bordered" id="school-years">
                     <thead class ="table-school-year">
                         <tr>
@@ -172,6 +173,7 @@
                         @foreach($school_years as $schoolyear)
                             <tr>
                                 <td class="hidden hidden-checkbox-sch"><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
+                 </form>
                                 <td class="active-display">{{++$loop->index}}</td>
                                 <td>{{$schoolyear->name}}</td>
                                 @if($schoolyear->active == 1)
@@ -183,7 +185,6 @@
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSchoolYear{{$schoolyear->yearID}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
-                {{--  </form>  --}}
                                     <form action="{{route('school_year.delete',['yearID' => $schoolyear->yearID])}}" method="POST" id="delYear{{$schoolyear->yearID}}">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-primary del-one-year" id="button-remove-year-one{{$schoolyear->yearID}}" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">
@@ -296,12 +297,14 @@
             $('#btn-remove-all-schyear').click(function(event){
                 $('.active-display').addClass('hidden');
                 $('.hidden-checkbox-sch').removeClass('hidden');
+                $('#btn-active-revome').removeClass('hidden');
                 $(this).removeAttr('id','btn-remove-all-schyear');
                 $(this).attr('id','hidden-btn-remove');
                     event.preventDefault();
                 $('#hidden-btn-remove').click(function(){
                     $('.hidden-checkbox-sch').addClass('hidden');
                     $('.active-display').removeClass('hidden');
+                    $('#btn-active-revome').addClass('hidden');
                     $(this).removeAttr('id','hidden-btn-remove');
                     $(this).attr('id','btn-remove-all-schyear');
                     console.log(this);

@@ -1,4 +1,4 @@
 <?php 
 
 
-define('ROLE_ADMIN', 2);
+define('ROLE_ADMIN', 1);
