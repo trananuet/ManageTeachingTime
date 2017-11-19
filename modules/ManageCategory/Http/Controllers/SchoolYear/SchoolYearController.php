@@ -19,7 +19,45 @@ class SchoolYearController extends Controller
     */
     public function getSchoolYear(){
         $school_years = SchoolYearRepository::getAllSchoolYear();
-        return view('managecategory::SchoolYear.schoolYear',compact('school_years'));
+        $dataArray = 0;
+        return view('managecategory::SchoolYear.schoolYear',compact('school_years','dataArray'));
+    }
+
+    public function postImport(Request $request)
+    {
+        $this->validate($request, [
+            'imported-file' => 'required'
+        ],[
+            'imported-file.required' => 'Bạn chưa chọn file'
+        ]);
+      if($request->file('imported-file'))
+      {
+                $path = $request->file('imported-file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'name' => $row['name'],
+                  'active' => $row['active']
+                ];
+              }
+          } 
+          if(!empty($dataArray))
+          {             
+            SchoolYear::insert($dataArray);
+            $school_years = SchoolYearRepository::getAllSchoolYear();
+            return view('managecategory::SchoolYear.schoolYear',compact('dataArray','school_years'));
+           }
+         }
+       }
     }
 
      /**
@@ -81,39 +119,5 @@ class SchoolYearController extends Controller
     * @param $request
     * @return view
     */
-    public function postImport(Request $request)
-    {
-        $this->validate($request, [
-            'imported-file' => 'required'
-        ],[
-            'imported-file.required' => 'Bạn chưa chọn file'
-        ]);
-      if($request->file('imported-file'))
-      {
-                $path = $request->file('imported-file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
-                })->get();
-
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
-            {
-              if(!empty($row))
-              {
-                $dataArray[] =
-                [
-                  'name' => $row['name'],
-                  'active' => $row['active']
-                ];
-              }
-          } 
-          if(!empty($dataArray))
-          {             
-            SchoolYear::insert($dataArray);
-            return redirect()->back()->with('thongbao','Import thành công');
-           }
-         }
-       }
-    }
+    
 }

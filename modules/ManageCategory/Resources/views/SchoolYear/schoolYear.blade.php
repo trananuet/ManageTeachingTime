@@ -51,9 +51,6 @@
                                     @endforeach
                                 </div>
                         @endif
-                        @if(Session::has('thongbao'))
-                            <div class="alert alert-success">{{Session::get('thongbao')}}  dữ liệu</div>
-                        @endif
                         </div>
                         <div class="row">
                             <div class="col-md-4 add-year-btn">
@@ -123,7 +120,7 @@
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
-                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import thành công {{count($dataArray)}} dữ liệu')" type="submit">Import</button>
                                                     </div>
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>

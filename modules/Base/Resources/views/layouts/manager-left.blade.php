@@ -18,6 +18,17 @@
                     </li>
                     @if(Auth::user()->checkMod())
                     <li>
+                        <a href="#"> Quản lí<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="{{route('manage_users')}}"> Quản lí người dùng</a>
+                            </li>
+                            <li>
+                                <a href="#"> Quản lí hệ thống</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#"> Lịch sử<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
