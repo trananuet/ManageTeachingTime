@@ -36,6 +36,20 @@ a {
     height: 17px;
 }
 
+.act,
+.stt {
+    width: 50px;
+}
+
+.cus {
+    width: 80px;
+}
+
+.modal-header {
+    background: #337ab7;
+    color: #fff;
+}
+
 
 /*SCHOOL YEAR*/
 
@@ -46,7 +60,7 @@ a {
 
 .table-school-year {
     color: white;
-    background: #56aaff;
+    background: #337ab7;
 }
 
 .add-year-btn {
@@ -131,3 +145,14 @@ a {
 
 
 /*END SEMESTER */
+
+
+/* MANAGE SYSTEM */
+
+.content-manage-system {
+    margin-left: 115px;
+    margin-right: 325px;
+}
+
+
+/*END MANAGE SYSTEM */

@@ -4,8 +4,8 @@ namespace Modules\Base\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Modules\Base\Entities\Role;
-use Modules\Base\Entities\UserRole;
+use Modules\User\Entities\Role;
+use Modules\User\Entities\UserRole;
 
 class User extends Authenticatable
 {

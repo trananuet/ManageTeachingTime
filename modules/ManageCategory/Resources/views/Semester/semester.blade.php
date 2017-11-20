@@ -254,7 +254,7 @@
                                 <div class="modal fade" id="modalEditSemester{{$semester->semesterID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
-                                        <div class="modal-header" style="background: #cbffd1">
+                                        <div class="modal-header">
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
@@ -313,7 +313,6 @@
             $('#semester').DataTable();
         } );
     </script>
-    <script src="{{asset('/node_modules/validatejs/jquery.validate.min.js')}}"></script>
     <script>   
         $(function() {
             $("#formSemesterCreate").validate({

@@ -67,8 +67,9 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('/node_modules/confirm/jquery.confirm.min.js')}}"></script>
 <script src="{{asset('/node_modules/datatables/datatables.net/js/jquery.dataTables.js')}}"></script>
-<script src="{{asset('/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('/node_modules/validatejs/jquery.validate.min.js')}}"></script>
 
+<script src="{{asset('/node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
  <script src="{{asset('/admin_uet/js/manage.js')}}"></script> 
 {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  --}}
 {{--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>  --}}

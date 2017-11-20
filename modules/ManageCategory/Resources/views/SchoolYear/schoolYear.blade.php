@@ -24,12 +24,6 @@
             float: right;
             text-align: left;
         }
-        .act, .stt{
-            width: 50px;
-        }
-        .cus{
-            width: 80px;
-        }
     </style>
 @endsection
 @section('content')
@@ -98,9 +92,6 @@
                                                         <div class="btn-group col-md-3" role="group">
                                                             <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
                                                         </div>
-                                                        <div class="btn-group btn-delete hidden" role="group">
-                                                            <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </form>
@@ -108,7 +99,7 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="profile">
                                         <div class="modal-content" style="width: 100%;">
-                                            <div class="modal-header" style="background: #56aaff">
+                                            <div class="modal-header">
                                                 <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                             </div>
@@ -232,9 +223,6 @@
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
                                                     </div>
-                                                    <div class="btn-group btn-delete hidden" role="group">
-                                                        <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -257,7 +245,6 @@
             });
         } );
     </script>
-    <script src="{{asset('/node_modules/validatejs/jquery.validate.min.js')}}"></script>
     <script>   
         $(function() {
             $("#formSchoolYearCreate").validate({
