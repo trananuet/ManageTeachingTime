@@ -64,6 +64,11 @@
                                                 </div>
                                                 @php
                                                     $role_functions = get_role_function($role->id);
+                                                    if($role->id == 0){
+                                                        $disabled = "disabled";
+                                                    } else {
+                                                        $disabled = null;
+                                                    }
                                                 @endphp
                                                 <div class="form-group">
                                                     <h4 style="font-weight: bold;">Chức năng: </h4>
@@ -81,7 +86,7 @@
                                                     @endphp
                                                         <div class="form-group row">
                                                             <div class="col-md-2">
-                                                                <input class="checkbox-common" type="checkbox" name="id_function[]" value ="{{$func->id}}" id="id-function" {{$checkFunction}}>
+                                                                <input class="checkbox-common" type="checkbox" name="id_function[]" value ="{{$func->id}}" id="id-function" {{$checkFunction}} {{$disabled}}>
                                                             </div>
                                                             <label>{{$func->name_function}}</label>
                                                         </div>

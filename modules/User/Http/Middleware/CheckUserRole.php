@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Base\Http\Middleware;
+namespace Modules\User\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2017 at 02:26 PM
+-- Generation Time: Nov 20, 2017 at 08:17 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -19,6 +19,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `manage_teaching_time`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `functions`
+--
+
+CREATE TABLE `functions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name_function` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `functions`
+--
+
+INSERT INTO `functions` (`id`, `name_function`, `created_at`, `updated_at`) VALUES
+(11, 'Xem năm học', NULL, NULL),
+(12, 'Thêm năm học', NULL, NULL),
+(13, 'Sửa, Xóa năm học', NULL, NULL),
+(21, 'Xem học kỳ', NULL, NULL),
+(22, 'Thêm học kỳ', NULL, NULL),
+(23, 'Sửa, Xóa học kỳ', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -42,7 +67,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2014_10_12_000000_create_users_table', 2),
 (4, '2014_10_12_100000_create_password_resets_table', 2),
 (5, '2017_11_15_042608_create_user_roles_table', 3),
-(6, '2017_11_15_043140_create_roles_table', 3);
+(6, '2017_11_15_043140_create_roles_table', 3),
+(7, '2017_11_19_162728_create_fucntions_table', 4),
+(8, '2017_11_19_164739_create_role_functions_table', 4);
 
 -- --------------------------------------------------------
 
@@ -74,9 +101,39 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Khách', NULL, NULL),
-(2, 'Phòng đào tạo', NULL, NULL),
-(3, 'Khách', NULL, NULL);
+(0, 'Admin', NULL, NULL),
+(1, 'Phòng đào tạo', NULL, NULL),
+(2, 'Khách', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_functions`
+--
+
+CREATE TABLE `role_functions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `function_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_functions`
+--
+
+INSERT INTO `role_functions` (`id`, `role_id`, `function_id`, `created_at`, `updated_at`) VALUES
+(1, 0, 11, NULL, NULL),
+(2, 0, 12, NULL, NULL),
+(3, 0, 13, NULL, NULL),
+(4, 0, 21, NULL, NULL),
+(5, 0, 22, NULL, NULL),
+(6, 0, 23, NULL, NULL),
+(7, 1, 11, NULL, NULL),
+(8, 1, 12, NULL, NULL),
+(9, 1, 21, NULL, NULL),
+(10, 1, 22, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,21 +154,9 @@ CREATE TABLE `school_years` (
 --
 
 INSERT INTO `school_years` (`yearID`, `name`, `active`, `created_at`, `updated_at`) VALUES
-(4, 'Năm học 2012 - 2013', 0, '2017-11-10 07:53:44', '2017-11-15 00:16:52'),
 (5, 'Năm học 2017 - 2018', 1, '2017-11-11 02:26:59', '2017-11-11 02:26:59'),
-(6, 'Năm học 2018 - 2019', 1, '2017-11-12 20:47:29', '2017-11-12 20:48:04'),
-(7, 'Năm học 2019- 2020', 1, '2017-11-12 20:48:21', '2017-11-12 20:48:21'),
-(12, 'sqws', 0, '2017-11-14 02:24:56', '2017-11-14 02:24:56'),
-(13, '2018', 1, NULL, NULL),
-(14, '2021', 0, NULL, NULL),
-(15, '2011', 1, NULL, NULL),
-(16, 'Năm học  2', 1, NULL, NULL),
-(17, '2021', 0, NULL, NULL),
-(18, '2011', 1, NULL, NULL),
-(19, 'Năm học  2', 1, NULL, NULL),
-(20, '2021', 0, NULL, NULL),
-(21, '2011', 1, NULL, NULL),
-(22, 'ewa', 1, '2017-11-15 00:51:21', '2017-11-15 00:51:21');
+(23, 'Năm học 2015-2016', 1, '2017-11-16 14:39:15', '2017-11-16 14:39:15'),
+(25, 'Năm học 2014-2015', 0, '2017-11-16 15:38:18', '2017-11-16 15:38:18');
 
 -- --------------------------------------------------------
 
@@ -181,13 +226,19 @@ CREATE TABLE `user_roles` (
 --
 
 INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, NULL, NULL),
-(2, 1, 3, NULL, NULL),
-(3, 2, 1, NULL, NULL);
+(1, 1, 0, NULL, NULL),
+(2, 1, 1, NULL, NULL),
+(3, 2, 2, NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `functions`
+--
+ALTER TABLE `functions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -205,6 +256,12 @@ ALTER TABLE `password_resets`
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_functions`
+--
+ALTER TABLE `role_functions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -237,20 +294,30 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT for table `functions`
+--
+ALTER TABLE `functions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `role_functions`
+--
+ALTER TABLE `role_functions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `school_years`
 --
 ALTER TABLE `school_years`
-  MODIFY `yearID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `yearID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `semesters`
 --

@@ -21,7 +21,11 @@ class RoleRepository
     {
         DB::beginTransaction();
 		try {
-            
+            $role = Role::findOrFail($request->id_role);
+            $role_function_select = $request->id_function;
+            $role_function_find = $role->functions()->get();
+            $role_function_find = add_functions($role_function_select, $role_function_find, $role);
+            $role_function_find = remove_function($role_function_select, $role_function_find, $role);
             DB::commit();
 			return true;
         } catch(\Exception $ex){

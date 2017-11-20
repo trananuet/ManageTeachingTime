@@ -26,10 +26,12 @@ class ManageSystemController extends Controller
 
     public function saveRoleFunctions(Request $request)
     {
-        $role = Role::findOrFail($request->id_role);
-        $role_function_select = $request->id_function;
-        $role_function_find = $role->functions()->get();
-        dd($role_function_find);
+        $role_function = RoleRepository::save_role_function($request);
+        if($role_function == true) {
+            return back();
+        } else {
+            return \Response::view('base::errors.500',array(),500);
+        }
         return redirect()->back();
     }
 
