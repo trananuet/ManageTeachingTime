@@ -142,7 +142,8 @@
                 <form method="POST" action="{{route('school_year.remove')}}">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="button" class="btn btn-primary active-btn-remove" id="btn-remove-all-schyear">Xóa nhiều năm học</button>
+                        <button type="button" class="btn btn-primary" id="btn-remove-all-schyear">Xóa nhiều năm học</button>
+                        <button type="button" class="btn btn-primary hidden" id="btnRemoveClass">Xóa nhiều năm học</button>
                         <br>
                         <button type="submit" class="btn btn-primary btn-remove hidden" id="btn-active-revome">Xóa</button>
                     </div>
@@ -278,21 +279,20 @@
     </script>
     <script>
         $(function() {
-            $('#btn-remove-all-schyear').click(function(event){
+            $('#btn-remove-all-schyear').click(function(){
                 $('.active-display').addClass('hidden');
                 $('.hidden-checkbox-sch').removeClass('hidden');
                 $('#btn-active-revome').removeClass('hidden');
-                $(this).removeAttr('id','btn-remove-all-schyear');
-                $(this).attr('id','hidden-btn-remove');
-                    event.preventDefault();
-                $('#hidden-btn-remove').click(function(){
-                    $('.hidden-checkbox-sch').addClass('hidden');
-                    $('.active-display').removeClass('hidden');
-                    $('#btn-active-revome').addClass('hidden');
-                    $(this).removeAttr('id','hidden-btn-remove');
-                    $(this).attr('id','btn-remove-all-schyear');
-                    console.log(this);
-                });
+                $('#btnRemoveClass').removeClass('hidden');
+                $(this).addClass('hidden');
+                
+            });
+            $('#btnRemoveClass').click(function(){
+                   $('.hidden-checkbox-sch').addClass('hidden');
+                   $('.active-display').removeClass('hidden');
+                   $('#btn-active-revome').addClass('hidden');
+                   $('#btn-remove-all-schyear').removeClass('hidden');
+                   $(this).addClass('hidden');
             });
         });
     </script>
