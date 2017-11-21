@@ -103,7 +103,6 @@ class SchoolYearController extends Controller
     * @return view
     */
     public function deleteOneSchoolYear($yearID){
-        $delSch = SchoolYear::findorFail($yearID);
         $school_year = SchoolYearRepository::deleteSchoolYear($yearID);
         if($school_year == true) {
             return redirect()->back();

@@ -19,6 +19,9 @@ Route::group(['middleware' => 'web',
         Route::post('/semester/save', 'Semester\SemesterController@createEditSemester')->name('semester.save');
         Route::post('/semester/remove', 'Semester\SemesterController@delSemester')->name('semester.remove');
         Route::post('/semester/filter_year', 'Semester\SemesterController@filterYear')->name('semester.filter');
+        Route::post('/semester/delete/{semesterID}', 'Semester\SemesterController@deleteOneSemester')
+                ->name('semester.delete')
+                ->where('yearID', '[0-9]+');
         Route::post('/semester/import', 'Semester\SemesterController@postImport')->name('semester.import');
 
 

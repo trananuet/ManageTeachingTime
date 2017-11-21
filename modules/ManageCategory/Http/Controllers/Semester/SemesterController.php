@@ -18,9 +18,8 @@ class SemesterController extends Controller
     * @return view
     */
     public function getSemester(){
-        // $school_years = SchoolYear::find(1)->semesters()->get();
-        // dd($school_years);
-        $school_years = SchoolYearRepository::getAllSchoolYear();
+      
+        $school_years = SchoolYearRepository::get_school_active();
         $semesters = SemesterRepository::getAllSemester();
         return view('managecategory::Semester.semester',compact('school_years','semesters'));
     }
@@ -58,17 +57,46 @@ class SemesterController extends Controller
              return \Response::view('base::errors.500',array(),500);
         }
     }
-
+    
+    /**
+    * filter year
+    * @author AnTV
+    * @param $request yearID
+    * @return view
+    */
     public function filterYear(Request $request){
         $year = $request->year;
         $schoolYear = SchoolYear::find($year);
         $semesterFilter = SchoolYear::find($year)->semesters()->get();
         session()->flash('schoolYear', $schoolYear);
         session()->flash('semesterFilter', $semesterFilter);
-        // dd($schoolYear);
-        // dd($semesterFilter);
         return redirect()->back();
     }
+
+
+    /**
+    * remove one semester
+    * @author AnTV
+    * @param $semesterID
+    * @return view
+    */
+    public function deleteOneSemester($semesterID){
+        $semester = SemesterRepository::delSemester($semesterID);
+        if($semester == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
+    }
+
+
+    /**
+    * import database to excel
+    * @author CongNC
+    * @return database
+    */
+
+
     public function postImport(Request $request)
     {
         $this->validate($request, [
@@ -104,4 +132,5 @@ class SemesterController extends Controller
          }
        }
     }
+
 }

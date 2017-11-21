@@ -9,13 +9,15 @@ class SemesterRepository
 {
     /**
     * semester
-    * @author AnTV
+    * @author AnTVư
+    * @param DEFINE_ACTIVE = 1 <Helper/DefineHelper>
     * @return static
     */
     public static function getAllSemester()
     {
         $semester = Semester::selectRaw("semesters.*,school_years.name as schoolYear")
                             ->leftjoin('school_years','school_years.yearID','=','semesters.yearID')
+                            ->where('school_years.active',DEFINE_ACTIVE)
                             ->get();
         return $semester;
     }
@@ -76,4 +78,26 @@ class SemesterRepository
 			return false;
 		}
 	}
+
+    /**
+    * remove one semester
+    * @author AnTV
+    * @param int $semesterID
+    * @return Modules\ManageCategory\Repositories\SchoolYearRepository|static boolean
+    */
+	public static function delSemester($semesterID)
+    {
+		DB::beginTransaction();
+		try {
+			$semester = Semester::findorFail($semesterID);
+			$semester->delete();
+			DB::commit();
+			return true;
+		}
+		catch(\Exception $ex) {
+			DB::rollback();
+			return false;
+		}
+	}
+
 }

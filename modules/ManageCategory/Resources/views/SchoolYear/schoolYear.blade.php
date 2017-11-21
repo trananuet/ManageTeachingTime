@@ -38,13 +38,18 @@
                         <h3>Năm học</h3>
                         <hr><br/>
                         <div class="row">
-                        @if(count($errors)>0)
+                         @if(count($errors)>0)
                                 <div class="alert alert-danger">
                                     @foreach($errors->all() as $err)
                                     {{$err}}
                                     @endforeach
                                 </div>
-                        @endif
+                        @endif 
+                        {{--  @if($errors->has('checkbox'))
+                            <div class="alert alert-danger">
+                                <strong>{{$errors->first('checkbox')}}</strong>
+                            </div>
+                        @endif   --}}
                         </div>
                         <div class="row">
                             <div class="col-md-4 add-year-btn">
@@ -128,40 +133,29 @@
                 </div>
                 <hr/>
             </div>
-            {{--  @if($errors->has('checkbox'))
-                <div class="alert alert-danger">
-                    <strong>{{$errors->first('checkbox')}}</strong>
-                </div>
-            @endif  --}}
             <div class="school-content-table relative">
-                {{--  <form method="POST" action="{{route('school_year.remove')}}">
-                {{ csrf_field() }}
-                    <button id="button-remove" type="submit" class="btn btn-danger removeSchoolYear">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>  --}}
                 <form method="POST" action="{{route('school_year.remove')}}">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="button" class="btn btn-primary" id="btn-remove-all-schyear">Xóa nhiều năm học</button>
+                        <button type="button" class="btn btn-primary" id="btnRemoveAllYear">Xóa nhiều năm học</button>
                         <button type="button" class="btn btn-primary hidden" id="btnRemoveClass">Xóa nhiều năm học</button>
                         <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="btn-active-revome">Xóa</button>
+                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeYearActive">Xóa</button>
                     </div>
                 <table class="table table-hover table-condensed table-bordered" id="school-years">
                     <thead class ="table-school-year">
                         <tr>
-                            <th class="hidden stt hidden-checkbox-sch"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
+                            <th class="hidden stt hidden-checkbox"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             <th class="stt active-display">STT</th>
                             <th class="">Năm học</th>
                             <th class="act">Active</th>
                             <th class="cus">Tùy chọn</th>
-                            {{--  <th class="rem"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove" style="margin-left: 8px;"></th>  --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($school_years as $schoolyear)
                             <tr>
-                                <td class="hidden hidden-checkbox-sch"><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
+                                <td class="hidden hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
                  </form>
                                 <td class="active-display">{{++$loop->index}}</td>
                                 <td>{{$schoolyear->name}}</td>
@@ -279,19 +273,19 @@
     </script>
     <script>
         $(function() {
-            $('#btn-remove-all-schyear').click(function(){
+            $('#btnRemoveAllYear').click(function(){
                 $('.active-display').addClass('hidden');
-                $('.hidden-checkbox-sch').removeClass('hidden');
-                $('#btn-active-revome').removeClass('hidden');
+                $('.hidden-checkbox').removeClass('hidden');
+                $('#removeYearActive').removeClass('hidden');
                 $('#btnRemoveClass').removeClass('hidden');
                 $(this).addClass('hidden');
                 
             });
             $('#btnRemoveClass').click(function(){
-                   $('.hidden-checkbox-sch').addClass('hidden');
+                   $('.hidden-checkbox').addClass('hidden');
                    $('.active-display').removeClass('hidden');
-                   $('#btn-active-revome').addClass('hidden');
-                   $('#btn-remove-all-schyear').removeClass('hidden');
+                   $('#removeYearActive').addClass('hidden');
+                   $('#btnRemoveAllYear').removeClass('hidden');
                    $(this).addClass('hidden');
             });
         });

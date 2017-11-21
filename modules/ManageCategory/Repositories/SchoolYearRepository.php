@@ -19,6 +19,21 @@ class SchoolYearRepository
     }
 
     /**
+    * school year active
+    * @author AnTV
+    * @param DEFINE_ACTIVE = 1 <Helper/DefineHelper>
+    * @return static
+    */
+    public static function get_school_active()
+    {
+        $schoolYear = SchoolYear::select('yearID','name')->where('active',DEFINE_ACTIVE)
+                                ->distinct()
+                                ->get('name');
+        return $schoolYear;
+    }
+
+
+    /**
     * save school year
     * @author AnTV
     * @return static

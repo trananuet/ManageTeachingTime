@@ -83,13 +83,6 @@ a {
     height: 55px;
 }
 
-.removeSchoolYear {
-    position: absolute;
-    z-index: 1000;
-    right: 25px;
-    top: -4px;
-}
-
 .checkbox-remove {
     width: 17px;
     height: 17px;
@@ -127,20 +120,23 @@ a {
     background: #56aaff;
 }
 
-.removeSemester {
-    position: absolute;
-    z-index: 1000;
-    right: 25px;
-    top: -4px;
-}
-
 .filter-year {
     display: inline-flex;
 }
 
 .label-filter-year {
-    margin-top: 8 px;
-    font-size: 14px;
+    margin-top: 4px;
+    font-size: 19px;
+}
+
+.semester-content-table {
+    margin-left: 115px;
+    margin-right: 115px;
+}
+
+.add-semester-btn button {
+    margin-left: 115px;
+    width: 130px;
 }
 
 
