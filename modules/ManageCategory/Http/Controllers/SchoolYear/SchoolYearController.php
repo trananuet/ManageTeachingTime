@@ -53,8 +53,7 @@ class SchoolYearController extends Controller
           if(!empty($dataArray))
           {             
             SchoolYear::insert($dataArray);
-            $school_years = SchoolYearRepository::getAllSchoolYear();
-            return view('managecategory::SchoolYear.schoolYear',compact('dataArray','school_years'));
+            return view('managecategory::SchoolYear.viewExcel',compact('dataArray'));
            }
          }
        }

@@ -33,13 +33,13 @@
                     <thead class ="table-school-year">
                         <tr>
                             <th class="stt">STT</th>
-                            <th class="">Người dùng</th>
+                            <th class="">Người dùng </th>
                             <th class="">Email</th>
                             <th class="">Chức vụ</th>
                             <th class="cus">Tùy chọn</th>
                         </tr>
                     </thead>
-                    @foreach($cust as $user)
+                    @foreach($users as $user)
                     <tbody>
                         <tr>
                             <td>{{++$loop->index}}</td>
@@ -66,21 +66,21 @@
                                                 <div class="form-group">
                                                     <h4 style="font-weight: bold;">Phân Quyền: </h4>
                                                     <div class="system-function col-md-offset-3">
-                                                    
                                                         <div class="form-group row">
                                                             <div class="col-md-12">
                                                                 <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox1" value="0" checked> Admin
+                                                                  <input type="checkbox" id="inlineCheckbox1" value="0" {{ old('type', $user->roleid) == '0' ? 'checked' : '' }}> Admin
                                                                 </label>
                                                                 <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox2" value="1"> PĐT
+                                                                  <input type="checkbox" id="inlineCheckbox2" value="1" {{ old('type', $user->roleid) == '1' ? 'checked' : '' }}> PĐT
                                                                 </label>
                                                                 <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox3" value="2"> Khách
+                                                                  <input type="checkbox" id="inlineCheckbox3" value="2" {{ old('type', $user->roleid) == '2' ? 'checked' : '' }}> Khách
                                                                 </label>
                                                             </div>
                                                             <label></label>
                                                         </div>
+                                                     
                                                     <input type="hidden" name="id_role" value="">
                                                     </div>
                                                 </div>

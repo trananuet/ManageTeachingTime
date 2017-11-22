@@ -12,7 +12,7 @@ Route::group(['middleware' => 'web',
         Route::post('/school_year/delete/{yearID}', 'SchoolYear\SchoolYearController@deleteOneSchoolYear')
                 ->name('school_year.delete')
                 ->where('yearID', '[0-9]+');
-        Route::post('/school_year', 'SchoolYear\SchoolYearController@postImport')->name('school_year.import');
+        Route::post('/school_year/import', 'SchoolYear\SchoolYearController@postImport')->name('school_year.import');
 
         
         Route::get('/semester', 'Semester\SemesterController@getSemester')->name('semester')->middleware('check-mod-admin');
