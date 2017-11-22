@@ -116,7 +116,7 @@
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
-                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import thành công {{count($dataArray)}} dữ liệu')" type="submit">Import</button>
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
                                                     </div>
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
