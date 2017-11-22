@@ -154,7 +154,7 @@
                         <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
                         <button type="button" class="btn btn-primary hidden" id="btnActiveRemoveSemester">Xóa nhiều năm học</button>
                         <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeSemesterActive">Xóa</button>
+                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
                     </div>
                     <table class="table table-hover table-condensed table-bordered " id ="semester">
                         <thead class ="table-semester">
@@ -180,7 +180,7 @@
                                         </button>
                                         <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
                                             {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">
+                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa ?');">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
                                         </form>
@@ -246,7 +246,7 @@
                         <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
                         <button type="button" class="btn btn-primary hidden" id="btnActiveRemoveSemester">Xóa nhiều năm học</button>
                         <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeSemesterActive">Xóa</button>
+                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
                     </div>
                     <table class="table table-hover table-condensed table-bordered " id ="semester">
                         <thead class ="table-semester">
@@ -272,7 +272,7 @@
                                         </button>
                                         <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
                                             {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">
+                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
                                         </form>
@@ -375,13 +375,13 @@
         });
     </script>
     <script>
-        $("#button-remove-semester").confirm({
+        /*$("#button-remove-semester").confirm({
             title: "Xóa năm học?",
             text: "Bạn có chắn chắn xóa học kỳ? Ấn Yes để tiếp tục.",
             confirm: function(){
                 $('form#btnRemoveSemester').submit();
                 console.log('true');
             }   
-        });
+        });*/
     </script>
 @endsection

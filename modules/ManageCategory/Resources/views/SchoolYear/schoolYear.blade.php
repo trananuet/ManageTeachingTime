@@ -140,7 +140,7 @@
                         <button type="button" class="btn btn-primary" id="btnRemoveAllYear">Xóa nhiều năm học</button>
                         <button type="button" class="btn btn-primary hidden" id="btnRemoveClass">Xóa nhiều năm học</button>
                         <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeYearActive">Xóa</button>
+                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeYearActive" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">Xóa</button>
                     </div>
                 <table class="table table-hover table-condensed table-bordered" id="school-years">
                     <thead class ="table-school-year">
