@@ -29,14 +29,13 @@ class ManageUsersController extends Controller
             ->get();
         return view('user::manage_users.manageUsers',compact('users','funcs'));
     }
-    public function saveUserFunctions(Request $request)
+    public function saveRoleUser(Request $req)
     {
-        $user_function = RoleRepository::save_user_function($request);
-        if($user_function == true) {
-            return back();
-        } else {
-            return \Response::view('base::errors.500',array(),500);
-        }
+         DB::table('User_Roles')
+            ->where('user_id',$req->id)
+            ->update([  
+                        'role_id' => $req -> manage
+                ]);
         return redirect()->back();
     }
 

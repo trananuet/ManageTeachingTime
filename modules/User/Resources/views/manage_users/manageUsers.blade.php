@@ -59,7 +59,7 @@
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ NGƯỜI DÙNG</h4>
                                         </div>
-                                        <form method="POST" action="{{route('manage_system.save')}}" id="formSystemSave">
+                                        <form method="POST" action="{{route('manage_users.save')}}">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
@@ -68,14 +68,14 @@
                                                     <div class="system-function col-md-offset-3">
                                                         <div class="form-group row">
                                                             <div class="col-md-12">
-                                                                <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox1" value="0" {{ old('type', $user->roleid) == '0' ? 'checked' : '' }}> Admin
+                                                                <label class="radio-inline">
+                                                                  <input type="radio" id="inlineCheckbox1" name="manage" value="0" {{ old('type', $user->roleid) == '0' ? 'checked' : '' }}> Admin
                                                                 </label>
-                                                                <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox2" value="1" {{ old('type', $user->roleid) == '1' ? 'checked' : '' }}> PĐT
+                                                                <label class="radio-inline">
+                                                                  <input type="radio" id="inlineCheckbox2" name="manage" value="1" {{ old('type', $user->roleid) == '1' ? 'checked' : '' }}> PĐT
                                                                 </label>
-                                                                <label class="checkbox-inline">
-                                                                  <input type="checkbox" id="inlineCheckbox3" value="2" {{ old('type', $user->roleid) == '2' ? 'checked' : '' }}> Khách
+                                                                <label class="radio-inline">
+                                                                  <input type="radio" id="inlineCheckbox3" name="manage" value="2" {{ old('type', $user->roleid) == '2' ? 'checked' : '' }}> Khách
                                                                 </label>
                                                             </div>
                                                             <label></label>
