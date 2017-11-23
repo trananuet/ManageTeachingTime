@@ -107,19 +107,19 @@ class SchoolYearRepository
     * @param int $yearID
     * @return Modules\ManageCategory\Repositories\SchoolYearRepository|static boolean
     */
-	public static function deleteSchoolYear($yearID)
-    {
-		DB::beginTransaction();
-		try {
-			$delSch = SchoolYear::findorFail($yearID);
-			$delSch->delete();
-			DB::commit();
-			return true;
-		}
-		catch(\Exception $ex) {
-			DB::rollback();
-			return false;
-		}
-	}
+	// public static function deleteSchoolYear($yearID)
+    // {
+	// 	DB::beginTransaction();
+	// 	try {
+	// 		$delSch = SchoolYear::findorFail($yearID);
+	// 		$delSch->delete();
+	// 		DB::commit();
+	// 		return true;
+	// 	}
+	// 	catch(\Exception $ex) {
+	// 		DB::rollback();
+	// 		return false;
+	// 	}
+	// }
 
 }

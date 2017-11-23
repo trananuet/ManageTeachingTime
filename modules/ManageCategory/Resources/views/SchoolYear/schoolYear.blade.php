@@ -68,7 +68,7 @@
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                                                         
                                         <div class="modal-content" style="width: 100%;">
-                                            <div class="modal-header" style="background: #56aaff">
+                                            <div class="modal-header">
                                                 <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                             </div>
@@ -137,26 +137,23 @@
                 <form method="POST" action="{{route('school_year.remove')}}">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="button" class="btn btn-primary" id="btnRemoveAllYear">Xóa nhiều năm học</button>
-                        <button type="button" class="btn btn-primary hidden" id="btnRemoveClass">Xóa nhiều năm học</button>
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeYearActive" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">Xóa</button>
+                        {{--  <button type="button" class="btn btn-primary" id="btnRemoveAllYear">Xóa nhiều năm học</button>
+                        <button type="button" class="btn btn-primary hidden" id="btnRemoveClass">Xóa nhiều năm học</button>  --}}
+                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="removeYearActive" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">Xóa</button>
                     </div>
                 <table class="table table-hover table-condensed table-bordered" id="school-years">
                     <thead class ="table-school-year">
                         <tr>
-                            <th class="hidden stt hidden-checkbox"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             <th class="stt active-display">STT</th>
                             <th class="">Năm học</th>
                             <th class="act">Active</th>
                             <th class="cus">Tùy chọn</th>
+                            <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($school_years as $schoolyear)
                             <tr>
-                                <td class="hidden hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
-                 </form>
                                 <td class="active-display">{{++$loop->index}}</td>
                                 <td>{{$schoolyear->name}}</td>
                                 @if($schoolyear->active == 1)
@@ -164,23 +161,24 @@
                                 @else
                                     <td></td>
                                 @endif
-                                <td style="display: flex;">
+                                <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSchoolYear{{$schoolyear->yearID}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
-                                    <form action="{{route('school_year.delete',['yearID' => $schoolyear->yearID])}}" method="POST" id="delYear{{$schoolyear->yearID}}">
+                                    {{--  <form action="{{route('school_year.delete',['yearID' => $schoolyear->yearID])}}" method="POST" id="delYear{{$schoolyear->yearID}}">
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-primary del-one-year" id="button-remove-year-one{{$schoolyear->yearID}}" onclick="return confirm('Bạn chắn chắn muốn xóa năm học?');">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
-                                    </form>
+                                    </form>  --}}
                                 </td>
-                                {{--  <td><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>  --}}
+                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$schoolyear->yearID}}" value="{{$schoolyear->yearID}}" class="checkbox-remove"></td>
+                 </form>
                             </tr>
                             <div class="modal fade" id="modalEditSchoolYear{{$schoolyear->yearID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
-                                        <div class="modal-header" style="background: #cbffd1">
+                                        <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
@@ -271,7 +269,7 @@
                     console.log('form#delYear'+i);
         */
     </script>
-    <script>
+    {{--  <script>
         $(function() {
             $('#btnRemoveAllYear').click(function(){
                 $('.active-display').addClass('hidden');
@@ -289,7 +287,7 @@
                    $(this).addClass('hidden');
             });
         });
-    </script>
+    </script>  --}}
     <script>
         $('#myTabs a').click(function (e) {
             e.preventDefault()
