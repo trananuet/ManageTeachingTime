@@ -101,14 +101,14 @@ class SchoolYearController extends Controller
     * @param $yearID
     * @return view
     */
-    public function deleteOneSchoolYear($yearID){
-        $school_year = SchoolYearRepository::deleteSchoolYear($yearID);
-        if($school_year == true) {
-            return redirect()->back();
-        } else {
-             return \Response::view('base::errors.500',array(),500);
-        }
-    }
+    // public function deleteOneSchoolYear($yearID){
+    //     $school_year = SchoolYearRepository::deleteSchoolYear($yearID);
+    //     if($school_year == true) {
+    //         return redirect()->back();
+    //     } else {
+    //          return \Response::view('base::errors.500',array(),500);
+    //     }
+    // }
 
 
     /**

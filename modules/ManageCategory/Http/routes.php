@@ -9,9 +9,9 @@ Route::group(['middleware' => 'web',
         Route::get('/school_year', 'SchoolYear\SchoolYearController@getSchoolYear')->name('school_year');
         Route::post('/school_year/save', 'SchoolYear\SchoolYearController@createEditSchoolYear')->name('school_year.save');
         Route::post('/school_year/remove', 'SchoolYear\SchoolYearController@delSchoolYear')->name('school_year.remove');
-        Route::post('/school_year/delete/{yearID}', 'SchoolYear\SchoolYearController@deleteOneSchoolYear')
-                ->name('school_year.delete')
-                ->where('yearID', '[0-9]+');
+        // Route::post('/school_year/delete/{yearID}', 'SchoolYear\SchoolYearController@deleteOneSchoolYear')
+        //         ->name('school_year.delete')
+        //         ->where('yearID', '[0-9]+');
         Route::post('/school_year/import', 'SchoolYear\SchoolYearController@postImport')->name('school_year.import');
 
         
