@@ -25,9 +25,83 @@
                         <hr>
                         <h3>Quản lý người dùng</h3>
                         <hr><br/>
-                    </div>  
-                </div>  
+                        @if(count($errors)>0)
+                                <div class="alert alert-danger">
+                                    @foreach($errors->all() as $err)
+                                    {{$err}}
+                                    @endforeach
+                                </div>
+                        @endif 
+                        <div class="row">
+                            <div class="col-md-4 add-year-btn">
+                                <button data-toggle="modal" data-target="#modalAddUser" class="btn btn-primary">Thêm người dùng</button>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="home">
+                                                                        
+                                        <div class="modal-content" style="width: 100%;">
+                                            <div class="modal-header" style="background: #56aaff">
+                                                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title" id="lineModalLabel">THÊM NGƯỜI DÙNG</h4>
+                                            </div>
+                                            <form method="POST" action="{{route('manage_users.add')}}" >
+                                            {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <!-- content goes here -->
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Tên: </label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Name" class="form-control" id="schoolYearCreate" placeholder="Nguyễn Chiến Công">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Email: </label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Email" class="form-control" id="schoolYearCreate" placeholder="hyperyuiz@gmail.com">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Mật khẩu: </label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Password" class="form-control" id="schoolYearCreate" placeholder="123456">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Chức vụ: </label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-control" name="role">
+                                                                <option>Chọn chức vụ</option>
+                                                                @foreach($roles as $role)
+                                                                <option value="{{$role->id}}">{!! $role->role !!}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                        <div class="btn-group col-md-3" role="group">
+                                                            <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                                        </div>
+                                                        <div class="btn-group col-md-3" role="group">
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>          
+                    </div>
+                </div>
+                <hr/>
             </div>
+
             <div class="content-manage-system">
                 <table class="table table-hover table-condensed table-bordered" id="table-manage-system">
                     <thead class ="table-school-year">
@@ -50,6 +124,7 @@
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalManageSystem{{$user->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>
+                                <button class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                             </td>
                         </tr>
                         <div class="modal fade" id="modalManageSystem{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -57,31 +132,29 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ NGƯỜI DÙNG</h4>
+                                            <h4 class="modal-title" id="lineModalLabel">PHÂN CHỨC VỤ</h4>
                                         </div>
-                                        <form method="POST" action="{{route('manage_users.save')}}">
+                                        <form method="POST" action="{{route('manage_users.save',['userID' => $user->id])}}">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <div class="form-group">
-                                                    <h4 style="font-weight: bold;">Phân Quyền: </h4>
-                                                    <div class="system-function col-md-offset-3">
-                                                        <div class="form-group row">
-                                                            <div class="col-md-12">
-                                                                <label class="radio-inline">
-                                                                  <input type="radio" id="inlineCheckbox1" name="manage" value="0" {{ old('type', $user->roleid) == '0' ? 'checked' : '' }}> Admin
-                                                                </label>
-                                                                <label class="radio-inline">
-                                                                  <input type="radio" id="inlineCheckbox2" name="manage" value="1" {{ old('type', $user->roleid) == '1' ? 'checked' : '' }}> PĐT
-                                                                </label>
-                                                                <label class="radio-inline">
-                                                                  <input type="radio" id="inlineCheckbox3" name="manage" value="2" {{ old('type', $user->roleid) == '2' ? 'checked' : '' }}> Khách
-                                                                </label>
-                                                            </div>
-                                                            <label></label>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-4 col-form-label">Chức Vụ Đang Có: </label>
+                                                        <div class="col-sm-8">
+                                                            <span>{!! $user->role !!}</span>
                                                         </div>
-                                                     
-                                                    <input type="hidden" name="id_role" value="">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-4 col-form-label">Phân Lại Chức vụ: </label>
+                                                        <div class="col-sm-8">
+                                                            <select class="form-control" name="role">
+                                                                <option>Chọn chức vụ</option>
+                                                                @foreach($roles as $role)
+                                                                <option value="{{$role->id}}">{!! $role->role !!}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

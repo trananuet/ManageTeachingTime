@@ -27,16 +27,33 @@ class ManageUsersController extends Controller
            ->join('Roles', 'User_Roles.role_id', '=', 'Roles.id')
            ->select('Users.name','Users.email', 'Roles.role','Users.id','Roles.id as roleid')
             ->get();
-        return view('user::manage_users.manageUsers',compact('users','funcs'));
-    }
-    public function saveRoleUser(Request $req)
-    {
-         DB::table('User_Roles')
-            ->where('user_id',$req->id)
-            ->update([  
-                        'role_id' => $req -> manage
-                ]);
-        return redirect()->back();
+
+        $roles = DB::table('Roles')->get();
+
+        return view('user::manage_users.manageUsers',compact('users','funcs','roles'));
     }
 
+    /**
+     * save role_user
+     * @return view
+     */
+    public function saveRoleUser(Request $req, $userID)
+    {
+         DB::table('User_Roles')
+            ->where('user_id',$userID)
+            ->update([  
+                        'role_id' => $req -> role
+                ]);
+        return redirect()->back()->with('thongbao','Chỉnh sửa thành công');
+    }
+
+
+    /**
+     * add user
+     * @return view
+     */
+    public function addUser(Request $req)
+    {
+        return redirect()->back();
+    }
 }
