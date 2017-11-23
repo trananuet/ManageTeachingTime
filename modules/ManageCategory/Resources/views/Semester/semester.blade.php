@@ -14,10 +14,7 @@
         }
         .set-access-modal{
             background: #eeebf1;
-        }
-        .cus, .rem, .stt{
-            width: 45px;
-        }
+    }
     </style>
 @endsection
 @section('content')
@@ -36,11 +33,33 @@
                                 <strong>{{$errors->first('checkbox')}}</strong>
                             </div>
                         @endif 
-                        {{--  <div class="row">  --}}
-                        <div class="add-semester-btn">
-                                <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary col-md-1">Thêm học kỳ</button>
-                            </div>
-                        {{--  </div>  --}}
+                        <div class="row"> 
+                            <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
+                                        {{ csrf_field() }}
+                                <div class="filter-year col-md-8 col-md-offset-1 row">
+                                    <label for="filterYear" class="col-sm-3 col-form-label label-filter-year">Năm học</label>
+                                    <div class="col-sm-6"> 
+                                        <select type="text" name="year" class="form-control input-filter-year" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                            <option value="">Chọn năm học</option>
+                                            @foreach($school_years as $school_year)
+                                                @if(session('schoolYear') && session('semesterFilter'))
+                                                @php
+                                                    $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
+                                                @endphp
+                                                <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
+                                                @else
+                                                <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="hidden"></button>
+                                </div>
+                            </form>
+                        </div> 
+                        <div class="add-semester-btn col-md-2 col-md-offset-1">
+                            <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary">Thêm học kỳ</button>
+                        </div>
                         <!-- LINE MODAL -->
                         <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -53,7 +72,7 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active" id="home">                                
                                             <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header" style="background: #56aaff">
+                                                <div class="modal-header">
                                                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                     <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                                 </div>
@@ -122,70 +141,49 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
-                                    {{ csrf_field() }}
-                        <div class="filter-year col-md-6 col-md-offset-1">
-                            <label for="filterYear" class="col-sm-3 col-form-label label-filter-year">Năm học</label>
-                            <select type="text" name="year" class="form-control input-filter-year" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
-                                <option value="">Chọn năm học</option>
-                                @foreach($school_years as $school_year)
-                                    @if(session('schoolYear') && session('semesterFilter'))
-                                    @php
-                                        $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
-                                    @endphp
-                                    <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
-                                    @else
-                                    <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            <button type="submit" class="hidden"></button>
-                        </div>
-                        </form>
                     </div>
                 </div>
                 <hr/>
             </div>
             @if(session('schoolYear') && session('semesterFilter'))
-                 <div class="semester-content-table relative">
+                <div class="semester-content-table relative">
                     <form method="POST" action="{{route('semester.remove')}}" id="btnRemoveSemester">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
+                        {{--  <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
                         <button type="button" class="btn btn-primary hidden" id="btnActiveRemoveSemester">Xóa nhiều năm học</button>
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
+                        <br>  --}}
+                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
                     </div>
                     <table class="table table-hover table-condensed table-bordered " id ="semester">
                         <thead class ="table-semester">
                             <tr>
-                                <th class="hidden stt hidden-checkbox"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                                 <th class="stt active-display">STT</th>
                                 <th class="">Năm học</th>
                                 <th class="">Học kỳ</th>
                                 <th class="cus">Tùy chọn</th>
+                                <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach(session('semesterFilter') as $semester)
                                 <tr>
-                                     <td class="hidden hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
-                    </form>
                                     <td class="active-display">{{++$loop->index}}</td>
                                     <td>{{session('schoolYear')->name}}</td>
                                     <td>{{$semester->name}}</td>
-                                    <td style="display: flex;">
+                                    <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSemester{{$semester->semesterID}}">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
-                                        <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
+                                        {{--  <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
                                             {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa ?');">
+                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
-                                        </form>
+                                        </form>  --}}
                                     </td>
-                                    {{--  <td><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>  --}}
+                                     <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
+                    </form>
                                 </tr>
                                 <div class="modal fade" id="modalEditSemester{{$semester->semesterID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -243,41 +241,40 @@
                     <form method="POST" action="{{route('semester.remove')}}" id="btnRemoveSemester">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
+                        {{--  <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
                         <button type="button" class="btn btn-primary hidden" id="btnActiveRemoveSemester">Xóa nhiều năm học</button>
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-remove hidden" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
+                        <br>  --}}
+                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
                     </div>
                     <table class="table table-hover table-condensed table-bordered " id ="semester">
                         <thead class ="table-semester">
                             <tr>
-                                <th class="hidden stt hidden-checkbox"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                                 <th class="stt active-display">STT</th>
                                 <th class="">Năm học</th>
                                 <th class="">Học kỳ</th>
                                 <th class="cus">Tùy chọn</th>
+                                <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($semesters as $semester)
                                 <tr>
-                                     <td class="hidden hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
-                    </form>
                                     <td class="active-display">{{++$loop->index}}</td>
                                     <td>{{$semester->schoolYear}}</td>
                                     <td>{{$semester->name}}</td>
-                                    <td style="display: flex;">
+                                    <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSemester{{$semester->semesterID}}">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
-                                        <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
+                                        {{--  <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
-                                        </form>
+                                        </form>  --}}
                                     </td>
-                                    {{--  <td><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>  --}}
+                                     <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
+                    </form>
                                 </tr>
                                 <div class="modal fade" id="modalEditSemester{{$semester->semesterID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -338,8 +335,10 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#semester').DataTable();
-        } );
+            $('#semester').dataTable( {
+                "autoWidth": false
+            });
+        });
     </script>
     {{--  <script>   
         $(function() {

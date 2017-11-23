@@ -39,7 +39,7 @@ a {
 
 .act,
 .stt {
-    width: 50px;
+    width: 60px;
 }
 
 .cus {
@@ -51,21 +51,24 @@ a {
     color: #fff;
 }
 
+.content-manage-system,
+.semester-content-table,
+.school-content-table {
+    margin-left: 10%;
+    margin-right: 20%;
+}
+
 
 /*SCHOOL YEAR*/
 
-.school-content-table {
-    margin-left: 115px;
-    margin-right: 115px;
-}
-
+.table-semester,
 .table-school-year {
     color: white;
     background: #337ab7;
 }
 
 .add-year-btn {
-    margin-left: 115px;
+    margin-left: 10%;
 }
 
 .manage_teaching_time_left {
@@ -91,7 +94,6 @@ a {
 
 .input-search-custom {
     border-radius: 6px;
-    width: 330px;
 }
 
 .custom-input-form {
@@ -117,28 +119,18 @@ a {
 
 /*SEMESTER*/
 
-.table-semester {
-    color: white;
-    background: #56aaff;
-}
 
-.filter-year {
+/* .filter-year {
     display: inline-flex;
-}
+} */
 
 .label-filter-year {
     margin-top: 4px;
-    font-size: 19px;
-}
-
-.semester-content-table {
-    margin-left: 115px;
-    margin-right: 115px;
+    font-size: 17px;
 }
 
 .add-semester-btn button {
-    margin-left: 115px;
-    width: 130px;
+    margin-top: 20px;
 }
 
 
@@ -146,11 +138,6 @@ a {
 
 
 /* MANAGE SYSTEM */
-
-.content-manage-system {
-    margin-left: 115px;
-    margin-right: 325px;
-}
 
 
 /*END MANAGE SYSTEM */

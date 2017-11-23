@@ -85,19 +85,19 @@ class SemesterRepository
     * @param int $semesterID
     * @return Modules\ManageCategory\Repositories\SchoolYearRepository|static boolean
     */
-	public static function delSemester($semesterID)
-    {
-		DB::beginTransaction();
-		try {
-			$semester = Semester::findorFail($semesterID);
-			$semester->delete();
-			DB::commit();
-			return true;
-		}
-		catch(\Exception $ex) {
-			DB::rollback();
-			return false;
-		}
-	}
+	// public static function delSemester($semesterID)
+    // {
+	// 	DB::beginTransaction();
+	// 	try {
+	// 		$semester = Semester::findorFail($semesterID);
+	// 		$semester->delete();
+	// 		DB::commit();
+	// 		return true;
+	// 	}
+	// 	catch(\Exception $ex) {
+	// 		DB::rollback();
+	// 		return false;
+	// 	}
+	// }
 
 }

@@ -80,14 +80,14 @@ class SemesterController extends Controller
     * @param $semesterID
     * @return view
     */
-    public function deleteOneSemester($semesterID){
-        $semester = SemesterRepository::delSemester($semesterID);
-        if($semester == true) {
-            return redirect()->back();
-        } else {
-             return \Response::view('base::errors.500',array(),500);
-        }
-    }
+    // public function deleteOneSemester($semesterID){
+    //     $semester = SemesterRepository::delSemester($semesterID);
+    //     if($semester == true) {
+    //         return redirect()->back();
+    //     } else {
+    //          return \Response::view('base::errors.500',array(),500);
+    //     }
+    // }
 
 
     /**
