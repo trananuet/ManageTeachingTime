@@ -24,7 +24,7 @@
                                 <a href="{{route('manage_users')}}"> Quản lí người dùng</a>
                             </li>
                             <li>
-                                <a href="{{route('manage_system')}}"> Quản lí hệ thống</a>
+                                <a href="{{route('manage_system')}}"> Quản lí phân quyền</a>
                             </li>
                         </ul>
                     </li>
