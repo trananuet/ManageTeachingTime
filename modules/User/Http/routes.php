@@ -10,5 +10,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'user', 'namespace' => 'Modules
 
         Route::get('/manage_system', 'ManageSystem\ManageSystemController@getAllRole')->name('manage_system');
         Route::post('/manage_system/save', 'ManageSystem\ManageSystemController@saveRoleFunctions')->name('manage_system.save');
+        Route::post('/manage_system/remove', 'ManageSystem\ManageSystemController@removeRoleAccess')->name('manage_system.remove');
+
     });
 });

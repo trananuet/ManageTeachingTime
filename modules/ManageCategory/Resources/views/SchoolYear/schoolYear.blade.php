@@ -34,25 +34,24 @@
             <div class="box-top row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <hr>
                         <h3>Năm học</h3>
                         <hr><br/>
                         <div class="row">
-                         @if(count($errors)>0)
+                            @if(count($errors)>0)
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $err)
+                                        {{$err}}
+                                        @endforeach
+                                    </div>
+                            @endif 
+                            {{--  @if($errors->has('checkbox'))
                                 <div class="alert alert-danger">
-                                    @foreach($errors->all() as $err)
-                                    {{$err}}
-                                    @endforeach
+                                    <strong>{{$errors->first('checkbox')}}</strong>
                                 </div>
-                        @endif 
-                        {{--  @if($errors->has('checkbox'))
-                            <div class="alert alert-danger">
-                                <strong>{{$errors->first('checkbox')}}</strong>
-                            </div>
-                        @endif   --}}
+                            @endif   --}}
                         </div>
                         <div class="row">
-                            <div class="col-md-4 add-year-btn">
+                            <div class="col-md-4 add-btn">
                                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
                             </div>
                         </div>
@@ -131,7 +130,6 @@
                         </div>          
                     </div>
                 </div>
-                <hr/>
             </div>
             <div class="school-content-table relative">
                 <form method="POST" action="{{route('school_year.remove')}}">

@@ -25,7 +25,6 @@
             <div class="box-top row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <hr>
                         <h3>Học kỳ</h3>
                         <hr>
                         @if($errors->has('checkbox'))
@@ -36,7 +35,7 @@
                         <div class="row"> 
                             <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
                                         {{ csrf_field() }}
-                                <div class="filter-year col-md-8 col-md-offset-1 row">
+                                <div class="filter-year col-md-8 row">
                                     <label for="filterYear" class="col-sm-3 col-form-label label-filter-year">Năm học</label>
                                     <div class="col-sm-6"> 
                                         <select type="text" name="year" class="form-control input-filter-year" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
@@ -56,9 +55,11 @@
                                     <button type="submit" class="hidden"></button>
                                 </div>
                             </form>
-                        </div> 
-                        <div class="add-semester-btn col-md-2 col-md-offset-1">
-                            <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary">Thêm học kỳ</button>
+                        </div>
+                        <div class="row">
+                            <div class="add-btn col-md-2">
+                                <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary">Thêm học kỳ</button>
+                            </div>
                         </div>
                         <!-- LINE MODAL -->
                         <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -143,7 +144,6 @@
                         </div>
                     </div>
                 </div>
-                <hr/>
             </div>
             @if(session('schoolYear') && session('semesterFilter'))
                 <div class="semester-content-table relative">
@@ -273,9 +273,9 @@
                                             </button>
                                         </form>  --}}
                                     </td>
-                                     <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
-                    </form>
+                                    <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
                                 </tr>
+                    </form>
                                 <div class="modal fade" id="modalEditSemester{{$semester->semesterID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">

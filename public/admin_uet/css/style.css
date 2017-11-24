@@ -39,11 +39,11 @@ a {
 
 .act,
 .stt {
-    width: 60px;
+    width: 13%;
 }
 
 .cus {
-    width: 80px;
+    width: 16%;
 }
 
 .modal-header {
@@ -58,6 +58,10 @@ a {
     margin-right: 20%;
 }
 
+.add-btn {
+    margin-left: 10%;
+}
+
 
 /*SCHOOL YEAR*/
 
@@ -65,10 +69,6 @@ a {
 .table-school-year {
     color: white;
     background: #337ab7;
-}
-
-.add-year-btn {
-    margin-left: 10%;
 }
 
 .manage_teaching_time_left {
@@ -119,10 +119,9 @@ a {
 
 /*SEMESTER*/
 
-
-/* .filter-year {
-    display: inline-flex;
-} */
+.filter-year {
+    margin-left: 10%;
+}
 
 .label-filter-year {
     margin-top: 4px;
