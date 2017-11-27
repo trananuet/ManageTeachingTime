@@ -18,13 +18,22 @@
                     </li>
                     @if(Auth::user()->checkMod())
                     <li>
-                        <a href="#"> Quản lí<span class="fa arrow"></span></a>
+                        <a href="#"> Quản lí hệ thống<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('manage_users')}}"> Quản lí người dùng</a>
+                        	<li>
+                                <a href="#"> Vai trò</a>
                             </li>
                             <li>
-                                <a href="{{route('manage_system')}}"> Quản lí phân quyền</a>
+                                <a href="{{route('manage_users')}}"> Người dùng</a>
+                            </li>
+                            <li>
+                                <a href="#"> Chức năng</a>
+                            </li>
+                            <li>
+                                <a href="{{route('manage_system')}}"> Phân quyền</a>
+                            </li>
+                            <li>
+                                <a href="#"> Nhật ký</a>
                             </li>
                         </ul>
                     </li>
