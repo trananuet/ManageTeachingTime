@@ -28,13 +28,17 @@
                         @if(count($errors)>0)
                                 <div class="alert alert-danger">
                                     @foreach($errors->all() as $err)
-                                    {{$err}}
+                                    {{$err}}<br/>
                                     @endforeach
                                 </div>
-                        @endif 
+                        @endif
+                        @if(Session::has('thongbao'))
+                        <div class="alert alert-success">{{Session::get('thongbao')}}</div>
+                        @endif
+                        
                         <div class="row">
                             <div class="col-md-4 add-year-btn">
-                                <button data-toggle="modal" data-target="#modalAddUser" class="btn btn-primary">Thêm người dùng</button>
+                                <button data-toggle="modal" data-target="#modalAddUser" class="btn btn-primary">+ <b>Thêm người dùng</b></button>
                             </div>
                         </div>
                         <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -72,7 +76,7 @@
                                                     <div class="form-group row">
                                                         <label for="schoolYearCreate" class="col-sm-3 col-form-label">Chức vụ: </label>
                                                         <div class="col-sm-9">
-                                                            <select class="form-control" name="role">
+                                                            <select class="form-control" name="Role">
                                                                 <option>Chọn chức vụ</option>
                                                                 @foreach($roles as $role)
                                                                 <option value="{{$role->id}}">{!! $role->role !!}</option>
@@ -111,6 +115,7 @@
                             <th class="">Email</th>
                             <th class="">Chức vụ</th>
                             <th class="cus">Tùy chọn</th>
+                            <th>Phân quyền</th>
                         </tr>
                     </thead>
                     @foreach($users as $user)
@@ -121,12 +126,81 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->role}}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalManageSystem{{$user->id}}">
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditUser{{$user->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>
-                                <button class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                
+                                <a href="{{route('manage_users.delete',['userID' => $user->id])}}"><button class="btn btn-primary"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalManageSystem{{$user->id}}">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                </button>
                             </td>
                         </tr>
+
+                        <div class="modal fade" id="modalEditUser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="home">
+                                                                        
+                                        <div class="modal-content" style="width: 100%;">
+                                            <div class="modal-header" style="background: #56aaff">
+                                                <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title" id="lineModalLabel">CHỈNH SỬA NGƯỜI DÙNG</h4>
+                                            </div>
+                                            <form method="POST" action="{{route('manage_users.edit',['userID' => $user->id])}}" >
+                                            {{ csrf_field() }}
+                                                <div class="modal-body">
+                                                    <!-- content goes here -->
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Tên: </label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Name" class="form-control" id="schoolYearCreate" value="{{$user->name}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Email: </label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Email" class="form-control" id="schoolYearCreate" value="{{$user->email}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Mật khẩu: </label>
+                                                        <div class="col-sm-9">
+                                                            <input type="text" name="Password" class="form-control" id="schoolYearCreate" placeholder="123456">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="schoolYearCreate" class="col-sm-3 col-form-label">Chức vụ: </label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-control" name="Role">
+                                                                <option>Chọn chức vụ</option>
+                                                                @foreach($roles as $role)
+                                                                <option value="{{$role->id}}">{!! $role->role !!}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                        <div class="btn-group col-md-3" role="group">
+                                                            <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                                        </div>
+                                                        <div class="btn-group col-md-3" role="group">
+                                                            <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+
                         <div class="modal fade" id="modalManageSystem{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
