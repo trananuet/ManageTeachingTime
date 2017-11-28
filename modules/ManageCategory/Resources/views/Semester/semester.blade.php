@@ -29,7 +29,7 @@
                         <hr>
                         @if($errors->has('checkbox'))
                             <div class="alert alert-danger">
-                                <strong>{{$errors->first('checkbox')}}</strong>
+                                <span>{{$errors->first('checkbox')}}</span>
                             </div>
                         @endif 
                         <div class="row"> 
@@ -116,7 +116,7 @@
                                         <div role="tabpanel" class="tab-pane" id="profile">
                                         
                                             <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header" style="background: #56aaff">
+                                                <div class="modal-header">
                                                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                     <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                                 </div>

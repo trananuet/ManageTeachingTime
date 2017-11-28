@@ -35,7 +35,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <h3>Năm học</h3>
-                        <hr><br/>
+                        <hr>
                         <div class="row">
                             @if(count($errors)>0)
                                     <div class="alert alert-danger">

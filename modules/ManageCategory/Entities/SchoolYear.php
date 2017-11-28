@@ -17,4 +17,9 @@ class SchoolYear extends Model
     {
         return $this->hasMany('Modules\ManageCategory\Entities\Semester','yearID');
     }
+
+    public function trainings_of_years()
+    {
+        return $this->belongsTo('Modules\ManageCategory\Entities\Training','trainingID');
+    }
 }

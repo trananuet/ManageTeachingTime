@@ -9,6 +9,9 @@
                         <a href="#"> Danh mục<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
+                                <a href="{{route('training')}}"> Hệ đào tạo</a>
+                            </li>
+                            <li>
                                 <a href="{{route('school_year')}}"> Năm học</a>
                             </li>
                             <li>
