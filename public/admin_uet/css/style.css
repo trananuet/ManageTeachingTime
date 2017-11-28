@@ -43,11 +43,7 @@ a {
 }
 
 .cus {
-<<<<<<< HEAD
     width: 16%;
-=======
-    width: 100px;
->>>>>>> 8bd1ef15e22326aa5d458c3a092cbf7b32db8367
 }
 
 .modal-header {
@@ -64,6 +60,15 @@ a {
 
 .add-btn {
     margin-left: 10%;
+}
+
+.filter {
+    margin-left: 10%;
+}
+
+.label-filter {
+    margin-top: 4px;
+    font-size: 17px;
 }
 
 
@@ -122,19 +127,6 @@ a {
 
 
 /*SEMESTER*/
-
-.filter-year {
-    margin-left: 10%;
-}
-
-.label-filter-year {
-    margin-top: 4px;
-    font-size: 17px;
-}
-
-.add-semester-btn button {
-    margin-top: 20px;
-}
 
 
 /*END SEMESTER */

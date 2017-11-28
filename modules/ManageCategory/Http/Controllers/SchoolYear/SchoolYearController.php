@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Modules\ManageCategory\Entities\SchoolYear;
+use Modules\ManageCategory\Entities\Training;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
+use Modules\ManageCategory\Repositories\TrainingRepository;
 use Excel;
 use Illuminate\Support\Facades\Input;
 
@@ -18,9 +20,10 @@ class SchoolYearController extends Controller
     * @return view
     */
     public function getSchoolYear(){
-        $school_years = SchoolYearRepository::getAllSchoolYear();
+        $school_years = SchoolYearRepository::get_year_training();
+        $trainings = TrainingRepository::getAllTraining();
         $dataArray = 0;
-        return view('managecategory::SchoolYear.schoolYear',compact('school_years','dataArray'));
+        return view('managecategory::SchoolYear.schoolYear',compact('school_years','trainings','dataArray'));
     }
 
     public function postImport(Request $request)
@@ -117,5 +120,20 @@ class SchoolYearController extends Controller
     * @param $request
     * @return view
     */
+
+    /**
+    * filter training
+    * @author AnTV
+    * @param $request yearID
+    * @return view
+    */
+    public function filterTraining(Request $request){
+        $training = $request->training;
+        $trainingFilter = Training::find($training)->school_years()->get();
+        $training = Training::find($training);
+        session()->flash('trainingFilter', $trainingFilter);
+        session()->flash('training', $training);
+        return redirect()->back();
+    }
     
 }

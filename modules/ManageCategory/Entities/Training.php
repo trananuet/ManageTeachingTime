@@ -3,7 +3,7 @@
 namespace Modules\ManageCategory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\ManageCategory\Entities\SchoolYears;
+use Modules\ManageCategory\Entities\SchoolYear;
 
 class Training extends Model
 {
@@ -12,8 +12,8 @@ class Training extends Model
     protected $table = "trainings";
 
 
-    public function school_years_of_training()
+    public function school_years()
     {
-        return $this->hasMany('Modules\ManageCategory\Entities\SchoolYears','trainingID');
+        return $this->hasMany('Modules\ManageCategory\Entities\SchoolYear','trainingID');
     }
 }

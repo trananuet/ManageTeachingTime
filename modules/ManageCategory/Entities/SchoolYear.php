@@ -4,6 +4,7 @@ namespace Modules\ManageCategory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\ManageCategory\Entities\Semester;
+use Modules\ManageCategory\Entities\Training;
 
 class SchoolYear extends Model
 {

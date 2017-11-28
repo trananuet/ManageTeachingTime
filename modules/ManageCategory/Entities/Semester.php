@@ -3,7 +3,7 @@
 namespace Modules\ManageCategory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\ManageCategory\Entities\SchoolYears;
+use Modules\ManageCategory\Entities\SchoolYear;
 
 class Semester extends Model
 {
@@ -14,6 +14,6 @@ class Semester extends Model
 
     public function school_years()
     {
-        return $this->belongsTo('Modules\ManageCategory\Entities\SchoolYears','yearID');
+        return $this->belongsTo('Modules\ManageCategory\Entities\SchoolYear','yearID');
     }
 }

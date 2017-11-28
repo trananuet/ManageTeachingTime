@@ -19,6 +19,19 @@ class SchoolYearRepository
     }
 
     /**
+    * school year of training
+    * @author AnTV
+    * @return static
+    */
+    public static function get_year_training()
+    {
+        $school_year = SchoolYear::selectRaw("school_years.*,trainings.name as training")
+                    ->leftjoin('trainings','school_years.trainingID','=','trainings.trainingID')
+                    ->get();
+        return $school_year;
+    }
+
+    /**
     * school year active
     * @author AnTV
     * @param DEFINE_ACTIVE = 1 <Helper/DefineHelper>
@@ -45,6 +58,7 @@ class SchoolYearRepository
             if(isset($request->yearID)) {
                 $schoolYear = SchoolYear::where('yearID', $request->yearID)->firstOrFail();
                 $schoolYear->name = $request->school_years;
+                $schoolYear->trainingID = $request->trainingID;
                 $active = $request->active;
                 if($active == 1){
                     $schoolYear->active = '1';
@@ -57,6 +71,7 @@ class SchoolYearRepository
             } else {   
                 $schoolYear = new SchoolYear();
                 $schoolYear->name = $request->school_years;
+                $schoolYear->trainingID = $request->trainingID;
                 $active = $request->active;
                 if($active == 1 ){
                     $schoolYear->active = '1';

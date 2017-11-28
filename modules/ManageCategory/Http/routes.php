@@ -17,6 +17,7 @@ Route::group(['middleware' => 'web',
         // Route::post('/school_year/delete/{yearID}', 'SchoolYear\SchoolYearController@deleteOneSchoolYear')
         //         ->name('school_year.delete')
         //         ->where('yearID', '[0-9]+');
+        Route::post('/school_year/filter_training', 'SchoolYear\SchoolYearController@filterTraining')->name('school_year.filter');
         Route::post('/school_year/import', 'SchoolYear\SchoolYearController@postImport')->name('school_year.import');
 
         

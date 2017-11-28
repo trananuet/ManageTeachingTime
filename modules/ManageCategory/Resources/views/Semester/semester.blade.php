@@ -35,10 +35,10 @@
                         <div class="row"> 
                             <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
                                         {{ csrf_field() }}
-                                <div class="filter-year col-md-8 row">
-                                    <label for="filterYear" class="col-sm-3 col-form-label label-filter-year">Năm học</label>
+                                <div class="filter col-md-8 row">
+                                    <label for="filterYear" class="col-sm-3 col-form-label label-filter">Năm học</label>
                                     <div class="col-sm-6"> 
-                                        <select type="text" name="year" class="form-control input-filter-year" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                        <select type="text" name="year" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
                                             <option value="">Chọn năm học</option>
                                             @foreach($school_years as $school_year)
                                                 @if(session('schoolYear') && session('semesterFilter'))
@@ -114,7 +114,6 @@
                                             </div>
                                         </div>
                                         <div role="tabpanel" class="tab-pane" id="profile">
-                                        
                                             <div class="modal-content" style="width: 100%;">
                                                 <div class="modal-header">
                                                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -175,12 +174,6 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSemester{{$semester->semesterID}}">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </button>
-                                        {{--  <form action="{{route('semester.delete',['semesterID' => $semester->semesterID])}}" method="POST" id="">
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-primary del-one-year" id="" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">
-                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                            </button>
-                                        </form>  --}}
                                     </td>
                                      <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="{{$semester->semesterID}}" value="{{$semester->semesterID}}" class="checkbox-remove"></td>
                     </form>
@@ -294,7 +287,7 @@
                                                         <select type="text" name="yearID" class="form-control" id="yearIDFormEdit" required>
                                                             <option value="">Chọn năm học</option>
                                                             @foreach($school_years as $school_year)
-                                                            @php
+                                                                @php
                                                                     $selectYear = $school_year->yearID == $semester->yearID ? "selected" : null;
                                                                 @endphp
                                                                 <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
