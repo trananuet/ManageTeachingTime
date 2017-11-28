@@ -55,7 +55,7 @@
                                                     <input type="text" name="role" class="form-control" id="" placeholder="Quyền truy cập">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            {{--  <div class="form-group">
                                                 <label>Chức năng: </label>
                                                 <div class="system-function col-md-offset-3">
                                                 @foreach($funcs as $func)
@@ -68,7 +68,7 @@
                                                 @endforeach
                                                 <input type="hidden" name="id_role" value="">
                                                 </div>
-                                            </div>
+                                            </div>  --}}
                                         </div>
                                         <div class="modal-footer">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -133,15 +133,15 @@
                                                             <input type="text" name="role" class="form-control" id="" placeholder="Quyền truy cập" value="{{$role->role}}" required>
                                                         </div>
                                                     </div>
-                                                    @php
+                                                    {{--  @php
                                                         $role_functions = get_role_function($role->id);
                                                         if($role->id == 0){
                                                             $hidden = "hidden";
                                                         } else {
                                                             $hidden = null;
                                                         }
-                                                    @endphp
-                                                    <div class="form-group">
+                                                    @endphp  --}}
+                                                    {{--  <div class="form-group">
                                                         <h4 style="font-weight: bold;">Chức năng: </h4>
                                                         <div class="system-function col-md-offset-3">
                                                         @foreach($funcs as $func)
@@ -164,7 +164,7 @@
                                                         @endforeach
                                                         <input type="hidden" name="id_role" value="{{$role->id}}">
                                                         </div>
-                                                    </div>
+                                                    </div>  --}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">

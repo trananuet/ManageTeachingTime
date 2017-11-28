@@ -24,7 +24,7 @@
                         <a href="#"> Quản lí hệ thống<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                         	<li>
-                                <a href="#"> Vai trò</a>
+                                <a href="{{route('manage_system')}}"> Vai trò</a>
                             </li>
                             <li>
                                 <a href="{{route('manage_users')}}"> Người dùng</a>

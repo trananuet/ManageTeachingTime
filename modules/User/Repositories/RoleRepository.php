@@ -30,37 +30,37 @@ class RoleRepository
         DB::beginTransaction();
  		try {
             if(isset($request->id)){
-                $role = Role::findOrFail($request->id_role);
+                $role = Role::findOrFail($request->id);
                 $role->role = $request->role;
                 $role->save();
-                $role_function_select = $request->id_function;
-                $role_function_find = $role->functions()->get();
-                if(count($role_function_find)>0){
-                    $role_function_find = add_functions($role_function_select, $role_function_find, $role);
-                    $role_function_find = remove_function($role_function_select, $role_function_find, $role);
-                } else {
-                    if(count($role_function_select)>0){
-                        foreach($role_function_select as $key => $value) {
-                            $role_funciton_new = new RoleFunction();
-                            $role_funciton_new->role_id = $role->id;
-                            $role_funciton_new->function_id = $value;
-                            $role_funciton_new->save();
-                        }
-                    }
-                }
+                // $role_function_select = $request->id_function;
+                // $role_function_find = $role->functions()->get();
+                // if(count($role_function_find)>0){
+                //     $role_function_find = add_functions($role_function_select, $role_function_find, $role);
+                //     $role_function_find = remove_function($role_function_select, $role_function_find, $role);
+                // } else {
+                //     if(count($role_function_select)>0){
+                //         foreach($role_function_select as $key => $value) {
+                //             $role_funciton_new = new RoleFunction();
+                //             $role_funciton_new->role_id = $role->id;
+                //             $role_funciton_new->function_id = $value;
+                //             $role_funciton_new->save();
+                //         }
+                //     }
+                // }
             } else {
                 $role = new Role();
                 $role->role = $request->role;
                 $role->save();
-                $role_function_select = $request->id_function;
-                if(count($role_function_select)>0){
-                    foreach($role_function_select as $key => $value) {
-                            $role_funciton_new = new RoleFunction();
-                            $role_funciton_new->role_id = $role->id;
-                            $role_funciton_new->function_id = $value;
-                            $role_funciton_new->save();
-                    }
-                }
+                // $role_function_select = $request->id_function;
+                // if(count($role_function_select)>0){
+                //     foreach($role_function_select as $key => $value) {
+                //             $role_funciton_new = new RoleFunction();
+                //             $role_funciton_new->role_id = $role->id;
+                //             $role_funciton_new->function_id = $value;
+                //             $role_funciton_new->save();
+                //     }
+                // }
             }
                 DB::commit();
                 return true;

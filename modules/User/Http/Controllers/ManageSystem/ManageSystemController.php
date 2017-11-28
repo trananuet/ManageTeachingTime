@@ -18,10 +18,10 @@ class ManageSystemController extends Controller
     */
     public function getAllRole()
     {
-        $funcs = FunctionRepository::get_all_functions();
+        //$funcs = FunctionRepository::get_all_functions();
         $roles = RoleRepository::get_all_roles();
 
-        return view('user::manage_system.manageSystem',compact('roles', 'funcs'));
+        return view('user::manage_system.manageSystem',compact('roles'));
     }
 
 
