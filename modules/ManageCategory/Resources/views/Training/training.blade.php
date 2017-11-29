@@ -23,86 +23,82 @@
     <div class="container-fluid">
         <div class="row">
             <div class="box-top row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <h3>Hệ đào tạo</h3>
-                        <hr>
-                        @if($errors->has('checkbox'))
-                            <div class="alert alert-danger">
-                                <span>{{$errors->first('checkbox')}}</span>
-                            </div>
-                        @endif 
-                        <div class="row">
-                            <div class="add-btn col-md-2">
-                                <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary">Thêm hệ đào tạo</button>
-                            </div>
-                        </div>
-                        <!-- LINE MODAL -->
-                        <div class="modal fade" id="modalTraining" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div>
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
-                                    </ul>
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="home">                                
-                                            <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header">
-                                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                    <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                                </div>
-                                                <form method="POST" action="{{route('training.save')}}" id="formSemesterCreate">
-                                                {{ csrf_field() }}
-                                                    <div class="modal-body">
-                                                        <!-- content goes here -->
-                                                        <input type="hidden" name="trainingID" value="">
-                                                        <div class="form-group row">
-                                                            <label for="trainingCreate" class="col-sm-3 col-form-label">Hệ đào tạo</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="trainings" class="form-control" id="trainingCreate" placeholder="Hệ đào tạo">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
-                                                            </div>
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+                <h3>Hệ đào tạo</h3>
+                <hr>
+                @if($errors->has('checkbox'))
+                    <div class="alert alert-danger">
+                        <span>{{$errors->first('checkbox')}}</span>
+                    </div>
+                @endif 
+                <div class="row">
+                    <div class="add-btn col-md-2">
+                        <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary">Thêm hệ đào tạo</button>
+                    </div>
+                </div>
+                <!-- LINE MODAL -->
+                <div class="modal fade" id="modalTraining" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">                                
+                                    <div class="modal-content" style="width: 100%;">
+                                        <div class="modal-header">
+                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="profile">
-                                        
-                                            <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header">
-                                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                    <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                                </div>
-                                                <form action="" method="post" enctype="multipart/form-data">
-                                                    {{csrf_field()}}
-                                                    <input type="file" name="imported-file"/>
-                                                    </center>
-                                                    <br/>
-                                                    <div class="modal-footer">
-                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
-                                                            </div>
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                            </div>
-                                                        </div>
+                                        <form method="POST" action="{{route('training.save')}}" id="formSemesterCreate">
+                                        {{ csrf_field() }}
+                                            <div class="modal-body">
+                                                <!-- content goes here -->
+                                                <input type="hidden" name="trainingID" value="">
+                                                <div class="form-group row">
+                                                    <label for="trainingCreate" class="col-sm-3 col-form-label">Hệ đào tạo</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="trainings" class="form-control" id="trainingCreate" placeholder="Hệ đào tạo">
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                                    </div>
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                
+                                    <div class="modal-content" style="width: 100%;">
+                                        <div class="modal-header">
+                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                         </div>
+                                        <form action="" method="post" enctype="multipart/form-data">
+                                            {{csrf_field()}}
+                                            <input type="file" name="imported-file"/>
+                                            </center>
+                                            <br/>
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
+                                                    </div>
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

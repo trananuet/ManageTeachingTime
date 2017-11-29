@@ -30,7 +30,7 @@
                                 <a href="{{route('manage_users')}}"> Người dùng</a>
                             </li>
                             <li>
-                                <a href="#"> Chức năng</a>
+                                <a href="{{route('manage_functions')}}"> Chức năng</a>
                             </li>
                             <li>
                                 <a href="{{route('manage_system')}}"> Phân quyền</a>

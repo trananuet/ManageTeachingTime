@@ -23,120 +23,116 @@
     <div class="container-fluid">
         <div class="row">
             <div class="box-top row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <h3>Học kỳ</h3>
-                        <hr>
-                        @if($errors->has('checkbox'))
-                            <div class="alert alert-danger">
-                                <span>{{$errors->first('checkbox')}}</span>
+                <h3>Học kỳ</h3>
+                <hr>
+                @if($errors->has('checkbox'))
+                    <div class="alert alert-danger">
+                        <span>{{$errors->first('checkbox')}}</span>
+                    </div>
+                @endif 
+                <div class="row"> 
+                    <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
+                                {{ csrf_field() }}
+                        <div class="filter col-md-8 row">
+                            <label for="filterYear" class="col-sm-3 col-form-label label-filter">Năm học</label>
+                            <div class="col-sm-6"> 
+                                <select type="text" name="year" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                    <option value="">Chọn năm học</option>
+                                    @foreach($school_years as $school_year)
+                                        @if(session('schoolYear') && session('semesterFilter'))
+                                        @php
+                                            $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
+                                        @endphp
+                                        <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
+                                        @else
+                                        <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
-                        @endif 
-                        <div class="row"> 
-                            <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
+                            <button type="submit" class="hidden"></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="add-btn col-md-2">
+                        <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary">Thêm học kỳ</button>
+                    </div>
+                </div>
+                <!-- LINE MODAL -->
+                <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">                                
+                                    <div class="modal-content" style="width: 100%;">
+                                        <div class="modal-header">
+                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
+                                        </div>
+                                        <form method="POST" action="{{route('semester.save')}}" id="formSemesterCreate">
                                         {{ csrf_field() }}
-                                <div class="filter col-md-8 row">
-                                    <label for="filterYear" class="col-sm-3 col-form-label label-filter">Năm học</label>
-                                    <div class="col-sm-6"> 
-                                        <select type="text" name="year" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
-                                            <option value="">Chọn năm học</option>
-                                            @foreach($school_years as $school_year)
-                                                @if(session('schoolYear') && session('semesterFilter'))
-                                                @php
-                                                    $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
-                                                @endphp
-                                                <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
-                                                @else
-                                                <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
+                                            <div class="modal-body">
+                                                <!-- content goes here -->
+                                                <input type="hidden" name="semesterID" value="">
+                                                <div class="form-group row">
+                                                    <label for="yearIDFormCreate" class="col-sm-3 col-form-label">Năm học</label>
+                                                    <div class="col-sm-9">
+                                                        <select type="text" name="yearID" class="form-control" id="yearIDFormCreate" style="color: #000;">
+                                                            <option value="">Chọn năm học</option>
+                                                            @foreach($school_years as $school_year)
+                                                                <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="semesterCreate" class="col-sm-3 col-form-label">Học kỳ</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="semesters" class="form-control" id="semesterCreate" placeholder="Học kỳ">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                                    </div>
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <button type="submit" class="hidden"></button>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="row">
-                            <div class="add-btn col-md-2">
-                                <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary">Thêm học kỳ</button>
-                            </div>
-                        </div>
-                        <!-- LINE MODAL -->
-                        <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div>
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
-                                    </ul>
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="home">                                
-                                            <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header">
-                                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                    <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                                </div>
-                                                <form method="POST" action="{{route('semester.save')}}" id="formSemesterCreate">
-                                                {{ csrf_field() }}
-                                                    <div class="modal-body">
-                                                        <!-- content goes here -->
-                                                        <input type="hidden" name="semesterID" value="">
-                                                        <div class="form-group row">
-                                                            <label for="yearIDFormCreate" class="col-sm-3 col-form-label">Năm học</label>
-                                                            <div class="col-sm-9">
-                                                                <select type="text" name="yearID" class="form-control" id="yearIDFormCreate" style="color: #000;">
-                                                                    <option value="">Chọn năm học</option>
-                                                                    @foreach($school_years as $school_year)
-                                                                        <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label for="semesterCreate" class="col-sm-3 col-form-label">Học kỳ</label>
-                                                            <div class="col-sm-9">
-                                                                <input type="text" name="semesters" class="form-control" id="semesterCreate" placeholder="Học kỳ">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
-                                                            </div>
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                    <div class="modal-content" style="width: 100%;">
+                                        <div class="modal-header">
+                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="profile">
-                                            <div class="modal-content" style="width: 100%;">
-                                                <div class="modal-header">
-                                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                                    <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                                </div>
-                                                <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data">
-                                                    {{csrf_field()}}
-                                                    <input type="file" name="imported-file"/>
-                                                    </center>
-                                                    <br/>
-                                                    <div class="modal-footer">
-                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
-                                                            </div>
-                                                            <div class="btn-group col-md-3" role="group">
-                                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                            </div>
-                                                        </div>
+                                        <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data">
+                                            {{csrf_field()}}
+                                            <input type="file" name="imported-file"/>
+                                            </center>
+                                            <br/>
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
                                                     </div>
-                                                </form>
+                                                    <div class="btn-group col-md-3" role="group">
+                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

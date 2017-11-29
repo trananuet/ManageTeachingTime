@@ -31,7 +31,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 add-btn">
-                        <button data-toggle="modal" data-target="#modalAccess" class="btn btn-primary">Thêm quyền</button>
+                        <button data-toggle="modal" data-target="#modalAccess" class="btn btn-primary">Thêm chức năng</button>
                     </div>
                 </div>
                 <div class="modal fade" id="modalAccess" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -41,31 +41,17 @@
                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                 <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ HỆ THỐNG</h4>
                             </div>
-                            <form method="POST" action="{{route('manage_system.save')}}" id="formSystemSave">
+                            <form method="POST" action="{{route('manage_functions.save')}}" id="formFunctionsCreate">
                             {{ csrf_field() }}
                                 <div class="modal-body">
                                     <!-- content goes here -->
                                     <input type="hidden" name="id" value="">
                                     <div class="form-group row">
-                                        <label for="" class="col-sm-3 col-form-label">Quyền truy cập: </label>
+                                        <label for="" class="col-sm-3 col-form-label">Chức năng: </label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="role" class="form-control" id="" placeholder="Quyền truy cập">
+                                            <input type="text" name="functions" class="form-control" id="" placeholder="Chức năng">
                                         </div>
                                     </div>
-                                    {{--  <div class="form-group">
-                                        <label>Chức năng: </label>
-                                        <div class="system-function col-md-offset-3">
-                                        @foreach($funcs as $func)
-                                            <div class="form-group row">
-                                                <div class="col-md-2">
-                                                    <input class="checkbox-common" type="checkbox" name="id_function[]" value ="{{$func->id}}" id="id-function">
-                                                </div>
-                                                <label>{{$func->name_function}}</label>
-                                            </div>
-                                        @endforeach
-                                        <input type="hidden" name="id_role" value="">
-                                        </div>
-                                    </div>  --}}
                                 </div>
                                 <div class="modal-footer">
                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -83,83 +69,51 @@
                 </div>
             </div>
             <div class="content-manage-system">
-                <form method="POST" action="{{route('manage_system.remove')}}" id="formRemoveAccess">
+                <form method="POST" action="{{route('manage_functions.remove')}}" id="formRemoveAccess">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn quyền này?');">Xóa</button>
+                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn chức năng đã chọn?');">Xóa</button>
                     </div>
                     <table class="table table-hover table-condensed table-bordered" id="table-manage-system">
                         <thead class ="table-school-year">
                             <tr>
                                 <th class="stt">STT</th>
-                                <th class="">Quyền hê thống</th>
+                                <th class="">Chức năng</th>
                                 <th class="cus">Tùy chọn</th>
                                 <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($roles as $role)
+                            @foreach($functions as $function)
                             <tr>
                                 <td>{{++$loop->index}}</td>
-                                <td>{{$role->role}}</td>
+                                <td>{{$function->name_function}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAccess{{$role->id}}">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAccess{{$function->id}}">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                 </td>
-                                <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="" value="{{$role->id}}" class="checkbox-remove"></td>
+                                <td class="hidden-checkbox"><input type="checkbox" name="checkbox[]" id="" value="{{$function->id}}" class="checkbox-remove"></td>
                             </tr>
                 </form>
-                            <div class="modal fade" id="modalAccess{{$role->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalAccess{{$function->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ HỆ THỐNG</h4>
                                             </div>
-                                            <form method="POST" action="{{route('manage_system.save')}}" id="formSystemSave">
+                                            <form method="POST" action="{{route('manage_functions.save')}}" id="formSystemSave">
                                             {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <!-- content goes here -->
-                                                    <input type="hidden" name="id" value="{{$role->id}}">
+                                                    <input type="hidden" name="id" value="{{$function->id}}">
                                                     <div class="form-group row">
-                                                        <label for="" class="col-sm-3 col-form-label">Quyền truy cập: </label>
+                                                        <label for="" class="col-sm-3 col-form-label">Chức năng: </label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" name="role" class="form-control" id="" placeholder="Quyền truy cập" value="{{$role->role}}" required>
+                                                            <input type="text" name="functions" class="form-control" id="" placeholder="Chức năng" value="{{$function->name_function}}" required>
                                                         </div>
                                                     </div>
-                                                    {{--  @php
-                                                        $role_functions = get_role_function($role->id);
-                                                        if($role->id == 0){
-                                                            $hidden = "hidden";
-                                                        } else {
-                                                            $hidden = null;
-                                                        }
-                                                    @endphp  --}}
-                                                    {{--  <div class="form-group">
-                                                        <h4 style="font-weight: bold;">Chức năng: </h4>
-                                                        <div class="system-function col-md-offset-3">
-                                                        @foreach($funcs as $func)
-                                                        @php
-                                                        for($i = 0; $i < count($role_functions); $i++){
-                                                            if($role_functions[$i] == $func->id){
-                                                                $checkFunction = "checked";
-                                                                break;
-                                                            } else {
-                                                                $checkFunction = null;
-                                                            }
-                                                        }
-                                                        @endphp
-                                                            <div class="form-group row">
-                                                                <div class="col-md-2">
-                                                                    <input class="checkbox-common {{$hidden}}" type="checkbox" name="id_function[]" value ="{{$func->id}}" id="id-function" {{$checkFunction}}>
-                                                                </div>
-                                                                <label>{{$func->name_function}}</label>
-                                                            </div>
-                                                        @endforeach
-                                                        <input type="hidden" name="id_role" value="{{$role->id}}">
-                                                        </div>
-                                                    </div>  --}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">

@@ -20,12 +20,12 @@ class RoleRepository
     }
 
     /**
-    * save_role_function
+    * save_role
     * @author AnTV
     * @param $request
     * @return static
     */
-    public static function save_role_function(Request $request)
+    public static function save_role(Request $request)
     {
         DB::beginTransaction();
  		try {
@@ -70,7 +70,7 @@ class RoleRepository
         }
     }
     /**
-    * xoa quyen va cac quyen chuc nang
+    * xoa quyen 
     * @author AnTV
     * @param Illuminate\Http\Request $request
     * @return boolean
@@ -85,10 +85,10 @@ class RoleRepository
 				if(!$role) {
 					return false;
 				}
-                $role_function = RoleFunction::where('role_id',$id)->get();
-                foreach($role_function as $value){
-					$value->delete();
-				}
+                // $role_function = RoleFunction::where('role_id',$id)->get();
+                // foreach($role_function as $value){
+				// 	$value->delete();
+				// }
 				$role->delete();
 			}
 			DB::commit();

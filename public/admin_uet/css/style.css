@@ -1,5 +1,14 @@
 /* CSS */
 
+table.dataTable thead th {
+    padding: 5px 7px;
+    border-bottom: 1px solid #111111;
+}
+
+table.dataTable tbody td {
+    padding: 5px 10px;
+}
+
 tbody {
     background: #f5f5f5;
 }
@@ -37,13 +46,16 @@ a {
     height: 17px;
 }
 
-.act,
+.act {
+    width: 10%;
+}
+
 .stt {
-    width: 13%;
+    width: 10%;
 }
 
 .cus {
-    width: 16%;
+    width: 14%;
 }
 
 .modal-header {
