@@ -25,20 +25,13 @@
                         <hr>
                         <h3>Quản lý người dùng</h3>
                         <hr><br/>
-                        @if(count($errors)>0)
-                                <div class="alert alert-danger">
-                                    @foreach($errors->all() as $err)
-                                    {{$err}}<br/>
-                                    @endforeach
-                                </div>
-                        @endif
-                        @if(Session::has('thongbao'))
-                        <div class="alert alert-success">{{Session::get('thongbao')}}</div>
-                        @endif
                         
+                        @if(Session::has('thongbao'))
+                            <div class="alert alert-success">{{Session::get('thongbao')}}</div>
+                        @endif
                         <div class="row">
-                            <div class="col-md-4 add-year-btn">
-                                <button data-toggle="modal" data-target="#modalAddUser" class="btn btn-primary">+ <b>Thêm người dùng</b></button>
+                            <div class="col-md-4 add-btn">
+                                <button data-toggle="modal" data-target="#modalAddUser" class="btn btn-primary">+ <b>THÊM</b></button>
                             </div>
                         </div>
                         <div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -51,7 +44,7 @@
                                                 <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                                 <h4 class="modal-title" id="lineModalLabel">THÊM NGƯỜI DÙNG</h4>
                                             </div>
-                                            <form method="POST" action="{{route('manage_users.add')}}" >
+                                            <form method="POST" action="{{route('manage_users.add')}}" id="AddUser" >
                                             {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <!-- content goes here -->
@@ -114,7 +107,7 @@
                             <th class="">Người dùng </th>
                             <th class="">Email</th>
                             <th class="">Chức vụ</th>
-                            <th class="cus">Tùy chọn</th>
+                            <th class="">Tùy chọn</th>
                             <th>Phân quyền</th>
                         </tr>
                     </thead>
@@ -261,5 +254,27 @@
             "autoWidth": false
             });
         } );
+    </script>
+    <script>   
+        $(function() {
+            $("#AddUser").validate({
+                rules: {
+                        Name: "required", 
+                        Email: {
+                            required : true,
+                            email : true
+                        },
+                        Password: "required"
+                    },
+                messages: {
+                        Name: "Vui lòng điền tên.",
+                        Email: { 
+                            required: "Vui lòng điền email",
+                            email : " Vui lòng điền đúng định dạng email"
+                        },
+                        Password: "Vui lòng điền Password"
+                }
+            });
+        });
     </script>
 @endsection
