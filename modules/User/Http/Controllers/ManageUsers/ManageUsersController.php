@@ -76,22 +76,6 @@ class ManageUsersController extends Controller
      */
     public function addUser(Request $req)
     {
-        $this->validate($req,
-            [
-                'Name' =>'required',
-                'Email' => 'required|email',
-                'Password' => 'required',
-                'Role' => 'required',
-            ]
-            ,
-            [
-                'Name.required' => ' Vui lòng nhập Tên',
-                'Password.required' => ' Vui lòng nhập Password',
-                'Email.required' => ' Vui lòng nhập Email',
-                'Email.email' => ' Vui lòng nhập đúng định dạng email',
-                'Role.required' => ' Vui lòng chọn chức vụ',
-            ]
-        );
         $user = new User;
         $user -> name = $req -> Name;
         $user -> email = $req -> Email;
