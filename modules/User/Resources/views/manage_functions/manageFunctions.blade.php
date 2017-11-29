@@ -147,12 +147,12 @@
     </script>
     <script>   
         $(function() {
-            $("#formSystemSave").validate({
+            $("#formFunctionsCreate").validate({
                 rules: {
-                    role: "required"
+                    functions: "required"
                     },
                 messages: {
-                    role: "Vui lòng điền chức vụ quyền."
+                    functions: "Vui lòng điền chức năng."
                 }
             });
         });
