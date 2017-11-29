@@ -115,7 +115,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="activeYearsCreate" class="col-sm-3 col-form-label">Active</label>
+                                                <label for="activeYearsCreate" class="col-sm-3 col-form-label">Kích hoạt: </label>
                                                 <div class="col-sm-9">
                                                     <input class="checkbox-common" type="checkbox" name="active" value ="1" id="activeYearsCreate">
                                                 </div>
@@ -142,11 +142,28 @@
                                     </div>
                                     <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
                                     {{csrf_field()}}
-                                    <input type="file" name="imported-file"/>
-                                    </center>
-                                    <br/>
+                                    <div class="modal-body">
+                                    <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label">Hệ đào tạo</label>
+                                                <div class="col-sm-9">
+                                                    <select type="text" name="trainingID" class="form-control" id="" style="color: #000;">
+                                                        <option value="">Chọn hệ đào tạo</option>
+                                                        @foreach($trainings as $training)
+                                                            <option value="{{$training->trainingID}}">{{$training->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                    <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label">Import File</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" name="imported-file"/>
+                                                </div>
+                                    </div>
+                                    
                                     <div class="modal-footer">
                                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+
                                             <div class="btn-group col-md-3" role="group">
                                                 <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
                                             </div>
@@ -155,6 +172,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 </form>
                                 </div>
                             </div>

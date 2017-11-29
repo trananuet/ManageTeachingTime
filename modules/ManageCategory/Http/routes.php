@@ -6,10 +6,13 @@ Route::group(['middleware' => 'web',
 {
     Route::group(['middleware' => 'auth'],function()
     {
+
         //TRAINING 
         Route::get('/training', 'Training\TrainingController@getTraining')->name('training');
         Route::post('/training/save', 'Training\TrainingController@createEditTraining')->name('training.save');
         Route::post('/training/remove', 'Training\TrainingController@delTraining')->name('training.remove');
+        Route::post('/training/import', 'Training\TrainingController@postImport')->name('training.import');
+
         //SCHOOL_YEAR
         Route::get('/school_year', 'SchoolYear\SchoolYearController@getSchoolYear')->name('school_year');
         Route::post('/school_year/save', 'SchoolYear\SchoolYearController@createEditSchoolYear')->name('school_year.save');

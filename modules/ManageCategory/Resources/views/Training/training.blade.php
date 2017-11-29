@@ -83,15 +83,23 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                         </div>
-                                        <form action="" method="post" enctype="multipart/form-data">
+                                        <form action="{{route('training.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                             {{csrf_field()}}
-                                            <input type="file" name="imported-file"/>
-                                            </center>
-                                            <br/>
+                                            
+                                            <div class="modal-body">
+                                                <!-- content goes here -->
+                                                <input type="hidden" name="trainingID" value="">
+                                                <div class="form-group row">
+                                                    <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="file" name="imported-file"/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
-                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
+                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
                                                     </div>
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
@@ -183,5 +191,16 @@
             });
         });
     </script>
-   
+   <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                    imported-file: "required"
+                    },
+                messages: {
+                    imported-file: "Vui lòng nhajap file."
+                }
+            });
+        });
+    </script>
 @endsection
