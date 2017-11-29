@@ -119,7 +119,25 @@
                                         </div>
                                         <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data">
                                             {{csrf_field()}}
-                                            <input type="file" name="imported-file"/>
+                                            <div class="form-group row">
+                                                    <label for="yearIDFormCreate" class="col-sm-3 col-form-label">Năm học</label>
+                                                    <div class="col-sm-9">
+                                                        <select type="text" name="yearID" class="form-control" id="yearIDFormCreate" style="color: #000;">
+                                                            <option value="">Chọn năm học</option>
+                                                            @foreach($school_years as $school_year)
+                                                                <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            <div class="form-group row">
+                                                    <label for="yearIDFormCreate" class="col-sm-3 col-form-label">Import File</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="file" name="imported-file"/>
+                                                    </div>
+                                                </div>
+                                            
+                                            
                                             </center>
                                             <br/>
                                             <div class="modal-footer">

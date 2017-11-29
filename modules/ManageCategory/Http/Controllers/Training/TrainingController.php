@@ -56,4 +56,46 @@ class TrainingController extends Controller
              return \Response::view('base::errors.500',array(),500);
         }
     }
+
+    /**
+    * import file Excel in Training
+    * @author NCC
+    * @param $request
+    * @return view
+    */
+
+    public function postImport(Request $request)
+    {
+        $this->validate($request, [
+            'imported-file' => 'required'
+        ],[
+            'imported-file.required' => 'Bạn chưa chọn file'
+        ]);
+      if($request->file('imported-file'))
+      {
+                $path = $request->file('imported-file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'name' => $row['name'],
+                ];
+              }
+          } 
+          if(!empty($dataArray))
+          {             
+            TrainingRepository::insert($dataArray);
+            return back();
+           }
+         }
+       }
+    }
 }
