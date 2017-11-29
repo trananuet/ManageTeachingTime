@@ -18,6 +18,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'user', 'namespace' => 'Modules
         Route::get('/manage_functions', 'ManageFunctions\ManageFunctionsController@getAllFunction')->name('manage_functions');
         Route::post('/manage_functions/save', 'ManageFunctions\ManageFunctionsController@saveFunctions')->name('manage_functions.save');
         Route::post('/manage_functions/remove', 'ManageFunctions\ManageFunctionsController@removeFunctions')->name('manage_functions.remove');
-     
+
+        Route::get('/manage_permission', 'ManagePermission\ManagePermissionController@permission')->name('manage_permission');
     });
 });

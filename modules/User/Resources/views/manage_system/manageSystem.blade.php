@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="box-top row">
-                <h3>Quản lý hệ thống</h3>
+                <h3>Quản lý vai trò</h3>
                 <hr>
                 <div class="row">
                     @if($errors->has('checkbox'))

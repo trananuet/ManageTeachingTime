@@ -33,7 +33,7 @@
                                 <a href="{{route('manage_functions')}}"> Chức năng</a>
                             </li>
                             <li>
-                                <a href="{{route('manage_system')}}"> Phân quyền</a>
+                                <a href="{{route('manage_permission')}}"> Phân quyền</a>
                             </li>
                             <li>
                                 <a href="#"> Nhật ký</a>
