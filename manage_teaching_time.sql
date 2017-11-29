@@ -2,10 +2,10 @@
 -- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 20, 2017 at 08:17 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 29, 2017 lúc 04:26 SA
+-- Phiên bản máy phục vụ: 10.1.21-MariaDB
+-- Phiên bản PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `manage_teaching_time`
+-- Cơ sở dữ liệu: `manage_teaching_time`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `functions`
+-- Cấu trúc bảng cho bảng `functions`
 --
 
 CREATE TABLE `functions` (
@@ -34,21 +34,22 @@ CREATE TABLE `functions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `functions`
+-- Đang đổ dữ liệu cho bảng `functions`
 --
 
 INSERT INTO `functions` (`id`, `name_function`, `created_at`, `updated_at`) VALUES
 (11, 'Xem năm học', NULL, NULL),
-(12, 'Thêm năm học', NULL, NULL),
-(13, 'Sửa, Xóa năm học', NULL, NULL),
+(12, 'Thêm, sửa năm học', NULL, NULL),
+(13, 'Xóa năm học', NULL, NULL),
 (21, 'Xem học kỳ', NULL, NULL),
-(22, 'Thêm học kỳ', NULL, NULL),
-(23, 'Sửa, Xóa học kỳ', NULL, NULL);
+(22, 'Thêm, sửa học kỳ', NULL, NULL),
+(23, 'Xóa học kỳ', NULL, NULL),
+(25, '134', '2017-11-28 19:19:47', '2017-11-28 19:19:51');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Cấu trúc bảng cho bảng `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -58,7 +59,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Đang đổ dữ liệu cho bảng `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -69,12 +70,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2017_11_15_042608_create_user_roles_table', 3),
 (6, '2017_11_15_043140_create_roles_table', 3),
 (7, '2017_11_19_162728_create_fucntions_table', 4),
-(8, '2017_11_19_164739_create_role_functions_table', 4);
+(8, '2017_11_19_164739_create_role_functions_table', 4),
+(9, '2017_11_28_061553_create_trainings_table', 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Cấu trúc bảng cho bảng `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -86,7 +88,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Cấu trúc bảng cho bảng `roles`
 --
 
 CREATE TABLE `roles` (
@@ -97,18 +99,19 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `roles`
+-- Đang đổ dữ liệu cho bảng `roles`
 --
 
 INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
-(0, 'Admin', NULL, NULL),
+(0, 'Admin', NULL, '2017-11-23 23:11:01'),
 (1, 'Phòng đào tạo', NULL, NULL),
-(2, 'Khách', NULL, NULL);
+(2, 'Khách', NULL, NULL),
+(16, '1231123125554', '2017-11-23 23:16:26', '2017-11-28 14:47:22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_functions`
+-- Cấu trúc bảng cho bảng `role_functions`
 --
 
 CREATE TABLE `role_functions` (
@@ -120,7 +123,7 @@ CREATE TABLE `role_functions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `role_functions`
+-- Đang đổ dữ liệu cho bảng `role_functions`
 --
 
 INSERT INTO `role_functions` (`id`, `role_id`, `function_id`, `created_at`, `updated_at`) VALUES
@@ -133,16 +136,19 @@ INSERT INTO `role_functions` (`id`, `role_id`, `function_id`, `created_at`, `upd
 (7, 1, 11, NULL, NULL),
 (8, 1, 12, NULL, NULL),
 (9, 1, 21, NULL, NULL),
-(10, 1, 22, NULL, NULL);
+(10, 1, 22, NULL, NULL),
+(11, 2, 11, NULL, NULL),
+(12, 2, 21, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `school_years`
+-- Cấu trúc bảng cho bảng `school_years`
 --
 
 CREATE TABLE `school_years` (
   `yearID` int(10) UNSIGNED NOT NULL,
+  `trainingID` int(11) NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -150,18 +156,19 @@ CREATE TABLE `school_years` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `school_years`
+-- Đang đổ dữ liệu cho bảng `school_years`
 --
 
-INSERT INTO `school_years` (`yearID`, `name`, `active`, `created_at`, `updated_at`) VALUES
-(5, 'Năm học 2017 - 2018', 1, '2017-11-11 02:26:59', '2017-11-11 02:26:59'),
-(23, 'Năm học 2015-2016', 1, '2017-11-16 14:39:15', '2017-11-16 14:39:15'),
-(25, 'Năm học 2014-2015', 0, '2017-11-16 15:38:18', '2017-11-16 15:38:18');
+INSERT INTO `school_years` (`yearID`, `trainingID`, `name`, `active`, `created_at`, `updated_at`) VALUES
+(5, 1, 'Năm học 2017 - 2018', 1, '2017-11-11 02:26:59', '2017-11-11 02:26:59'),
+(23, 1, 'Năm học 2015-2016', 1, '2017-11-16 14:39:15', '2017-11-16 14:39:15'),
+(26, 1, 'Năm học 2014-2015', 0, '2017-11-21 01:54:26', '2017-11-21 01:54:26'),
+(28, 2, '11122', 1, '2017-11-28 09:41:36', '2017-11-28 09:55:16');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `semesters`
+-- Cấu trúc bảng cho bảng `semesters`
 --
 
 CREATE TABLE `semesters` (
@@ -173,20 +180,40 @@ CREATE TABLE `semesters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `semesters`
+-- Đang đổ dữ liệu cho bảng `semesters`
 --
 
 INSERT INTO `semesters` (`semesterID`, `name`, `yearID`, `created_at`, `updated_at`) VALUES
-(1, 'Học kì 1', 4, NULL, '2017-11-14 22:46:31'),
-(2, 'Học kì 2', 5, NULL, '2017-11-14 22:46:35'),
-(3, 'Học kì 1 phụ', 6, NULL, '2017-11-14 22:46:39'),
-(4, 'Học kì 1', 7, NULL, '2017-11-14 22:46:45'),
-(14, '123', 4, '2017-11-12 20:34:41', '2017-11-12 20:34:41');
+(2, 'Học kì 2', 23, NULL, '2017-11-23 09:52:42'),
+(17, '123', 5, '2017-11-21 02:17:06', '2017-11-21 02:17:06');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `trainings`
+--
+
+CREATE TABLE `trainings` (
+  `trainingID` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `trainings`
+--
+
+INSERT INTO `trainings` (`trainingID`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Trong chương trình đại học', NULL, NULL),
+(2, 'Sau đại học', NULL, NULL),
+(4, '12312123213123qewqwe', '2017-11-28 01:10:45', '2017-11-28 01:13:43'),
+(6, '12312123211232', '2017-11-28 01:11:22', '2017-11-28 01:11:22');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -200,7 +227,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -210,7 +237,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_roles`
+-- Cấu trúc bảng cho bảng `user_roles`
 --
 
 CREATE TABLE `user_roles` (
@@ -222,7 +249,7 @@ CREATE TABLE `user_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `user_roles`
+-- Đang đổ dữ liệu cho bảng `user_roles`
 --
 
 INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
@@ -231,105 +258,116 @@ INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`
 (3, 2, 2, NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `functions`
+-- Chỉ mục cho bảng `functions`
 --
 ALTER TABLE `functions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Chỉ mục cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Chỉ mục cho bảng `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `roles`
+-- Chỉ mục cho bảng `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role_functions`
+-- Chỉ mục cho bảng `role_functions`
 --
 ALTER TABLE `role_functions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `school_years`
+-- Chỉ mục cho bảng `school_years`
 --
 ALTER TABLE `school_years`
   ADD PRIMARY KEY (`yearID`);
 
 --
--- Indexes for table `semesters`
+-- Chỉ mục cho bảng `semesters`
 --
 ALTER TABLE `semesters`
   ADD PRIMARY KEY (`semesterID`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `trainings`
+--
+ALTER TABLE `trainings`
+  ADD PRIMARY KEY (`trainingID`);
+
+--
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `user_roles`
+-- Chỉ mục cho bảng `user_roles`
 --
 ALTER TABLE `user_roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `functions`
+-- AUTO_INCREMENT cho bảng `functions`
 --
 ALTER TABLE `functions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT cho bảng `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT for table `role_functions`
+-- AUTO_INCREMENT cho bảng `role_functions`
 --
 ALTER TABLE `role_functions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `school_years`
+-- AUTO_INCREMENT cho bảng `school_years`
 --
 ALTER TABLE `school_years`
-  MODIFY `yearID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `yearID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
--- AUTO_INCREMENT for table `semesters`
+-- AUTO_INCREMENT cho bảng `semesters`
 --
 ALTER TABLE `semesters`
-  MODIFY `semesterID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `semesterID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `trainings`
+--
+ALTER TABLE `trainings`
+  MODIFY `trainingID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `user_roles`
+-- AUTO_INCREMENT cho bảng `user_roles`
 --
 ALTER TABLE `user_roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
