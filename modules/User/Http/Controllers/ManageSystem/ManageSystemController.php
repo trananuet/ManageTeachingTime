@@ -51,9 +51,9 @@ class ManageSystemController extends Controller
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
-            'checkbox.required' => 'Bạn chưa chọn quyền nào.!!!'
+            'checkbox.required' => 'Bạn chưa chọn vai trò nào.!!!'
         ]);
-        $role = RoleRepository::removeAccess($request);
+        $role = RoleRepository::remove_access($request);
         if($role == true) {
             return redirect()->back();
         } else {

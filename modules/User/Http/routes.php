@@ -5,12 +5,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'user', 'namespace' => 'Modules
 	Route::group(['middleware' => 'auth'],function()
     {
         Route::get('/manage_users', 'ManageUsers\ManageUsersController@getUser')->name('manage_users');
-        Route::post('/manage_users/save/{userID}', 'ManageUsers\ManageUsersController@saveRoleUser')->name('manage_users.save');
-        Route::post('/manage_users/addUser', 'ManageUsers\ManageUsersController@addUser')->name('manage_users.add');
-        Route::post('/manage_users/deleteUser/{userID}', 'ManageUsers\ManageUsersController@deleteUser')->name('manage_users.delete');
-        Route::post('/manage_users/edit/{userID}', 'ManageUsers\ManageUsersController@deleteUser')->name('manage_users.edit');
-
-
+        Route::post('/manage_users/save', 'ManageUsers\ManageUsersController@saveUser')->name('manage_users.save');
+        Route::post('/manage_users/remove', 'ManageUsers\ManageUsersController@removeUser')->name('manage_users.remove');
+        
         Route::get('/manage_system', 'ManageSystem\ManageSystemController@getAllRole')->name('manage_system');
         Route::post('/manage_system/save', 'ManageSystem\ManageSystemController@saveRole')->name('manage_system.save');
         Route::post('/manage_system/remove', 'ManageSystem\ManageSystemController@removeRole')->name('manage_system.remove');
