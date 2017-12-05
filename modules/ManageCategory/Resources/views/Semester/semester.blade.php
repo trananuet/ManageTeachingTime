@@ -56,7 +56,7 @@
                 </div>
                 <div class="row">
                     <div class="add-btn col-md-2">
-                        <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary">Thêm học kỳ</button>
+                        <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary"><b>+ Thêm</b></button>
                     </div>
                 </div>
                 <!-- LINE MODAL -->

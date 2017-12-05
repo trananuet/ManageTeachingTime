@@ -74,16 +74,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 add-btn">
-                        <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary">Thêm năm học</button>
+                        <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary"><b>+ Thêm</b></button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <!-- LINE MODAL -->
                 <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs" role="tablist" >
                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
+                            <li role="presentation" ><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
@@ -193,7 +193,7 @@
                                 <th class="stt active-display">STT</th>
                                 <th class="">Hệ đào tạo</th>
                                 <th class="">Năm học</th>
-                                <th class="">Active</th>
+                                <th class="">Kích hoạt</th>
                                 <th class="cus">Tùy chọn</th>
                                 <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             </tr>
@@ -294,7 +294,7 @@
                                 <th class="stt active-display">STT</th>
                                 <th class="">Hệ đào tạo</th>
                                 <th class="">Năm học</th>
-                                <th class="act">Active</th>
+                                <th class="act">Kích hoạt</th>
                                 <th class="cus">Tùy chọn</th>
                                 <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             </tr>
