@@ -17,6 +17,8 @@ class FunctionRepository
         $func = Functions::all();
         return $func;
     }
+
+
     /**
     * save_function
     * @author AnTV
@@ -43,6 +45,8 @@ class FunctionRepository
 			return false;
         }
     }
+
+    
     /**
     * xoa cac quyen chuc nang
     * @author AnTV

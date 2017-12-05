@@ -12,6 +12,9 @@
         vertical-align: inherit;
         text-align: center;
     }
+    .table .text-name{
+        text-align: left;
+    }
 </style>
 @endsection
 @section('content')
@@ -29,10 +32,8 @@
                         </div>
                     @endif  
                 </div>
-                <div class="row">
-                    <div class="col-md-4 add-btn">
-                        <button data-toggle="modal" data-target="#modalPermission" class="btn btn-primary">Thêm phân quyền</button>
-                    </div>
+                <div class="col-md-4 add-btn">
+                    <button data-toggle="modal" data-target="#modalFunction" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                 </div>
             </div>
             <div class="content-manage-system">
@@ -55,8 +56,8 @@
                             @foreach($role_functions as $role_function)
                             <tr>
                                 {{--  <td>{{++$loop->index}}</td>  --}}
-                                <td>{{$role_function->role}}</td>
-                                <td>{{$role_function->function}}</td>
+                                <td class="text-name">{{$role_function->role}}</td>
+                                <td class="text-name">{{$role_function->function}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAccess{{$role_function->id}}">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

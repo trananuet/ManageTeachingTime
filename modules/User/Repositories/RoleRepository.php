@@ -75,7 +75,7 @@ class RoleRepository
     * @param Illuminate\Http\Request $request
     * @return boolean
     */
-	public static function removeAccess(Request $request)
+	public static function remove_access(Request $request)
     {
 		DB::beginTransaction();
 		try {
