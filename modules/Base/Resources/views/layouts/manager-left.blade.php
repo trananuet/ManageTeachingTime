@@ -17,6 +17,12 @@
                             <li>
                                 <a href="{{route('semester')}}"> Học kỳ</a>
                             </li>
+                            <li>
+                                <a href="{{route('title')}}"> Chức danh</a>
+                            </li>
+                            <li>
+                                <a href="#"> Khoa, phòng ban</a>
+                            </li>
                         </ul>
                     </li>
                     @if(Auth::user()->checkMod())

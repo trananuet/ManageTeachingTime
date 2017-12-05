@@ -34,5 +34,10 @@ Route::group(['middleware' => 'web',
         //         ->where('yearID', '[0-9]+');
         Route::post('/semester/import', 'Semester\SemesterController@postImport')->name('semester.import');
 
+
+        //TITLE
+        Route::get('/title', 'Title\TitleController@getTitle')->name('title');
+        Route::post('/title/save', 'Title\TitleController@createEditTitle')->name('title.save');
+        Route::post('/title/remove', 'Title\TitleController@delTitle')->name('title.remove');
     });
 });
