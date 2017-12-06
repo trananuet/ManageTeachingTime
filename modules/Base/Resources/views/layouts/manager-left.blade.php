@@ -21,7 +21,16 @@
                                 <a href="{{route('title')}}"> Chức danh</a>
                             </li>
                             <li>
-                                <a href="#"> Khoa, phòng ban</a>
+                                <a href="{{route('faculty')}}"> Khoa, phòng ban</a>
+                            </li>
+                            <li>
+                                <a href="{{route('teacher')}}"> Giảng viên</a>
+                            </li>
+                            <li>
+                                <a href="#"> Môn học</a>
+                            </li>
+                            <li>
+                                <a href="#"> Khóa luận</a>
                             </li>
                         </ul>
                     </li>
