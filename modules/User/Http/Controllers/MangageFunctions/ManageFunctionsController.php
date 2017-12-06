@@ -20,7 +20,6 @@ class ManageFunctionsController extends Controller
     {
         //$funcs = FunctionRepository::get_all_functions();
         $functions = FunctionRepository::get_all_functions();
-
         return view('user::manage_functions.manageFunctions',compact('functions'));
     }
 

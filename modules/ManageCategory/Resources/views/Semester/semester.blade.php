@@ -163,7 +163,7 @@
                     {{--  <button type="button" class="btn btn-primary" id="btnRemoveAllSemester">Xóa nhiều năm học</button>
                     <button type="button" class="btn btn-primary hidden" id="btnActiveRemoveSemester">Xóa nhiều năm học</button>
                     <br>  --}}
-                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="removeSemesterActive" onclick="return confirm('Bạn chắn chắn muốn xóa học kỳ?');">Xóa</button>
+                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="removeSemesterActive" onclick="return confirm('Bạn chắc chắn muốn xóa học kỳ?');">Xóa</button>
                 </div>
                 <table class="table table-hover table-condensed table-bordered " id ="semester">
                     <thead class ="table-semester">

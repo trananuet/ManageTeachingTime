@@ -105,7 +105,7 @@
             <form method="POST" action="{{route('manage_users.remove')}}" id="editFormUser">
             {{ csrf_field() }}
             <div class="box-remove-all">
-                <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn người dùng này?');">Xóa</button>
+                <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắc chắn xóa muốn người dùng này?');">Xóa</button>
             </div>
             <table class="table table-hover table-condensed table-bordered" id="table-manage-system">
                 <thead class ="table-school-year">
