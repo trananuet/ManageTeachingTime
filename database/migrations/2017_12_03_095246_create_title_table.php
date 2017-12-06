@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultyTable extends Migration
+class CreateTitleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateFacultyTable extends Migration
      */
     public function up()
     {
-        Schema::create('faculty', function (Blueprint $table) {
-            $table->increments('facultyID');
-            $table->string('name');
+        Schema::create('title', function (Blueprint $table) {
+            $table->increments('titleID');
+            $table->string('titleName');
+            $table->integer('active')->nullable();
+            $table->integer('DinhMuc');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateFacultyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faculty');
+        Schema::dropIfExists('title');
     }
 }

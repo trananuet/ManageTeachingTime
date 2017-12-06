@@ -39,5 +39,15 @@ Route::group(['middleware' => 'web',
         Route::get('/title', 'Title\TitleController@getTitle')->name('title');
         Route::post('/title/save', 'Title\TitleController@createEditTitle')->name('title.save');
         Route::post('/title/remove', 'Title\TitleController@delTitle')->name('title.remove');
+
+        //FACULTY
+        Route::get('/faculty', 'Faculty\FacultyController@getFaculty')->name('faculty');
+        Route::post('/faculty/save', 'Faculty\FacultyController@createEditFaculty')->name('faculty.save');
+        Route::post('/faculty/remove', 'Faculty\FacultyController@delFaculty')->name('faculty.remove');
+
+        //TEACHER
+        Route::get('/teacher', 'Teacher\TeacherController@getTeacher')->name('teacher');
+        Route::post('/teacher/save', 'Teacher\TeacherController@createEditTeacher')->name('teacher.save');
+        Route::post('/teacher/remove', 'Teacher\TeacherController@delTeacher')->name('teacher.remove');
     });
 });

@@ -14,61 +14,37 @@ class FacultyController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function getFaculty()
     {
-        return view('managecategory::index');
+        $facultys = FacultyRepository::getAllFaculty();
+        return view('managecategory::Faculty.faculty',compact('facultys'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+
+    public function createEditFaculty(Request $request)
     {
-        return view('managecategory::create');
+        $faculty = FacultyRepository::saveFaculty($request);
+        if($faculty == true) {
+            return back();
+        } else {
+            return \Response::view('base::errors.500',array(),500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function delFaculty(Request $request)
     {
+        $this->validate($request, [
+            'checkbox' => 'required'
+        ],[
+            'checkbox.required' => 'Bạn chưa chọn khoa, phòng ban nào.!!!'
+        ]);
+        $faculty = FacultyRepository::removeFaculty($request);
+        if($faculty == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('managecategory::show');
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('managecategory::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
 }
