@@ -23,10 +23,10 @@ class TitleRepository
     {
         DB::beginTransaction();
 		try {
-            if(isset($request->titleID)){
-                $title = Title::where('titleID', $request->titleID)->firstOrFail();
-                $title->titleName = $request->Name;
-                $title->DinhMuc = $request->Dinhmuc;
+            if(isset($request->id)){
+                $title = Title::where('id', $request->id)->firstOrFail();
+                $title->name = $request->name;
+                $title->quota = $request->quota;
                 $active = $request->active;
                 if($active == 1){
                     $title->active = '1';
@@ -38,8 +38,8 @@ class TitleRepository
                 return true;
             } else {   
                 $title = new Title();
-                $title->titleName = $request->Name;
-                $title->DinhMuc = $request->Dinhmuc;
+                $title->name = $request->name;
+                $title->quota = $request->quota;
                 $active = $request->active;
                 if($active == 1){
                     $title->active = '1';
@@ -63,7 +63,7 @@ class TitleRepository
 		try {
 			$checkbox = $request->all();
 			foreach($checkbox['checkbox'] as $id) {
-				$title = Title::where('titleID', $id);
+				$title = Title::where('id', $id);
 				if(!$title){
 					return false;
 				}

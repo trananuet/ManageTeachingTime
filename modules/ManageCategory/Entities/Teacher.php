@@ -9,8 +9,8 @@ use Modules\ManageCategory\Entities\Faculty;
 class Teacher extends Model
 {
     protected $fillable = [];
-    public $primaryKey = 'teacherID'; 
-    protected $table = "teacher";
+    public $primaryKey = 'id'; 
+    protected $table = "teachers";
 
     public function titles()
     {

@@ -65,7 +65,7 @@
                                                         <select class="form-control" name="title" >
                                                             <option>Chọn chức danh</option>
                                                             @foreach($titles as $title)
-                                                                <option value="{{$title->titleID}}">{{$title->titleName}}</option>
+                                                                <option value="{{$title->id}}">{{$title->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -76,7 +76,7 @@
                                                         <select class="form-control" name="faculty" >
                                                             <option>Chọn khoa ,phòng ban</option>
                                                                 @foreach($facultys as $faculty)
-                                                                <option value="{{$faculty->facultyID}}">{{$faculty->name}}</option>
+                                                                <option value="{{$faculty->id}}">{{$faculty->name}}</option>
                                                                 @endforeach
                                                         </select>
                                                     </div>
@@ -166,14 +166,14 @@
                                 <td>{{$teacher->titleName}}</td>
                                 <td>{{$teacher->reduce}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditTeacher{{$teacher->teacherID}}">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditTeacher{{$teacher->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                 </td>
-                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$teacher->teacherID}}" value="{{$teacher->teacherID}}" class="checkbox-remove"></td>
+                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$teacher->id}}" value="{{$teacher->id}}" class="checkbox-remove"></td>
                  </form>
                             </tr>
-                            <div class="modal fade" id="modalEditTeacher{{$teacher->teacherID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalEditTeacher{{$teacher->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                         <div class="modal-header">
@@ -184,7 +184,7 @@
                                             {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <!-- content goes here -->
-                                                    <input type="hidden" name="teacherID" value="{{$teacher->teacherID}}">
+                                                    <input type="hidden" name="id" value="{{$teacher->id}}">
                                                     <div class="form-group row">
                                                         <label for="teacherEdit" class="col-sm-3 col-form-label">Tên</label>
                                                         <div class="col-sm-9">
@@ -198,9 +198,9 @@
                                                             <option value="">Chọn chức danh</option>
                                                             @foreach($titles as $title)
                                                                 @php
-                                                                    $selectTitle = $title->titleID == $teacher->titleID ? "selected" : null;
+                                                                    $selectTitle = $title->id == $teacher->id ? "selected" : null;
                                                                 @endphp
-                                                                <option value="{{$title->titleID}}" {{$selectTitle}}>{{$title->titleName}}</option>
+                                                                <option value="{{$title->id}}" {{$selectTitle}}>{{$title->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -212,9 +212,9 @@
                                                             <option value="">Chọn khoa,phòng ban</option>
                                                             @foreach($facultys as $faculty)
                                                                 @php
-                                                                    $selectFaculty = $faculty->facultyID == $teacher->facultyID ? "selected" : null;
+                                                                    $selectFaculty = $faculty->id == $teacher->id ? "selected" : null;
                                                                 @endphp
-                                                                <option value="{{$faculty->facultyID}}" {{$selectFaculty}}>{{$faculty->name}}</option>
+                                                                <option value="{{$faculty->id}}" {{$selectFaculty}}>{{$faculty->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
