@@ -44,8 +44,6 @@
 
 {{-- FOOTER --}}
 <!-- Footer -->
-<div class="col-md-12" style="background: #f7f4f4;border-top: 1px solid #c3c5c5;padding-left: 20px;"></div>
-		<h4>Trung tâm máy tính</h4>
 
 
 

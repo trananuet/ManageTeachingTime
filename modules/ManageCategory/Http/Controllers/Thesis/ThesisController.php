@@ -4,69 +4,45 @@ namespace Modules\ManageCategory\Http\Controllers\Thesis;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
+use Modules\ManageCategory\Entities\Thesis;
+use Modules\ManageCategory\Repositories\ThesisRepository;
 
-class Thesis/ThesisController extends Controller
+
+class ThesisController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    
+    public function getThesis()
     {
-        return view('managecategory::index');
+        $thesis = ThesisRepository::getAllThesis();
+        return view('managecategory::Thesis.thesis',compact('thesis'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    
+
+    public function createEditTeacher(Request $request)
     {
-        return view('managecategory::create');
+        $teacher = TeacherRepository::saveTeacher($request);
+        if($teacher == true) {
+            return back();
+        } else {
+            return \Response::view('base::errors.500',array(),500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
+    public function delTeacher(Request $request)
     {
-        return view('managecategory::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('managecategory::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
+        $this->validate($request, [
+            'checkbox' => 'required'
+        ],[
+            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+        ]);
+        $teacher = TeacherRepository::removeTeacher($request);
+        if($teacher == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
+    }   
 }

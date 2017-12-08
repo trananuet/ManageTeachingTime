@@ -1,22 +1,26 @@
 <?php 
 namespace Modules\ManageCategory\Repositories;
 
-use Modules\ManageCategory\Entities\Courses;
+use Modules\ManageCategory\Entities\CourseLecturer;
+use Modules\ManageCategory\Entities\Course;
+use Modules\ManageCategory\Entities\Teacher;
 use Modules\ManageCategory\Entities\Semester;
 use Modules\ManageCategory\Entities\SchoolYear;
 use Illuminate\Http\Request;
 use DB;
 
-class CoursesRepository 
+class CourseLecturerRepository 
 {
 
-    public static function getAllCourses()
+    public static function getAllCourseLecturer()
     {
-        $courses =Courses::selectRaw("courses.*,semesters.name as semesterName,school_years.name as yearName")
-                    ->leftjoin('semesters','semesters.semesterID','=','courses.semesterID')
-                    ->leftjoin('school_years','school_years.yearID','=','courses.yearID')
+        $course_lecturer =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName,school_years.name as yearName,teachers.name as teacherName,courses.name as courseName")
+                    ->leftjoin('courses','courses.id','=','course_lecturers.courseID')
+                    ->leftjoin('teachers','teachers.id','=','course_lecturers.teacherID')
+                    ->leftjoin('semesters','semesters.semesterID','=','course_lecturers.semesterID')
+                    ->leftjoin('school_years','school_years.yearID','=','course_lecturers.yearID')
                     ->get();
-        return $courses;
+        return $course_lecturer;
     }
 
     public static function saveCourses(Request $request)

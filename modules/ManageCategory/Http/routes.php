@@ -49,5 +49,26 @@ Route::group(['middleware' => 'web',
         Route::get('/teacher', 'Teacher\TeacherController@getTeacher')->name('teacher');
         Route::post('/teacher/save', 'Teacher\TeacherController@createEditTeacher')->name('teacher.save');
         Route::post('/teacher/remove', 'Teacher\TeacherController@delTeacher')->name('teacher.remove');
+
+        //COURSES
+        Route::get('/courses', 'Courses\CoursesController@getCourses')->name('courses');
+        Route::post('/courses/save', 'Courses\CoursesController@createEditCourses')->name('courses.save');
+        Route::post('/courses/remove', 'Courses\CoursesController@delCourses')->name('courses.remove');
+
+        //THESIS
+        Route::get('/thesis', 'Thesis\ThesisController@getThesis')->name('thesis');
+        Route::post('/thesis/save', 'Thesis\ThesisController@createEditThesis')->name('thesis.save');
+        Route::post('/thesis/remove', 'Thesis\ThesisController@delThesis')->name('thesis.remove');
+
+        //SALARY
+        Route::get('/salary', 'Salary\SalaryController@getSalary')->name('salary');
+        Route::post('/salary/save', 'Salary\SalaryController@createEditSalary')->name('salary.save');
+        Route::post('/salary/remove', 'Salary\SalaryController@delSalary')->name('salary.remove');
+
+
+        //COURSELECTURER
+        Route::get('/course_lecturer', 'CourseLecturer\CourseLecturerController@getCourseLecturer')->name('course_lecturer');
+        Route::post('/course_lecturer/save', 'CourseLecturer\CourseLecturerController@createEditCourseLecturer')->name('course_lecturer.save');
+        Route::post('/course_lecturer/remove', 'CourseLecturer\CourseLecturerController@delCourseLecturer')->name('course_lecturer.remove');
     });
 });
