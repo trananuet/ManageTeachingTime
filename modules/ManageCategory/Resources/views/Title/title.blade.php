@@ -56,13 +56,13 @@
                                                 <div class="form-group row">
                                                     <label for="titleCreate" class="col-sm-3 col-form-label">Tên</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="Name" class="form-control" id="titleCreate" placeholder="Tên chức danh">
+                                                        <input type="text" name="name" class="form-control" id="titleCreate" placeholder="Tên chức danh">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="titleCreate" class="col-sm-3 col-form-label">Định mức</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="Dinhmuc" class="form-control" id="titleCreate" placeholder="Định mức">
+                                                        <input type="text" name="quota" class="form-control" id="titleCreate" placeholder="Định mức">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -144,22 +144,22 @@
                         @foreach($titles as $title)
                             <tr>
                                 <td class="active-display">{{++$loop->index}}</td>
-                                <td>{{$title->titleName}}</td>
-                                <td>{{$title->DinhMuc}}</td>
+                                <td>{{$title->name}}</td>
+                                <td>{{$title->quota}}</td>
                                 @if($title->active == 1)
                                         <td><i class="fa fa-check" aria-hidden="true"></i></td>
                                 @else
                                         <td></td>
                                 @endif
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditTraining{{$title->titleID}}">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditTraining{{$title->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                 </td>
-                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$title->titleID}}" value="{{$title->titleID}}" class="checkbox-remove"></td>
+                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$title->id}}" value="{{$title->id}}" class="checkbox-remove"></td>
                  </form>
                             </tr>
-                            <div class="modal fade" id="modalEditTraining{{$title->titleID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalEditTraining{{$title->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                         <div class="modal-header">
@@ -170,17 +170,17 @@
                                             {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <!-- content goes here -->
-                                                    <input type="hidden" name="titleID" value="{{$title->titleID}}">
+                                                    <input type="hidden" name="id" value="{{$title->id}}">
                                                     <div class="form-group row">
                                                         <label for="titleEdit" class="col-sm-3 col-form-label">Tên</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" name="Name" class="form-control" id="titleEdit" placeholder="Tên" value="{{$title->titleName}}" required>
+                                                            <input type="text" name="name" class="form-control" id="titleEdit" placeholder="Tên" value="{{$title->name}}" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="titleEdit" class="col-sm-3 col-form-label">Định mức</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" name="Dinhmuc" class="form-control" id="titleEdit" placeholder="Định mức" value="{{$title->DinhMuc}}" required>
+                                                            <input type="text" name="quota" class="form-control" id="titleEdit" placeholder="Định mức" value="{{$title->quota}}" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">

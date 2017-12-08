@@ -56,7 +56,7 @@
                                                 <div class="form-group row">
                                                     <label for="facultyCreate" class="col-sm-3 col-form-label">Tên</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="Name" class="form-control" id="facultyCreate" placeholder="Tên">
+                                                        <input type="text" name="name" class="form-control" id="facultyCreate" placeholder="Tên khoa, phòng ban">
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,14 +132,14 @@
                                 <td class="active-display">{{++$loop->index}}</td>
                                 <td>{{$faculty->name}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditFaculty{{$faculty->facultyID}}">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditFaculty{{$faculty->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </button>
                                 </td>
-                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$faculty->facultyID}}" value="{{$faculty->facultyID}}" class="checkbox-remove"></td>
+                                <td class=""><input type="checkbox" name="checkbox[]" id="{{$faculty->id}}" value="{{$faculty->id}}" class="checkbox-remove"></td>
                  </form>
                             </tr>
-                            <div class="modal fade" id="modalEditFaculty{{$faculty->facultyID}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modalEditFaculty{{$faculty->id}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content" style="width: 80%; margin-left: 10%;">
                                         <div class="modal-header">
@@ -150,11 +150,11 @@
                                             {{ csrf_field() }}
                                                 <div class="modal-body">
                                                     <!-- content goes here -->
-                                                    <input type="hidden" name="facultyID" value="{{$faculty->facultyID}}">
+                                                    <input type="hidden" name="id" value="{{$faculty->id}}">
                                                     <div class="form-group row">
                                                         <label for="facultyEdit" class="col-sm-3 col-form-label">Tên</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" name="Name" class="form-control" id="facultyEdit" placeholder="Tên" value="{{$faculty->name}}" required>
+                                                            <input type="text" name="name" class="form-control" id="facultyEdit" placeholder="Tên Khoa, phòng ban" value="{{$faculty->name}}" required>
                                                         </div>
                                                     </div>
                                                 </div>

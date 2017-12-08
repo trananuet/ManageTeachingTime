@@ -12,9 +12,9 @@ class TeacherRepository
 
     public static function getAllTeacher()
     {
-       	$teacher =Teacher::selectRaw("teacher.*,faculty.name as facultyName,title.titleName as titleName")
-                    ->leftjoin('faculty','faculty.facultyID','=','teacher.facultyID')
-                    ->leftjoin('title','title.titleID','=','teacher.titleID')
+       	$teacher =Teacher::selectRaw("teachers.*,facultys.name as facultyName,titles.name as titleName")
+                    ->leftjoin('facultys','facultys.id','=','teachers.facultyID')
+                    ->leftjoin('titles','titles.id','=','teachers.titleID')
                     ->get();
         return $teacher;
     }
@@ -23,8 +23,8 @@ class TeacherRepository
     {
         DB::beginTransaction();
 		try {
-            if(isset($request->teacherID)){
-                $teacher = Teacher::where('teacherID', $request->teacherID)->firstOrFail();
+            if(isset($request->id)){
+                $teacher = Teacher::where('id', $request->id)->firstOrFail();
                 $teacher->name = $request->name;
                 $teacher->titleID = $request->title;
                 $teacher->facultyID = $request->faculty;
@@ -55,7 +55,7 @@ class TeacherRepository
 		try {
 			$checkbox = $request->all();
 			foreach($checkbox['checkbox'] as $id) {
-				$teacher = Teacher::where('teacherID', $id);
+				$teacher = Teacher::where('id', $id);
 				if(!$teacher){
 					return false;
 				}

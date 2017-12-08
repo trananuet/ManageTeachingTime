@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Title extends Model
 {
     protected $fillable = [];
-    public $primaryKey = 'titleID'; 
-    protected $table = "title";
+    public $primaryKey = 'id'; 
+    protected $table = "titles";
 }

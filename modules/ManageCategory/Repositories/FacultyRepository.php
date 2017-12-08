@@ -23,15 +23,15 @@ class FacultyRepository
     {
         DB::beginTransaction();
 		try {
-            if(isset($request->facultyID)){
-                $faculty = Faculty::where('facultyID', $request->facultyID)->firstOrFail();
-                $faculty->name = $request->Name;
+            if(isset($request->id)){
+                $faculty = Faculty::where('id', $request->id)->firstOrFail();
+                $faculty->name = $request->name;
                 $faculty->save();
                 DB::commit();
                 return true;
             } else {   
                 $faculty = new Faculty();
-                $faculty->name = $request->Name;
+                $faculty->name = $request->name;
                 $faculty->save();
                 DB::commit();
                 return true;
@@ -49,7 +49,7 @@ class FacultyRepository
 		try {
 			$checkbox = $request->all();
 			foreach($checkbox['checkbox'] as $id) {
-				$faculty = Faculty::where('facultyID', $id);
+				$faculty = Faculty::where('id', $id);
 				if(!$faculty){
 					return false;
 				}
