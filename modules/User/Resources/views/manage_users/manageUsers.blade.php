@@ -162,13 +162,13 @@
                                                 <div class="form-group row">
                                                     <label for="password" class="col-sm-3 col-form-label">Mật khẩu: </label>
                                                     <div class="col-sm-9">
-                                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="" required>
+                                                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="password_confirmation" class="col-sm-3 col-form-label">Nhập lại mật khẩu: </label>
                                                     <div class="col-sm-9">
-                                                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Nhập lại password" required>
+                                                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Nhập lại password">
                                                     </div>
                                                 </div> 
                                                 <div class="form-group row">

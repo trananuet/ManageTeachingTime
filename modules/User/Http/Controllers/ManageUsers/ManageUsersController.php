@@ -24,7 +24,6 @@ class ManageUsersController extends Controller
     {
         $roles = RoleRepository::get_all_roles();
 		$users = UserRepository::get_all_users();
-        // dd($users);
         return view('user::manage_users.manageUsers',compact('users','roles'));
     }
 

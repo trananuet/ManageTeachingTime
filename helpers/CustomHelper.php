@@ -1,6 +1,32 @@
 <?php
 
 use Modules\User\Entities\RoleFunction;
+use Modules\User\Entities\UserRole;
+use Illuminate\Support\Facades\Auth;
+    /**
+     * quan ly năm học
+     * @author AnTV
+     * @param name_role duoc thiet lap trong defineHelper
+     * @return boolean
+     */
+    if(!function_exists('check_role')){
+        function check_role($name_role){
+            $listRole = UserRole::leftjoin('roles','roles.id','=','user_roles.role_id')
+                                ->leftjoin('role_functions','role_functions.role_id','=','roles.id')
+                                ->leftjoin('functions','role_functions.function_id','=','functions.id')
+                                ->where('user_id', Auth::user()->id)
+                                ->get();
+            $check = false;
+            for ($i=0; $i < count($listRole) ; $i++) { 
+                if($listRole[$i]->name_function == $name_role){
+                    $check = true;
+                    break;
+                }
+            }
+            return $check;
+        }
+    }
+
 
 
     /**
@@ -28,7 +54,6 @@ use Modules\User\Entities\RoleFunction;
     * @param  object $role_function_find
     * @param  query $role
     * @return object $languageFind
-    * date 28-07-2017 create new
     */
     if(!function_exists('add_functions')){
         // foreach , for : add request functions
@@ -67,7 +92,6 @@ use Modules\User\Entities\RoleFunction;
     * @param  object $role_function_find
     * @param  query $role
     * @return object $languageFind
-    * date 28-07-2017 create new
     */
     if(!function_exists('remove_function')){
         // foreach , for : remove role_function other with request

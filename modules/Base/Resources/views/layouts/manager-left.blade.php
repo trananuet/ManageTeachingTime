@@ -8,27 +8,41 @@
                     <li>
                         <a href="#"> Danh mục<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+                        @if(Auth::user()->checkManageTraining())
                             <li>
                                 <a href="{{route('training')}}"> Hệ đào tạo</a>
                             </li>
+                        @endif
+                        @if(Auth::user()->checkManageSchoolYear())
                             <li>
                                 <a href="{{route('school_year')}}"> Năm học</a>
                             </li>
+                        @endif
+                        @if(Auth::user()->checkManageSemester())
                             <li>
                                 <a href="{{route('semester')}}"> Học kỳ</a>
                             </li>
+                        @endif
+                        @if(Auth::user()->checkManageTitle())
                             <li>
                                 <a href="{{route('title')}}"> Chức danh</a>
                             </li>
+                        @endif
+                        @if(Auth::user()->checkManageFaculty())
                             <li>
                                 <a href="{{route('faculty')}}"> Khoa, phòng ban</a>
                             </li>
+                        @endif
+                        @if(Auth::user()->checkManageTeacher())
                             <li>
                                 <a href="{{route('teacher')}}"> Giảng viên</a>
                             </li>
+                        @endif
+                        @if(Auth::user()->checkManageCourse())
                             <li>
                                 <a href="#"> Môn học</a>
                             </li>
+                        @endif
                             <li>
                                 <a href="#"> Khóa luận</a>
                             </li>
