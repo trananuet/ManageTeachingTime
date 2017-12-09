@@ -39,7 +39,7 @@
                                 <a href="{{route('course_lecturer')}}"> Giảng viên môn học</a>
                             </li>
                             <li>
-                                <a href="#"> Giảng viên khóa luận</a>
+                                <a href="{{route('thesis_lecturer')}}"> Giảng viên khóa luận</a>
                             </li>
                         </ul>
                     </li>

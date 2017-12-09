@@ -37,7 +37,7 @@ class SalaryController extends Controller
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
-            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+            'checkbox.required' => 'Bạn chưa chọn định mức chi trả nào.!!!'
         ]);
         $salary = SalaryRepository::removeSalary($request);
         if($salary == true) {

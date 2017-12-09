@@ -70,5 +70,10 @@ Route::group(['middleware' => 'web',
         Route::get('/course_lecturer', 'CourseLecturer\CourseLecturerController@getCourseLecturer')->name('course_lecturer');
         Route::post('/course_lecturer/save', 'CourseLecturer\CourseLecturerController@createEditCourseLecturer')->name('course_lecturer.save');
         Route::post('/course_lecturer/remove', 'CourseLecturer\CourseLecturerController@delCourseLecturer')->name('course_lecturer.remove');
+
+        //COURSELECTURER
+        Route::get('/thesis_lecturer', 'ThesisLecturer\ThesisLecturerController@getThesisLecturer')->name('thesis_lecturer');
+        Route::post('/thesis_lecturer/save', 'ThesisLecturer\ThesisLecturerController@createEditThesisLecturer')->name('thesis_lecturer.save');
+        Route::post('/thesis_lecturer/remove', 'ThesisLecturer\ThesisLecturerController@delThesisLecturer')->name('thesis_lecturer.remove');
     });
 });

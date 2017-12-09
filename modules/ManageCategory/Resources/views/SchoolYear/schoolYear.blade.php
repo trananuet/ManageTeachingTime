@@ -394,14 +394,16 @@
         $(function() {
             $("#formSchoolYearCreate").validate({
                 rules: {
-                    school_years: "required"
+                        school_years: "required", 
+                        trainingID: "required"
                     },
                 messages: {
-                    school_years: "Vui lòng điền năm học."
+                        school_years: "Vui lòng điền năm học.",
+                        trainingID: "Vui lòng chọn hệ đào tạo"
                 }
             });
         });
-    </script>
+    </script> 
     <script>
         /*$("#button-remove-year").confirm({
             title: "Xóa năm học?",

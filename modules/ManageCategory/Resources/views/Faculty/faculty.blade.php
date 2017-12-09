@@ -49,14 +49,14 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('faculty.save')}}" id="formSemesterCreate">
+                                        <form method="POST" action="{{route('faculty.save')}}" id="formFacultyCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <div class="form-group row">
-                                                    <label for="facultyCreate" class="col-sm-3 col-form-label">Tên</label>
+                                                    <label for="name" class="col-sm-3 col-form-label">Khoa, phòng ban</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="name" class="form-control" id="facultyCreate" placeholder="Tên khoa, phòng ban">
+                                                        <input type="text" name="name" class="form-control" id="name" placeholder="Tên khoa, phòng ban">
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,4 +200,16 @@
             });
         });
     </script>
+    <script>   
+        $(function() {
+            $("#formFacultyCreate").validate({
+                rules: {
+                        name: "required"
+                    },
+                messages: {
+                        name: "Vui lòng điền khoa , phòng ban."
+                }
+            });
+        });
+    </script> 
 @endsection

@@ -40,7 +40,7 @@ class TeacherController extends Controller
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
-            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+            'checkbox.required' => 'Bạn chưa chọn giảng viên nào.!!!'
         ]);
         $teacher = TeacherRepository::removeTeacher($request);
         if($teacher == true) {

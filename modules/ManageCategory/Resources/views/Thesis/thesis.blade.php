@@ -49,22 +49,22 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('thesis.save')}}" id="formSemesterCreate">
+                                        <form method="POST" action="{{route('thesis.save')}}" id="formThesisCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <div class="form-group row">
-                                                    <label for="teacherCreate" class="col-sm-3 col-form-label">Tên giảng viên</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Tên khóa luận</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="name" class="form-control" id="teacherCreate" placeholder="Tên giảng viên">
+                                                        <input type="text" name="name" class="form-control" id="" placeholder="Tên khóa luận">
                                                     </div>
                                                 </div>
                                                 
                                                 
                                                 <div class="form-group row">
-                                                    <label for="teacherCreate" class="col-sm-3 col-form-label">Giảm trừ</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Định mức</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="reduce" class="form-control" id="teacherCreate" placeholder="Giảm trừ">
+                                                        <input type="text" name="quota" class="form-control" id="" placeholder="Định mức">
                                                     </div>
                                                 </div>  
                                         </div>
@@ -129,7 +129,7 @@
                     <thead class ="table-school-year">
                         <tr>
                             <th class="stt active-display">STT</th>
-                            <th class="">Tên</th>
+                            <th class="">Tên khóa luận</th>
                             <th class="">Định mức</th>
                             <th class="cus">Tùy chọn</th>
                             <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
@@ -170,9 +170,9 @@
                                                     
                                                 
                                                 <div class="form-group row">
-                                                        <label for="teacherEdit" class="col-sm-3 col-form-label">Giảm trừ</label>
+                                                        <label for="teacherEdit" class="col-sm-3 col-form-label">Định mức</label>
                                                         <div class="col-sm-9">
-                                                            <input type="text" name="reduce" class="form-control" id="teacherEdit" placeholder="Giảm trừ" value="{{$thesi->reduce}}" required>
+                                                            <input type="text" name="quota" class="form-control" id="teacherEdit" placeholder="Định mức" value="{{$thesi->quota}}" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -206,16 +206,18 @@
             });
         });
     </script>
-   <script>   
+    <script>   
         $(function() {
-            $("#importExcel").validate({
+            $("#formThesisCreate").validate({
                 rules: {
-                    imported-file: "required"
+                        name: "required", 
+                        quota: "required"
                     },
                 messages: {
-                    imported-file: "Vui lòng nhập file."
+                        name: "Vui lòng điền tên khóa luận.",
+                        quota: "Vui lòng điền định mức."
                 }
             });
         });
-    </script>
+    </script> 
 @endsection

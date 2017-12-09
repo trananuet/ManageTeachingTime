@@ -4,69 +4,50 @@ namespace Modules\ManageCategory\Http\Controllers\ThesisLecturer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
+use Modules\ManageCategory\Entities\ThesisLecturer;
+use Modules\ManageCategory\Repositories\ThesisLecturerRepository;
+use Modules\ManageCategory\Repositories\ThesisRepository;
+use Modules\ManageCategory\Repositories\TeacherRepository;
+use Modules\ManageCategory\Repositories\TrainingRepository;
 
-class ThesisLecturer\ThesisLecturerController extends Controller
+
+class ThesisLecturerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    public function getThesisLecturer()
     {
-        return view('managecategory::index');
+        $thesis_lecturers = ThesisLecturerRepository::getAllThesisLecturer();
+        $thesis = ThesisRepository::getAllThesis();
+        $teachers = TeacherRepository::getAllTeacher();
+        $trainings = TrainingRepository::getAllTraining();
+        return view('managecategory::ThesisLecturer.thesisLecturer',compact('teachers','thesis_lecturers','thesis','trainings'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    
+
+    public function createEditThesisLecturer(Request $request)
     {
-        return view('managecategory::create');
+        $thesis_lecturer = ThesisLecturerRepository::saveThesisLecturer($request);
+        if($thesis_lecturer == true) {
+            return back();
+        } else {
+            return \Response::view('base::errors.500',array(),500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
+    public function delThesisLecturer(Request $request)
     {
-        return view('managecategory::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('managecategory::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
+        $this->validate($request, [
+            'checkbox' => 'required'
+        ],[
+            'checkbox.required' => 'Bạn chưa chọn giảng viên khóa luận nào.!!!'
+        ]);
+        $thesis_lecturer = ThesisLecturerRepository::removeThesisLecturer($request);
+        if($thesis_lecturer == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
     }
 }

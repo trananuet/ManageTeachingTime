@@ -343,20 +343,22 @@
             });
         });
     </script>
-    {{--  <script>   
+    <script>   
         $(function() {
             $("#formSemesterCreate").validate({
                 rules: {
-                    yearID: "required",
-                    semesters: "required"
+                        yearID: "required", 
+                        semesters: "required"
                     },
                 messages: {
-                    yearID: "Vui lòng chọn năm học trong danh sách.",
-                    semesters: "Vui lòng điền học kỳ."
+                        yearID: "Vui lòng chọn năm học.",
+                        semesters: "Vui lòng điền học kỳ."
+                        
                 }
             });
         });
-    </script>  --}}
+    </script> 
+
     <script>
         $(function() {
             $('#btnRemoveAllSemester').click(function(){
