@@ -4,69 +4,48 @@ namespace Modules\ManageCategory\Http\Controllers\Courses;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
+use Modules\ManageCategory\Entities\Courses;
+use Modules\ManageCategory\Entities\Semester;
+use Modules\ManageCategory\Entities\SchoolYear;
+use Modules\ManageCategory\Repositories\CoursesRepository;
+use Modules\ManageCategory\Repositories\SemesterRepository;
+use Modules\ManageCategory\Repositories\SchoolYearRepository;
 
-class Courses/CoursesController extends Controller
+
+class CoursesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    public function getCourses()
     {
-        return view('managecategory::index');
+        $courses = CoursesRepository::getAllCourses();
+        $semesters = SemesterRepository::getAllSemester();
+        $schoolYears = SchoolYearRepository::getAllSchoolYear();
+        return view('managecategory::Courses.courses',compact('courses','semesters','schoolYears'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    public function createEditCourses(Request $request)
     {
-        return view('managecategory::create');
+        $courses = CoursesRepository::saveCourses($request);
+        if($courses == true) {
+            return back();
+        } else {
+            return \Response::view('base::errors.500',array(),500);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
+    public function delCourses(Request $request)
     {
-        return view('managecategory::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('managecategory::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
+        $this->validate($request, [
+            'checkbox' => 'required'
+        ],[
+            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+        ]);
+        $courses = CoursesRepository::removeCourses($request);
+        if($courses == true) {
+            return redirect()->back();
+        } else {
+             return \Response::view('base::errors.500',array(),500);
+        }
     }
 }

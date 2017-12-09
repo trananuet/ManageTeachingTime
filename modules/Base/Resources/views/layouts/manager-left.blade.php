@@ -27,10 +27,19 @@
                                 <a href="{{route('teacher')}}"> Giảng viên</a>
                             </li>
                             <li>
-                                <a href="#"> Môn học</a>
+                                <a href="{{route('courses')}}"> Môn học</a>
                             </li>
                             <li>
-                                <a href="#"> Khóa luận</a>
+                                <a href="{{route('thesis')}}"> Khóa luận</a>
+                            </li>
+                            <li>
+                                <a href="{{route('salary')}}"> Định mức chi trả</a>
+                            </li>
+                            <li>
+                                <a href="{{route('course_lecturer')}}"> Giảng viên môn học</a>
+                            </li>
+                            <li>
+                                <a href="#"> Giảng viên khóa luận</a>
                             </li>
                         </ul>
                     </li>
@@ -69,3 +78,4 @@
 
             </div>
         </div>
+    </div>
