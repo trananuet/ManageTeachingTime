@@ -23,30 +23,44 @@ class CourseLecturerRepository
         return $course_lecturer;
     }
 
-    public static function saveCourses(Request $request)
+    public static function saveCourseLecturer(Request $request)
     {
         DB::beginTransaction();
         try {
             if(isset($request->id)){
-                $courses = Courses::where('id', $request->id)->firstOrFail();
-                $courses->name = $request->name;
-                $courses->semesterID = $request->semester;
-                $courses->yearID = $request->schoolYear;
-                $courses->theory = $request->theory;
-                $courses->practice = $request->practice;
-                $courses->self_study = $request->self_study;
-                $courses->save();
+                $course_lecturer = CourseLecturer::where('id', $request->id)->firstOrFail();
+                $course_lecturer->teacherID = $request->teacher;
+                $course_lecturer->courseID = $request->course;
+                $course_lecturer->semesterID = $request->semester;
+                $course_lecturer->yearID = $request->school_year;
+                $course_lecturer->number_of_students = $request->number_of_student;
+                $course_lecturer->hour_theory = $request->hour_theory;
+                $course_lecturer->practice_hours = $request->practice_hours;
+                $course_lecturer->learning_time = $request->learning_time;
+                $course_lecturer->in_hours = $request->in_hours;
+                $course_lecturer->overtime = $request->overtime;
+                $course_lecturer->day_off = $request->day_off;
+                $course_lecturer->converted_hours = $request->converted_hours;
+                $course_lecturer->exchange = $request->exchange;
+                $course_lecturer->save();
                 DB::commit();
                 return true;
             } else {   
-                $courses = new Courses();
-                $courses->name = $request->name;
-                $courses->semesterID = $request->semester;
-                $courses->yearID = $request->schoolYear;
-                $courses->theory = $request->theory;
-                $courses->practice = $request->practice;
-                $courses->self_study = $request->self_study;
-                $courses->save();
+                $course_lecturer = new CourseLecturer();
+                $course_lecturer->teacherID = $request->teacher;
+                $course_lecturer->courseID = $request->course;
+                $course_lecturer->semesterID = $request->semester;
+                $course_lecturer->yearID = $request->school_year;
+                $course_lecturer->number_of_students = $request->number_of_student;
+                $course_lecturer->hour_theory = $request->hour_theory;
+                $course_lecturer->practice_hours = $request->practice_hours;
+                $course_lecturer->learning_time = $request->learning_time;
+                $course_lecturer->in_hours = $request->in_hours;
+                $course_lecturer->overtime = $request->overtime;
+                $course_lecturer->day_off = $request->day_off;
+                $course_lecturer->converted_hours = $request->converted_hours;
+                $course_lecturer->exchange = $request->exchange;
+                $course_lecturer->save();
                 DB::commit();
                 return true;
             }
@@ -57,17 +71,17 @@ class CourseLecturerRepository
         }
     }
 
-    public static function removeCourses(Request $request)
+    public static function removeCourseLecturer(Request $request)
     {
         DB::beginTransaction();
         try {
             $checkbox = $request->all();
             foreach($checkbox['checkbox'] as $id) {
-                $course = Courses::where('id', $id);
-                if(!$course){
+                $course_lecturer = CourseLecturer::where('id', $id);
+                if(!$course_lecturer){
                     return false;
                 }
-                $course->delete();
+                $course_lecturer->delete();
             }
             DB::commit();
             return true;

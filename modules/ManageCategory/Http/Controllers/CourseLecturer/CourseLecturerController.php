@@ -7,21 +7,30 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Modules\ManageCategory\Entities\CourseLecturer;
 use Modules\ManageCategory\Repositories\CourseLecturerRepository;
+use Modules\ManageCategory\Repositories\CoursesRepository;
+use Modules\ManageCategory\Repositories\SemesterRepository;
+use Modules\ManageCategory\Repositories\SchoolYearRepository;
+use Modules\ManageCategory\Repositories\TeacherRepository;
+
 
 class CourseLecturerController extends Controller
 {
     public function getCourseLecturer()
     {
+        $teachers = TeacherRepository::getAllTeacher();
+        $courses = CoursesRepository::getAllCourses();
+        $semesters = SemesterRepository::getAllSemester();
+        $school_years = SchoolYearRepository::getAllSchoolYear();
         $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
-        return view('managecategory::CourseLecturer.courseLecturer',compact('course_lecturers'));
+        return view('managecategory::CourseLecturer.courseLecturer',compact('course_lecturers','teachers','courses','semesters','school_years'));
     }
 
     
 
-    public function createEditSalary(Request $request)
+    public function createEditCourseLecturer(Request $request)
     {
-        $salary = SalaryRepository::saveSalary($request);
-        if($salary == true) {
+        $course_lecturer = CourseLecturerRepository::saveCourseLecturer($request);
+        if($course_lecturer == true) {
             return back();
         } else {
             return \Response::view('base::errors.500',array(),500);
@@ -29,15 +38,15 @@ class CourseLecturerController extends Controller
     }
 
 
-    public function delSalary(Request $request)
+    public function delCourseLecturer(Request $request)
     {
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
             'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
         ]);
-        $salary = SalaryRepository::removeSalary($request);
-        if($salary == true) {
+        $course_lecturer = CourseLecturerRepository::removeCourseLecturer($request);
+        if($course_lecturer == true) {
             return redirect()->back();
         } else {
              return \Response::view('base::errors.500',array(),500);

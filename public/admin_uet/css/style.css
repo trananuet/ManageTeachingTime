@@ -53,9 +53,33 @@ a {
 .stt {
     width: 10%;
 }
+.stt1 {
+    width: 8%;
+}
+
+.th1 {
+    width: 22%;
+}
+.th2 {
+    width: 23%;
+}
+.th3 {
+    width: 9%;
+}
+.th4 {
+    width: 15%;
+}
+
+.td1 {
+    width: 12%;
+    height: 10px;
+}
 
 .cus {
     width: 14%;
+}
+.cus1 {
+    width: 10%;
 }
 
 .modal-header {
@@ -68,6 +92,11 @@ a {
 .school-content-table {
     margin-left: 10%;
     margin-right: 20%;
+}
+
+.school-content-table1 {
+    margin-left: 0%;
+    margin-right: 0%;
 }
 
 .add-btn {
@@ -92,6 +121,12 @@ a {
 .table-school-year {
     color: white;
     background: #337ab7;
+
+}
+.table-school-year1 {
+    color: white;
+    background: #337ab7;
+    font-size: 12px;
 }
 
 .manage_teaching_time_left {
