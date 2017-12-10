@@ -60,4 +60,5 @@ class ManageSystemController extends Controller
              return \Response::view('base::errors.500',array(),500);
         }
     }
+    
 }

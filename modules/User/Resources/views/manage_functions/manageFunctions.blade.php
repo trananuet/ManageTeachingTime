@@ -72,7 +72,7 @@
             <form method="POST" action="{{route('manage_functions.remove')}}" id="formRemoveAccess">
                 {{ csrf_field() }}
                 <div class="box-remove-all">
-                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn chức năng đã chọn?');">Xóa</button>
+                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắc chắn muốn xóa chức năng đã chọn?');">Xóa</button>
                 </div>
                 <table class="table table-hover table-condensed table-bordered" id="table-manage-system">
                     <thead class ="table-school-year">

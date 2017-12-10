@@ -56,6 +56,13 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'check-mod-admin' => \Modules\User\Http\Middleware\CheckUserRole::class,
+        'check_mod_admin' => \Modules\User\Http\Middleware\CheckUserRole::class,
+        'check_manage_training' => \Modules\User\Http\Middleware\ManageTrainingMiddleware::class,
+        'check_manage_school_year' => \Modules\User\Http\Middleware\ManageSchoolYearMiddleware::class,
+        'check_manage_semester' => \Modules\User\Http\Middleware\ManageSemesterMiddleware::class,
+        'check_manage_title' => \Modules\User\Http\Middleware\ManageTitleMiddleware::class,
+        'check_manage_faculty' => \Modules\User\Http\Middleware\ManageFacultyMiddleware::class,
+        'check_manage_teacher' => \Modules\User\Http\Middleware\ManageTeacherMiddleware::class,
+        'check_manage_course' => \Modules\User\Http\Middleware\ManageCourseMiddleware::class,
     ];
 }

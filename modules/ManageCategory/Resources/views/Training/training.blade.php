@@ -89,7 +89,7 @@
                                             <div class="form-group row">
                                                 <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file" name="imported-file"/>
+                                                    <input type="file" name="imported_file"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
             <form method="POST" action="{{route('training.remove')}}">
                 {{ csrf_field() }}
                 <div class="box-remove-all">
-                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa hệ đào tạo đã chọn?');">Xóa</button>
+                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắc chắn muốn xóa hệ đào tạo đã chọn?');">Xóa</button>
                 </div>
             <table class="table table-hover table-condensed table-bordered" id="table_training">
                 <thead class ="table-school-year">
@@ -192,11 +192,11 @@
         $(function() {
             $("#formSemesterCreate").validate({
                 rules: {
-                        trainings: "required", 
-                        
+                        trainings: "required",
                     },
                 messages: {
                         trainings: "Vui lòng điền Hệ đào tạo."                    
+
                 }
             });
         });

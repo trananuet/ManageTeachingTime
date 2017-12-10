@@ -67,35 +67,33 @@ class TrainingController extends Controller
     public function postImport(Request $request)
     {
         $this->validate($request, [
-            'imported-file' => 'required'
+            'imported_file' => 'required'
         ],[
-            'imported-file.required' => 'Bạn chưa chọn file'
+            'imported_file.required' => 'Bạn chưa chọn file'
         ]);
-      if($request->file('imported-file'))
-      {
-                $path = $request->file('imported-file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
-                })->get();
-
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
+        if($request->file('imported_file'))
+        {
+                $path = $request->file('imported_file')->getRealPath();
+                $data = Excel::load($path, function($reader) {})->get();
+                
+            if(!empty($data) && $data->count())
             {
-              if(!empty($row))
-              {
-                $dataArray[] =
-                [
-                  'name' => $row['name'],
-                ];
-              }
-          } 
-          if(!empty($dataArray))
-          {             
-            TrainingRepository::insert($dataArray);
-            return back();
-           }
-         }
-       }
+                foreach ($data->toArray() as $row)
+                {
+                    if(!empty($row))
+                    {
+                        $dataArray[] =
+                        [
+                        'name' => $row['name'],
+                        ];
+                    }
+                } 
+            if(!empty($dataArray))
+            {             
+                TrainingRepository::insert($dataArray);
+                return back();
+            }
+            }
+        }
     }
 }

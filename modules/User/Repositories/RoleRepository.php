@@ -20,6 +20,18 @@ class RoleRepository
     }
 
     /**
+    * roles khong co admin
+    * @author AnTV
+    * @param ID_ADMIN = 0 ; su dung id admin trong database, define trong helpers/DefineHelper.php
+    * @return static
+    */
+    public static function get_all_roles_not_admin()
+    {
+        $roles = Role::where('roles.id','<>',ID_ADMIN)->get();
+        return $roles;
+    }
+
+    /**
     * save_role
     * @author AnTV
     * @param $request
