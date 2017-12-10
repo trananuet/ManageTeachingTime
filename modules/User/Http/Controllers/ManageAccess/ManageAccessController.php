@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\User\Http\Controllers\ManageSystem;
+namespace Modules\User\Http\Controllers\ManageAccess;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -10,18 +10,18 @@ use Modules\User\Repositories\FunctionRepository;
 use Modules\User\Entities\Role;
 
 
-class ManageSystemController extends Controller
+class ManageAccessController extends Controller
 {
     /**
     * get all roles
     * @return view
     */
-    public function getAllRole()
+    public function getAccess()
     {
         //$funcs = FunctionRepository::get_all_functions();
         $roles = RoleRepository::get_all_roles();
 
-        return view('user::manage_system.manageSystem',compact('roles'));
+        return view('user::manage_access.manageAccess',compact('roles'));
     }
 
 
@@ -30,7 +30,7 @@ class ManageSystemController extends Controller
     * @param $request
     * @return void
     */
-    public function saveRole(Request $request)
+    public function saveAccess(Request $request)
     {
         $role_function = RoleRepository::save_role($request);
         if($role_function == true) {
@@ -47,7 +47,7 @@ class ManageSystemController extends Controller
     * @param $request
     * @return view
     */
-    public function removeRole(Request $request){
+    public function removeAccess(Request $request){
         $this->validate($request, [
             'checkbox' => 'required'
         ],[

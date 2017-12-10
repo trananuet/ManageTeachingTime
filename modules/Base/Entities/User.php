@@ -103,6 +103,7 @@ class User extends Authenticatable
         $check = check_role(TITLE);
         return $check;
     }
+    
     /**
     * quan ly khoa, phong ban
     * @author AnTV
@@ -114,6 +115,7 @@ class User extends Authenticatable
         $check = check_role(FACULTY);
         return $check;
     }
+
     /**
     * quan ly giang vien
     * @author AnTV
@@ -125,6 +127,8 @@ class User extends Authenticatable
         $check = check_role(TEACHER);
         return $check;
     }
+
+
     /**
     * quan ly mon hoc
     * @author AnTV
@@ -134,6 +138,114 @@ class User extends Authenticatable
     */
     public function checkManageCourse(){
         $check = check_role(COURSE);
+        return $check;
+    }
+
+    /**
+    * quan ly khoa luan
+    * @author AnTV
+    * @param THESIS = Quản lý khoa luan <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageThesis(){
+        $check = check_role(THESIS);
+        return $check;
+    }
+
+    /**
+    * quan ly dinh muc chi tra
+    * @author AnTV
+    * @param SALARY = Quản lý định mức chi trả <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageSalary(){
+        $check = check_role(SALARY);
+        return $check;
+    }
+
+    /**
+    * quan ly giang vien mon hoc
+    * @author AnTV
+    * @param COURSE_LECTURER = Quản lý giảng viên môn học <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageCourseLecturer(){
+        $check = check_role(COURSE_LECTURER);
+        return $check;
+    }
+
+    /**
+    * quan ly giang vien khoa luan
+    * @author AnTV
+    * @param THESIS_LECTURER = Quản lý giảng viên khóa luận <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageThesisLecturer(){
+        $check = check_role(THESIS_LECTURER);
+        return $check;
+    }
+
+    /**
+    * quan ly he thong - vai tro
+    * @author AnTV
+    * @param ACCESS = Quản lý hệ thống vai trò <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageAccess(){
+        $check = check_role(ACCESS);
+        return $check;
+    }
+
+    /**
+    * quan ly he thong - nguoi dung
+    * @author AnTV
+    * @param USER = Quản lý hệ thống người dùng <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageUser(){
+        $check = check_role(USER);
+        return $check;
+    }
+
+    /**
+    * quan ly he thong - chuc nang
+    * @author AnTV
+    * @param FUNCTIONS = Quản lý hệ thống chức năng <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageFunctions(){
+        $check = check_role(FUNCTIONS);
+        return $check;
+    }
+    
+    /**
+    * quan ly he thong - phan quyen
+    * @author AnTV
+    * @param PERMISSION = Quản lý hệ thống phân quyền <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManagePermission(){
+        $check = check_role(PERMISSION);
+        return $check;
+    }
+
+        /**
+    * quan ly he thong - nhat ky
+    * @author AnTV
+    * @param HISTORY = Quản lý hệ thống nhật ký <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageHistory(){
+        $check = check_role(HISTORY);
         return $check;
     }
 }

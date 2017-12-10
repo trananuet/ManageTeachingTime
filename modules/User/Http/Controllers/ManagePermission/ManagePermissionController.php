@@ -17,7 +17,7 @@ class ManagePermissionController extends Controller
     * get all functions
     * @return view
     */
-    public function permission()
+    public function getPermission()
     {
         $roles = RoleRepository::get_all_roles_not_admin();
         $role_functions = RoleFunctionRepository::get_all_role_function();

@@ -41,7 +41,7 @@
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ HỆ THỐNG</h4>
                         </div>
-                        <form method="POST" action="{{route('manage_system.save')}}" id="formSystemSave">
+                        <form method="POST" action="{{route('manage_access.save')}}" id="formSystemSave">
                         {{ csrf_field() }}
                             <div class="modal-body">
                                 <!-- content goes here -->
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="content-manage-system">
-            <form method="POST" action="{{route('manage_system.remove')}}" id="formRemoveAccess">
+            <form method="POST" action="{{route('manage_access.remove')}}" id="formRemoveAccess">
                 {{ csrf_field() }}
                 <div class="box-remove-all">
                     <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắc chắn muốn xóa phân quyền này?');">Xóa</button>
@@ -103,7 +103,7 @@
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ HỆ THỐNG</h4>
                                         </div>
-                                        <form method="POST" action="{{route('manage_system.save')}}" id="formSystemSave">
+                                        <form method="POST" action="{{route('manage_access.save')}}" id="formSystemSave">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->

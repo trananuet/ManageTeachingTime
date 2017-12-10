@@ -56,13 +56,26 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'check_mod_admin' => \Modules\User\Http\Middleware\CheckUserRole::class,
-        'check_manage_training' => \Modules\User\Http\Middleware\ManageTrainingMiddleware::class,
-        'check_manage_school_year' => \Modules\User\Http\Middleware\ManageSchoolYearMiddleware::class,
-        'check_manage_semester' => \Modules\User\Http\Middleware\ManageSemesterMiddleware::class,
-        'check_manage_title' => \Modules\User\Http\Middleware\ManageTitleMiddleware::class,
-        'check_manage_faculty' => \Modules\User\Http\Middleware\ManageFacultyMiddleware::class,
-        'check_manage_teacher' => \Modules\User\Http\Middleware\ManageTeacherMiddleware::class,
-        'check_manage_course' => \Modules\User\Http\Middleware\ManageCourseMiddleware::class,
+        'check_mod_admin' => \Modules\User\Http\Middleware\MiddlewareAdmin\CheckAdminMiddleware::class,
+
+        //MIDDLERWARE MANAGE CATEGORY
+        'check_manage_training' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageTrainingMiddleware::class,
+        'check_manage_school_year' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageSchoolYearMiddleware::class,
+        'check_manage_semester' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageSemesterMiddleware::class,
+        'check_manage_title' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageTitleMiddleware::class,
+        'check_manage_faculty' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageFacultyMiddleware::class,
+        'check_manage_teacher' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageTeacherMiddleware::class,
+        'check_manage_course' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageCourseMiddleware::class,
+        'check_manage_thesis' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageThesisMiddleware::class,
+        'check_manage_salary' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageSalaryMiddleware::class,
+        'check_manage_course_lecturer' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageCourseLecturerMiddleware::class,
+        'check_manage_thesis_lecturer' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageThesisLecturerMiddleware::class,
+        
+        // MIDDLERWARE SYSTEM
+        'check_manage_access' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageAccessMiddleware::class,
+        'check_manage_user' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageUserMiddleware::class,
+        'check_manage_functions' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageFunctionsMiddleware::class,
+        'check_manage_permission' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManagePermissionMiddleware::class,
+        'check_manage_history' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageHistoryMiddleware::class,
     ];
 }

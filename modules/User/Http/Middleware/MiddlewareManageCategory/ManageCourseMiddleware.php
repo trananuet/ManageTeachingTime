@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\User\Http\Middleware;
+namespace Modules\User\Http\Middleware\MiddlewareManageCategory;
 
 use Closure;
 use Illuminate\Http\Request;
