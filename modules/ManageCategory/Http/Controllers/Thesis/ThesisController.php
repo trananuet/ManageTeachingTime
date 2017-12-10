@@ -20,10 +20,10 @@ class ThesisController extends Controller
 
     
 
-    public function createEditTeacher(Request $request)
+    public function createEditThesis(Request $request)
     {
-        $teacher = TeacherRepository::saveTeacher($request);
-        if($teacher == true) {
+        $thesis = ThesisRepository::saveThesis($request);
+        if($thesis == true) {
             return back();
         } else {
             return \Response::view('base::errors.500',array(),500);
@@ -31,15 +31,15 @@ class ThesisController extends Controller
     }
 
 
-    public function delTeacher(Request $request)
+    public function delThesis(Request $request)
     {
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
-            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+            'checkbox.required' => 'Bạn chưa chọn khóa luận nào.!!!'
         ]);
-        $teacher = TeacherRepository::removeTeacher($request);
-        if($teacher == true) {
+        $thesis = ThesisRepository::removeThesis($request);
+        if($thesis == true) {
             return redirect()->back();
         } else {
              return \Response::view('base::errors.500',array(),500);

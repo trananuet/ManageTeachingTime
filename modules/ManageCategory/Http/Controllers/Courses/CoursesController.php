@@ -39,7 +39,7 @@ class CoursesController extends Controller
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
-            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+            'checkbox.required' => 'Bạn chưa chọn môn học nào.!!!'
         ]);
         $courses = CoursesRepository::removeCourses($request);
         if($courses == true) {

@@ -49,32 +49,32 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('teacher.save')}}" id="formSemesterCreate">
+                                        <form method="POST" action="{{route('teacher.save')}}" id="formTeacherCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
-                                                <!-- content goes here -->
+                                                
                                                 <div class="form-group row">
-                                                    <label for="teacherCreate" class="col-sm-3 col-form-label">Tên giảng viên</label>
+                                                    <label for="name" class="col-sm-3 col-form-label">Tên giảng viên</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="name" class="form-control" id="teacherCreate" placeholder="Tên giảng viên">
+                                                        <input type="text" name="name" class="form-control" id="name" placeholder="Tên giảng viên">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Chức danh </label>
+                                                    <label for="" class="col-sm-3 col-form-label">Chức danh</label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="title" >
-                                                            <option>Chọn chức danh</option>
-                                                            @foreach($titles as $title)
-                                                                <option value="{{$title->id}}">{{$title->name}}</option>
-                                                            @endforeach
+                                                        <select type="text" name="title" class="form-control" id="" style="color: #000;">
+                                                        <option value="">Chọn chức danh</option>
+                                                                @foreach($titles as $title)
+                                                                    <option value="{{$title->id}}">{{$title->name}}</option>
+                                                                @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Khoa ,phòng ban </label>
+                                                    <label for="" class="col-sm-3 col-form-label">Khoa ,phòng ban </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="faculty" >
-                                                            <option>Chọn khoa ,phòng ban</option>
+                                                        <select type="text" name="faculty" class="form-control" id="" style="color: #000;" class="form-control">
+                                                            <option value="">Chọn khoa ,phòng ban</option>
                                                                 @foreach($facultys as $faculty)
                                                                 <option value="{{$faculty->id}}">{{$faculty->name}}</option>
                                                                 @endforeach
@@ -82,9 +82,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="teacherCreate" class="col-sm-3 col-form-label">Giảm trừ</label>
+                                                    <label for="reduce" class="col-sm-3 col-form-label">Giảm trừ</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="reduce" class="form-control" id="teacherCreate" placeholder="Giảm trừ">
+                                                        <input type="text" name="reduce" class="form-control" id="reduce" placeholder="Giảm trừ">
                                                     </div>
                                                 </div>  
                                         </div>
@@ -198,7 +198,7 @@
                                                             <option value="">Chọn chức danh</option>
                                                             @foreach($titles as $title)
                                                                 @php
-                                                                    $selectTitle = $title->id == $teacher->id ? "selected" : null;
+                                                                    $selectTitle = $title->id == $teacher->titleID ? "selected" : null;
                                                                 @endphp
                                                                 <option value="{{$title->id}}" {{$selectTitle}}>{{$title->name}}</option>
                                                             @endforeach
@@ -212,7 +212,7 @@
                                                             <option value="">Chọn khoa,phòng ban</option>
                                                             @foreach($facultys as $faculty)
                                                                 @php
-                                                                    $selectFaculty = $faculty->id == $teacher->id ? "selected" : null;
+                                                                    $selectFaculty = $faculty->id == $teacher->facultyID ? "selected" : null;
                                                                 @endphp
                                                                 <option value="{{$faculty->id}}" {{$selectFaculty}}>{{$faculty->name}}</option>
                                                             @endforeach
@@ -268,4 +268,22 @@
             });
         });
     </script>
+    <script>   
+        $(function() {
+            $("#formTeacherCreate").validate({
+                rules: {
+                        name: "required", 
+                        title: "required",
+                        faculty: "required",
+                        reduce: "required"
+                    },
+                messages: {
+                        name: "Vui lòng điền tên.",
+                        title: "Vui lòng chọn chức danh.",
+                        faculty: "Vui lòng chọn khoa , phòng ban.",
+                        reduce: "Vui lòng điền giảm trừ."
+                }
+            });
+        });
+    </script> 
 @endsection

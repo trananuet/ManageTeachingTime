@@ -30,11 +30,12 @@
                         <span>{{$errors->first('checkbox')}}</span>
                     </div>
                 @endif 
-                    <div class="add-btn col-md-2">
+                <div class="add-btn1 col-md-2">
                         <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
-                    </div>
+                </div>
                 <!-- LINE MODAL -->
                 <div class="modal fade" id="modalCourseLecturer" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+
                     <div class="modal-dialog">
                         <div>
                             <div class="tab-content">
@@ -44,15 +45,15 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('course_lecturer.save')}}" id="formSemesterCreate">
+                                        <form method="POST" action="{{route('course_lecturer.save')}}" id="formCourseLecturerCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="teacher" >
-                                                            <option>Chọn giảng viên</option>
+                                                        <select class="form-control" name="teacher" style="color: #000;">
+                                                            <option value="">Chọn giảng viên</option>
                                                             @foreach($teachers as $teacher)
                                                                 <option value="{{$teacher->id}}">{{$teacher->name}}</option>
                                                             @endforeach
@@ -62,8 +63,8 @@
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Môn học </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="course" >
-                                                            <option>Chọn môn học</option>
+                                                        <select class="form-control" name="course" style="color: #000;">
+                                                            <option value="">Chọn môn học</option>
                                                             @foreach($courses as $course)
                                                                 <option value="{{$course->id}}">{{$course->name}}</option>
                                                             @endforeach
@@ -73,8 +74,8 @@
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="semester" >
-                                                            <option>Chọn học kỳ</option>
+                                                        <select class="form-control" name="semester" style="color: #000;">
+                                                            <option value="">Chọn học kỳ</option>
                                                             @foreach($semesters as $semester)
                                                                 <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
                                                             @endforeach
@@ -84,8 +85,8 @@
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Năm học </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="school_year" >
-                                                            <option>Chọn năm học</option>
+                                                        <select class="form-control" name="school_year" style="color: #000;">
+                                                            <option value="">Chọn năm học</option>
                                                             @foreach($school_years as $school_year)
                                                                 <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
                                                             @endforeach
@@ -93,54 +94,54 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Số sinh viên</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Số sinh viên</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="number_of_student" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="number_of_student" class="form-control" id="" placeholder="">
                                                     </div>
 
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Giờ lý thuyết</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Giờ lý thuyết</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="hour_theory" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="hour_theory" class="form-control" id="" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Giờ thực hành</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Giờ thực hành</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="practice_hours" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="practice_hours" class="form-control" id="" placeholder="">
                                                     </div>
 
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Giờ tự học</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Giờ tự học</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="learning_time" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="learning_time" class="form-control" id="" placeholder="">
                                                     </div>
                                                 </div>  
                                                  
                                                 <div class="form-group row">
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Trong giờ</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Trong giờ</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="in_hours" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="in_hours" class="form-control" id="" placeholder="">
                                                     </div>
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Ngoài giờ</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Ngoài giờ</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="overtime" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="overtime" class="form-control" id="" placeholder="">
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="form-group row">
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Ngày nghỉ</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Ngày nghỉ</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="day_off" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="day_off" class="form-control" id="" placeholder="">
                                                     </div>
 
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Giờ quy đổi</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Giờ quy đổi</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="converted_hours" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="converted_hours" class="form-control" id="" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Chênh lệch</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Chênh lệch</label>
                                                     <div class="col-sm-3">
-                                                        <input type="text" name="exchange" class="form-control" id="courseLecturerCreate" placeholder="">
+                                                        <input type="text" name="exchange" class="form-control" id="" placeholder="">
                                                     </div>
                                                 </div>        
                                         </div>
@@ -375,4 +376,41 @@
             });
         });
     </script>
+    <script>   
+        $(function() {
+            $("#formCourseLecturerCreate").validate({
+                rules: {
+                        teacher: "required", 
+                        course: "required", 
+                        semester: "required", 
+                        school_year: "required", 
+                        number_of_student: "required", 
+                        hour_theory: "required", 
+                        practice_hours: "required", 
+                        learning_time: "required", 
+                        in_hours: "required", 
+                        overtime: "required", 
+                        in_hours: "required", 
+                        day_off: "required", 
+                        converted_hours: "required", 
+                        exchange: "required"
+                    },
+                messages: {
+                        teacher: "Vui lòng chọn giáo viên", 
+                        course: "Vui lòng chọn môn học", 
+                        semester: "Vui lòng chọn học kỳ", 
+                        school_year: "Vui lòng chọn năm học", 
+                        number_of_student: "Vui lòng điền số sinh viên", 
+                        hour_theory: "Vui lòng điền giờ lý thuyết", 
+                        practice_hours: "Vui lòng điền giờ thực hành", 
+                        learning_time: "Vui lòng điền giờ tự học", 
+                        in_hours: "Vui lòng điền trong giờ", 
+                        overtime: "Vui lòng điền ngoài giờ", 
+                        day_off: "Vui lòng điền ngày nghỉ", 
+                        converted_hours: "Vui lòng điền giờ qui đổi", 
+                        exchange: "Vui lòng điền chênh lệch"
+                }
+            });
+        });
+    </script> 
 @endsection

@@ -190,14 +190,15 @@
     </script>
    <script>   
         $(function() {
-            $("#importExcel").validate({
+            $("#formSemesterCreate").validate({
                 rules: {
-                    imported_file: "required"
+                        trainings: "required",
                     },
                 messages: {
-                    imported_file: "Vui lòng nhập file."
+                        trainings: "Vui lòng điền Hệ đào tạo."                    
+
                 }
             });
         });
-    </script>
+    </script> 
 @endsection

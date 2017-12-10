@@ -49,7 +49,7 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('courses.save')}}" id="formSemesterCreate">
+                                        <form method="POST" action="{{route('courses.save')}}" id="formCoursesCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
@@ -62,8 +62,8 @@
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="semester" >
-                                                            <option>Chọn học kỳ</option>
+                                                        <select class="form-control" name="semester" style="color: #000;">
+                                                            <option value="">Chọn học kỳ</option>
                                                             @foreach($semesters as $semester)
                                                                 <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
                                                             @endforeach
@@ -73,8 +73,8 @@
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Năm học </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="schoolYear" >
-                                                            <option>Chọn năm học</option>
+                                                        <select class="form-control" name="schoolYear" style="color: #000;">
+                                                            <option value="">Chọn năm học</option>
                                                             @foreach($schoolYears as $schoolYear)
                                                                 <option value="{{$schoolYear->yearID}}">{{$schoolYear->name}}</option>
                                                             @endforeach
@@ -82,21 +82,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Lý thuyết</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Lý thuyết">
+                                                        <input type="text" name="theory" class="form-control" id="" placeholder="Lý thuyết">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Thực hành</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Thực hành</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Thực hành">
+                                                        <input type="text" name="practice" class="form-control" id="" placeholder="Thực hành">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tự học</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Tự học</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="Tự học">
+                                                        <input type="text" name="self_study" class="form-control" id="" placeholder="Tự học">
                                                     </div>
                                                 </div>
 
@@ -215,7 +215,7 @@
                                                             <option>Chọn học kỳ</option>
                                                             @foreach($semesters as $semester)
                                                                 @php
-                                                                    $selectSemester = $semester->semesterID == $course->id ? "selected" : null;
+                                                                    $selectSemester = $semester->semesterID == $course->semesterID ? "selected" : null;
                                                                 @endphp
                                                                 <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}}</option>
                                                             @endforeach
@@ -229,7 +229,7 @@
                                                             <option>Chọn năm học</option>
                                                             @foreach($schoolYears as $schoolYear)
                                                                 @php
-                                                                    $selectYear = $schoolYear->yearID == $course->id ? "selected" : null;
+                                                                    $selectYear = $schoolYear->yearID == $course->yearID ? "selected" : null;
                                                                 @endphp
                                                                 <option value="{{$schoolYear->yearID}}" {{$selectYear}}>{{$schoolYear->name}}</option>
                                                             @endforeach
@@ -285,16 +285,27 @@
             });
         });
     </script>
-   <script>   
+    <script>   
         $(function() {
-            $("#importExcel").validate({
+            $("#formCoursesCreate").validate({
                 rules: {
-                    imported-file: "required"
+                        name: "required", 
+                        semester: "required", 
+                        schoolYear: "required", 
+                        theory: "required",
+                        practice: "required",
+                        self_study: "required"
+
                     },
                 messages: {
-                    imported-file: "Vui lòng nhập file."
+                        name: "Vui lòng điền tên môn học.",
+                        semester: "Vui lòng chọn học kỳ.",
+                        schoolYear: "Vui lòng chọn năm học.",
+                        theory: "Vui lòng điền số giờ lý thuyết.",
+                        practice: "Vui lòng điền số giờ thực hành.",
+                        self_study: "Vui lòng điền số giờ tự học."
                 }
             });
         });
-    </script>
+    </script> 
 @endsection

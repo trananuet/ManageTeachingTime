@@ -14,26 +14,22 @@ class ThesisRepository
         return $thesis;
     }
 
-    public static function saveTeacher(Request $request)
+    public static function saveThesis(Request $request)
     {
         DB::beginTransaction();
 		try {
             if(isset($request->id)){
-                $teacher = Teacher::where('id', $request->id)->firstOrFail();
-                $teacher->name = $request->name;
-                $teacher->titleID = $request->title;
-                $teacher->facultyID = $request->faculty;
-                $teacher->reduce = $request->reduce;
-                $teacher->save();
+                $thesis = Thesis::where('id', $request->id)->firstOrFail();
+                $thesis->name = $request->name;
+                $thesis->quota = $request->quota;
+                $thesis->save();
                 DB::commit();
                 return true;
             } else {   
-                $teacher = new Teacher();
-                $teacher->name = $request->name;
-                $teacher->titleID = $request->title;
-                $teacher->facultyID = $request->faculty;
-                $teacher->reduce = $request->reduce;
-                $teacher->save();
+                $thesis = new Thesis();
+                $thesis->name = $request->name;
+                $thesis->quota = $request->quota;
+                $thesis->save();
                 DB::commit();
                 return true;
             }
@@ -44,17 +40,17 @@ class ThesisRepository
 		}
     }
 
-    public static function removeTeacher(Request $request)
+    public static function removeThesis(Request $request)
     {
 		DB::beginTransaction();
 		try {
 			$checkbox = $request->all();
 			foreach($checkbox['checkbox'] as $id) {
-				$teacher = Teacher::where('id', $id);
-				if(!$teacher){
+				$thesis = Thesis::where('id', $id);
+				if(!$thesis){
 					return false;
 				}
-				$teacher->delete();
+				$thesis->delete();
 			}
 			DB::commit();
 			return true;

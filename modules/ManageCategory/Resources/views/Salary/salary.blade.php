@@ -49,7 +49,7 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                         </div>
-                                        <form method="POST" action="{{route('salary.save')}}" id="formSemesterCreate">
+                                        <form method="POST" action="{{route('salary.save')}}" id="formSalaryCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
@@ -62,8 +62,8 @@
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Chức danh </label>
                                                     <div class="col-sm-9">
-                                                        <select class="form-control" name="title" >
-                                                            <option>Chọn chức danh</option>
+                                                        <select class="form-control" name="title" style="color: #000;" >
+                                                            <option value="">Chọn chức danh</option>
                                                             @foreach($titles as $title)
                                                                 <option value="{{$title->id}}">{{$title->name}}</option>
                                                             @endforeach
@@ -71,9 +71,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="salaryCreate" class="col-sm-3 col-form-label">Tiền</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Tiền</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="money" class="form-control" id="salaryCreate" placeholder="Tiền">
+                                                        <input type="text" name="money" class="form-control" id="" placeholder="Tiền">
                                                     </div>
                                                 </div>  
                                         </div>
@@ -232,14 +232,18 @@
     </script>
    <script>   
         $(function() {
-            $("#importExcel").validate({
+            $("#formSalaryCreate").validate({
                 rules: {
-                    imported-file: "required"
+                        name: "required", 
+                        title: "required",
+                        money: "required"
                     },
                 messages: {
-                    imported-file: "Vui lòng nhập file."
+                        name: "Vui lòng điền tên chức danh.",
+                        title: "Vui lòng chọn chức danh.",
+                        money: "Vui lòng điền mức tiền."
                 }
             });
         });
-    </script>
+    </script> 
 @endsection

@@ -43,7 +43,7 @@ class CourseLecturerController extends Controller
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
-            'checkbox.required' => 'Bạn chưa chọn chức danh nào.!!!'
+            'checkbox.required' => 'Bạn chưa chọn giảng viên môn học nào.!!!'
         ]);
         $course_lecturer = CourseLecturerRepository::removeCourseLecturer($request);
         if($course_lecturer == true) {
