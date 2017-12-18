@@ -53,6 +53,11 @@
                                 <a href="{{route('salary')}}"> Định mức chi trả</a>
                             </li>
                         @endif
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Thống kê giờ dạy<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
                         @if(Auth::user()->checkManageCourseLecturer())                        
                             <li>
                                 <a href="{{route('course_lecturer')}}"> Giảng viên môn học</a>

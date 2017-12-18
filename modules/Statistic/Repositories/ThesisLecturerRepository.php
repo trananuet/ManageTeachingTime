@@ -1,10 +1,10 @@
 <?php 
-namespace Modules\ManageCategory\Repositories;
+namespace Modules\Statistic\Repositories;
 
 use Modules\ManageCategory\Entities\Teacher;
 use Modules\ManageCategory\Entities\Training;
 use Modules\ManageCategory\Entities\Thesis;
-use Modules\ManageCategory\Entities\ThesisLecturer;
+use Modules\Statistic\Entities\ThesisLecturer;
 use Illuminate\Http\Request;
 use DB;
 

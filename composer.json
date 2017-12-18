@@ -25,7 +25,8 @@
             "Modules\\": [
                 "modules/ManageCategory/",
                 "modules/User/",
-                "modules/Base/"
+                "modules/Base/",
+                "modules/Statistic/"
             ]
         },
         "files": [

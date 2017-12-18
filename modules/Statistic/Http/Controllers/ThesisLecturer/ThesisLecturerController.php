@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\ManageCategory\Http\Controllers\ThesisLecturer;
+namespace Modules\Statistic\Http\Controllers\ThesisLecturer;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use Modules\ManageCategory\Entities\ThesisLecturer;
-use Modules\ManageCategory\Repositories\ThesisLecturerRepository;
+use Modules\Statistic\Entities\ThesisLecturer;
+use Modules\Statistic\Repositories\ThesisLecturerRepository;
 use Modules\ManageCategory\Repositories\ThesisRepository;
 use Modules\ManageCategory\Repositories\TeacherRepository;
 use Modules\ManageCategory\Repositories\TrainingRepository;
@@ -20,7 +20,7 @@ class ThesisLecturerController extends Controller
         $thesis = ThesisRepository::getAllThesis();
         $teachers = TeacherRepository::getAllTeacher();
         $trainings = TrainingRepository::getAllTraining();
-        return view('managecategory::ThesisLecturer.thesisLecturer',compact('teachers','thesis_lecturers','thesis','trainings'));
+        return view('statistic::ThesisLecturer.thesisLecturer',compact('teachers','thesis_lecturers','thesis','trainings'));
     }
 
     

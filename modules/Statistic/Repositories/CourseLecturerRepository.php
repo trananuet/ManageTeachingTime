@@ -1,7 +1,7 @@
 <?php 
-namespace Modules\ManageCategory\Repositories;
+namespace Modules\Statistic\Repositories;
 
-use Modules\ManageCategory\Entities\CourseLecturer;
+use Modules\Statistic\Entities\CourseLecturer;
 use Modules\ManageCategory\Entities\Course;
 use Modules\ManageCategory\Entities\Teacher;
 use Modules\ManageCategory\Entities\Semester;

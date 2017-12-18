@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\ManageCategory\Http\Controllers\CourseLecturer;
+namespace Modules\Statistic\Http\Controllers\CourseLecturer;;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use Modules\ManageCategory\Entities\CourseLecturer;
-use Modules\ManageCategory\Repositories\CourseLecturerRepository;
+use Modules\Statistic\Entities\CourseLecturer;
+use Modules\Statistic\Repositories\CourseLecturerRepository;
 use Modules\ManageCategory\Repositories\CoursesRepository;
 use Modules\ManageCategory\Repositories\SemesterRepository;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
@@ -22,7 +22,7 @@ class CourseLecturerController extends Controller
         $semesters = SemesterRepository::getAllSemester();
         $school_years = SchoolYearRepository::getAllSchoolYear();
         $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
-        return view('managecategory::CourseLecturer.courseLecturer',compact('course_lecturers','teachers','courses','semesters','school_years'));
+        return view('statistic::CourseLecturer.courseLecturer',compact('course_lecturers','teachers','courses','semesters','school_years'));
     }
 
     

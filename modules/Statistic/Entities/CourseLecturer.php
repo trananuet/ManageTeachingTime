@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\ManageCategory\Entities;
+namespace Modules\Statistic\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
