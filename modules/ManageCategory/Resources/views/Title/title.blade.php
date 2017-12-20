@@ -92,19 +92,25 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                         </div>
-                                        <form action="{{route('training.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
+                                        <form action="{{route('title.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                             {{csrf_field()}}
                                             
                                             <div class="modal-body">
                                                 <!-- content goes here -->
-                                                <input type="hidden" name="trainingID" value="">
                                                 <div class="form-group row">
                                                     <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
                                                     <div class="col-sm-9">
-                                                        <input type="file" name="imported-file"/>
+                                                        <input type="file" name="imported_file"/>
                                                     </div>
                                                 </div>
+                                            
+                                            <div class="form-group row">
+                                                <label for="trainingCreate" class="col-sm-3 col-form-label"></label>
+                                                <div class="col-sm-9">
+                                                    <b>Trường dữ liệu {name,active,quota}</b>
+                                                </div>
                                             </div>
+
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
@@ -114,6 +120,7 @@
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
                                                     </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         </form>
                                     </div>
@@ -227,18 +234,7 @@
             });
         });
     </script>
-   <script>   
-        $(function() {
-            $("#importExcel").validate({
-                rules: {
-                    imported-file: "required"
-                    },
-                messages: {
-                    imported-file: "Vui lòng nhập file."
-                }
-            });
-        });
-    </script>
+
     <script>   
         $(function() {
             $("#formTitleCreate").validate({
@@ -249,6 +245,18 @@
                 messages: {
                         name: "Vui lòng điền tên chức danh.",
                         quota: "Vui lòng điền định mức."
+                }
+            });
+        });
+    </script> 
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        imported_file: "required"
+                    },
+                messages: {
+                        imported_file: "Vui lòng nhập File."
                 }
             });
         });

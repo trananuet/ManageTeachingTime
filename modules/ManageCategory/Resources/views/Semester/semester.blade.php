@@ -56,6 +56,7 @@
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
+        </div>
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -114,8 +115,9 @@
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                     </div>
-                                    <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data">
+                                    <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                         {{csrf_field()}}
+                                    <div class="modal-body">
                                         <div class="form-group row">
                                                 <label for="yearIDFormCreate" class="col-sm-3 col-form-label">Năm học</label>
                                                 <div class="col-sm-9">
@@ -130,17 +132,19 @@
                                         <div class="form-group row">
                                                 <label for="yearIDFormCreate" class="col-sm-3 col-form-label">Import File</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file" name="imported-file"/>
+                                                    <input type="file" name="imported_file"/>
                                                 </div>
                                             </div>
-                                        
-                                        
-                                        </center>
-                                        <br/>
+                                        <div class="form-group row">
+                                                <label for="trainingCreate" class="col-sm-3 col-form-label"></label>
+                                                <div class="col-sm-9">
+                                                    <b>Trường dữ liệu {name}</b>
+                                                </div>
+                                            </div>
                                         <div class="modal-footer">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                 <div class="btn-group col-md-3" role="group">
-                                                    <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" onclick="alert('Import dữ liệu')" type="submit">Import</button>
+                                                    <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
                                                 </div>
                                                 <div class="btn-group col-md-3" role="group">
                                                     <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
@@ -358,7 +362,21 @@
             });
         });
     </script> 
-
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        yearID: "required", 
+                        imported_file: "required"
+                    },
+                messages: {
+                        yearID: "Vui lòng chọn năm học.",
+                        imported_file: "Vui lòng nhập file."
+                        
+                }
+            });
+        });
+    </script> 
     <script>
         $(function() {
             $('#btnRemoveAllSemester').click(function(){

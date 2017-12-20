@@ -48,4 +48,40 @@ class TitleController extends Controller
              return \Response::view('base::errors.500',array(),500);
         }
     }
+
+
+    public function postImport(Request $request)
+    {
+
+        if($request->file('imported_file'))
+        {
+                $path = $request->file('imported_file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'name' => $row['name'],
+                  'active' => $row['active'],
+                  'quota' => $row['quota']
+                ];
+              }
+          } 
+          if(!empty($dataArray))
+          {
+                  
+            Title::insert($dataArray);
+            return back();
+           }
+         }
+       }
+
+    }
 }

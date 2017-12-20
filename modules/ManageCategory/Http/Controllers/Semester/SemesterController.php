@@ -9,6 +9,7 @@ use Modules\ManageCategory\Entities\Semester;
 use Modules\ManageCategory\Entities\SchoolYear;
 use Modules\ManageCategory\Repositories\SemesterRepository;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
+use Excel;
 
 class SemesterController extends Controller
 {
@@ -99,14 +100,10 @@ class SemesterController extends Controller
 
     public function postImport(Request $request)
     {
-        $this->validate($request, [
-            'imported-file' => 'required'
-        ],[
-            'imported-file.required' => 'Bạn chưa chọn file'
-        ]);
-      if($request->file('imported-file'))
+    
+      if($request->file('imported_file'))
       {
-                $path = $request->file('imported-file')->getRealPath();
+                $path = $request->file('imported_file')->getRealPath();
                 $data = Excel::load($path, function($reader)
           {
                 })->get();
@@ -119,8 +116,8 @@ class SemesterController extends Controller
               {
                 $dataArray[] =
                 [
-                  'name' => $row['name'],
-                  'active' => $row['active']
+                  'yearID' => $request->yearID,
+                  'name' => $row['name']
                 ];
               }
           } 

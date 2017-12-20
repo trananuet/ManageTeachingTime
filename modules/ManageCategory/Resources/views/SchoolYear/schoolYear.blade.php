@@ -136,7 +136,7 @@
                                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                     <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                 </div>
-                                <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data">
+                                <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                 {{csrf_field()}}
                                 <div class="modal-body">
                                 <div class="form-group row">
@@ -153,9 +153,14 @@
                                 <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Import File</label>
                                             <div class="col-sm-9">
-                                                <input type="file" name="imported-file"/>
+                                                <input type="file" name="imported_file"/>
                                             </div>
                                 </div>
+                                <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label"></label>
+                                            <div class="col-sm-9">
+                                                <b>Trường dữ liệu {name,active}</b>
+                                            </div>
                                 
                                 <div class="modal-footer">
                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -168,6 +173,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
                             </div>
                             </form>
                             </div>
@@ -403,7 +410,21 @@
                 }
             });
         });
-    </script> 
+    </script>
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        imported_file: "required", 
+                        trainingID: "required"
+                    },
+                messages: {
+                        imported_file: "Vui lòng chọn file.",
+                        trainingID: "Vui lòng chọn hệ đào tạo"
+                }
+            });
+        });
+    </script>  
     <script>
         /*$("#button-remove-year").confirm({
             title: "Xóa năm học?",

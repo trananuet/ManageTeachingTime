@@ -47,4 +47,38 @@ class FacultyController extends Controller
     }
 
 
+    public function postImport(Request $request)
+    {
+
+        if($request->file('imported_file'))
+        {
+                $path = $request->file('imported_file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'name' => $row['name']
+                ];
+              }
+          } 
+          if(!empty($dataArray))
+          {
+                  
+            Faculty::insert($dataArray);
+            return back();
+           }
+         }
+       }
+
+    }
+
+
 }
