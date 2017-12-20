@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 // use Modules\ManageCategory\Entities\SchoolYear;
 use Modules\ManageCategory\Repositories\TrainingRepository;
 // use Modules\ManageCategory\Repositories\SchoolYearRepository;
+use Excel;
+use Modules\ManageCategory\Entities\Training;
+
 
 class TrainingController extends Controller
 {
@@ -66,11 +69,6 @@ class TrainingController extends Controller
 
     public function postImport(Request $request)
     {
-        $this->validate($request, [
-            'imported_file' => 'required'
-        ],[
-            'imported_file.required' => 'Bạn chưa chọn file'
-        ]);
         if($request->file('imported_file'))
         {
                 $path = $request->file('imported_file')->getRealPath();
@@ -90,8 +88,8 @@ class TrainingController extends Controller
                 } 
             if(!empty($dataArray))
             {             
-                TrainingRepository::insert($dataArray);
-                return back();
+                Training::insert($dataArray);
+                return view('managecategory::Training.training');
             }
             }
         }

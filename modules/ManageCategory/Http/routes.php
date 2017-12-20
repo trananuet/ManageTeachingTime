@@ -43,6 +43,7 @@ Route::group(['middleware' => 'web',
             Route::get('/title', 'Title\TitleController@getTitle')->name('title');
             Route::post('/title/save', 'Title\TitleController@createEditTitle')->name('title.save');
             Route::post('/title/remove', 'Title\TitleController@delTitle')->name('title.remove');
+            Route::post('/title/import', 'Title\TitleController@postImport')->name('title.import');
         });        
 
         //FACULTY
@@ -51,6 +52,7 @@ Route::group(['middleware' => 'web',
             Route::get('/faculty', 'Faculty\FacultyController@getFaculty')->name('faculty');
             Route::post('/faculty/save', 'Faculty\FacultyController@createEditFaculty')->name('faculty.save');
             Route::post('/faculty/remove', 'Faculty\FacultyController@delFaculty')->name('faculty.remove');
+            Route::post('/faculty/import', 'Faculty\FacultyController@postImport')->name('faculty.import');
         });      
         //TEACHER
         Route::group(['middleware' => 'check_manage_teacher'],function()
@@ -58,6 +60,7 @@ Route::group(['middleware' => 'web',
             Route::get('/teacher', 'Teacher\TeacherController@getTeacher')->name('teacher');
             Route::post('/teacher/save', 'Teacher\TeacherController@createEditTeacher')->name('teacher.save');
             Route::post('/teacher/remove', 'Teacher\TeacherController@delTeacher')->name('teacher.remove');
+            Route::post('/faculty/import', 'Faculty\FacultyController@postImport')->name('faculty.import');
         });     
 
         //COURSES

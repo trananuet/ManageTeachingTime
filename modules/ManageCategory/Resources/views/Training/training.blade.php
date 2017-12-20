@@ -92,7 +92,14 @@
                                                     <input type="file" name="imported_file"/>
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <label for="trainingCreate" class="col-sm-3 col-form-label"></label>
+                                                <div class="col-sm-9">
+                                                    <b>Trường dữ liệu {name}</b>
+                                                </div>
+                                            </div>
                                         </div>
+                                            
                                         <div class="modal-footer">
                                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                 <div class="btn-group col-md-3" role="group">
@@ -200,5 +207,18 @@
                 }
             });
         });
-    </script> 
+    </script>
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        imported_file: "required",
+                    },
+                messages: {
+                        imported_file: "Vui lòng nhập file."                    
+
+                }
+            });
+        });
+    </script>  
 @endsection

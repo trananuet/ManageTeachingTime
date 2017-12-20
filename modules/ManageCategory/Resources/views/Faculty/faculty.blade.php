@@ -80,16 +80,21 @@
                                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                             <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                                         </div>
-                                        <form action="{{route('training.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
+                                        <form action="{{route('faculty.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                             {{csrf_field()}}
                                             
                                             <div class="modal-body">
                                                 <!-- content goes here -->
-                                                <input type="hidden" name="trainingID" value="">
                                                 <div class="form-group row">
                                                     <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
                                                     <div class="col-sm-9">
-                                                        <input type="file" name="imported-file"/>
+                                                        <input type="file" name="imported_file"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="trainingCreate" class="col-sm-3 col-form-label"></label>
+                                                    <div class="col-sm-9">
+                                                        <b>Trường dữ liệu {name}</b>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,18 +193,6 @@
             });
         });
     </script>
-   <script>   
-        $(function() {
-            $("#importExcel").validate({
-                rules: {
-                    imported-file: "required"
-                    },
-                messages: {
-                    imported-file: "Vui lòng nhập file."
-                }
-            });
-        });
-    </script>
     <script>   
         $(function() {
             $("#formFacultyCreate").validate({
@@ -211,5 +204,17 @@
                 }
             });
         });
-    </script> 
+    </script>
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        imported_file: "required"
+                    },
+                messages: {
+                        imported_file: "Vui lòng nhập file."
+                }
+            });
+        });
+    </script>  
 @endsection

@@ -28,14 +28,10 @@ class SchoolYearController extends Controller
 
     public function postImport(Request $request)
     {
-        $this->validate($request, [
-            'imported-file' => 'required'
-        ],[
-            'imported-file.required' => 'Bạn chưa chọn file'
-        ]);
-      if($request->file('imported-file'))
-      {
-                $path = $request->file('imported-file')->getRealPath();
+
+        if($request->file('imported_file'))
+        {
+                $path = $request->file('imported_file')->getRealPath();
                 $data = Excel::load($path, function($reader)
           {
                 })->get();
@@ -48,18 +44,21 @@ class SchoolYearController extends Controller
               {
                 $dataArray[] =
                 [
+                  'trainingID' => $request->trainingID,
                   'name' => $row['name'],
                   'active' => $row['active']
                 ];
               }
           } 
           if(!empty($dataArray))
-          {             
+          {
+                  
             SchoolYear::insert($dataArray);
-            return view('managecategory::SchoolYear.viewExcel',compact('dataArray'));
+            return back();
            }
          }
        }
+
     }
 
      /**
