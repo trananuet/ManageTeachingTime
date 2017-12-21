@@ -41,7 +41,6 @@ class CourseLecturerRepository
                 $course_lecturer->overtime = $request->overtime;
                 $course_lecturer->day_off = $request->day_off;
                 $course_lecturer->converted_hours = $request->converted_hours;
-                $course_lecturer->exchange = $request->exchange;
                 $course_lecturer->save();
                 DB::commit();
                 return true;
@@ -59,7 +58,6 @@ class CourseLecturerRepository
                 $course_lecturer->overtime = $request->overtime;
                 $course_lecturer->day_off = $request->day_off;
                 $course_lecturer->converted_hours = $request->converted_hours;
-                $course_lecturer->exchange = $request->exchange;
                 $course_lecturer->save();
                 DB::commit();
                 return true;

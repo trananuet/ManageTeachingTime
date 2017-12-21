@@ -185,7 +185,6 @@
                             <th class="">Ngoài giờ</th>
                             <th class="">Ngày nghỉ</th>
                             <th class="">Giờ quy đổi</th>
-                            <th class="">Chênh lệch</th>
                             <th class="cus1">Tùy chọn</th>
                             <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                         </tr>
@@ -206,7 +205,6 @@
                                 <td>{{$course_lecturer->overtime}}</td>
                                 <td>{{$course_lecturer->day_off}}</td>
                                 <td>{{$course_lecturer->converted_hours}}</td>
-                                <td>{{$course_lecturer->exchange}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditCourseLecturer{{$course_lecturer->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
