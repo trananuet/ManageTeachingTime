@@ -80,11 +80,17 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="" class="col-sm-3 col-form-label">Lý thuyết</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="theory" class="form-control" id="" placeholder="Lý thuyết">
+                                                <div class="form-group row">
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tên môn học</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="theory" class="form-control" id="" placeholder="Lý thuyết">
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -111,26 +117,45 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="profile">
-                            
-                                <div class="modal-content" style="width: 100%;">
-                                    <div class="modal-header">
-                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                    </div>
-                                    <form action="{{route('training.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
-                                        {{csrf_field()}}
-                                        
-                                        <div class="modal-body">
-                                            <!-- content goes here -->
-                                            <input type="hidden" name="trainingID" value="">
-                                            <div class="form-group row">
-                                                <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
-                                                <div class="col-sm-9">
-                                                    <input type="file" name="imported-file"/>
+                                        <form action="{{route('courses.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
+                                            {{csrf_field()}}
+                                            
+                                            <div class="modal-body">
+                                                <!-- content goes here -->
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" name="semesterID" style="color: #000;">
+                                                            <option value="">Chọn học kỳ</option>
+                                                            @foreach($semesters as $semester)
+                                                                <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Năm học </label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" name="yearID" style="color: #000;">
+                                                            <option value="">Chọn năm học</option>
+                                                            @foreach($schoolYears as $schoolYear)
+                                                                <option value="{{$schoolYear->yearID}}">{{$schoolYear->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="file" name="imported_file"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label"> </label>
+                                                    <div class="col-sm-9">
+                                                        <b>Trường dữ liệu {name,theory,practice,selfStudy}</b>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -306,5 +331,22 @@
                 }
             });
         });
-    </script> 
+    </script>
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        semesterID: "required", 
+                        yearID: "required",
+                        imported_file: "required"
+
+                    },
+                messages: {
+                        semesterID: "Vui lòng chọn học kỳ.",
+                        yearID: "Vui lòng chọn năm học.",
+                        imported_file: "Vui lòng nhập file."
+                }
+            });
+        });
+    </script>  
 @endsection

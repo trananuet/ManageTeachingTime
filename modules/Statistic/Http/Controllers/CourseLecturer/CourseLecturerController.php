@@ -11,7 +11,7 @@ use Modules\ManageCategory\Repositories\CoursesRepository;
 use Modules\ManageCategory\Repositories\SemesterRepository;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
 use Modules\ManageCategory\Repositories\TeacherRepository;
-
+use Excel;
 
 class CourseLecturerController extends Controller
 {
@@ -51,5 +51,50 @@ class CourseLecturerController extends Controller
         } else {
              return \Response::view('base::errors.500',array(),500);
         }
+    }
+
+
+     public function postImport(Request $request)
+    {
+
+        if($request->file('imported_file'))
+        {
+                $path = $request->file('imported_file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+          {
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'semesterID' => $request->semester,
+                  'yearID' => $request->school_year,
+                  'teacherName' => $row['tengiaovien'],
+                  'courseName' => $row['tenmonhoc'],
+                  'number_of_students' => $row['sosinhvien'],
+                  'hour_theory' => $row['giolythuyet'],
+                  'practice_hours' => $row['giothuchanh'],
+                  'learning_time' => $row['giotuhoc'],
+                  'in_hours' => $row['tronggio'],
+                  'overtime' => $row['ngoaigio'],
+                  'day_off' => $row['ngaynghi'],
+                  'converted_hours' => $row['quydoi']
+                ];
+              }
+          } 
+          if(!empty($dataArray))
+          {
+                  
+            CourseLecturer::insert($dataArray);
+            return back();
+           }
+         }
+       }
+
     }
 }

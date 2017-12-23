@@ -60,7 +60,6 @@ Route::group(['middleware' => 'web',
             Route::get('/teacher', 'Teacher\TeacherController@getTeacher')->name('teacher');
             Route::post('/teacher/save', 'Teacher\TeacherController@createEditTeacher')->name('teacher.save');
             Route::post('/teacher/remove', 'Teacher\TeacherController@delTeacher')->name('teacher.remove');
-            Route::post('/faculty/import', 'Faculty\FacultyController@postImport')->name('faculty.import');
         });     
 
         //COURSES
@@ -69,6 +68,7 @@ Route::group(['middleware' => 'web',
             Route::get('/courses', 'Courses\CoursesController@getCourses')->name('courses');
             Route::post('/courses/save', 'Courses\CoursesController@createEditCourses')->name('courses.save');
             Route::post('/courses/remove', 'Courses\CoursesController@delCourses')->name('courses.remove');
+            Route::post('/courses/import', 'Courses\CoursesController@postImport')->name('courses.import');
         });    
 
         //THESIS
@@ -77,6 +77,7 @@ Route::group(['middleware' => 'web',
             Route::get('/thesis', 'Thesis\ThesisController@getThesis')->name('thesis');
             Route::post('/thesis/save', 'Thesis\ThesisController@createEditThesis')->name('thesis.save');
             Route::post('/thesis/remove', 'Thesis\ThesisController@delThesis')->name('thesis.remove');
+            Route::post('/thesis/import', 'Thesis\ThesisController@postImport')->name('thesis.import');
         });   
 
         //SALARY
