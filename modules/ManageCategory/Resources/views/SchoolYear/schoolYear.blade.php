@@ -31,6 +31,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="box-top row">
+            <br>
             <h3>Năm học</h3>
             <hr>
             <div class="row">
@@ -77,7 +78,7 @@
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs nav-default" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
                     </ul>

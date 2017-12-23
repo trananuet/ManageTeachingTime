@@ -68,6 +68,9 @@
                                 <a href="{{route('thesis_lecturer')}}"> Giảng viên khóa luận</a>
                             </li>
                         @endif
+                            <li>
+                                <a href="{{route('statistic')}}"> Thống kê giờ dạy</a>
+                            </li>
                         </ul>
                     </li>
                     @if(Auth::user()->checkMod())

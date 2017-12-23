@@ -164,7 +164,7 @@
                 </div>
             </div>
             <div class="school-content-table1 relative">
-                <form method="POST" action="{{route('course_lecturer.remove')}}">
+                <form method="POST" action="">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
                         <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa khoa, phòng ban đã chọn?');">Xóa</button>

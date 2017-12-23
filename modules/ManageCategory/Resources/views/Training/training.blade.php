@@ -21,7 +21,9 @@
 @include('base::layouts.manager-left')
 <div id="page-wrapper">
     <div class="container-fluid">
+        <div class="row">
         <div class="box-top row">
+            <br>
             <h3>Hệ đào tạo</h3>
             <hr>
             @if($errors->has('checkbox'))
@@ -36,7 +38,7 @@
             <div class="modal fade" id="modalTraining" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div>
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs nav-default" role="tablist">
                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
                             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
                         </ul>
@@ -48,7 +50,7 @@
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
-                                    <form method="POST" action="{{route('training.save')}}" id="formSemesterCreate">
+                                    <form method="POST" action="{{route('training.save')}}" id="formTrainingCreate">
                                     {{ csrf_field() }}
                                         <div class="modal-body">
                                             <!-- content goes here -->
@@ -153,7 +155,7 @@
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
-                                    <form method="POST" action="{{route('training.save')}}" id="formTrainingEdit">
+                                    <form method="POST" action="{{route('training.save')}}" id="formTrainingCreate">
                                     {{ csrf_field() }}
                                         <div class="modal-body">
                                             <!-- content goes here -->
@@ -183,6 +185,7 @@
                 </tbody>
             </table>
         </div>
+        </div>
     </div>
 </div>
 
@@ -197,7 +200,7 @@
     </script>
    <script>   
         $(function() {
-            $("#formSemesterCreate").validate({
+            $("#formTrainingCreate").validate({
                 rules: {
                         trainings: "required",
                     },
