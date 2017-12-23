@@ -37,10 +37,6 @@
                 <div class="modal fade" id="modalSalary" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div>
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
-                            </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="home">                                
@@ -81,39 +77,6 @@
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
-                                                    </div>
-                                                    <div class="btn-group col-md-3" role="group">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="profile">
-                                
-                                    <div class="modal-content" style="width: 100%;">
-                                        <div class="modal-header">
-                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                        </div>
-                                        <form action="{{route('training.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
-                                            {{csrf_field()}}
-                                            
-                                            <div class="modal-body">
-                                                <!-- content goes here -->
-                                                <input type="hidden" name="trainingID" value="">
-                                                <div class="form-group row">
-                                                    <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="file" name="imported-file"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                    <div class="btn-group col-md-3" role="group">
-                                                        <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
                                                     </div>
                                                     <div class="btn-group col-md-3" role="group">
                                                         <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
