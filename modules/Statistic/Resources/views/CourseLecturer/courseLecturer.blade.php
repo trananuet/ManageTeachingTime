@@ -30,47 +30,29 @@
                         <span>{{$errors->first('checkbox')}}</span>
                     </div>
                 @endif 
-                <div class="add-btn1 col-md-2">
+                <div class="col-md-4 add-btn1">
                         <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                 </div>
                 <!-- LINE MODAL -->
                 <div class="modal fade" id="modalCourseLecturer" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 
                     <div class="modal-dialog">
-                        <div>
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="home">                                
-                                    <div class="modal-content" style="width: 100%;">
-                                        <div class="modal-header">
-                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                        </div>
-                                        <form method="POST" action="{{route('course_lecturer.save')}}" id="formCourseLecturerCreate">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                                                            
+                            <div class="modal-content" style="width: 100%;">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
+                                </div>
+                                <form method="POST" action="{{route('course_lecturer.save')}}" id="formCourseLecturerCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <!-- content goes here -->
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="teacher" style="color: #000;">
-                                                            <option value="">Chọn giảng viên</option>
-                                                            @foreach($teachers as $teacher)
-                                                                <option value="{{$teacher->id}}">{{$teacher->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Môn học </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="course" style="color: #000;">
-                                                            <option value="">Chọn môn học</option>
-                                                            @foreach($courses as $course)
-                                                                <option value="{{$course->id}}">{{$course->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
                                                     <div class="col-sm-9">
@@ -93,6 +75,19 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="teacher" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Môn học </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="course" class="form-control" placeholder="">
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="form-group row">
                                                     <label for="" class="col-sm-3 col-form-label">Số sinh viên</label>
                                                     <div class="col-sm-3">
@@ -138,12 +133,6 @@
                                                         <input type="text" name="converted_hours" class="form-control" id="" placeholder="">
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-3 col-form-label">Chênh lệch</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="text" name="exchange" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                </div>        
                                         </div>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -156,11 +145,71 @@
                                                 </div>
                                             </div>
                                         </form>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <div class="modal-content" style="width: 100%;">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
+                                </div>
+                                <form action="{{route('course_lecturer.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
+                                {{csrf_field()}}
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="semester" style="color: #000;">
+                                                    <option value="">Chọn học kỳ</option>
+                                                        @foreach($semesters as $semester)
+                                                        <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for=" " class="col-sm-3 col-form-label">Năm học </label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="school_year" style="color: #000;">
+                                                        <option value="">Chọn năm học</option>
+                                                        @foreach($school_years as $school_year)
+                                                            <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label">Import File</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" name="imported_file"/>
+                                            </div>
+                                </div>
+                                <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label">Trường dữ liệu</label>
+                                            <div class="col-sm-9">
+                                                <b> {tengiaovien,tenmonhoc,sosinhvien,giolythuyet,<br/>giothuchanh,giotuhoc,tronggio,ngoaigio,ngaynghi,quydoi}</b>
+                                            </div>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+
+                                        <div class="btn-group col-md-3" role="group">
+                                            <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
+                                        </div>
+                                        <div class="btn-group col-md-3" role="group">
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            </div>
+                            </form>
+                            </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
             <div class="school-content-table1 relative">
@@ -226,34 +275,6 @@
                                                     <!-- content goes here -->
                                                     <input type="hidden" name="id" value="{{$course_lecturer->id}}">
                                                     <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="teacher" >
-                                                            <option>Chọn giảng viên</option>
-                                                            @foreach($teachers as $teacher)
-                                                                @php
-                                                                    $selectTeacher = $teacher->id == $course_lecturer->teacherID ? "selected" : null;
-                                                                @endphp
-                                                                <option value="{{$teacher->id}}" {{$selectTeacher}}>{{$teacher->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Môn học </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="course" >
-                                                            <option>Chọn môn học</option>
-                                                            @foreach($courses as $course)
-                                                                @php
-                                                                    $selectCourse = $course->id == $course_lecturer->courseID ? "selected" : null;
-                                                                @endphp
-                                                                <option value="{{$course->id}}" {{$selectCourse}}>{{$course->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
                                                     <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
                                                     <div class="col-sm-9">
                                                         <select class="form-control" name="semester" >
@@ -281,6 +302,19 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                    <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="teacher" class="form-control" id="courseLecturerCreate" placeholder="" value="{{$course_lecturer->teacherName}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Môn học </label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="course" class="form-control" id="courseLecturerCreate" placeholder="" value="{{$course_lecturer->courseName}}">
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="form-group row">
                                                     <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Số sinh viên</label>
                                                     <div class="col-sm-3">
@@ -326,12 +360,6 @@
                                                         <input type="text" name="converted_hours" class="form-control" id="courseLecturerCreate" placeholder="" value="{{$course_lecturer->converted_hours}}">
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="courseLecturerCreate" class="col-sm-3 col-form-label">Chênh lệch</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="text" name="exchange" class="form-control" id="courseLecturerCreate" placeholder="" value="{{$course_lecturer->exchange}}">
-                                                    </div>
-                                                </div> 
                                                 <div class="modal-footer">
                                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                         <div class="btn-group col-md-3" role="group">
@@ -394,8 +422,8 @@
                         exchange: "required"
                     },
                 messages: {
-                        teacher: "Vui lòng chọn giáo viên", 
-                        course: "Vui lòng chọn môn học", 
+                        teacher: "Vui lòng điền tên giáo viên", 
+                        course: "Vui lòng điền tên môn học", 
                         semester: "Vui lòng chọn học kỳ", 
                         school_year: "Vui lòng chọn năm học", 
                         number_of_student: "Vui lòng điền số sinh viên", 
@@ -410,5 +438,21 @@
                 }
             });
         });
-    </script> 
+    </script>
+    <script>   
+        $(function() {
+            $("#importExcel").validate({
+                rules: {
+                        semester: "required", 
+                        school_year: "required", 
+                        imported_file: "required"
+                    },
+                messages: {
+                        semester: "Vui lòng chọn học kỳ", 
+                        school_year: "Vui lòng chọn năm học", 
+                        imported_file: "Vui lòng nhập file."
+                }
+            });
+        });
+    </script>  
 @endsection

@@ -14,9 +14,7 @@ class CourseLecturerRepository
 
     public static function getAllCourseLecturer()
     {
-        $course_lecturer =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName,school_years.name as yearName,teachers.name as teacherName,courses.name as courseName")
-                    ->leftjoin('courses','courses.id','=','course_lecturers.courseID')
-                    ->leftjoin('teachers','teachers.id','=','course_lecturers.teacherID')
+        $course_lecturer =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName,school_years.name as yearName")
                     ->leftjoin('semesters','semesters.semesterID','=','course_lecturers.semesterID')
                     ->leftjoin('school_years','school_years.yearID','=','course_lecturers.yearID')
                     ->get();
@@ -29,8 +27,8 @@ class CourseLecturerRepository
         try {
             if(isset($request->id)){
                 $course_lecturer = CourseLecturer::where('id', $request->id)->firstOrFail();
-                $course_lecturer->teacherID = $request->teacher;
-                $course_lecturer->courseID = $request->course;
+                $course_lecturer->teacherName = $request->teacher;
+                $course_lecturer->courseName = $request->course;
                 $course_lecturer->semesterID = $request->semester;
                 $course_lecturer->yearID = $request->school_year;
                 $course_lecturer->number_of_students = $request->number_of_student;
@@ -46,8 +44,8 @@ class CourseLecturerRepository
                 return true;
             } else {   
                 $course_lecturer = new CourseLecturer();
-                $course_lecturer->teacherID = $request->teacher;
-                $course_lecturer->courseID = $request->course;
+                $course_lecturer->teacherName = $request->teacher;
+                $course_lecturer->courseName = $request->course;
                 $course_lecturer->semesterID = $request->semester;
                 $course_lecturer->yearID = $request->school_year;
                 $course_lecturer->number_of_students = $request->number_of_student;
