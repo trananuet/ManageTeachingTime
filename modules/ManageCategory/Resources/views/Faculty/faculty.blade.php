@@ -74,7 +74,6 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
-                            
                                 <div class="modal-content" style="width: 100%;">
                                     <div class="modal-header">
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>

@@ -26,6 +26,8 @@ class CoursesRepository
             if(isset($request->id)){
                 $courses = Courses::where('id', $request->id)->firstOrFail();
                 $courses->name = $request->name;
+                $courses->code_name = $request->code_name;
+                $courses->credit = $request->credit;
                 $courses->semesterID = $request->semester;
                 $courses->yearID = $request->schoolYear;
                 $courses->theory = $request->theory;
@@ -37,6 +39,8 @@ class CoursesRepository
             } else {   
                 $courses = new Courses();
                 $courses->name = $request->name;
+                $courses->code_name = $request->code_name;
+                $courses->credit = $request->credit;
                 $courses->semesterID = $request->semester;
                 $courses->yearID = $request->schoolYear;
                 $courses->theory = $request->theory;

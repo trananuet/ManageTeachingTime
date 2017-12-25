@@ -36,141 +36,153 @@
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalTeacher" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div>
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
-                        </ul>
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">                                
-                                <div class="modal-content" style="width: 100%;">
-                                    <div class="modal-header">
-                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                    </div>
-                                    <form method="POST" action="{{route('courses.save')}}" id="formCoursesCreate">
-                                    {{ csrf_field() }}
-                                        <div class="modal-body">
-                                            <!-- content goes here -->
-                                            <div class="form-group row">
-                                                <label for="courseCreate" class="col-sm-3 col-form-label">Tên môn học</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control" name="semester" style="color: #000;">
-                                                        <option value="">Chọn học kỳ</option>
-                                                        @foreach($semesters as $semester)
-                                                            <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for=" " class="col-sm-3 col-form-label">Năm học </label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control" name="schoolYear" style="color: #000;">
-                                                        <option value="">Chọn năm học</option>
-                                                        @foreach($schoolYears as $schoolYear)
-                                                            <option value="{{$schoolYear->yearID}}">{{$schoolYear->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tên môn học</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-3 col-form-label">Lý thuyết</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="theory" class="form-control" id="" placeholder="Lý thuyết">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="" class="col-sm-3 col-form-label">Thực hành</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="practice" class="form-control" id="" placeholder="Thực hành">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="" class="col-sm-3 col-form-label">Tự học</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="self_study" class="form-control" id="" placeholder="Tự học">
-                                                </div>
-                                            </div>
-
-                                    </div>
-                                        <div class="modal-footer">
-                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                <div class="btn-group col-md-3" role="group">
-                                                    <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
-                                                </div>
-                                                <div class="btn-group col-md-3" role="group">
-                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <form action="{{route('courses.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
-                                            {{csrf_field()}}
-                                            
-                                            <div class="modal-body">
-                                                <!-- content goes here -->
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="semesterID" style="color: #000;">
-                                                            <option value="">Chọn học kỳ</option>
-                                                            @foreach($semesters as $semester)
-                                                                <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Năm học </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="yearID" style="color: #000;">
-                                                            <option value="">Chọn năm học</option>
-                                                            @foreach($schoolYears as $schoolYear)
-                                                                <option value="{{$schoolYear->yearID}}">{{$schoolYear->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group row">
-                                                    <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="file" name="imported_file"/>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label"> </label>
-                                                    <div class="col-sm-9">
-                                                        <b>Trường dữ liệu {name,theory,practice,selfStudy}</b>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                <div class="btn-group col-md-3" role="group">
-                                                    <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
-                                                </div>
-                                                <div class="btn-group col-md-3" role="group">
-                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">                                
+                            <div class="modal-content" style="width: 100%;">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                 </div>
+                                <form method="POST" action="{{route('courses.save')}}" id="formCoursesCreate">
+                                {{ csrf_field() }}
+                                    <div class="modal-body">
+                                        <!-- content goes here -->
+                                        <div class="form-group row">
+                                            <label for="courseCreate" class="col-sm-3 col-form-label">Tên môn học</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="semester" style="color: #000;">
+                                                    <option value="">Chọn học kỳ</option>
+                                                    @foreach($semesters as $semester)
+                                                        <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for=" " class="col-sm-3 col-form-label">Năm học </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="schoolYear" style="color: #000;">
+                                                    <option value="">Chọn năm học</option>
+                                                    @foreach($schoolYears as $schoolYear)
+                                                        <option value="{{$schoolYear->yearID}}">{{$schoolYear->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="courseCreate" class="col-sm-3 col-form-label">Tên học phần</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="code_name_create" class="col-sm-3 col-form-label">Mã học phần</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="code_name" class="form-control" id="code_name_create" placeholder="Tên học phần">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="creditCreate" class="col-sm-3 col-form-label">Tín chỉ</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="credit" class="form-control" id="creditCreate" placeholder="Tín chỉ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="theory" class="form-control" id="" placeholder="Lý thuyết">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label">Thực hành</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="practice" class="form-control" id="" placeholder="Thực hành">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label">Tự học</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="self_study" class="form-control" id="" placeholder="Tự học">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                            <div class="btn-group col-md-3" role="group">
+                                                <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                            </div>
+                                            <div class="btn-group col-md-3" role="group">
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <div class="modal-content" style="width: 100%;">
+                                <form action="{{route('courses.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
+                                    {{csrf_field()}}
+                                    <div class="modal-body">
+                                        <!-- content goes here -->
+                                        <div class="form-group row">
+                                            <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="semesterID" style="color: #000;">
+                                                    <option value="">Chọn học kỳ</option>
+                                                    @foreach($semesters as $semester)
+                                                        <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for=" " class="col-sm-3 col-form-label">Năm học </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="yearID" style="color: #000;">
+                                                    <option value="">Chọn năm học</option>
+                                                    @foreach($schoolYears as $schoolYear)
+                                                        <option value="{{$schoolYear->yearID}}">{{$schoolYear->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label for="trainingCreate" class="col-sm-3 col-form-label">Import File</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" name="imported_file"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for=" " class="col-sm-3 col-form-label"> </label>
+                                            <div class="col-sm-9">
+                                                <b>Trường dữ liệu {name,theory,practice,selfStudy}</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                            <div class="btn-group col-md-3" role="group">
+                                                <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
+                                            </div>
+                                            <div class="btn-group col-md-3" role="group">
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -187,7 +199,9 @@
                 <thead class ="table-school-year">
                     <tr>
                         <th class="stt active-display">STT</th>
-                        <th class="">Tên môn học</th>
+                        <th class="">Tên học phần</th>
+                        <th class="">Mã LHP</th>
+                        <th class="">Tín chỉ</th>
                         <th class="">Học kỳ</th>
                         <th class="">Năm học</th>
                         <th class="">Lý thuyết</th>
@@ -202,6 +216,8 @@
                         <tr>
                             <td class="active-display">{{++$loop->index}}</td>
                             <td>{{$course->name}}</td>
+                            <td>{{$course->code_name}}</td>
+                            <td>{{$course->credit}}</td>
                             <td>{{$course->semesterName}}</td>
                             <td>{{$course->yearName}}</td>
                             <td>{{$course->theory}}</td>
@@ -228,57 +244,69 @@
                                                 <!-- content goes here -->
                                                 <input type="hidden" name="id" value="{{$course->id}}">
                                                 <div class="form-group row">
-                                                <label for="courseCreate" class="col-sm-3 col-form-label">Tên môn học</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học" value="{{$course->name}}">
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tên học phần</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="name" class="form-control" id="courseCreate" placeholder="Tên môn học" value="{{$course->name}}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control" name="semester" >
-                                                        <option>Chọn học kỳ</option>
-                                                        @foreach($semesters as $semester)
-                                                            @php
-                                                                $selectSemester = $semester->semesterID == $course->semesterID ? "selected" : null;
-                                                            @endphp
-                                                            <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="form-group row">
+                                                    <label for="code_name_create" class="col-sm-3 col-form-label">Mã học phần</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="code_name" class="form-control" id="code_name_create" placeholder="Tên học phần" value="{{$course->code_name}}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for=" " class="col-sm-3 col-form-label">Năm học </label>
-                                                <div class="col-sm-9">
-                                                    <select class="form-control" name="schoolYear" >
-                                                        <option>Chọn năm học</option>
-                                                        @foreach($schoolYears as $schoolYear)
-                                                            @php
-                                                                $selectYear = $schoolYear->yearID == $course->yearID ? "selected" : null;
-                                                            @endphp
-                                                            <option value="{{$schoolYear->yearID}}" {{$selectYear}}>{{$schoolYear->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="form-group row">
+                                                    <label for="creditCreate" class="col-sm-3 col-form-label">Tín chỉ</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="credit" class="form-control" id="creditCreate" placeholder="Tín chỉ" value="{{$course->credit}}">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="courseCreate" class="col-sm-3 col-form-label">Lý thuyết</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Lý thuyết" value="{{$course->theory}}">
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Học kỳ </label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" name="semester" >
+                                                            <option>Chọn học kỳ</option>
+                                                            @foreach($semesters as $semester)
+                                                                @php
+                                                                    $selectSemester = $semester->semesterID == $course->semesterID ? "selected" : null;
+                                                                @endphp
+                                                                <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="courseCreate" class="col-sm-3 col-form-label">Thực hành</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Thực hành" value="{{$course->practice}}">
+                                                <div class="form-group row">
+                                                    <label for=" " class="col-sm-3 col-form-label">Năm học </label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control" name="schoolYear" >
+                                                            <option>Chọn năm học</option>
+                                                            @foreach($schoolYears as $schoolYear)
+                                                                @php
+                                                                    $selectYear = $schoolYear->yearID == $course->yearID ? "selected" : null;
+                                                                @endphp
+                                                                <option value="{{$schoolYear->yearID}}" {{$selectYear}}>{{$schoolYear->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="courseCreate" class="col-sm-3 col-form-label">Tự học</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="Tự học" value="{{$course->self_study}}">
+                                                <div class="form-group row">
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Lý thuyết" value="{{$course->theory}}">
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div class="form-group row">
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Thực hành</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Thực hành" value="{{$course->practice}}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tự học</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="Tự học" value="{{$course->self_study}}">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">

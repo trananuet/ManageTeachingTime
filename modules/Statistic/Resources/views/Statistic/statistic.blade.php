@@ -51,20 +51,20 @@
                         </div>
                         <button type="submit" class="hidden"></button>
                 </form>
-                {{--  <form method="POST" action="" id="">
-                            {{ csrf_field() }}  --}}
+                <form method="POST" action="" id="">
+                            {{ csrf_field() }} 
                         <div class="col-sm-3">
                             <label for="filterYear" class="col-form-label label-filter">Học kỳ</label>
-                            <select type="text" name="year" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                            <select type="text" name="semester" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
                                 <option value="">Chọn học kỳ</option>
-                                @foreach($school_years as $school_year)
+                                @foreach($semesters as $semester)
                                     {{--  @if(session('schoolYear') && session('semesterFilter'))
                                     @php
                                         $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
                                     @endphp
                                     <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
                                     @else  --}}
-                                    <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                    <option value="{{$semester->semesterID}}">{{$semester->name}}</option>
                                     {{--  @endif  --}}
                                 @endforeach
                             </select>
@@ -121,10 +121,10 @@
                             <td class="active-display">{{++$loop->index}}</td>
                             <td>{{$course_lecturer->teacherName}}</td>
                             <td>{{$course_lecturer->courseName}}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$course_lecturer->credit}}</td>
+                            <td>{{$course_lecturer->code_name}}</td>
                             <td>{{$course_lecturer->number_of_students}}</td>
-                            <td></td>
+                            <td>CL</td>
                             <td>{{$course_lecturer->hour_theory}}</td>
                             <td>{{$course_lecturer->practice_hours}}</td>
                             <td>{{$course_lecturer->learning_time}}</td>

@@ -15,22 +15,32 @@
         .table .text-name{
             text-align: left;
         }
+        .toggle{
+            width: 100px!important;
+            height: 10px!important;
+            float: right;
+        }
+                .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: left;
+        }
     </style>
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
 <div id="page-wrapper">
     <div class="container-fluid">
-        <div class="row">
         <div class="box-top row">
             <br>
             <h3>Hệ đào tạo</h3>
             <hr>
-            @if($errors->has('checkbox'))
-                <div class="alert alert-danger">
-                    <span>{{$errors->first('checkbox')}}</span>
-                </div>
-            @endif 
+            <div class="row">
+                @if($errors->has('checkbox'))
+                    <div class="alert alert-danger">
+                        <span>{{$errors->first('checkbox')}}</span>
+                    </div>
+                @endif
+            </div>
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
@@ -184,7 +194,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
         </div>
     </div>
 </div>
