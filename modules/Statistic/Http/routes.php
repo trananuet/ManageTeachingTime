@@ -14,6 +14,7 @@ Route::group([
             Route::post('/course_lecturer/save', 'CourseLecturer\CourseLecturerController@createEditCourseLecturer')->name('course_lecturer.save');
             Route::post('/course_lecturer/remove', 'CourseLecturer\CourseLecturerController@delCourseLecturer')->name('course_lecturer.remove');
             Route::post('/course_lecturer/import', 'CourseLecturer\CourseLecturerController@postImport')->name('course_lecturer.import');
+            Route::post('/course_lecturer/filter_course_lecturer', 'CourseLecturer\CourseLecturerController@filterCourseLecturer')->name('course_lecturer.filter');
         });
         //THESIS_LECTURER
         Route::group(['middleware' => 'check_manage_thesis_lecturer'],function()
