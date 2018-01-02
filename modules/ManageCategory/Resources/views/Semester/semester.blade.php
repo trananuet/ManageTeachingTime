@@ -22,6 +22,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="box-top row">
+            <br>
             <h3>Học kỳ</h3>
             <hr>
             @if($errors->has('checkbox'))
@@ -61,7 +62,7 @@
             <div class="modal fade" id="modalSemester" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div>
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs nav-default" role="tablist">
                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
                             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
                         </ul>

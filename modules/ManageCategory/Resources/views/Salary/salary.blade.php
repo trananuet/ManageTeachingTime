@@ -23,6 +23,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="box-top row">
+                <br>
                 <h3>Định mức chi trả</h3>
                 <hr>
                 @if($errors->has('checkbox'))

@@ -23,5 +23,7 @@ Route::group([
             Route::post('/thesis_lecturer/save', 'ThesisLecturer\ThesisLecturerController@createEditThesisLecturer')->name('thesis_lecturer.save');
             Route::post('/thesis_lecturer/remove', 'ThesisLecturer\ThesisLecturerController@delThesisLecturer')->name('thesis_lecturer.remove');
         });
+        //STATISTIC
+        Route::get('/statistic_hour', 'Statistic\StatisticController@getStatistic')->name('statistic');
     });
 });

@@ -31,6 +31,7 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="box-top row">
+            <br>
             <h3>Năm học</h3>
             <hr>
             <div class="row">
@@ -77,13 +78,12 @@
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs nav-default" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
-                                                            
                             <div class="modal-content" style="width: 100%;">
                                 <div class="modal-header">
                                     <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -138,8 +138,8 @@
                                 </div>
                                 <form action="{{route('school_year.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                 {{csrf_field()}}
-                                <div class="modal-body">
-                                <div class="form-group row">
+                                    <div class="modal-body">
+                                        <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Hệ đào tạo</label>
                                             <div class="col-sm-9">
                                                 <select type="text" name="trainingID" class="form-control" id="" style="color: #000;">
@@ -150,33 +150,31 @@
                                                 </select>
                                             </div>
                                         </div>
-                                <div class="form-group row">
+                                        <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label">Import File</label>
                                             <div class="col-sm-9">
                                                 <input type="file" name="imported_file"/>
                                             </div>
-                                </div>
-                                <div class="form-group row">
+                                        </div>
+                                        <div class="form-group row">
                                             <label for="" class="col-sm-3 col-form-label"></label>
                                             <div class="col-sm-9">
                                                 <b>Trường dữ liệu {name,active}</b>
                                             </div>
-                                
-                                <div class="modal-footer">
-                                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                        </div>  
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
 
-                                        <div class="btn-group col-md-3" role="group">
-                                            <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
-                                        </div>
-                                        <div class="btn-group col-md-3" role="group">
-                                            <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                            <div class="btn-group col-md-3" role="group">
+                                                <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
+                                            </div>
+                                            <div class="btn-group col-md-3" role="group">
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            </div>
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>

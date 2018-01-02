@@ -239,7 +239,6 @@
                 </div>
                 </div>
             </div>
-
             @if(session('semesterFilter') && session('semester'))
             <div class="school-content-table1 relative">
                 <form method="POST" action="{{route('course_lecturer.remove')}}">

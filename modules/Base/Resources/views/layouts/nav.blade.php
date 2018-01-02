@@ -4,11 +4,11 @@
     border-color: white;
     }
     a:active {
-        background: #007f7f !important;
+        background: #007f7f!important;
         color: white;
     }
     a:hover {
-        background: #007f7f !important;
+        background: #007f7f!important;
         color: white;
     }
     .aim {

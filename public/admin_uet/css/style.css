@@ -36,6 +36,10 @@ a {
     color: #ff3f3f;
 }
 
+.nav-default {
+    background: #e4dfdf;
+}
+
 
 /* .box-top {
     margin-bottom: 35px;
@@ -53,6 +57,7 @@ a {
 .stt {
     width: 10%;
 }
+
 .stt1 {
     width: 8%;
 }
@@ -60,12 +65,15 @@ a {
 .th1 {
     width: 22%;
 }
+
 .th2 {
     width: 23%;
 }
+
 .th3 {
     width: 7%;
 }
+
 .th4 {
     width: 15%;
 }
@@ -78,8 +86,13 @@ a {
 .cus {
     width: 14%;
 }
+
 .cus1 {
     width: 10%;
+}
+
+.th-1 {
+    width: 15%;
 }
 
 .modal-header {
@@ -94,7 +107,7 @@ a {
     margin-right: 20%;
 }
 
-.school-content-table1 {
+.content-table {
     margin-left: 0%;
     margin-right: 0%;
 }
@@ -104,6 +117,11 @@ a {
     margin-top: 30px;
     z-index: 1;
 }
+
+.add-btn-orther {
+    z-index: 1;
+}
+
 .add-btn1 {
     margin-left: 1%;
     margin-top: 30px;
@@ -112,6 +130,19 @@ a {
 
 .filter {
     margin-left: 10%;
+}
+
+.filter-orther {
+    margin-left: 2%;
+}
+
+.filter-semester {
+    margin-left: 7%;
+    padding-left: 9%;
+}
+
+.filter-year {
+    margin-left: -5%;
 }
 
 .label-filter {
@@ -126,8 +157,8 @@ a {
 .table-school-year {
     color: white;
     background: #337ab7;
-
 }
+
 .table-school-year1 {
     color: white;
     background: #337ab7;

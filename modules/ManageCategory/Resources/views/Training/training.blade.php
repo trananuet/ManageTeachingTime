@@ -15,6 +15,15 @@
         .table .text-name{
             text-align: left;
         }
+        .toggle{
+            width: 100px!important;
+            height: 10px!important;
+            float: right;
+        }
+                .dataTables_wrapper .dataTables_filter {
+            float: right;
+            text-align: left;
+        }
     </style>
 @endsection
 @section('content')
@@ -22,13 +31,16 @@
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="box-top row">
+            <br>
             <h3>Hệ đào tạo</h3>
             <hr>
-            @if($errors->has('checkbox'))
-                <div class="alert alert-danger">
-                    <span>{{$errors->first('checkbox')}}</span>
-                </div>
-            @endif 
+            <div class="row">
+                @if($errors->has('checkbox'))
+                    <div class="alert alert-danger">
+                        <span>{{$errors->first('checkbox')}}</span>
+                    </div>
+                @endif
+            </div>
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
@@ -36,7 +48,7 @@
             <div class="modal fade" id="modalTraining" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div>
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs nav-default" role="tablist">
                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
                             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
                         </ul>
@@ -48,7 +60,7 @@
                                         <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
-                                    <form method="POST" action="{{route('training.save')}}" id="formSemesterCreate">
+                                    <form method="POST" action="{{route('training.save')}}" id="formTrainingCreate">
                                     {{ csrf_field() }}
                                         <div class="modal-body">
                                             <!-- content goes here -->
@@ -153,7 +165,7 @@
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                                         <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
-                                    <form method="POST" action="{{route('training.save')}}" id="formTrainingEdit">
+                                    <form method="POST" action="{{route('training.save')}}" id="formTrainingCreate">
                                     {{ csrf_field() }}
                                         <div class="modal-body">
                                             <!-- content goes here -->
@@ -197,7 +209,7 @@
     </script>
    <script>   
         $(function() {
-            $("#formSemesterCreate").validate({
+            $("#formTrainingCreate").validate({
                 rules: {
                         trainings: "required",
                     },
