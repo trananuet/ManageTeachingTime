@@ -16,4 +16,9 @@ class Semester extends Model
     {
         return $this->belongsTo('Modules\ManageCategory\Entities\SchoolYear','yearID');
     }
+
+     public function course_lecturers()
+    {
+        return $this->hasMany('Modules\Statistic\Entities\CourseLecturer','semesterID');
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Modules\Statistic\Entities\CourseLecturer;
+use Modules\ManageCategory\Entities\Semester;
 use Modules\Statistic\Repositories\CourseLecturerRepository;
 use Modules\ManageCategory\Repositories\CoursesRepository;
 use Modules\ManageCategory\Repositories\SemesterRepository;
@@ -51,6 +52,16 @@ class CourseLecturerController extends Controller
         } else {
              return \Response::view('base::errors.500',array(),500);
         }
+    }
+
+
+     public function filterCourseLecturer(Request $request){
+        $semester = $request->semester;
+        $semesterFilter = Semester::find($semester)->course_lecturers()->get();
+        $semester = Semester::find($semester);
+        session()->flash('semesterFilter', $semesterFilter);
+        session()->flash('semester', $semester);
+        return redirect()->back();
     }
 
 
