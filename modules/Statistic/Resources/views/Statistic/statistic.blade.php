@@ -118,28 +118,28 @@
                                 <td>{{$course_lecturer->code_name}}</td>
                                 <td>{{$course_lecturer->number_of_students}}</td>
                                 <td>CL</td>
+                                <td></td>
                                 <td>{{$course_lecturer->hour_theory}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
+                                <td></td>
                                 <td>{{$course_lecturer->practice_hours}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
                                 <td>{{$course_lecturer->learning_time}}</td>
-                                <td>{{$course_lecturer->in_hours}}</td>
-                                <td>{{$course_lecturer->overtime}}</td>
-                                <td>{{$course_lecturer->day_off}}</td>
-                                <td>{{$course_lecturer->converted_hours}}</td>
+                                <td></td>
 
-                                <td>{{$course_lecturer->hour_theory}}</td>
-                                <td>{{$course_lecturer->practice_hours}}</td>
-                                <td>{{$course_lecturer->learning_time}}</td>
-                                <td>{{$course_lecturer->in_hours}}</td>
-                                <td>{{$course_lecturer->overtime}}</td>
-                                <td>{{$course_lecturer->day_off}}</td>
-                                <td>{{$course_lecturer->converted_hours}}</td>
-                                <td>{{$course_lecturer->converted_hours}}</td>
-
-                                <td>{{$course_lecturer->in_hours}}</td>
-                                <td>{{$course_lecturer->overtime}}</td>
-
-                                <td>{{$course_lecturer->day_off}}</td>
-                                <td>{{$course_lecturer->converted_hours}}</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         @endforeach
                     </tbody>
