@@ -20,8 +20,8 @@ class CoursesController extends Controller
     {
         $courses = CoursesRepository::getAllCourses();
         $semesters = SemesterRepository::getAllSemester();
-        $schoolYears = SchoolYearRepository::getAllSchoolYear();
-        return view('managecategory::Courses.courses',compact('courses','semesters','schoolYears'));
+        $school_years = SchoolYearRepository::get_school_active();
+        return view('managecategory::Courses.courses',compact('courses','semesters','school_years'));
     }
 
     public function createEditCourses(Request $request)
@@ -48,6 +48,33 @@ class CoursesController extends Controller
         } else {
              return \Response::view('base::errors.500',array(),500);
         }
+    }
+    /**
+    * filter 
+    * @author AnTV
+    * @param $request
+    * @return view
+    */
+    public function filterCourses(Request $request){
+        $year_id = $request->year_id;
+        $semester_id = $request->semester_id;
+        // $courses = Courses::where([
+        //                         ['yearID',$year_id],
+        //                         ['semesterID',$semester_id]
+        //                         ])->get();
+        if($year_id != "" || $semester_id != "" ){
+            if($request->has('year_id')){
+                $course = Courses::where('yearID',$year_id);
+            }
+            if($request->has('semester_id')){
+                $course = Courses::where('semesterID',$semester_id);
+            }
+        }
+        $courses = $course->get();
+        session()->flash('courses', $courses);
+        session()->flash('year_id', $year_id);
+        session()->flash('semester_id', $semester_id);
+        return redirect()->back();
     }
 
      public function postImport(Request $request)

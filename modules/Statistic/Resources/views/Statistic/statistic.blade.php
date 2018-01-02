@@ -72,7 +72,7 @@
                         <button type="submit" class="hidden"></button>
                 </form>
             </div>
-        <div class="school-content-table1 relative">
+        <div class="content-table relative">
             {{--  <form method="POST" action="">
                 {{ csrf_field() }}
                 <div class="box-remove-all">

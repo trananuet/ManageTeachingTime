@@ -91,6 +91,10 @@ a {
     width: 10%;
 }
 
+.th-1 {
+    width: 15%;
+}
+
 .modal-header {
     background: #337ab7;
     color: #fff;
@@ -103,7 +107,7 @@ a {
     margin-right: 20%;
 }
 
-.school-content-table1 {
+.content-table {
     margin-left: 0%;
     margin-right: 0%;
 }
@@ -111,6 +115,10 @@ a {
 .add-btn {
     margin-left: 10%;
     margin-top: 30px;
+    z-index: 1;
+}
+
+.add-btn-orther {
     z-index: 1;
 }
 
@@ -122,6 +130,19 @@ a {
 
 .filter {
     margin-left: 10%;
+}
+
+.filter-orther {
+    margin-left: 2%;
+}
+
+.filter-semester {
+    margin-left: 7%;
+    padding-left: 9%;
+}
+
+.filter-year {
+    margin-left: -5%;
 }
 
 .label-filter {

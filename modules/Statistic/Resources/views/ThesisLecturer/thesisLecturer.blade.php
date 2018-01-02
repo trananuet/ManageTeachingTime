@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <div class="school-content-table relative">
+            <div class="content-table relative">
                 <form method="POST" action="{{route('thesis_lecturer.remove')}}">
                     {{ csrf_field() }}
                     <div class="box-remove-all">

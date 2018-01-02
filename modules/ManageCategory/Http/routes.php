@@ -68,6 +68,7 @@ Route::group(['middleware' => 'web',
             Route::get('/courses', 'Courses\CoursesController@getCourses')->name('courses');
             Route::post('/courses/save', 'Courses\CoursesController@createEditCourses')->name('courses.save');
             Route::post('/courses/remove', 'Courses\CoursesController@delCourses')->name('courses.remove');
+            Route::post('/courses/filter', 'Courses\CoursesController@filterCourses')->name('courses.filter');
             Route::post('/courses/import', 'Courses\CoursesController@postImport')->name('courses.import');
         });    
 
