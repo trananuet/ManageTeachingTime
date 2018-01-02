@@ -16,7 +16,7 @@ class ManageFunctionsController extends Controller
     * get all functions
     * @return view
     */
-    public function getAllFunction()
+    public function getFunction()
     {
         //$funcs = FunctionRepository::get_all_functions();
         $functions = FunctionRepository::get_all_functions();
