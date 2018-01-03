@@ -21,7 +21,7 @@ class CourseLecturerController extends Controller
         $teachers = TeacherRepository::getAllTeacher();
         $courses = CoursesRepository::getAllCourses();
         $semesters = SemesterRepository::getAllSemester();
-        $school_years = SchoolYearRepository::getAllSchoolYear();
+        $school_years = SchoolYearRepository::get_school_active();
         $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
         return view('statistic::CourseLecturer.courseLecturer',compact('course_lecturers','teachers','courses','semesters','school_years'));
     }
@@ -84,17 +84,22 @@ class CourseLecturerController extends Controller
                 $dataArray[] =
                 [
                   'semesterID' => $request->semester,
-                  'yearID' => $request->school_year,
-                  'teacherName' => $row['tengiaovien'],
-                  'courseName' => $row['tenmonhoc'],
-                  'number_of_students' => $row['sosinhvien'],
-                  'hour_theory' => $row['giolythuyet'],
-                  'practice_hours' => $row['giothuchanh'],
-                  'learning_time' => $row['giotuhoc'],
-                  'in_hours' => $row['tronggio'],
-                  'overtime' => $row['ngoaigio'],
-                  'day_off' => $row['ngaynghi'],
-                  'converted_hours' => $row['quydoi']
+                  'teacherName' => $row['tengv'],
+                  'courseName' => $row['monhoc'],
+                  'number_of_students' => $row['so_sv'],
+                  'course_group' => $row['nhom'],
+                  'theory_group' => $row['nhom_lt'],
+                  'theory_in_hour' => $row['tronggio_lt'],
+                  'theory_overtime' => $row['ngoaigio_lt'],
+                  'theory_day_off' => $row['ngaynghi_lt'],
+                  'theory_standard' => $row['quychuan_lt'],
+                  'practice_group' => $row['nhom_th'],
+                  'practice_in_hour' => $row['tronggio_th'],
+                  'practice_overtime' => $row['ngoaigio_th'],
+                  'practice_day_off' => $row['ngaynghi_th'],
+                  'practice_standard' => $row['quychuan_th'],
+                  'self_learning_time' => $row['gio_tuhoc'],
+                  'self_learning_standard' => $row['quychuan_tuhoc']
                 ];
               }
           } 
