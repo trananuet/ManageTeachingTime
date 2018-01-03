@@ -14,9 +14,8 @@ class CourseLecturerRepository
 
     public static function getAllCourseLecturer()
     {
-        $course_lecturer =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName,school_years.name as yearName")
+        $course_lecturer =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName")
                     ->leftjoin('semesters','semesters.semesterID','=','course_lecturers.semesterID')
-                    ->leftjoin('school_years','school_years.yearID','=','course_lecturers.yearID')
                     ->get();
         return $course_lecturer;
     }
@@ -30,15 +29,20 @@ class CourseLecturerRepository
                 $course_lecturer->teacherName = $request->teacher;
                 $course_lecturer->courseName = $request->course;
                 $course_lecturer->semesterID = $request->semester;
-                $course_lecturer->yearID = $request->school_year;
                 $course_lecturer->number_of_students = $request->number_of_student;
-                $course_lecturer->hour_theory = $request->hour_theory;
-                $course_lecturer->practice_hours = $request->practice_hours;
-                $course_lecturer->learning_time = $request->learning_time;
-                $course_lecturer->in_hours = $request->in_hours;
-                $course_lecturer->overtime = $request->overtime;
-                $course_lecturer->day_off = $request->day_off;
-                $course_lecturer->converted_hours = $request->converted_hours;
+                $course_lecturer->course_group = $request->course_group;
+                $course_lecturer->theory_group = $request->theory_group;
+                $course_lecturer->theory_in_hour = $request->theory_in_hour;
+                $course_lecturer->theory_overtime = $request->theory_overtime;
+                $course_lecturer->theory_day_off = $request->theory_day_off;
+                $course_lecturer->theory_standard = $request->theory_standard;
+                $course_lecturer->practice_group = $request->practice_group;
+                $course_lecturer->practice_in_hour = $request->practice_in_hour;
+                $course_lecturer->practice_overtime = $request->practice_overtime;
+                $course_lecturer->practice_day_off  = $request->practice_day_off ;
+                $course_lecturer->practice_standard = $request->practice_standard;
+                $course_lecturer->self_learning_time = $request->self_learning_time;
+                $course_lecturer->self_learning_standard = $request->self_learning_standard;
                 $course_lecturer->save();
                 DB::commit();
                 return true;
@@ -47,15 +51,20 @@ class CourseLecturerRepository
                 $course_lecturer->teacherName = $request->teacher;
                 $course_lecturer->courseName = $request->course;
                 $course_lecturer->semesterID = $request->semester;
-                $course_lecturer->yearID = $request->school_year;
                 $course_lecturer->number_of_students = $request->number_of_student;
-                $course_lecturer->hour_theory = $request->hour_theory;
-                $course_lecturer->practice_hours = $request->practice_hours;
-                $course_lecturer->learning_time = $request->learning_time;
-                $course_lecturer->in_hours = $request->in_hours;
-                $course_lecturer->overtime = $request->overtime;
-                $course_lecturer->day_off = $request->day_off;
-                $course_lecturer->converted_hours = $request->converted_hours;
+                $course_lecturer->course_group = $request->course_group;
+                $course_lecturer->theory_group = $request->theory_group;
+                $course_lecturer->theory_in_hour = $request->theory_in_hour;
+                $course_lecturer->theory_overtime = $request->theory_overtime;
+                $course_lecturer->theory_day_off = $request->theory_day_off;
+                $course_lecturer->theory_standard = $request->theory_standard;
+                $course_lecturer->practice_group = $request->practice_group;
+                $course_lecturer->practice_in_hour = $request->practice_in_hour;
+                $course_lecturer->practice_overtime = $request->practice_overtime;
+                $course_lecturer->practice_day_off  = $request->practice_day_off ;
+                $course_lecturer->practice_standard = $request->practice_standard;
+                $course_lecturer->self_learning_time = $request->self_learning_time;
+                $course_lecturer->self_learning_standard = $request->self_learning_standard;
                 $course_lecturer->save();
                 DB::commit();
                 return true;
