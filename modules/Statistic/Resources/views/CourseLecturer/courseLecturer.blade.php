@@ -123,6 +123,10 @@
                                                         <input type="text" name="theory_group" class="form-control" id="" placeholder="">
                                                     </div>
                                                     <div class="col-sm-2">
+                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                        <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" >
+                                                    </div>
+                                                    <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">SgTr</i>
                                                         <input type="text" name="theory_in_hour" class="form-control" id="" placeholder="">
                                                     </div>
@@ -144,6 +148,10 @@
                                                     <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">N</i>
                                                         <input type="text" name="practice_group" class="form-control" id="" placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                        <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" >
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">SgTr</i>
@@ -260,9 +268,9 @@
                                 <th class="th2" rowspan="2">Môn học</th>
                                 <th class="th3" rowspan="2">SS</th>
                                 <th class="th3" rowspan="2">Nhóm</th>
-                                <th colspan="5" rowspan="1">Lý thuyết</th>
-                                <th colspan="5" rowspan="1">Thực hành</th>
-                                <th colspan="2" rowspan="1">Tự học</th>
+                                <th colspan="6" >Lý thuyết</th>
+                                <th colspan="6" >Thực hành</th>
+                                <th colspan="2" >Tự học</th>
                                 <th class="th3" rowspan="2">Tổng QC</th>
                                 <th class="th3" rowspan="2">Tùy chọn</th>
                                 <th class="stt" rowspan="2"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
@@ -270,11 +278,13 @@
                             </tr>
                             <tr>
                                 <th>N</th>
+                                <th>Sg/N</th>
                                 <th>SgTr</th>
                                 <th>SgNg</th>
                                 <th>Sg7</th>
                                 <th>QC</th>
                                 <th>N</th>
+                                <th>Sg/N</th>
                                 <th>SgTr</th>
                                 <th>SgNg</th>
                                 <th>Sg7</th>
@@ -292,11 +302,13 @@
                                     <td>{{$course_lecturer->number_of_students}}</td>
                                     <td>{{$course_lecturer->course_group}}</td>
                                     <td>{{$course_lecturer->theory_group}}</td>
+                                    <td>{{$course_lecturer->sum_theory_hour}}</td>
                                     <td>{{$course_lecturer->theory_in_hour}}</td>
                                     <td>{{$course_lecturer->theory_overtime}}</td>
                                     <td>{{$course_lecturer->theory_day_off}}</td>
                                     <td>{{$course_lecturer->theory_standard}}</td>
                                     <td>{{$course_lecturer->practice_group }}</td>
+                                    <td>{{$course_lecturer->sum_practice_hour }}</td>
                                     <td>{{$course_lecturer->practice_in_hour}}</td>
                                     <td>{{$course_lecturer->practice_overtime}}</td>
                                     <td>{{$course_lecturer->practice_day_off}}</td>
@@ -372,6 +384,10 @@
                                                         <input type="text" name="theory_group" class="form-control" id="" placeholder="" value="{{$course_lecturer->theory_group}}" >
                                                     </div>
                                                     <div class="col-sm-2">
+                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                        <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" value="{{$course_lecturer->sum_theory_hour}}">
+                                                    </div>
+                                                    <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">SgTr</i>
                                                         <input type="text" name="theory_in_hour" class="form-control" id="" placeholder="" value="{{$course_lecturer->theory_in_hour}}">
                                                     </div>
@@ -393,6 +409,10 @@
                                                     <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">N</i>
                                                         <input type="text" name="practice_group" class="form-control" id="" placeholder="" value="{{$course_lecturer->practice_group}}">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                        <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" value="{{$course_lecturer->sum_practice_hour}}">
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">SgTr</i>
@@ -458,20 +478,22 @@
                                 <th class="th2" rowspan="2">Môn học</th>
                                 <th class="th3" rowspan="2">SS</th>
                                 <th class="th3" rowspan="2">Nhóm</th>
-                                <th colspan="5" rowspan="1">Lý thuyết</th>
-                                <th colspan="5" rowspan="1">Thực hành</th>
-                                <th colspan="2" rowspan="1">Tự học</th>
+                                <th colspan="6" >Lý thuyết</th>
+                                <th colspan="6" >Thực hành</th>
+                                <th colspan="2" >Tự học</th>
                                 <th class="th3" rowspan="2">Tổng QC</th>
                                 <th class="th3" rowspan="2">Tùy chọn</th>
                                 <th class="stt" rowspan="2"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                             </tr>
                             <tr>
                                 <th>N</th>
+                                <th>Sg/N</th>
                                 <th>SgTr</th>
                                 <th>SgNg</th>
                                 <th>Sg7</th>
                                 <th>QC</th>
                                 <th>N</th>
+                                <th>Sg/N</th>
                                 <th>SgTr</th>
                                 <th>SgNg</th>
                                 <th>Sg7</th>
@@ -491,11 +513,13 @@
                                     <td>{{$course_lecturer->number_of_students}}</td>
                                     <td>{{$course_lecturer->course_group}}</td>
                                     <td>{{$course_lecturer->theory_group}}</td>
+                                    <td>{{$course_lecturer->sum_theory_hour}}</td>
                                     <td>{{$course_lecturer->theory_in_hour}}</td>
                                     <td>{{$course_lecturer->theory_overtime}}</td>
                                     <td>{{$course_lecturer->theory_day_off}}</td>
                                     <td>{{$course_lecturer->theory_standard}}</td>
                                     <td>{{$course_lecturer->practice_group }}</td>
+                                    <td>{{$course_lecturer->sum_practice_hour }}</td>
                                     <td>{{$course_lecturer->practice_in_hour}}</td>
                                     <td>{{$course_lecturer->practice_overtime}}</td>
                                     <td>{{$course_lecturer->practice_day_off}}</td>
@@ -569,6 +593,10 @@
                                                         <input type="text" name="theory_group" class="form-control" id="" placeholder="" value="{{$course_lecturer->theory_group}}" >
                                                     </div>
                                                     <div class="col-sm-2">
+                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                        <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" value="{{$course_lecturer->sum_theory_hour}}">
+                                                    </div>
+                                                    <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">SgTr</i>
                                                         <input type="text" name="theory_in_hour" class="form-control" id="" placeholder="" value="{{$course_lecturer->theory_in_hour}}">
                                                     </div>
@@ -590,6 +618,10 @@
                                                     <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">N</i>
                                                         <input type="text" name="practice_group" class="form-control" id="" placeholder="" value="{{$course_lecturer->practice_group}}">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                        <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" value="{{$course_lecturer->sum_practice_hour}}">
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <i for="" class="col-sm-2 col-form-label">SgTr</i>

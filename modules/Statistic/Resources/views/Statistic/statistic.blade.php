@@ -118,27 +118,27 @@
                                 <td>{{$course_lecturer->code_name}}</td>
                                 <td>{{$course_lecturer->number_of_students}}</td>
                                 <td>CL</td>
+                                <td>{{$course_lecturer->theory_group}}</td>
                                 <td></td>
-                                <td>{{$course_lecturer->hour_theory}}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$course_lecturer->sum_theory_hour}}</td>
+                                <td>{{$course_lecturer->theory_in_hour}}</td>
+                                <td>{{$course_lecturer->theory_overtime}}</td>
+                                <td>{{$course_lecturer->theory_day_off}}</td>
+                                <td>{{$course_lecturer->theory_standard}}</td>
 
-                                <td></td>
-                                <td>{{$course_lecturer->practice_hours}}</td>
-                                <td></td>
+                                <td>{{$course_lecturer->practice_group }}</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$course_lecturer->sum_practice_hour }}</td>
+                                <td>{{$course_lecturer->practice_in_hour}}</td>
+                                <td>{{$course_lecturer->practice_overtime}}</td>
+                                <td>{{$course_lecturer->practice_day_off}}</td>
+                                <td>{{$course_lecturer->practice_standard}}</td>
 
-                                <td>{{$course_lecturer->learning_time}}</td>
-                                <td></td>
+                                <td>{{$course_lecturer->self_learning_time}}</td>
+                                <td>{{$course_lecturer->self_learning_standard}}</td>
 
-                                <td></td>
+                                <td>{!! number_format(($course_lecturer->theory_standard)+($course_lecturer->practice_standard)+($course_lecturer->self_learning_standard), 0, ',', '.') !!}</td>
                                 <td></td>
                             </tr>
                         @endforeach

@@ -32,11 +32,13 @@ class CourseLecturerRepository
                 $course_lecturer->number_of_students = $request->number_of_student;
                 $course_lecturer->course_group = $request->course_group;
                 $course_lecturer->theory_group = $request->theory_group;
+                $course_lecturer->sum_theory_hour = $request->sum_theory_hour;
                 $course_lecturer->theory_in_hour = $request->theory_in_hour;
                 $course_lecturer->theory_overtime = $request->theory_overtime;
                 $course_lecturer->theory_day_off = $request->theory_day_off;
                 $course_lecturer->theory_standard = $request->theory_standard;
                 $course_lecturer->practice_group = $request->practice_group;
+                $course_lecturer->sum_practice_hour = $request->sum_practice_hour;
                 $course_lecturer->practice_in_hour = $request->practice_in_hour;
                 $course_lecturer->practice_overtime = $request->practice_overtime;
                 $course_lecturer->practice_day_off  = $request->practice_day_off ;
@@ -54,11 +56,13 @@ class CourseLecturerRepository
                 $course_lecturer->number_of_students = $request->number_of_student;
                 $course_lecturer->course_group = $request->course_group;
                 $course_lecturer->theory_group = $request->theory_group;
+                $course_lecturer->sum_theory_hour = $request->sum_theory_hour;
                 $course_lecturer->theory_in_hour = $request->theory_in_hour;
                 $course_lecturer->theory_overtime = $request->theory_overtime;
                 $course_lecturer->theory_day_off = $request->theory_day_off;
                 $course_lecturer->theory_standard = $request->theory_standard;
                 $course_lecturer->practice_group = $request->practice_group;
+                $course_lecturer->sum_practice_hour = $request->sum_practice_hour;
                 $course_lecturer->practice_in_hour = $request->practice_in_hour;
                 $course_lecturer->practice_overtime = $request->practice_overtime;
                 $course_lecturer->practice_day_off  = $request->practice_day_off ;
