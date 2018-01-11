@@ -11,7 +11,7 @@ class SalaryRepository
 
     public static function getAllSalary()
     {
-       	$salary =Salary::selectRaw("salarys.*,titles.name as titleName")
+       	$salary =Salary::selectRaw("salarys.*,titles.name as titleName, titles.quota as titleQuota")
                     ->leftjoin('titles','titles.id','=','salarys.titleID')
                     ->get();
         return $salary;
@@ -25,7 +25,6 @@ class SalaryRepository
                 $salary = Salary::where('id', $request->id)->firstOrFail();
                 $salary->name = $request->name;
                 $salary->titleID = $request->title;
-                $salary->money = $request->money;
                 $salary->save();
                 DB::commit();
                 return true;
@@ -33,7 +32,6 @@ class SalaryRepository
                 $salary = new Salary();
                 $salary->name = $request->name;
                 $salary->titleID = $request->title;
-                $salary->money = $request->money;
                 $salary->save();
                 DB::commit();
                 return true;

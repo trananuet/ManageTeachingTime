@@ -17,7 +17,6 @@ class CreateSalarysTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('titleID');
-            $table->integer('money');
             $table->timestamps();
         });
     }

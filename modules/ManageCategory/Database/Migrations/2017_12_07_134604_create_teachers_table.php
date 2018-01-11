@@ -18,7 +18,7 @@ class CreateTeachersTable extends Migration
             $table->string('name');
             $table->integer('titleID');
             $table->integer('facultyID');
-            $table->integer('reduce');
+            $table->integer('reduce')->nullable();
             $table->timestamps();
         });
     }

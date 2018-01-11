@@ -66,13 +66,7 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-3 col-form-label">Tiền</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="money" class="form-control" id="" placeholder="Tiền">
-                                                    </div>
-                                                </div>  
+                                                </div> 
                                         </div>
                                             <div class="modal-footer">
                                                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -104,7 +98,7 @@
                             <th class="stt active-display">STT</th>
                             <th class="">Tên</th>
                             <th class="">Chức danh</th>
-                            <th class="">Tiền</th>
+                            <th class="">Định mức</th>
                             <th class="cus">Tùy chọn</th>
                             <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                         </tr>
@@ -115,7 +109,7 @@
                                 <td class="active-display">{{++$loop->index}}</td>
                                 <td>{{$salary->name}}</td>
                                 <td>{{$salary->titleName}}</td>
-                                <td>{{$salary->money}}</td>
+                                <td>{{$salary->titleQuota}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditSalary{{$salary->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -157,12 +151,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                        <label for="salaryEdit" class="col-sm-3 col-form-label">Giảm trừ</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" name="money" class="form-control" id="salaryEdit" placeholder="Tiền" value="{{$salary->money}}" required>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -199,13 +187,11 @@
             $("#formSalaryCreate").validate({
                 rules: {
                         name: "required", 
-                        title: "required",
-                        money: "required"
+                        title: "required"
                     },
                 messages: {
                         name: "Vui lòng điền tên chức danh.",
-                        title: "Vui lòng chọn chức danh.",
-                        money: "Vui lòng điền mức tiền."
+                        title: "Vui lòng chọn chức danh."
                 }
             });
         });

@@ -15,20 +15,23 @@ class CreateCourseLecturersTable extends Migration
     {
         Schema::create('course_lecturers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('teacherID');
-            $table->integer('courseID');
+            $table->string('teacherName');
+            $table->string('courseName');
             $table->integer('semesterID');
-            $table->integer('yearID');
             $table->integer('number_of_students');
-            $table->integer('hour_theory');
-            $table->integer('practice_hours');
-            $table->integer('learning_time');
-            $table->integer('in_hours');
-            $table->integer('overtime');
-            $table->integer('day_off');
-            $table->double('converted_hours');
-            $table->double('exchange');
+            $table->string('course_group');
+            $table->string('theory_group');
+            $table->integer('theory_in_hour');
+            $table->integer('theory_overtime');
+            $table->integer('theory_day_off');
+            $table->integer('theory_standard');
+            $table->string('practice_group');
+            $table->integer('practice_in_hour');
+            $table->integer('practice_overtime');
+            $table->integer('practice_day_off');
+            $table->integer('practice_standard');
+            $table->integer('self_learning_time');
+            $table->integer('self_learning_standard');
             $table->timestamps();
         });
     }
