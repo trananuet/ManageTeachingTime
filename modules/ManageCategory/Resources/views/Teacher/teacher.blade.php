@@ -127,7 +127,12 @@
                                 <td>{{$teacher->name}}</td>
                                 <td>{{$teacher->facultyName}}</td>
                                 <td>{{$teacher->titleName}}</td>
-                                <td>{{$teacher->reduce}}</td>
+                                <td>@if($teacher->reduce != NULL)
+                                    {{$teacher->reduce}}
+                                    @else
+                                        0
+                                    @endif
+                                </td>   
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditTeacher{{$teacher->id}}">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -237,14 +242,12 @@
                 rules: {
                         name: "required", 
                         title: "required",
-                        faculty: "required",
-                        reduce: "required"
+                        faculty: "required"
                     },
                 messages: {
                         name: "Vui lòng điền tên.",
                         title: "Vui lòng chọn chức danh.",
-                        faculty: "Vui lòng chọn khoa , phòng ban.",
-                        reduce: "Vui lòng điền giảm trừ."
+                        faculty: "Vui lòng chọn khoa , phòng ban."
                 }
             });
         });
