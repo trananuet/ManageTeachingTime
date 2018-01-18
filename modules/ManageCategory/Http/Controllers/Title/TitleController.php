@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Modules\ManageCategory\Entities\Title;
 use Modules\ManageCategory\Repositories\TitleRepository;
+use Excel;
 
 
 class TitleController extends Controller
@@ -66,19 +67,25 @@ class TitleController extends Controller
             {
               if(!empty($row))
               {
-                $dataArray[] =
-                [
-                  'name' => $row['name'],
-                  'active' => $row['active'],
-                  'quota' => $row['quota']
-                ];
+                if(!empty($row['name']) && !empty($row['active']) && !empty($row['quota'])) {
+                  $dataArray[] =
+                  [
+                    'name' => $row['name'],
+                    'active' => $row['active'],
+                    'quota' => $row['quota']
+                  ];
+                }
+                else
+                {
+                    return back()->with('message','Sai tên trường dữ liệu !');
+                }
               }
           } 
           if(!empty($dataArray))
           {
                   
             Title::insert($dataArray);
-            return back();
+            return view('managecategory::Title.excel',['datas' => $data]);
            }
          }
        }

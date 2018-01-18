@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Modules\ManageCategory\Entities\Faculty;
 use Modules\ManageCategory\Repositories\FacultyRepository;
+use Excel;
 
 class FacultyController extends Controller
 {
@@ -63,17 +64,23 @@ class FacultyController extends Controller
             {
               if(!empty($row))
               {
+                if(!empty($row['name'])) {
                 $dataArray[] =
                 [
                   'name' => $row['name']
                 ];
+                }
+                else
+                {
+                    return back()->with('message','Sai tên trường dữ liệu !');
+                }
               }
           } 
           if(!empty($dataArray))
           {
                   
             Faculty::insert($dataArray);
-            return back();
+            return view('managecategory::Faculty.excel',['datas' => $data]);
            }
          }
        }

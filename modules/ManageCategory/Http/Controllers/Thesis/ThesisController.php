@@ -62,18 +62,24 @@ class ThesisController extends Controller
             {
               if(!empty($row))
               {
+                if(!empty($row['name']) && !empty($row['quota'])) {
                 $dataArray[] =
                 [
                   'name' => $row['name'],
                   'quota' => $row['quota']
                 ];
+                }
+                else
+                {
+                    return back()->with('message','Sai tên trường dữ liệu !');
+                }
               }
           } 
           if(!empty($dataArray))
           {
                   
             Thesis::insert($dataArray);
-            return back();
+            return view('managecategory::Thesis.excel',['datas' => $data]);
            }
          }
        }

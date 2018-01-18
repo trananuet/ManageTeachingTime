@@ -30,26 +30,29 @@
                     <div class="alert alert-danger">
                         <span>{{$errors->first('checkbox')}}</span>
                     </div>
-                @endif 
+                @endif
+                @if(Session::has('message'))
+                    <div class="alert alert-danger">
+                        <span>{{Session::get('message')}}</span>
+                    </div>
+                @endif
                     <div class="add-btn col-md-2">
                         <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                     </div>
                 <!-- LINE MODAL -->
                 <div class="modal fade" id="modalTraining" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div>
-                            <ul class="nav nav-tabs" role="tablist">
+                        <div class="addExcel">
+                            <ul class="nav nav-tabs nav-default" role="tablist">
                                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
                             </ul>
+                        </div>
+                        <div>
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="home">                                
                                     <div class="modal-content" style="width: 100%;">
-                                        <div class="modal-header">
-                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                        </div>
                                         <form method="POST" action="{{route('title.save')}}" id="formTitleCreate">
                                         {{ csrf_field() }}
                                             <div class="modal-body">
@@ -89,10 +92,6 @@
                                 <div role="tabpanel" class="tab-pane" id="profile">
                                 
                                     <div class="modal-content" style="width: 100%;">
-                                        <div class="modal-header">
-                                            <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                        </div>
                                         <form action="{{route('title.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                             {{csrf_field()}}
                                             

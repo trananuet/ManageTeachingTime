@@ -2,6 +2,7 @@
 
 namespace Modules\ManageCategory\Http\Controllers\Training;
 
+use Illuminate\Support\collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -80,16 +81,23 @@ class TrainingController extends Controller
                 {
                     if(!empty($row))
                     {
+                        if(!empty($row['name'])) {
                         $dataArray[] =
                         [
                         'name' => $row['name'],
                         ];
+                        }
+                        else 
+                            { 
+                               return back()->with('message','Sai tên trường dữ liệu !');
+                            }
                     }
                 } 
             if(!empty($dataArray))
             {             
                 Training::insert($dataArray);
-                return view('managecategory::Training.training');
+                $trainings = TrainingRepository::getAllTraining();
+                return view('managecategory::Training.excel',['datas' => $data]);
             }
             }
         }
