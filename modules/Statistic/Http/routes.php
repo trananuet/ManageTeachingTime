@@ -25,5 +25,6 @@ Route::group([
         });
         //STATISTIC
         Route::get('/statistic_hour', 'Statistic\StatisticController@getStatistic')->name('statistic');
+        Route::get('/statistic_hour/pdf', 'Statistic\StatisticController@exportPDF')->name('statistic.pdf');
     });
 });

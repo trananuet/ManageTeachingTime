@@ -13,10 +13,10 @@ class ThesisLecturerRepository
 
     public static function getAllThesisLecturer()
     {
-       	$thesis_lecturers =ThesisLecturer::selectRaw("thesis_lecturers.*,trainings.name as trainingName,teachers.name as teacherName,thesis.name as thesisName")
-                    ->leftjoin('trainings','trainings.trainingID','=','thesis_lecturers.trainingID')
+       	$thesis_lecturers =ThesisLecturer::selectRaw("thesis_lecturers.*,teachers.name as teacherName")
+                    // ->leftjoin('trainings','trainings.trainingID','=','thesis_lecturers.trainingID')
                     ->leftjoin('teachers','teachers.id','=','thesis_lecturers.teacherID')
-                    ->leftjoin('thesis','thesis.id','=','thesis_lecturers.thesisID')
+                    // ->leftjoin('thesis','thesis.id','=','thesis_lecturers.thesisID')
                     ->get();
         return $thesis_lecturers;
     }
@@ -27,19 +27,23 @@ class ThesisLecturerRepository
 		try {
             if(isset($request->id)){
                 $thesis_lecturers = ThesisLecturer::where('id', $request->id)->firstOrFail();
-                $thesis_lecturers->trainingID = $request->trainingID;
                 $thesis_lecturers->teacherID = $request->teacherID;
-                $thesis_lecturers->thesisID = $request->thesisID;
-                $thesis_lecturers->number = $request->number;
+                $thesis_lecturers->khoa_luan = $request->khoa_luan;
+                $thesis_lecturers->luan_van = $request->luan_van;
+                $thesis_lecturers->luan_an = $request->luan_an;
+                $thesis_lecturers->nien_luan = $request->nien_luan;
+                $thesis_lecturers->sum_thesis = $request->sum_thesis;
                 $thesis_lecturers->save();
                 DB::commit();
                 return true;
             } else {   
                 $thesis_lecturers = new ThesisLecturer();
-                $thesis_lecturers->trainingID = $request->trainingID;
                 $thesis_lecturers->teacherID = $request->teacherID;
-                $thesis_lecturers->thesisID = $request->thesisID;
-                $thesis_lecturers->number = $request->number;
+                $thesis_lecturers->khoa_luan = $request->khoa_luan;
+                $thesis_lecturers->luan_van = $request->luan_van;
+                $thesis_lecturers->luan_an = $request->luan_an;
+                $thesis_lecturers->nien_luan = $request->nien_luan;
+                $thesis_lecturers->sum_thesis = $request->sum_thesis;
                 $thesis_lecturers->save();
                 DB::commit();
                 return true;

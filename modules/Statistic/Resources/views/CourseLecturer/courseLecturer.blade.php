@@ -30,226 +30,221 @@
                         <span>{{$errors->first('checkbox')}}</span>
                     </div>
                 @endif
-
-
                 <div class="row"> 
-                <form method="POST" action="{{route('course_lecturer.filter')}}" id="formFilterTraining">
-                            {{ csrf_field() }}
-                    <div class="filter col-md-8 row">
-                        <label for="filterSemester" class="col-sm-3 col-form-label label-filter">Học Kỳ - Năm Học</label>
-                        <div class="col-sm-6"> 
-                            <select type="text" name="semester" class="form-control input-filter" id="filterTraining" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
-                                <option value="">Chọn học kỳ - năm học</option>
-                                @foreach($semesters as $semester)
-                                    @if(session('semester') && session('semesterFilter'))
-                                    @php
-                                        $selectSemester = $semester->semesterID == session('semester')->semesterID ? "selected" : null;
-                                    @endphp
-                                    <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}} {{$semester->schoolYear}}</option>
-                                    @else
-                                    <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
+                    <form method="POST" action="{{route('course_lecturer.filter')}}" id="formFilterTraining">
+                        {{ csrf_field() }}
+                        <div class="filter col-md-8 row">
+                            <label for="filterSemester" class="col-sm-3 col-form-label label-filter">Học Kỳ - Năm Học</label>
+                            <div class="col-sm-6"> 
+                                <select type="text" name="semester" class="form-control input-filter" id="filterTraining" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                    <option value="">Chọn học kỳ - năm học</option>
+                                    @foreach($semesters as $semester)
+                                        @if(session('semester') && session('semesterFilter'))
+                                        @php
+                                            $selectSemester = $semester->semesterID == session('semester')->semesterID ? "selected" : null;
+                                        @endphp
+                                        <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}} {{$semester->schoolYear}}</option>
+                                        @else
+                                        <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="hidden"></button>
                         </div>
-                        <button type="submit" class="hidden"></button>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
                 <div class="col-md-4 add-btn1">
-                        <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
+                    <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                 </div>
                 <!-- LINE MODAL -->
 
                 <div class="modal fade" id="modalCourseLecturer" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 
                     <div class="modal-dialog">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
-                                                            
-                            <div class="modal-content" style="width: 100%;">
-                                <div class="modal-header">
-                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                </div>
-                                <form method="POST" action="{{route('course_lecturer.save')}}" id="formCourseLecturerCreate">
-                                        {{ csrf_field() }}
-                                            <div class="modal-body">
-                                                <!-- content goes here -->
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Học kỳ - Năm học</label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="semester" style="color: #000;">
-                                                            <option value="">Chọn học kỳ - năm học</option>
-                                                            @foreach($semesters as $semester)
-                                                                <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="teacher" class="form-control" placeholder="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Môn học </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="course" class="form-control" placeholder="">
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-3 col-form-label">Sĩ số sinh viên</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="text" name="number_of_student" class="form-control" id="" placeholder="">
-                                                    </div>
-
-                                                    <label for="" class="col-sm-3 col-form-label">Nhóm</label>
-                                                    <div class="col-sm-3">
-                                                        <input type="text" name="course_group" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-2 col-form-label">Lý Thuyết</label>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">N</i>
-                                                        <input type="text" name="theory_group" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
-                                                        <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" >
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">SgTr</i>
-                                                        <input type="text" name="theory_in_hour" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">SgNg</i>
-                                                        <input type="text" name="theory_overtime" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">Sg7</i>
-                                                        <input type="text" name="theory_day_off" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">QC</i>
-                                                        <input type="text" name="theory_standard" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                </div>  
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-2 col-form-label">Thực Hành</label>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">N</i>
-                                                        <input type="text" name="practice_group" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">Sg/N</i>
-                                                        <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" >
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">SgTr</i>
-                                                        <input type="text" name="practice_in_hour" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">SgNg</i>
-                                                        <input type="text" name="practice_overtime" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">Sg7</i>
-                                                        <input type="text" name="practice_day_off" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">QC</i>
-                                                        <input type="text" name="practice_standard" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                </div> 
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-2 col-form-label">Tự Học</label>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">Sg</i>
-                                                        <input type="text" name="self_learning_time" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <i for="" class="col-sm-2 col-form-label">QC</i>
-                                                        <input type="text" name="self_learning_standard" class="form-control" id="" placeholder="">
-                                                    </div>
-                                                </div>
-                                        </div>
-                                            <div class="modal-footer">
-                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                    <div class="btn-group col-md-3" role="group">
-                                                        <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
-                                                    </div>
-                                                    <div class="btn-group col-md-3" role="group">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="profile">
-                            <div class="modal-content" style="width: 100%;">
-                                <div class="modal-header">
-                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                </div>
-                                <form action="{{route('course_lecturer.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
-                                {{csrf_field()}}
-                                <div class="modal-body">
-                                    <div class="form-group row">
-                                        <label for=" " class="col-sm-3 col-form-label">Học kỳ - Năm học</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="semester" style="color: #000;">
-                                                    <option value="">Chọn học kỳ - năm học</option>
-                                                        @foreach($semesters as $semester)
-                                                        <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                </div>
-                                            </div>
-                                           
-                                <div class="form-group row">
-                                            <label for="" class="col-sm-3 col-form-label">Import File</label>
-                                            <div class="col-sm-9">
-                                                <input type="file" name="imported_file"/>
-                                            </div>
-                                </div>
-                                <div class="form-group row">
-                                            <label for="" class="col-sm-3 col-form-label">Trường dữ liệu</label>
-                                            <div class="col-sm-9">
-                                                <b style="font-size: 12px;"> {tengv,monhoc,so_sv,nhom,nhom_lt<br/>tronggio_lt,ngoaigio_lt,ngaynghi_lt,quychuan_lt,nhom_th,tronggio_th<br/>
-                                                    ngoaigio_th,ngaynghi_th,quychuan_th,gio_tuhoc,quychuan_tuhoc}
-                                                </b>
-                                            </div>
-                                </div>
-                                
-                                <div class="modal-footer">
-                                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-
-                                        <div class="btn-group col-md-3" role="group">
-                                            <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
-                                        </div>
-                                        <div class="btn-group col-md-3" role="group">
-                                            <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                        </div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="home">
+                                                                
+                                <div class="modal-content" style="width: 100%;">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
                                     </div>
+                                    <form method="POST" action="{{route('course_lecturer.save')}}" id="formCourseLecturerCreate">
+                                        {{ csrf_field() }}
+                                        <div class="modal-body">
+                                            <!-- content goes here -->
+                                            <div class="form-group row">
+                                                <label for=" " class="col-sm-3 col-form-label">Học kỳ - Năm học</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="semester" style="color: #000;">
+                                                        <option value="">Chọn học kỳ - năm học</option>
+                                                        @foreach($semesters as $semester)
+                                                            <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for=" " class="col-sm-3 col-form-label">Tên giảng viên </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="teacher" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for=" " class="col-sm-3 col-form-label">Môn học </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" name="course" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label">Sĩ số sinh viên</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" name="number_of_student" class="form-control" id="" placeholder="">
+                                                </div>
+
+                                                <label for="" class="col-sm-3 col-form-label">Nhóm</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" name="course_group" class="form-control" id="" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Lý Thuyết</label>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">N</i>
+                                                    <input type="text" name="theory_group" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                    <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" >
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">SgTr</i>
+                                                    <input type="text" name="theory_in_hour" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">SgNg</i>
+                                                    <input type="text" name="theory_overtime" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">Sg7</i>
+                                                    <input type="text" name="theory_day_off" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">QC</i>
+                                                    <input type="text" name="theory_standard" class="form-control" id="" placeholder="">
+                                                </div>
+                                            </div>  
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Thực Hành</label>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">N</i>
+                                                    <input type="text" name="practice_group" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">Sg/N</i>
+                                                    <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" >
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">SgTr</i>
+                                                    <input type="text" name="practice_in_hour" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">SgNg</i>
+                                                    <input type="text" name="practice_overtime" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">Sg7</i>
+                                                    <input type="text" name="practice_day_off" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">QC</i>
+                                                    <input type="text" name="practice_standard" class="form-control" id="" placeholder="">
+                                                </div>
+                                            </div> 
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label">Tự Học</label>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">Sg</i>
+                                                    <input type="text" name="self_learning_time" class="form-control" id="" placeholder="">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <i for="" class="col-sm-2 col-form-label">QC</i>
+                                                    <input type="text" name="self_learning_standard" class="form-control" id="" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                <div class="btn-group col-md-3" role="group">
+                                                    <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                                </div>
+                                                <div class="btn-group col-md-3" role="group">
+                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
+                            <div role="tabpanel" class="tab-pane" id="profile">
+                                <div class="modal-content" style="width: 100%;">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                        <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
+                                    </div>
+                                    <form action="{{route('course_lecturer.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
+                                    {{csrf_field()}}
+                                        <div class="modal-body">
+                                            <div class="form-group row">
+                                                <label for=" " class="col-sm-3 col-form-label">Học kỳ - Năm học</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" name="semester" style="color: #000;">
+                                                        <option value="">Chọn học kỳ - năm học</option>
+                                                        @foreach($semesters as $semester)
+                                                            <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label">Import File</label>
+                                                <div class="col-sm-9">
+                                                    <input type="file" name="imported_file"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label">Trường dữ liệu</label>
+                                                <div class="col-sm-9">
+                                                    <b style="font-size: 12px;"> {tengv,monhoc,so_sv,nhom,nhom_lt<br/>tronggio_lt,ngoaigio_lt,ngaynghi_lt,quychuan_lt,nhom_th,tronggio_th<br/>
+                                                        ngoaigio_th,ngaynghi_th,quychuan_th,gio_tuhoc,quychuan_tuhoc}
+                                                    </b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
 
-                            </div>
-                            </form>
+                                                <div class="btn-group col-md-3" role="group">
+                                                    <button class="btn btn-primary" name="import" style="width: 50%;margin-left: 50%;" type="submit">Import</button>
+                                                </div>
+                                                <div class="btn-group col-md-3" role="group">
+                                                    <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
 

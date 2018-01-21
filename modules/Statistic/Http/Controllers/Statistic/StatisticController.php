@@ -9,6 +9,7 @@ use Modules\Statistic\Entities\CourseLecturer;
 use Modules\Statistic\Repositories\CourseLecturerRepository;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
 use Modules\ManageCategory\Repositories\SemesterRepository;
+use PDF;
 
 class StatisticController extends Controller
 {
@@ -26,5 +27,20 @@ class StatisticController extends Controller
                             // dd($course_lecturers);
 
         return view('statistic::Statistic.statistic',compact('course_lecturers','school_years','semesters'));
+    }
+
+    /**
+    * xuat ra file pdf
+    * @author AnTV
+    * @return view
+    */
+    public function exportPDF(){
+        $course_lecturers = CourseLecturer::leftjoin('courses','course_lecturers.courseName','=','courses.name')
+                            ->get();
+        // $school_years = SchoolYearRepository::get_school_active();
+        // $semesters = SemesterRepository::getAllSemester();
+        
+        $pdf = PDF::loadView('statistic::Statistic.statisticpdf' , ['course_lecturers' => $course_lecturers]);
+        return $pdf->download('course_lecturers.pdf');
     }
 }

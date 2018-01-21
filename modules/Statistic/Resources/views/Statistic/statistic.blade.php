@@ -30,7 +30,7 @@
                     <span>{{$errors->first('checkbox')}}</span>
                 </div>
             @endif
-            <div class="row"> 
+            {{--  <div class="row"> 
                 <form method="POST" action="{{route('courses.filter')}}" id="formFilterCourses">
                             {{ csrf_field() }}
                     <div class="filter-orther">
@@ -69,7 +69,7 @@
                         <button type="sumbit" class="hidden"></button>
                     </div>
                 </form>
-            </div>
+            </div>  --}}
             <br>
             <div class="content-table relative">
                 <table class="table table-hover table-condensed table-bordered" id="table_training">
@@ -144,6 +144,9 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-4 add-btn1">
+                <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Xuất file</button>
             </div>
         </div>
     </div>

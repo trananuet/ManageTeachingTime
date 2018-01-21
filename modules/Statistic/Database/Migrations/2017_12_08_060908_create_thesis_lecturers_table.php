@@ -16,8 +16,11 @@ class CreateThesisLecturersTable extends Migration
         Schema::create('thesis_lecturers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('teacherID');
-            $table->integer('thesisID');
-            $table->integer('number');
+            $table->integer('khoa_luan');
+            $table->integer('luan_van');
+            $table->integer('luan_an');
+            $table->integer('nien_luan');
+            $table->integer('sum_thesis');
             $table->timestamps();
         });
     }
