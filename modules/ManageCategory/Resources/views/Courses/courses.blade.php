@@ -77,18 +77,16 @@
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalTeacher" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ Excel</a></li>
-                    </ul>
+                    <div class="addExcel">
+                        <ul class="nav nav-tabs nav-default" role="tablist">
+                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Thêm dữ liệu từ excel</a></li>
+                        </ul>
+                    </div>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">                                
                             <div class="modal-content" style="width: 100%;">
-                                <div class="modal-header">
-                                    <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                </div>
                                 <form method="POST" action="{{route('courses.save')}}" id="formCoursesCreate">
                                 {{ csrf_field() }}
                                     <div class="modal-body">

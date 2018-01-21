@@ -29,6 +29,11 @@
                 <div class="alert alert-danger">
                     <span>{{$errors->first('checkbox')}}</span>
                 </div>
+            @endif
+            @if(Session::has('message'))
+                    <div class="alert alert-danger">
+                        <span>{{Session::get('message')}}</span>
+                    </div>
             @endif 
             <div class="row"> 
                 <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
@@ -70,10 +75,6 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">                                
                                 <div class="modal-content" style="width: 100%;">
-                                    <div class="modal-header">
-                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="lineModalLabel">QUẢN LÝ DANH MỤC</h4>
-                                    </div>
                                     <form method="POST" action="{{route('semester.save')}}" id="formSemesterCreate">
                                     {{ csrf_field() }}
                                         <div class="modal-body">
@@ -112,10 +113,6 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
                                 <div class="modal-content" style="width: 100%;">
-                                    <div class="modal-header">
-                                        <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
-                                    </div>
                                     <form action="{{route('semester.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                                         {{csrf_field()}}
                                     <div class="modal-body">
