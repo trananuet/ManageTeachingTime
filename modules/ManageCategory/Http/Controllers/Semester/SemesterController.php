@@ -114,17 +114,23 @@ class SemesterController extends Controller
             {
               if(!empty($row))
               {
+                if(!empty($row['name'])) {
                 $dataArray[] =
                 [
                   'yearID' => $request->yearID,
                   'name' => $row['name']
                 ];
+                }
+                else
+                {
+                    return back()->with('message','Sai tên trường dữ liệu !');
+                }
               }
           } 
           if(!empty($dataArray))
           {             
             Semester::insert($dataArray);
-            return redirect()->back()->with('thongbao','Import thành công');
+            return view('managecategory::Semester.excel',['datas' => $data]);
            }
          }
        }

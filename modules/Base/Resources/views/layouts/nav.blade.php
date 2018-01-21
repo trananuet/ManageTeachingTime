@@ -21,6 +21,12 @@
     .alogin {
         background: white;
     }
+    .addExcel {
+        background: #56aaff;
+        border-radius: 10px 10px 0px 0px;
+        color: black;
+        font-weight: bold;
+    }
 </style>
 <div id="wrapper">
 

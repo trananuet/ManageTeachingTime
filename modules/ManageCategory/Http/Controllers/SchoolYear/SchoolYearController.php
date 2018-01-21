@@ -22,8 +22,7 @@ class SchoolYearController extends Controller
     public function getSchoolYear(){
         $school_years = SchoolYearRepository::get_year_training();
         $trainings = TrainingRepository::getAllTraining();
-        $dataArray = 0;
-        return view('managecategory::SchoolYear.schoolYear',compact('school_years','trainings','dataArray'));
+        return view('managecategory::SchoolYear.schoolYear',compact('school_years','trainings'));
     }
 
     public function postImport(Request $request)
@@ -42,19 +41,25 @@ class SchoolYearController extends Controller
             {
               if(!empty($row))
               {
+                if(!empty($row['name']) && !empty($row['active'])) {
                 $dataArray[] =
                 [
                   'trainingID' => $request->trainingID,
                   'name' => $row['name'],
                   'active' => $row['active']
                 ];
+                }
+                else
+                {
+                    return back()->with('message','Sai tên trường dữ liệu !');
+                }
               }
           } 
           if(!empty($dataArray))
           {
                   
             SchoolYear::insert($dataArray);
-            return back();
+            return view('managecategory::SchoolYear.excel',['datas' => $data]);
            }
          }
        }
