@@ -1,6 +1,8 @@
 <?php 
 
 define('ID_ADMIN', 0);
+define('ID_PDT', 1);
+define('ID_TEACHER', 2);
 define('ROLE_ADMIN', 1);
 
 //DEFINE NAME_ROLE
