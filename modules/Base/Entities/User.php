@@ -54,6 +54,24 @@ class User extends Authenticatable
         }
         return $check;
     }
+    /**
+     * Check giang vien
+     * @author AnTV
+     * @param ID_TEACHER == 2 <helpers/DefineHelper.php>
+     * @return boolean
+     */
+    public function checkTeacher(){
+        $listRole = UserRole::where('user_id', $this->id)
+                            ->get();
+        $check = false;
+        for ($i=0; $i < count($listRole) ; $i++) { 
+            if($listRole[$i]->role_id == ID_TEACHER){
+                $check = true;
+                break;
+            }
+        }
+        return $check;
+    }
 
     /**
     * quan ly he dao tao

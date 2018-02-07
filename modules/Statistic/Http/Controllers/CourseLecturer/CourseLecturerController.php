@@ -12,6 +12,8 @@ use Modules\ManageCategory\Repositories\CoursesRepository;
 use Modules\ManageCategory\Repositories\SemesterRepository;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
 use Modules\ManageCategory\Repositories\TeacherRepository;
+use Modules\User\Entities\User;
+use Illuminate\Support\Facades\Auth;
 use Excel;
 
 class CourseLecturerController extends Controller
@@ -23,6 +25,15 @@ class CourseLecturerController extends Controller
         $semesters = SemesterRepository::getAllSemester();
         $school_years = SchoolYearRepository::get_school_active();
         $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
+
+        if(Auth::user()->checkTeacher()){
+                    $course_lecturers =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName")
+                    ->leftjoin('semesters','semesters.semesterID','=','course_lecturers.semesterID')
+                    ->where('teacherName',Auth::user()->name)
+                    ->get();
+        } else {
+            $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
+        }
         return view('statistic::CourseLecturer.courseLecturer',compact('course_lecturers','teachers','courses','semesters','school_years'));
     }
 
