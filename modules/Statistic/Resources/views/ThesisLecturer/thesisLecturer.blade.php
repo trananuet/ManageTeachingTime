@@ -19,11 +19,11 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="row">
+<div class="right_col" role="main">
+    <div class="page-title">
+         <div class="row">
             <div class="box-top row">
-                <h3>Giảng viên khóa luận</h3>
+                <h3>Giảng Viên Khóa Luận</h3>
                 <hr>
                 @if($errors->has('checkbox'))
                     <div class="alert alert-danger">
@@ -33,6 +33,7 @@
                 <div class="col-md-4 add-btn1">
                     <button data-toggle="modal" data-target="#modalThesisLecturer" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                 </div>
+            </div>
                 <!-- LINE MODAL -->
                 <div class="modal fade" id="modalThesisLecturer" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">

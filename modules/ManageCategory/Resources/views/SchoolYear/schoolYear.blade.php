@@ -2,38 +2,12 @@
 @section('nav')
 	@include('base::layouts.nav')
 @endsection
-@section('css')
-    <style>
-        .table>thead>tr>th {
-            vertical-align: inherit;
-            text-align: center;
-        }
-        .table>tbody>tr>td {
-            vertical-align: inherit;
-            text-align: center;
-        }
-        .table .text-name{
-            text-align: left;
-        }
-        .toggle{
-            width: 100px!important;
-            height: 10px!important;
-            float: right;
-        }
-        .dataTables_wrapper .dataTables_filter {
-            float: right;
-            text-align: left;
-        }
-    </style>
-@endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="box-top row">
-            <br>
-            <h3>Năm học</h3>
-            <hr>
+<div class="right_col" role="main">
+    <div class="page-title">
+        <h3>Năm Học</h3>
+        <hr>
             <div class="row">
                 @if(count($errors)>0)
                     <div class="alert alert-danger">
@@ -53,7 +27,11 @@
                     </div>
                 @endif
             </div>
-            <div class="row"> 
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel"> 
+
+
                 <form method="POST" action="{{route('school_year.filter')}}" id="formFilterTraining">
                             {{ csrf_field() }}
                     <div class="filter col-md-8 row">
@@ -77,9 +55,11 @@
                     </div>
                 </form>
             </div>
+            </div>
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
+        </div>
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalSchoolYear" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">

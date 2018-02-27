@@ -19,11 +19,10 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="box-top row">
+<div class="right_col" role="main">
+    <div class="page-title">
             <br>
-            <h3>Quản lý chức năng</h3>
+            <h3>Quản Lý Chức Năng</h3>
             <hr>
             <div class="row">
                 @if($errors->has('checkbox'))
