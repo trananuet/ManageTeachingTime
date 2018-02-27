@@ -18,12 +18,7 @@
     </style>
 @endsection
 @section('content')
-@include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-         <div class="row">
-            <div class="box-top row">
-            <br>
+
             <h3>Khoa, phòng ban</h3>
             <hr>
             @if($errors->has('checkbox'))
@@ -39,7 +34,6 @@
                 <div class="add-btn col-md-2">
                     <button data-toggle="modal" data-target="#modalFaculty" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                 </div>
-            </div>
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalFaculty" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -180,9 +174,8 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
+    <div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
     <script>

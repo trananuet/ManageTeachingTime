@@ -19,9 +19,6 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-            <br>
             <h3>Quản Lý Chức Năng</h3>
             <hr>
             <div class="row">
@@ -132,9 +129,8 @@
                         @endforeach
                     </tbody>
                 </table>
-        </div>
-    </div>
-</div>
+        <div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
     <script>

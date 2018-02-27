@@ -18,13 +18,8 @@
     </style>
 @endsection
 @section('content')
-@include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-        <div class="row">
-            <div class="box-top row">
-                <br>
-                <h3>Chức danh</h3>
+    <br>
+    <h3>Chức Danh</h3>
                 <hr>
                 @if($errors->has('checkbox'))
                     <div class="alert alert-danger">
@@ -221,10 +216,8 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
     <script>

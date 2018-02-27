@@ -19,8 +19,7 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
+
             <h3>Thống Kê Giờ Dạy</h3>
             <hr>
             @if($errors->has('checkbox'))
@@ -146,9 +145,8 @@
             <div class="col-md-4 add-btn1">
                 <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Xuất file</button>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
      {{--  <script>

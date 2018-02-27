@@ -39,11 +39,7 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-        <div class="box-top row">
-            <br>
-            <h3>Quản lý phân quyền</h3>
+            <h3>Quản Lý Phân Quyền</h3>
             <hr>
             <div class="row">
                 @if($errors->has('checkbox'))
@@ -55,7 +51,6 @@
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalPermission" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
-        </div>
             <div class="modal fade" id="modalPermission" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -103,7 +98,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <div class="content-manage-system">
             <form method="POST" action="{{route('manage_permission.remove')}}" id="formRemovePermission">
                 {{ csrf_field() }}
@@ -190,9 +184,8 @@
                         @endforeach
                     </tbody>
                 </table>
-        </div>
-    </div>
-</div>
+        <div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
     <script>

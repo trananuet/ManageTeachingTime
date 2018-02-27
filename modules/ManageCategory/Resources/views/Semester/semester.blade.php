@@ -18,9 +18,6 @@
     </style>
 @endsection
 @section('content')
-@include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
         <h3>Học Kỳ</h3>
         <hr>
             @if($errors->has('checkbox'))
@@ -335,8 +332,7 @@
                 </table>
             </div>
         @endif
-    </div>
-</div>
+
 @endsection
 @section('js')
     <script>

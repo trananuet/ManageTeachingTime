@@ -19,11 +19,6 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-         <div class="row">
-            <div class="box-top row">
-            <br>
             <h3>Quản Lý Vai Trò</h3>
             <hr>
             <div class="row">
@@ -36,7 +31,6 @@
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalAccess" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
-        </div>
             <div class="modal fade" id="modalAccess" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -70,7 +64,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <div class="content-manage-system">
             <form method="POST" action="{{route('manage_access.remove')}}" id="formRemoveAccess">
                 {{ csrf_field() }}
@@ -135,9 +128,8 @@
                         @endforeach
                     </tbody>
                 </table>
-        </div>
-    </div>
-</div>
+<div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
     <script>

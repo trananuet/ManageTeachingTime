@@ -19,11 +19,6 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-         <div class="row">
-            <div class="box-top row">
-                <br>
                 <h3>Khóa Luận</h3>
                 <hr>
                 @if($errors->has('checkbox'))
@@ -39,7 +34,6 @@
                     <div class="add-btn col-md-2">
                         <button data-toggle="modal" data-target="#modalTeacher" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
                     </div>
-                </div>
                 <!-- LINE MODAL -->
                 <div class="modal fade" id="modalTeacher" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -124,7 +118,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <div class="school-content-table relative">
                 <form method="POST" action="{{route('thesis.remove')}}">
                     {{ csrf_field() }}
@@ -199,10 +192,8 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-</div>
+    <div class="space">&nbsp;</div>
+
 @endsection
 @section('js')
     <script>
