@@ -3,7 +3,6 @@
     @include('base::layouts.nav')
 @endsection
 @section('content')
-<div class="right_col" role="main">
 		<div class="col-xs-12 col-sm-6 col-md-8" style="height: 520px;">                    
 					<div class="panel-body" >
 						<h4 style="color: black;font-weight: bold;">THÔNG BÁO</h4><hr/>
@@ -46,5 +45,4 @@
 					</div>                     
 				</div>  
 			</div>
-</div>
 @endsection

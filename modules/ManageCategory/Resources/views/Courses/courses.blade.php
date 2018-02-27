@@ -19,11 +19,6 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div class="right_col" role="main">
-    <div class="page-title">
-         <div class="row">
-            <div class="box-top row">
-            <br>
             <h3>Môn Học</h3>
             <hr>
             @if($errors->has('checkbox'))
@@ -75,7 +70,6 @@
             <div class="col-md-2 add-btn-orther">
                 <button data-toggle="modal" data-target="#modalTeacher" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
-        </div>
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalTeacher" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -223,7 +217,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         @if(session('courses'))
             <div class="content-table relative">
                 <form method="POST" action="{{route('courses.remove')}}">
@@ -494,8 +487,7 @@
             </table>
         </div>
         @endif
-    </div>
-</div>
+
 @endsection
 @section('js')
     <script>

@@ -36,25 +36,56 @@
 			color:black;
 			font-size: 12px;
 		}
+		.footer {
+	    position: fixed;
+	    height: 40px;
+	    background-color: #cccccc;
+	    bottom: 0px;
+	    left: 70px;
+	    right: 0px;
+	    margin-bottom: 0px;
+	    font-weight: bold;
+
+	}
 	</style>
 </head>
-<body class="nav-md font">
-{{-- BEGIN NAV --}}
-	@yield('nav')
-{{-- END NAV --}}
+  <body class="nav-md font">
+    <div class="container body">
+      <div class="main_container">
+        {{-- BEGIN NAV --}}
+			@yield('nav')
+		{{-- END NAV --}}
 
-{{-- SECTION --}}
-    @yield('content')
-{{-- ENDSECTION --}}
+        
+        <!-- /top navigation -->
 
-{{-- FOOTER --}}
-<!-- Footer -->
-<footer style="background: #cccccc;">
-          <div class="pull-right">
-            <b>Trung tâm máy tính</b>
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row tile_count">
+            
+            
+			{{-- SECTION --}}
+			    @yield('content')
+			{{-- ENDSECTION --}}
+            
+          </div>
+          <!-- /top tiles -->
+
+          <br /><br /><br /><br /><br /><br />
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right footer">
+            TRUNG TÂM MÁY TÍNH
           </div>
           <div class="clearfix"></div>
-</footer>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
 <!-- JS -->
 <script src="{{asset('/node_modules/jquery/dist/jquery.min.js')}}"></script>
 {{--  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  --}}
