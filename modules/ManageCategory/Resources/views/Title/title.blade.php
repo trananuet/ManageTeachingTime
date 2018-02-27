@@ -19,8 +19,8 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
+<div class="right_col" role="main">
+    <div class="page-title">
         <div class="row">
             <div class="box-top row">
                 <br>

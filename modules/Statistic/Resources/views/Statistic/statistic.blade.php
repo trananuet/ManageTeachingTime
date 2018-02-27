@@ -19,11 +19,9 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="box-top row">
-            <br>
-            <h3>Thống kê giờ dạy</h3>
+<div class="right_col" role="main">
+    <div class="page-title">
+            <h3>Thống Kê Giờ Dạy</h3>
             <hr>
             @if($errors->has('checkbox'))
                 <div class="alert alert-danger">

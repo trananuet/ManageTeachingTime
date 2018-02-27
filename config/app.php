@@ -165,6 +165,7 @@ return [
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        
 
         /*
          * Package Service Providers...

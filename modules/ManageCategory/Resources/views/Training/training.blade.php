@@ -28,12 +28,12 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="box-top row">
-            <br>
-            <h3>Hệ đào tạo</h3>
-            <hr>
+<div class="right_col" role="main">
+    <div class="page-title">
+         <div class="row">
+            <div class="box-top row">
+        <h3>Hệ đào tạo</h3>
+        <hr>
             <div class="row">
                 @if(Session::has('message'))
                     <div class="alert alert-danger">
@@ -44,6 +44,7 @@
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
+        </div>
             <!-- LINE MODAL -->
             <div class="modal fade" id="modalTraining" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog ">
@@ -121,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="school-content-table relative">
             <form method="POST" action="{{route('training.remove')}}">

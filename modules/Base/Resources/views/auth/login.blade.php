@@ -1,12 +1,12 @@
 @extends('base::layouts.master')
 @section('nav')
-	@include('base::layouts.nav')
+    @include('base::layouts.nav')
 @endsection
 @section('content')
-<br/><br/><br/><br/>
+<div class="right_col" role="main">
 		<div class="col-xs-12 col-sm-6 col-md-8" style="height: 520px;">                    
 					<div class="panel-body" >
-						<h4 style="color: black;font-weight: bold;">Thông Báo</h4><hr/>
+						<h4 style="color: black;font-weight: bold;">THÔNG BÁO</h4><hr/>
 						<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 						{!! $contents !!}
 					</div>                     
@@ -14,7 +14,7 @@
 			<div class="col-xs-12 col-sm-6 col-md-4" style="height: 520px;">                    
 				<div class="panel panel-info" >
 					<div class="panel-body" >
-						<h4 style="color: #007f7f;text-align: center;">Đăng Nhập</h4><hr/>
+						<h4 style="color: #007f7f;text-align: center;">ĐĂNG NHẬP</h4><hr/>
 						<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 						
 						<form class="form-horizontal" role="form" action ={{route('login')}} method ='POST' accept-charset='utf-8'>
@@ -46,5 +46,5 @@
 					</div>                     
 				</div>  
 			</div>
-
+</div>
 @endsection

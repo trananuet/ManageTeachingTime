@@ -19,12 +19,10 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="box-top row">
-            <br>
-            <h3>Học kỳ</h3>
-            <hr>
+<div class="right_col" role="main">
+    <div class="page-title">
+        <h3>Học Kỳ</h3>
+        <hr>
             @if($errors->has('checkbox'))
                 <div class="alert alert-danger">
                     <span>{{$errors->first('checkbox')}}</span>
@@ -35,7 +33,9 @@
                         <span>{{Session::get('message')}}</span>
                     </div>
             @endif 
-            <div class="row"> 
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="dashboard_graph x_panel"> 
                 <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
                             {{ csrf_field() }}
                     <div class="filter col-md-8 row">
@@ -58,6 +58,7 @@
                         <button type="submit" class="hidden"></button>
                     </div>
                 </form>
+            </div>
             </div>
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>

@@ -39,8 +39,8 @@
 @endsection
 @section('content')
 @include('base::layouts.manager-left')
-<div id="page-wrapper">
-    <div class="container-fluid">
+<div class="right_col" role="main">
+    <div class="page-title">
         <div class="box-top row">
             <br>
             <h3>Quản lý phân quyền</h3>
@@ -55,6 +55,7 @@
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalPermission" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
+        </div>
             <div class="modal fade" id="modalPermission" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

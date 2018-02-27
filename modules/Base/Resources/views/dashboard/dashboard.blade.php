@@ -1,16 +1,12 @@
 @extends('base::layouts.master')
 @section('nav')
-	@include('base::layouts.nav')
+    @include('base::layouts.nav')
 @endsection
 @section('content')
-    @include('base::layouts.manager-left')
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Thông báo</h1>
-                </div>
-            </div>
+    <div class="right_col" role="main">
+        <div class="page-title">
+                <h3>THÔNG BÁO</h3>
+            <hr/>
         </div>
     </div>
 @endsection
