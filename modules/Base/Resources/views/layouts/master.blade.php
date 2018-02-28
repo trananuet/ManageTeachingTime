@@ -38,14 +38,17 @@
 		}
 		.footer {
 	    position: fixed;
-	    height: 40px;
 	    background-color: #cccccc;
 	    bottom: 0px;
-	    left: 70px;
+	    left: 0px;
 	    right: 0px;
 	    margin-bottom: 0px;
 	    font-weight: bold;
-
+	    height: 40px;
+	}
+	.clear {
+		width: 80%;
+		text-align: right;
 	}
 	</style>
 </head>
@@ -72,15 +75,16 @@
           </div>
           <!-- /top tiles -->
 
-          <br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br /><br />
+
         </div>
         <!-- /page content -->
-
+        <div class="clearfix"></div>
         <!-- footer content -->
-        <footer>
-          <div class="pull-right footer">
+        <footer class="footer">
+        	<div class="clear">
             TRUNG TÂM MÁY TÍNH
-          </div>
+        </div>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
