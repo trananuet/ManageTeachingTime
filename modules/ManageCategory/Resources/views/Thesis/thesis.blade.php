@@ -53,13 +53,17 @@
                                             <div class="modal-body">
                                                 <!-- content goes here -->
                                                 <div class="form-group row">
-                                                    <label for="" class="col-sm-3 col-form-label">Tên khóa luận</label>
+                                                    <label for="" class="col-sm-3 col-form-label">Kiểu đề tài</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="name" class="form-control" id="" placeholder="Tên khóa luận">
+                                                        <input type="text" name="name" class="form-control" id="" placeholder="Kiểu đề tài">
                                                     </div>
                                                 </div>
-                                                
-                                                
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-3 col-form-label">Mã đề tài</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="type" class="form-control" id="" placeholder="Mã đề tài">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group row">
                                                     <label for="" class="col-sm-3 col-form-label">Định mức</label>
                                                     <div class="col-sm-9">
@@ -128,7 +132,7 @@
                     <thead class ="table-school-year">
                         <tr>
                             <th class="stt active-display">STT</th>
-                            <th class="">Tên khóa luận</th>
+                            <th class="">Kiểu đề tài</th>
                             <th class="">Định mức</th>
                             <th class="cus">Tùy chọn</th>
                             <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
@@ -157,17 +161,21 @@
                                         </div>
                                         <form method="POST" action="{{route('thesis.save')}}" id="formthesisEdit">
                                             {{ csrf_field() }}
-                                                <div class="modal-body">
-                                                    <!-- content goes here -->
-                                                    <input type="hidden" name="id" value="{{$thesi->id}}">
-                                                    <div class="form-group row">
-                                                        <label for="thesisEdit" class="col-sm-3 col-form-label">Tên</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" name="name" class="form-control" id="thesisEdit" placeholder="Tên" value="{{$thesi->name}}" required>
-                                                        </div>
+                                            <div class="modal-body">
+                                                <!-- content goes here -->
+                                                <input type="hidden" name="id" value="{{$thesi->id}}">
+                                                <div class="form-group row">
+                                                    <label for="thesisEdit" class="col-sm-3 col-form-label">Kiểu đề tài</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="name" class="form-control" id="thesisEdit" placeholder="Kiểu đề tài" value="{{$thesi->name}}" required>
                                                     </div>
-                                                    
-                                                
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-3 col-form-label">Mã đề tài</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" name="type" class="form-control" id="" placeholder="Mã đề tài" value="{{$thesi->name}}" required>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group row">
                                                         <label for="teacherEdit" class="col-sm-3 col-form-label">Định mức</label>
                                                         <div class="col-sm-9">
@@ -207,11 +215,13 @@
         $(function() {
             $("#formThesisCreate").validate({
                 rules: {
-                        name: "required", 
+                        name: "required",
+                        type: "required", 
                         quota: "required"
                     },
                 messages: {
-                        name: "Vui lòng điền tên khóa luận.",
+                        name: "Vui lòng điền Kiểu đề tài.",
+                        type: "Vui lòng điền Mã đề tài.",
                         quota: "Vui lòng điền định mức."
                 }
             });

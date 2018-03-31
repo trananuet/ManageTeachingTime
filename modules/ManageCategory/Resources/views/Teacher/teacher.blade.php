@@ -101,7 +101,7 @@
                 <form method="POST" action="{{route('teacher.remove')}}">
                     {{ csrf_field() }}
                     <div class="box-remove-all">
-                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa khoa, phòng ban đã chọn?');">Xóa</button>
+                        <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa giảng viên đã chọn?');">Xóa</button>
                     </div>
                 <table class="table table-hover table-condensed table-bordered" id="table_training">
                     <thead class ="table-school-year">

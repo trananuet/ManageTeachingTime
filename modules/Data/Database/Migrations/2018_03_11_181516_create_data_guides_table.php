@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTeachersTable extends Migration
+class CreateDataGuidesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('data_guides', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('titleID');
-            $table->integer('facultyID');
-            $table->integer('reduce')->nullable();
-            $table->string('account')->nullable();
+            $table->integer('teacherID');
+            $table->integer('type');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateTeachersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('data_guides');
     }
 }

@@ -15,6 +15,7 @@ class CreateThesisTable extends Migration
     {
         Schema::create('thesis', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('type')->unique();
             $table->string('name');
             $table->integer('quota');
             $table->timestamps();

@@ -29,6 +29,7 @@ class TeacherRepository
                 $teacher->titleID = $request->title;
                 $teacher->facultyID = $request->faculty;
                 $teacher->reduce = $request->reduce;
+                $teacher->account = $request->account;
                 $teacher->save();
                 DB::commit();
                 return true;
@@ -38,6 +39,7 @@ class TeacherRepository
                 $teacher->titleID = $request->title;
                 $teacher->facultyID = $request->faculty;
                 $teacher->reduce = $request->reduce;
+                $teacher->account = $request->account;
                 $teacher->save();
                 DB::commit();
                 return true;

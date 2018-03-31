@@ -122,3 +122,24 @@ use Illuminate\Support\Facades\Auth;
             return $role_function_find;
         }
     }
+
+
+    /**
+    * sum
+    *
+    * @author AnTV
+    * @param  
+    * @param  
+    * @param  
+    * @return sum
+    */
+    if(!function_exists('sum_array')){
+        function sum_array($array, $a) {
+            // Return variable
+            $sum = 0;
+            for($i=0; $i < count($array); $i++){
+                $sum += $array[$i][$a];
+            }
+            return $sum;
+        }
+    }

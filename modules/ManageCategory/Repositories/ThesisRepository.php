@@ -21,6 +21,7 @@ class ThesisRepository
             if(isset($request->id)){
                 $thesis = Thesis::where('id', $request->id)->firstOrFail();
                 $thesis->name = $request->name;
+                $thesis->type = $request->type;
                 $thesis->quota = $request->quota;
                 $thesis->save();
                 DB::commit();
@@ -28,6 +29,7 @@ class ThesisRepository
             } else {   
                 $thesis = new Thesis();
                 $thesis->name = $request->name;
+                $thesis->type = $request->type;
                 $thesis->quota = $request->quota;
                 $thesis->save();
                 DB::commit();

@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Statistic\Http\Controllers\CourseLecturer;;
+namespace Modules\Data\Http\Controllers\Teach;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use Modules\Statistic\Entities\CourseLecturer;
+use Modules\Data\Entities\CourseLecturer;
 use Modules\ManageCategory\Entities\Semester;
-use Modules\Statistic\Repositories\CourseLecturerRepository;
+use Modules\Data\Repositories\DataTeachRepository;
 use Modules\ManageCategory\Repositories\CoursesRepository;
 use Modules\ManageCategory\Repositories\SemesterRepository;
 use Modules\ManageCategory\Repositories\SchoolYearRepository;
@@ -16,33 +16,33 @@ use Modules\User\Entities\User;
 use Illuminate\Support\Facades\Auth;
 use Excel;
 
-class CourseLecturerController extends Controller
+class TeachController extends Controller
 {
-    public function getCourseLecturer()
+    public function getTeach()
     {
         $teachers = TeacherRepository::getAllTeacher();
         $courses = CoursesRepository::getAllCourses();
         $semesters = SemesterRepository::getAllSemester();
         $school_years = SchoolYearRepository::get_school_active();
-        $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
+        $data_teaches = DataTeachRepository::get_all_data_teaching();
 
-        if(Auth::user()->checkTeacher()){
-                    $course_lecturers =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName")
-                    ->leftjoin('semesters','semesters.semesterID','=','course_lecturers.semesterID')
-                    ->where('teacherName',Auth::user()->name)
-                    ->get();
-        } else {
-            $course_lecturers = CourseLecturerRepository::getAllCourseLecturer();
-        }
-        return view('statistic::CourseLecturer.courseLecturer',compact('course_lecturers','teachers','courses','semesters','school_years'));
+        // if(Auth::user()->checkTeacher()){
+        //             $course_lecturers =CourseLecturer::selectRaw("course_lecturers.*,semesters.name as semesterName")
+        //             ->leftjoin('semesters','semesters.semesterID','=','course_lecturers.semesterID')
+        //             ->where('teacherName',Auth::user()->name)
+        //             ->get();
+        // } else {
+        //     $course_lecturers = TeachRepository::getAllCourseLecturer();
+        // }
+        return view('data::Teach.teach',compact('data_teaches','teachers','courses','semesters','school_years'));
     }
 
     
 
-    public function createEditCourseLecturer(Request $request)
+    public function createEditDataTeach(Request $request)
     {
-        $course_lecturer = CourseLecturerRepository::saveCourseLecturer($request);
-        if($course_lecturer == true) {
+        $data_teach = DataTeachRepository::save_data_teach($request);
+        if($data_teach == true) {
             return back();
         } else {
             return \Response::view('base::errors.500',array(),500);
@@ -50,15 +50,15 @@ class CourseLecturerController extends Controller
     }
 
 
-    public function delCourseLecturer(Request $request)
+    public function removelDataTeach(Request $request)
     {
         $this->validate($request, [
             'checkbox' => 'required'
         ],[
             'checkbox.required' => 'Bạn chưa chọn giảng viên môn học nào.!!!'
         ]);
-        $course_lecturer = CourseLecturerRepository::removeCourseLecturer($request);
-        if($course_lecturer == true) {
+        $data_teach = DataTeachRepository::remove_data_teach($request);
+        if($data_teach == true) {
             return redirect()->back();
         } else {
              return \Response::view('base::errors.500',array(),500);

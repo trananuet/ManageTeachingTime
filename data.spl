@@ -1,0 +1,700 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th3 26, 2018 lúc 05:35 PM
+-- Phiên bản máy phục vụ: 10.1.29-MariaDB
+-- Phiên bản PHP: 7.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `manage_teaching_time`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `name`, `account`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyễn Việt Anh', 'anhnv@vnu.edu.vn', '$2y$10$LgEdhHnNSSDcYm7ou6AJ8uEcu6YEK1sw3nSQV9B4jgWrea2Q7a40q', NULL, NULL),
+(2, 'Trần Văn An', 'tranvananuet@gmail.com', '$2y$10$LgEdhHnNSSDcYm7ou6AJ8uEcu6YEK1sw3nSQV9B4jgWrea2Q7a40q', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `credit` int(11) NOT NULL,
+  `semesterID` int(11) NOT NULL,
+  `yearID` int(11) NOT NULL,
+  `theory` int(11) DEFAULT NULL,
+  `practice` int(11) NOT NULL,
+  `self_study` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `courses`
+--
+
+INSERT INTO `courses` (`id`, `name`, `code_name`, `credit`, `semesterID`, `yearID`, `theory`, `practice`, `self_study`, `created_at`, `updated_at`) VALUES
+(1, 'Cơ sở dữ liệu', 'INT202', 3, 8, 2, 2, 1, 7, NULL, '2018-01-02 18:53:14'),
+(2, 'Toán cao cấp', 'INT203', 4, 10, 14, 1, 2, 1, '2017-12-07 14:47:41', '2017-12-31 15:44:05'),
+(3, 'Phát triển ứng dụng web', 'INT204', 3, 9, 14, 1, 2, 3, NULL, '2017-12-31 15:43:53'),
+(4, 'Tín hiệu hệ thống', 'INT206', 3, 8, 14, 2, 1, 7, '2017-12-31 22:38:01', '2017-12-31 22:38:01'),
+(5, 'Toán rời rạc', 'INT207', 3, 8, 14, 2, 1, 7, '2018-01-01 20:30:27', '2018-01-01 20:30:27');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `course_lecturers`
+--
+
+CREATE TABLE `course_lecturers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `teacherName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `courseName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `semesterID` int(11) NOT NULL,
+  `number_of_students` int(11) NOT NULL,
+  `course_group` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `theory_group` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sum_theory_hour` int(11) NOT NULL,
+  `theory_in_hour` int(11) NOT NULL,
+  `theory_overtime` int(11) NOT NULL,
+  `theory_day_off` int(11) NOT NULL,
+  `theory_standard` int(11) NOT NULL,
+  `practice_group` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sum_practice_hour` int(11) NOT NULL,
+  `practice_in_hour` int(11) NOT NULL,
+  `practice_overtime` int(11) NOT NULL,
+  `practice_day_off` int(11) NOT NULL,
+  `practice_standard` int(11) NOT NULL,
+  `self_learning_time` int(11) NOT NULL,
+  `self_learning_standard` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `course_lecturers`
+--
+
+INSERT INTO `course_lecturers` (`id`, `teacherName`, `courseName`, `semesterID`, `number_of_students`, `course_group`, `theory_group`, `sum_theory_hour`, `theory_in_hour`, `theory_overtime`, `theory_day_off`, `theory_standard`, `practice_group`, `sum_practice_hour`, `practice_in_hour`, `practice_overtime`, `practice_day_off`, `practice_standard`, `self_learning_time`, `self_learning_standard`, `created_at`, `updated_at`) VALUES
+(2, 'Nguyễn Việt Anh', 'Phát triển ứng dụng web', 8, 1, 'CL', '2', 70, 30, 30, 7, 45, '1', 25, 23, 12, 0, 12, 1, 1, '2017-12-22 23:14:28', '2018-01-03 06:14:50'),
+(9, 'Bùi Quang Hưng', 'Kho Dữ Liệu', 11, 67, 'CL', '1', 60, 12, 72, 61, 19, '2', 30, 71, 12, 12, 23, 43, 21, '2018-01-02 22:45:43', '2018-01-03 06:17:48'),
+(10, 'Bùi Văn Quang', 'Toán cao cấp', 9, 80, 'CL', '1', 0, 78, 65, 43, 56, '2', 0, 56, 78, 65, 78, 6, 7, '2018-01-02 23:09:58', '2018-01-02 23:09:58'),
+(11, 'Phạm Ngọc Hùng', 'Phân tích thiết kế HĐT', 11, 80, 'CL', '1', 0, 77, 7, 7, 7, '7', 0, 7, 7, 7, 7, 6, 7, '2018-01-02 23:13:33', '2018-01-02 23:13:39');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `data_guides`
+--
+
+CREATE TABLE `data_guides` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `teacherID` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `data_guides`
+--
+
+INSERT INTO `data_guides` (`id`, `teacherID`, `type`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, 1, NULL, NULL),
+(2, 1, 1, 2, NULL, NULL),
+(3, 1, 2, 4, NULL, NULL),
+(4, 3, 3, 2, NULL, NULL),
+(5, 2, 0, 1, '2018-03-26 08:34:00', '2018-03-26 08:34:00'),
+(6, 2, 1, 2, '2018-03-26 08:34:00', '2018-03-26 08:34:00'),
+(7, 2, 2, 3, '2018-03-26 08:34:00', '2018-03-26 08:34:00'),
+(8, 2, 3, 4, '2018-03-26 08:34:00', '2018-03-26 08:34:00');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `facultys`
+--
+
+CREATE TABLE `facultys` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `facultys`
+--
+
+INSERT INTO `facultys` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Khoa công nghệ thông tin', NULL, '2017-12-31 15:49:02'),
+(2, 'Khoa điện tử viễn thông', '2017-12-08 23:20:08', '2017-12-31 15:48:58'),
+(3, 'Khoa vật lý kĩ thuật và công nghệ nano', '2017-12-31 15:49:20', '2017-12-31 15:49:20'),
+(4, 'Khoa cơ học kĩ thuật và tự động hóa', '2017-12-31 15:49:36', '2017-12-31 15:49:36');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `functions`
+--
+
+CREATE TABLE `functions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name_function` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `functions`
+--
+
+INSERT INTO `functions` (`id`, `name_function`, `created_at`, `updated_at`) VALUES
+(1, 'Quản lý hệ đào tạo', NULL, '2017-12-08 21:23:11'),
+(2, 'Quản lý năm học', NULL, '2017-12-08 21:23:48'),
+(3, 'Quản lý học kỳ', NULL, '2017-12-08 21:24:07'),
+(4, 'Quản lý chức danh', NULL, '2017-12-08 21:24:51'),
+(5, 'Quản lý khoa, phòng ban', NULL, '2017-12-08 21:24:59'),
+(6, 'Quản lý giảng viên', NULL, '2017-12-08 21:25:11'),
+(7, 'Quản lý môn học', '2017-11-28 12:19:47', '2017-12-08 21:25:26'),
+(8, 'Quản lý khóa luận', '2017-12-08 21:25:41', '2017-12-08 21:25:41'),
+(9, 'Quản lý định mức chi trả', '2017-12-08 21:25:58', '2017-12-08 21:25:58'),
+(10, 'Quản lý giảng viên môn học', '2017-12-08 21:26:12', '2017-12-08 21:26:12'),
+(11, 'Quản lý giảng viên khóa luận', '2017-12-08 21:26:24', '2017-12-08 21:26:24'),
+(12, 'Quản lý hệ thống vai trò', '2017-12-08 21:26:35', '2017-12-08 21:26:35'),
+(13, 'Quản lý hệ thống người dùng', '2017-12-08 21:26:45', '2017-12-08 21:26:45'),
+(14, 'Quản lý hệ thống chức năng', '2017-12-08 21:27:00', '2017-12-08 21:27:00'),
+(15, 'Quản lý hệ thống phân quyền', '2017-12-08 21:27:10', '2017-12-08 21:27:10'),
+(16, 'Quản lý hệ thống nhật ký', '2017-12-08 21:27:20', '2017-12-08 21:27:20');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(3, '2014_10_12_000000_create_users_table', 2),
+(4, '2014_10_12_100000_create_password_resets_table', 2),
+(5, '2017_11_15_042608_create_user_roles_table', 3),
+(6, '2017_11_15_043140_create_roles_table', 3),
+(7, '2017_11_19_162728_create_fucntions_table', 4),
+(8, '2017_11_19_164739_create_role_functions_table', 4),
+(26, '2017_12_03_095246_create_title_table', 5),
+(31, '2017_11_05_152803_create_school_years_table', 6),
+(32, '2017_11_10_111245_create_semesters_table', 6),
+(33, '2017_11_28_061553_create_trainings_table', 6),
+(34, '2017_12_07_133850_create_titles_table', 7),
+(35, '2017_12_07_134543_create_facultys_table', 7),
+(36, '2017_12_07_134604_create_teachers_table', 7),
+(37, '2017_12_07_134635_create_courses_table', 7),
+(38, '2017_12_07_134650_create_thesis_table', 7),
+(39, '2017_12_08_060618_create_salarys_table', 8),
+(40, '2017_12_08_060821_create_course_lecturers_table', 8),
+(41, '2017_12_08_060908_create_thesis_lecturers_table', 8),
+(42, '2018_02_05_062115_create_accounts_table', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', NULL, '2017-11-23 16:11:01'),
+(2, 'Phòng đào tạo', NULL, NULL),
+(3, 'Giảng viên', NULL, '2018-02-06 03:02:57'),
+(4, 'Khách', '2017-11-23 16:16:26', '2018-02-06 03:04:37');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `role_functions`
+--
+
+CREATE TABLE `role_functions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `function_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `role_functions`
+--
+
+INSERT INTO `role_functions` (`id`, `role_id`, `function_id`, `created_at`, `updated_at`) VALUES
+(1, 0, 1, NULL, NULL),
+(2, 0, 2, NULL, NULL),
+(3, 0, 3, NULL, NULL),
+(4, 0, 4, NULL, NULL),
+(5, 0, 5, NULL, NULL),
+(6, 0, 6, NULL, NULL),
+(7, 0, 7, NULL, NULL),
+(8, 0, 8, NULL, NULL),
+(9, 0, 9, NULL, NULL),
+(10, 0, 10, NULL, NULL),
+(11, 0, 11, NULL, NULL),
+(12, 0, 12, NULL, NULL),
+(13, 0, 13, '2017-12-08 21:30:40', '2017-12-08 21:30:40'),
+(14, 0, 14, '2017-12-08 21:30:40', '2017-12-08 21:30:40'),
+(15, 0, 15, '2017-12-08 21:30:40', '2017-12-08 21:30:40'),
+(16, 0, 16, '2017-12-08 21:30:40', '2017-12-08 21:30:40'),
+(17, 1, 1, NULL, NULL),
+(18, 1, 2, NULL, NULL),
+(19, 1, 3, NULL, NULL),
+(20, 1, 4, NULL, NULL),
+(21, 1, 5, NULL, NULL),
+(22, 2, 1, NULL, NULL),
+(23, 2, 2, NULL, NULL),
+(24, 2, 3, NULL, NULL),
+(25, 3, 6, NULL, NULL),
+(26, 3, 7, NULL, NULL),
+(27, 3, 8, NULL, NULL),
+(28, 3, 9, NULL, NULL),
+(29, 3, 10, NULL, NULL),
+(30, 3, 11, NULL, NULL),
+(31, 1, 16, '2017-12-09 22:09:08', '2017-12-09 22:09:08'),
+(32, 2, 10, '2018-02-06 03:10:48', '2018-02-06 03:10:48'),
+(33, 2, 11, '2018-02-06 03:10:48', '2018-02-06 03:10:48');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `salarys`
+--
+
+CREATE TABLE `salarys` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titleID` int(11) NOT NULL,
+  `money` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `salarys`
+--
+
+INSERT INTO `salarys` (`id`, `name`, `titleID`, `money`, `created_at`, `updated_at`) VALUES
+(1, 'nguyễn văn A', 1, 1200, NULL, '2017-12-07 16:40:56'),
+(2, 'Nguyễn văn B', 2, 121, '2017-12-09 00:04:03', '2017-12-09 00:04:17');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `school_years`
+--
+
+CREATE TABLE `school_years` (
+  `yearID` int(10) UNSIGNED NOT NULL,
+  `trainingID` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `school_years`
+--
+
+INSERT INTO `school_years` (`yearID`, `trainingID`, `name`, `active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Năm học 2014 - 2015', 0, '2017-12-07 14:36:07', '2017-12-31 15:45:57'),
+(2, 1, 'Năm học 2015 - 2016', 0, NULL, '2018-02-04 07:13:06'),
+(3, 1, 'Năm học 2016 - 2017', 0, NULL, '2017-12-31 15:45:38'),
+(4, 1, 'Năm học 2017 - 2018', 1, NULL, '2017-12-31 15:46:13'),
+(5, 2, 'Năm học 2017 - 2018', 0, NULL, '2017-12-31 15:46:23');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `semesters`
+--
+
+CREATE TABLE `semesters` (
+  `semesterID` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `yearID` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `semesters`
+--
+
+INSERT INTO `semesters` (`semesterID`, `name`, `yearID`, `created_at`, `updated_at`) VALUES
+(8, 'Học kì 1', 14, '2017-12-31 15:46:54', '2017-12-31 15:46:54'),
+(9, 'Học kì 2', 14, '2017-12-31 15:47:03', '2017-12-31 15:47:03'),
+(10, 'Học kì 1 phụ', 14, '2017-12-31 15:47:12', '2017-12-31 15:47:12'),
+(11, 'Học kỳ 1', 2, '2018-01-02 22:21:01', '2018-01-02 22:49:21');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `teachers`
+--
+
+CREATE TABLE `teachers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titleID` int(11) NOT NULL,
+  `facultyID` int(11) NOT NULL,
+  `reduce` int(11) NOT NULL,
+  `account` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `name`, `titleID`, `facultyID`, `reduce`, `account`, `created_at`, `updated_at`) VALUES
+(1, 'Nguyễn Việt Anh', 2, 1, 12001, 'anv@vnu.edu.vn', '2017-12-07 00:22:24', '2017-12-31 15:50:01'),
+(2, 'Trần Quốc Long', 1, 4, 12001, 'longtq@vnu.edu.vn', '2017-12-08 20:59:48', '2017-12-31 15:50:20'),
+(3, 'Phạm Quang Hưng', 2, 1, 12001, 'hungpq@vnu.edu.vn', '2017-12-08 20:59:48', '2017-12-31 15:50:29');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thesis`
+--
+
+CREATE TABLE `thesis` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quota` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thesis`
+--
+
+INSERT INTO `thesis` (`id`, `type`, `name`, `quota`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Khóa luân', 1, '2017-12-08 23:01:04', '2017-12-08 23:01:04'),
+(2, 1, 'Luận văn', 12, '2017-12-09 00:10:41', '2017-12-09 00:10:41'),
+(3, 2, 'Luận án', 2, NULL, NULL),
+(4, 3, 'Niên luận', 20, '2018-01-15 03:38:05', '2018-01-15 03:38:05');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thesis_lecturers`
+--
+
+CREATE TABLE `thesis_lecturers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `teacherID` int(11) NOT NULL,
+  `khoa_luan` int(11) NOT NULL,
+  `luan_van` int(11) NOT NULL,
+  `luan_an` int(11) NOT NULL,
+  `nien_luan` int(11) NOT NULL,
+  `sum_thesis` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thesis_lecturers`
+--
+
+INSERT INTO `thesis_lecturers` (`id`, `teacherID`, `khoa_luan`, `luan_van`, `luan_an`, `nien_luan`, `sum_thesis`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 0, 0, 0, 12, NULL, NULL),
+(3, 2, 1, 0, 0, 0, 121, '2017-12-08 23:03:03', '2018-01-15 03:38:15'),
+(4, 3, 2, 0, 0, 0, 2, '2017-12-22 23:13:53', '2018-01-15 03:38:20');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `titles`
+--
+
+CREATE TABLE `titles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` int(11) DEFAULT NULL,
+  `quota` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `titles`
+--
+
+INSERT INTO `titles` (`id`, `name`, `active`, `quota`, `created_at`, `updated_at`) VALUES
+(1, 'Thạc sĩ', 1, 11, NULL, '2017-12-31 15:47:55'),
+(2, 'Tiến sĩ', 1, 1200000, '2017-12-08 21:03:48', '2017-12-31 15:47:35');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `trainings`
+--
+
+CREATE TABLE `trainings` (
+  `trainingID` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `trainings`
+--
+
+INSERT INTO `trainings` (`trainingID`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Đại học', '2017-12-07 14:35:55', '2017-12-08 23:07:22'),
+(2, 'Sau đại học', '2017-12-08 21:28:40', '2017-12-08 21:29:11');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Trần Văn An', 'tranvananuet@gmail.com', '$2y$10$LgEdhHnNSSDcYm7ou6AJ8uEcu6YEK1sw3nSQV9B4jgWrea2Q7a40q', NULL, NULL, NULL),
+(2, 'Nguyễn Chiến Công', 'herolhp96@gmail.com', '$2y$10$S2fLYS.bmAmWFI4QfEhyZ./0U3Tet4TZan0UHp6xIWYmz5Sn6IEfy', NULL, NULL, NULL),
+(3, 'Nam', 'admindemo@gmail.com', '$2y$10$HZ8z22GKEl4tWtBIVb3Le.6ptlf2aLE/bfW2b.KHY9hnpoK/N2E0a', NULL, '2017-12-08 21:28:03', '2017-12-08 21:28:03');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_roles`
+--
+
+INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, NULL, NULL),
+(2, 1, 1, NULL, NULL),
+(3, 2, 2, NULL, NULL),
+(4, 3, 1, '2017-12-08 21:28:03', '2017-12-09 21:54:57');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `accounts_account_unique` (`account`);
+
+--
+-- Chỉ mục cho bảng `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `course_lecturers`
+--
+ALTER TABLE `course_lecturers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `data_guides`
+--
+ALTER TABLE `data_guides`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `facultys`
+--
+ALTER TABLE `facultys`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `functions`
+--
+ALTER TABLE `functions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `data_guides`
+--
+ALTER TABLE `data_guides`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
+
+ALTER TABLE `accounts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+ALTER TABLE `courses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+ALTER TABLE `course_lecturers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+COMMIT;
+
+ALTER TABLE `facultys`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+ALTER TABLE `functions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+COMMIT;
+
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+COMMIT;
+
+ALTER TABLE `migration`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+COMMIT;
+
+ALTER TABLE `role_functions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+COMMIT;
+
+ALTER TABLE `school_years`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+COMMIT;
+
+ALTER TABLE `semesters`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+COMMIT;
+
+ALTER TABLE `teachers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+ALTER TABLE `thesis`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+ALTER TABLE `titles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+ALTER TABLE `trainings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+ALTER TABLE `user_roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

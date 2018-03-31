@@ -49,11 +49,13 @@ a {
     width: 17px;
     height: 17px;
 }
+
 .space {
-line-height:2000%;
+    line-height: 2000%;
 }
+
 .space1 {
-line-height:350px
+    line-height: 350px
 }
 
 .act {
@@ -221,6 +223,26 @@ line-height:350px
     color: black;
     text-align: center;
 }
+
+
+/*BEGIN TEACH */
+
+.data_row_teach {
+    display: inline-flex;
+}
+
+.data_value_teach {
+    width: 15%;
+    margin-left: 2%;
+}
+
+.data_value_teach_other {
+    width: 15%;
+    margin-left: 3%;
+}
+
+
+/*END TEACH*/
 
 
 /* .btn-remove {   
