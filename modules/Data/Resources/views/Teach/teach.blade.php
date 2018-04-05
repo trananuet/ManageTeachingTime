@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    <div class="col-md-4 add-btn1">
+    <div class="col-md-4 add-btn-1">
         <button data-toggle="modal" data-target="#modalTeaching" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
     </div>
     <!-- LINE MODAL -->

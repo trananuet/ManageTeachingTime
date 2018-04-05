@@ -1,12 +1,13 @@
 <?php
 
-namespace Modules\User\Http\Middleware\MiddlewareManageCategory;
+namespace Modules\User\Http\Middleware\MiddlewareData;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ManageCourseLecturerMiddleware
+
+class CheckDataTeachMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,7 @@ class ManageCourseLecturerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->checkManageCourseLecturer())
+        if(!Auth::user()->checkDataTeach())
         {
             return \Response::view('base::errors.403',array(),403);
         } else {

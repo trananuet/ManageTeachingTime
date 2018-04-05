@@ -18,69 +18,68 @@
     </style>
 @endsection
 @section('content')
-
-                <h3>Định Mức Chi Trả</h3>
-                <hr>
-                @if($errors->has('checkbox'))
-                    <div class="alert alert-danger">
-                        <span>{{$errors->first('checkbox')}}</span>
-                    </div>
-                @endif 
-                    <div class="add-btn col-md-2">
-                        <button data-toggle="modal" data-target="#modalSalary" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
-                    </div>
-                <!-- LINE MODAL -->
-                <div class="modal fade" id="modalSalary" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="addExcel">
-                        <ul class="nav nav-tabs nav-default" role="tablist">
-                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
-                        </ul>
-                        </div>
-                        <div>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="home">                                
-                                    <div class="modal-content" style="width: 100%;">
-                                        <form method="POST" action="{{route('salary.save')}}" id="formSalaryCreate">
-                                        {{ csrf_field() }}
-                                            <div class="modal-body">
-                                                <!-- content goes here -->
-                                                <div class="form-group row">
-                                                    <label for="salaryCreate" class="col-sm-3 col-form-label">Tên </label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" name="name" class="form-control" id="salaryCreate" placeholder="Họ tên">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for=" " class="col-sm-3 col-form-label">Chức danh </label>
-                                                    <div class="col-sm-9">
-                                                        <select class="form-control" name="title" style="color: #000;" >
-                                                            <option value="">Chọn chức danh</option>
-                                                            @foreach($titles as $title)
-                                                                <option value="{{$title->id}}">{{$title->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div> 
+    <h3>Định Mức Chi Trả</h3>
+    <hr>
+    @if($errors->has('checkbox'))
+        <div class="alert alert-danger">
+            <span>{{$errors->first('checkbox')}}</span>
+        </div>
+    @endif 
+    <div class="add-btn-oth col-md-2">
+        <button data-toggle="modal" data-target="#modalSalary" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
+    </div>
+    <!-- LINE MODAL -->
+    <div class="modal fade" id="modalSalary" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="addExcel">
+                <ul class="nav nav-tabs nav-default" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thêm dữ liệu nhập tay</a></li>
+                </ul>
+            </div>
+            <div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">                                
+                        <div class="modal-content" style="width: 100%;">
+                            <form method="POST" action="{{route('salary.save')}}" id="formSalaryCreate">
+                            {{ csrf_field() }}
+                                <div class="modal-body">
+                                    <!-- content goes here -->
+                                    <div class="form-group row">
+                                        <label for="salaryCreate" class="col-sm-3 col-form-label">Tên </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="name" class="form-control" id="salaryCreate" placeholder="Họ tên">
                                         </div>
-                                            <div class="modal-footer">
-                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                    <div class="btn-group col-md-3" role="group">
-                                                        <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
-                                                    </div>
-                                                    <div class="btn-group col-md-3" role="group">
-                                                        <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for=" " class="col-sm-3 col-form-label">Chức danh </label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="title" style="color: #000;" >
+                                                <option value="">Chọn chức danh</option>
+                                                @foreach($titles as $title)
+                                                    <option value="{{$title->id}}">{{$title->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div> 
+                            </div>
+                                <div class="modal-footer">
+                                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                        <div class="btn-group col-md-3" role="group">
+                                            <button type="submit" id="saveImage" class="btn btn-primary btn-hover-green" data-action="save" role="button" style="width: 50%;margin-left: 50%;">Lưu</button>
+                                        </div>
+                                        <div class="btn-group col-md-3" role="group">
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal"  role="button" style="width: 50%;margin-right: 50%;">Hủy</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
             <div class="school-content-table relative">
                 <form method="POST" action="{{route('salary.remove')}}">
                     {{ csrf_field() }}

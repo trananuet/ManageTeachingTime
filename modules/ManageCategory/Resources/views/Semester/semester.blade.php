@@ -31,31 +31,35 @@
                     </div>
             @endif 
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="dashboard_graph x_panel"> 
-                <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
-                            {{ csrf_field() }}
-                    <div class="filter col-md-8 row">
-                        <label for="filterYear" class="col-sm-3 col-form-label label-filter">Năm học</label>
-                        <div class="col-sm-6"> 
-                            <select type="text" name="year" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
-                                <option value="">Chọn năm học</option>
-                                @foreach($school_years as $school_year)
-                                    @if(session('schoolYear') && session('semesterFilter'))
-                                    @php
-                                        $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
-                                    @endphp
-                                    <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
-                                    @else
-                                    <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
+                <div class="dashboard_graph x_panel">
+                    <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">
+                                {{ csrf_field() }}
+                        <div class="filter col-md-8 row">
+                            <label for="filterYear" class="col-sm-3 col-form-label label-filter">Năm học</label>
+                            <div class="col-sm-6"> 
+                                <select type="text" name="year" class="form-control input-filter" id="filterYear" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                                    <option value="">Chọn năm học</option>
+                                    @foreach($school_years as $school_year)
+                                        @if(session('schoolYear') && session('semesterFilter'))
+                                        @php
+                                            $selectYear = $school_year->yearID == session('schoolYear')->yearID ? "selected" : null;
+                                        @endphp
+                                        <option value="{{$school_year->yearID}}" {{$selectYear}}>{{$school_year->name}}</option>
+                                        @else
+                                        <option value="{{$school_year->yearID}}">{{$school_year->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button type="submit" class="hidden"></button>
                         </div>
-                        <button type="submit" class="hidden"></button>
+                    </form>
+                    <div class="remove-btn-session-other">
+                        <a href="{{route('remove_filter.remove_session')}}">
+                            <button class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Xóa bộ lọc</button>
+                        </a>
                     </div>
-                </form>
-            </div>
+                </div>
             </div>
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalSemester" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>

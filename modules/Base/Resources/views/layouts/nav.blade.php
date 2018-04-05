@@ -45,25 +45,27 @@
                 @endif
                 </ul>
               </li>
+              @if(Auth::user()->checkMod())
               <li><a><i class="fa fa-bar-chart-o"></i> Nhập dữ liệu <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  <li><a href="{{route('teach')}}">Số liệu giảng dạy</a></li>
-                    {{--  @if(Auth::user()->checkManageCourseLecturer())      --}}
+                  @if(Auth::user()->checkDataTeach())     
+                    <li><a href="{{route('teach')}}">Số liệu giảng dạy</a></li>
                   {{--  <li><a href="{{route('course_lecturer')}}">Số liệu giờ giảng</a></li>  --}}
-                  {{--  @endif  --}}
-                    {{--  @if(Auth::user()->checkManageThesisLecturer())  --}}
-                  <li><a href="{{route('guide')}}">Số liệu hướng dẫn</a></li>
-                    {{--  @endif  --}}
+                  @endif 
+                  @if(Auth::user()->checkDataGuide()) 
+                    <li><a href="{{route('guide')}}">Số liệu hướng dẫn</a></li>
+                  @endif 
                   {{--  <li><a href="{{route('statistic')}}">Thống kê giờ dạy</a></li>  --}}
                 </ul>
               </li>
+              @endif
               <li><a><i class="fa fa-bar-chart-o"></i> Thống kê giờ dạy <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                  @if(Auth::user()->checkManageCourseLecturer())    
-                    <li><a href="{{route('course_lecturer')}}">Thống kê giờ dạy giảng vien</a></li>
+                  @if(Auth::user()->checkManageStatisticTeach())    
+                    <li><a href="{{route('statistic_teach')}}">Thống kê giờ dạy giảng vien</a></li>
                   @endif
-                  @if(Auth::user()->checkManageThesisLecturer())
-                    <li><a href="{{route('thesis_lecturer')}}">Thống kê đề tài hướng dẫn</a></li>
+                  @if(Auth::user()->checkManageStatisticGuide())
+                    <li><a href="{{route('statistic_guide')}}">Thống kê đề tài hướng dẫn</a></li>
                   @endif
                   {{--  <li><a href="{{route('statistic')}}">Thống kê giờ dạy</a></li>  --}}
                 </ul>

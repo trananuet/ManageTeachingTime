@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\User\Http\Middleware\MiddlewareManageCategory;
+namespace Modules\User\Http\Middleware\MiddlewareStatistic;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ManageThesisLecturerMiddleware
+class ManageStatisticTeachMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class ManageThesisLecturerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->checkManageThesisLecturer())
+        if(!Auth::user()->checkManageStatisticTeach())
         {
             return \Response::view('base::errors.403',array(),403);
         } else {

@@ -24,27 +24,34 @@
 @include('base::layouts.manager-left')
     <h3>Giảng Viên Môn Học</h3>
     <hr>
-    @if($errors->has('checkbox'))
-        <div class="alert alert-danger">
-            <span>{{$errors->first('checkbox')}}</span>
-        </div>
-    @endif
-    <div class="row"> 
-        <form method="POST" action="" id="formFilterTraining">
+    <div class="row">
+        @if($errors->has('checkbox'))
+            <div class="alert alert-danger">
+                <span>{{$errors->first('checkbox')}}</span>
+            </div>
+        @endif
+    </div>
+    <div class="col-md-2 remove-btn-session">
+        <a href="{{route('remove_filter.remove_session')}}">
+            <button class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Xóa bộ lọc</button>
+        </a>
+    </div>
+    <div class="row row-filter"> 
+        <form method="POST" action="{{route('statistic_teach.filter')}}" id="form-filter-statistic-course">
             {{ csrf_field() }}
             <div class="filter col-md-8 row">
                 <label for="filterSemester" class="col-sm-3 col-form-label label-filter">Học Kỳ - Năm Học</label>
                 <div class="col-sm-6"> 
-                    <select type="text" name="semester" class="form-control input-filter" id="filterTraining" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
+                    <select type="text" name="semester" class="form-control input-filter" id="" style="color: #000;" onchange='if(this.value != 0) { this.form.submit(); }'>
                         <option value="">Chọn học kỳ - năm học</option>
                         @foreach($semesters as $semester)
-                            @if(session('semester') && session('semesterFilter'))
-                            @php
-                                $selectSemester = $semester->semesterID == session('semester')->semesterID ? "selected" : null;
-                            @endphp
-                            <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}} {{$semester->schoolYear}}</option>
+                            @if(session('semester_id') && session('data_teaches'))
+                                @php
+                                    $selectSemester = $semester->semesterID == session('semester_id')? "selected" : null;
+                                @endphp
+                                <option value="{{$semester->semesterID}}" {{$selectSemester}}>{{$semester->name}} {{$semester->schoolYear}}</option>
                             @else
-                            <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
+                                <option value="{{$semester->semesterID}}">{{$semester->name}} {{$semester->schoolYear}}</option>
                             @endif
                         @endforeach
                     </select>
@@ -53,8 +60,68 @@
             </div>
         </form>
     </div>
-
-    <div class="school-content-table1 relative">
+    @if(session('data_teaches'))
+        <div class="school-content-table1 relative">
+                <table class="table table-hover table-condensed table-bordered table-data-teach" id="table-statistic-course">
+                    <thead class ="table-school-year1">
+                        <tr>
+                            <th class="" rowspan="2">STT</th>
+                            <th class="th1" rowspan="2">Tên giảng viên</th>
+                            <th class="th2" rowspan="2">Môn học</th>
+                            <th class="th3" rowspan="2">SS</th>
+                            <th class="th3" rowspan="2">Nhóm</th>
+                            <th colspan="6" >Lý thuyết</th>
+                            <th colspan="6" >Thực hành</th>
+                            <th colspan="2" >Tự học</th>
+                            <th class="th3" rowspan="2">Tổng QC</th>
+                        </tr>
+                        <tr>
+                            <th>N</th>
+                            <th>Sg/N</th>
+                            <th>SgTr</th>
+                            <th>SgNg</th>
+                            <th>Sg7</th>
+                            <th>QC</th>
+                            <th>N</th>
+                            <th>Sg/N</th>
+                            <th>SgTr</th>
+                            <th>SgNg</th>
+                            <th>Sg7</th>
+                            <th>QC</th>
+                            <th>Sg</th>
+                            <th>QC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(session('data_teaches') as $data_teach)
+                            <tr>
+                                <td class="active-display">{{++$loop->index}}</td>
+                                <td>{{$data_teach->teacherName}}</td>
+                                <td>{{$data_teach->courseName}}</td>
+                                <td>{{$data_teach->number_of_students}}</td>
+                                <td>{{$data_teach->course_group}}</td>
+                                <td>{{$data_teach->theory_group}}</td>
+                                <td>{{$data_teach->sum_theory_hour}}</td>
+                                <td>{{$data_teach->theory_in_hour}}</td>
+                                <td>{{$data_teach->theory_overtime}}</td>
+                                <td>{{$data_teach->theory_day_off}}</td>
+                                <td>{{$data_teach->theory_standard}}</td>
+                                <td>{{$data_teach->practice_group }}</td>
+                                <td>{{$data_teach->sum_practice_hour }}</td>
+                                <td>{{$data_teach->practice_in_hour}}</td>
+                                <td>{{$data_teach->practice_overtime}}</td>
+                                <td>{{$data_teach->practice_day_off}}</td>
+                                <td>{{$data_teach->practice_standard}}</td>
+                                <td>{{$data_teach->self_learning_time}}</td>
+                                <td>{{$data_teach->self_learning_standard}}</td>
+                                <td>{!! number_format(($data_teach->theory_standard)+($data_teach->practice_standard)+($data_teach->self_learning_standard), 0, ',', '.') !!}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+        </div>
+     @else  
+        <div class="school-content-table1 relative">
             <table class="table table-hover table-condensed table-bordered table-data-teach" id="table-statistic-course">
                 <thead class ="table-school-year1">
                     <tr>
@@ -112,6 +179,10 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    @endif
+    <div class="col-md-4 add-btn-2">
+        <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Xuất file</button>
     </div>
     <div class="space">&nbsp;</div>
 

@@ -68,8 +68,7 @@ class Kernel extends HttpKernel
         'check_manage_course' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageCourseMiddleware::class,
         'check_manage_thesis' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageThesisMiddleware::class,
         'check_manage_salary' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageSalaryMiddleware::class,
-        'check_manage_course_lecturer' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageCourseLecturerMiddleware::class,
-        'check_manage_thesis_lecturer' => \Modules\User\Http\Middleware\MiddlewareManageCategory\ManageThesisLecturerMiddleware::class,
+       
         
         // MIDDLERWARE SYSTEM
         'check_manage_access' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageAccessMiddleware::class,
@@ -77,5 +76,14 @@ class Kernel extends HttpKernel
         'check_manage_functions' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageFunctionsMiddleware::class,
         'check_manage_permission' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManagePermissionMiddleware::class,
         'check_manage_history' => \Modules\User\Http\Middleware\MiddlewareManageSystem\ManageHistoryMiddleware::class,
+
+
+        // MIDDLERWARE DATA
+        'check_data_guide' => \Modules\User\Http\Middleware\MiddlewareData\CheckDataGuideMiddleware::class,
+        'check_data_teach' => \Modules\User\Http\Middleware\MiddlewareData\CheckDataTeachMiddleware::class,
+
+        // MIDDLERWARE STATISTIC
+        'check_statistic_guide' => \Modules\User\Http\Middleware\MiddlewareStatistic\ManageStatisticGuideMiddleware::class,
+        'check_statistic_teach' => \Modules\User\Http\Middleware\MiddlewareStatistic\ManageStatisticTeachMiddleware::class,
     ];
 }

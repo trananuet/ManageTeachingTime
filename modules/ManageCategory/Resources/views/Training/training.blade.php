@@ -5,14 +5,12 @@
 @section('content')
         <h3>Hệ đào tạo</h3>
         <hr>
-            <div class="row">
-                @if(Session::has('message'))
+            @if(Session::has('message'))
                     <div class="alert alert-danger">
                         <span>{{Session::get('message')}}</span>
                     </div>
-                @endif
-            </div>
-            <div class="col-md-4 add-btn">
+            @endif
+            <div class="col-md-4 add-btn-oth">
                 <button data-toggle="modal" data-target="#modalTraining" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
             </div>
             <!-- LINE MODAL -->

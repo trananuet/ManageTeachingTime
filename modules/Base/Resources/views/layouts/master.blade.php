@@ -12,11 +12,11 @@
 
 
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datetimepicker/bootstrap-datetimepicker.min.css')}}">  --}}
-	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/font-awesome/css/font-awesome.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datatables/datatables.net-dt/css/jquery.dataTables.css')}}">  
 
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/bootstrap/dist/css/bootstrap.min.css')}}"> 
-	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/font-awesome/css/font-awesome.min.css')}}"> 
+	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/font-awesome/css/font-awesome.min.css')}}">   --}}
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/nprogress/nprogress.css')}}"> 
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/iCheck/skins/flat/green.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}">

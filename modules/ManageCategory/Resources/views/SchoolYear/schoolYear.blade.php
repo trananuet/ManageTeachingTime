@@ -27,10 +27,7 @@
                 @endif
             </div>
             <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="dashboard_graph x_panel"> 
-
-
                 <form method="POST" action="{{route('school_year.filter')}}" id="formFilterTraining">
                             {{ csrf_field() }}
                     <div class="filter col-md-8 row">
@@ -53,7 +50,11 @@
                         <button type="submit" class="hidden"></button>
                     </div>
                 </form>
-            </div>
+                <div class="remove-btn-session-other">
+                    <a href="{{route('remove_filter.remove_session')}}">
+                        <button class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Xóa bộ lọc</button>
+                    </a>
+                </div>
             </div>
             <div class="col-md-4 add-btn">
                 <button data-toggle="modal" data-target="#modalSchoolYear" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>

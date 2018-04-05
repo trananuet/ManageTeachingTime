@@ -11,3 +11,7 @@ Route::group(['middleware' => 'web', 'namespace' => 'Modules\Base\Http\Controlle
 {
     Route::get('/','Dashboard\DashboardController@index')->name('home')->middleware('auth');
 });
+Route::group(['middleware' => 'web', 'namespace' => 'Modules\Base\Http\Controllers'], function()
+{
+    Route::get('/remove_session', 'RemoveFilter\RemoveSessionFilterController@removeSession')->name('remove_filter.remove_session');
+});

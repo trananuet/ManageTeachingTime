@@ -70,7 +70,7 @@
                 @endforeach
             </tbody>
         </table>
-    <div class="col-md-4 add-btn1">
+    <div class="col-md-4 add-btn-2">
         <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Xuất file</button>
     </div>
     <div class="space">&nbsp;</div>

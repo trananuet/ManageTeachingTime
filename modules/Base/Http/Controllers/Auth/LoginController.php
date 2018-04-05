@@ -48,7 +48,7 @@ class LoginController extends Controller
      * Login system.
      *
      * @author AnTV
-     * @param  use ID_TEACHER = 2 ; use helpers/DefineHelper.php
+     * @param  use ID_TEACHER = 3 ; use helpers/DefineHelper.php
      * @return void
      */
     public function login(Request $request){

@@ -57,7 +57,7 @@ class User extends Authenticatable
     /**
      * Check giang vien
      * @author AnTV
-     * @param ID_TEACHER == 2 <helpers/DefineHelper.php>
+     * @param ID_TEACHER == 3 <helpers/DefineHelper.php>
      * @return boolean
      */
     public function checkTeacher(){
@@ -184,30 +184,6 @@ class User extends Authenticatable
     }
 
     /**
-    * quan ly giang vien mon hoc
-    * @author AnTV
-    * @param COURSE_LECTURER = Quản lý giảng viên môn học <helpers/DefineHelper.php>
-    * @param ham check_role <helpers/CustomHelper.php>
-    * @return boolean
-    */
-    public function checkManageCourseLecturer(){
-        $check = check_role(COURSE_LECTURER);
-        return $check;
-    }
-
-    /**
-    * quan ly giang vien khoa luan
-    * @author AnTV
-    * @param THESIS_LECTURER = Quản lý giảng viên khóa luận <helpers/DefineHelper.php>
-    * @param ham check_role <helpers/CustomHelper.php>
-    * @return boolean
-    */
-    public function checkManageThesisLecturer(){
-        $check = check_role(THESIS_LECTURER);
-        return $check;
-    }
-
-    /**
     * quan ly he thong - vai tro
     * @author AnTV
     * @param ACCESS = Quản lý hệ thống vai trò <helpers/DefineHelper.php>
@@ -264,6 +240,56 @@ class User extends Authenticatable
     */
     public function checkManageHistory(){
         $check = check_role(HISTORY);
+        return $check;
+    }
+
+
+    /**
+    * quan ly nhap du lieu huong dan
+    * @author AnTV
+    * @param DATA_GUIDE = Quản lý nhập dữ liệu giảng dạy <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkDataGuide(){
+        $check = check_role(DATA_GUIDE);
+        return $check;
+    }
+
+
+    /**
+    * quan ly nhap du lieu giang day
+    * @author AnTV
+    * @param DATA_TEACH = Quản lý nhập dữ liệu giảng dạy <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkDataTeach(){
+        $check = check_role(DATA_TEACH);
+        return $check;
+    }
+
+    /**
+    * quan ly thong ke so lieu huong dan cua giang vien
+    * @author AnTV
+    * @param STATISTIC_GUIDE = Quản lý thống kê số liệu hướng dẫn của giảng viên <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageStatisticGuide(){
+        $check = check_role(STATISTIC_GUIDE);
+        return $check;
+    }
+
+    /**
+    * quan ly thong ke gio giang cua giang vien
+    * @author AnTV
+    * @param STATISTIC_TEACH = Quản lý thống kê giờ giảng của giảng viên <helpers/DefineHelper.php>
+    * @param ham check_role <helpers/CustomHelper.php>
+    * @return boolean
+    */
+    public function checkManageStatisticTeach(){
+        $check = check_role(STATISTIC_TEACH);
         return $check;
     }
 }

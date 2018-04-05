@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Statistic\Http\Controllers\ThesisLecturer;
+namespace Modules\Statistic\Http\Controllers\StatisticGuide;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use Modules\Statistic\Entities\ThesisLecturer;
+// use Modules\Statistic\Entities\ThesisLecturer;
 use Modules\Statistic\Repositories\ThesisLecturerRepository;
 use Modules\ManageCategory\Repositories\ThesisRepository;
 use Modules\ManageCategory\Repositories\TeacherRepository;
@@ -13,9 +13,9 @@ use Modules\ManageCategory\Repositories\TrainingRepository;
 use Illuminate\Support\Facades\Auth;
 use Modules\Data\Repositories\DataGuideRepository;
 
-class ThesisLecturerController extends Controller
+class StatisticGuideController extends Controller
 {
-    public function getThesisLecturer()
+    public function getStatisticGuide()
     {
         $data = DataGuideRepository::getDataGuide();
         $types = DataGuideRepository::getType();
