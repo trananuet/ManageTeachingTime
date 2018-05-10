@@ -35,7 +35,7 @@ class TrainingController extends Controller
     public function createEditTraining(Request $request){
         $training = TrainingRepository::saveTraining($request);
         if($training == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -55,9 +55,9 @@ class TrainingController extends Controller
         ]);
         $training = TrainingRepository::removeTraining($request);
         if($training == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 
@@ -74,31 +74,30 @@ class TrainingController extends Controller
         {
                 $path = $request->file('imported_file')->getRealPath();
                 $data = Excel::load($path, function($reader) {})->get();
-                
             if(!empty($data) && $data->count())
             {
-                foreach ($data->toArray() as $row)
+                foreach ($data->toArray() as $rows)
                 {
-                    if(!empty($row))
-                    {
-                        if(!empty($row['name'])) {
-                        $dataArray[] =
-                        [
-                        'name' => $row['name'],
-                        ];
-                        }
-                        else 
-                            { 
-                               return back()->with('message','Sai tên trường dữ liệu !');
+                    foreach($rows as $row){
+                        if(!empty($row))
+                        {
+                            if(!empty($row['name'])) {
+                                $dataArray[] =
+                                [
+                                'name' => $row['name'],
+                                ];
+                            } else  { 
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
                             }
+                        }
                     }
                 } 
-            if(!empty($dataArray))
-            {             
-                Training::insert($dataArray);
-                $trainings = TrainingRepository::getAllTraining();
-                return view('managecategory::Training.excel',['datas' => $data]);
-            }
+                if(!empty($dataArray)){             
+                    Training::insert($dataArray);
+                    // $trainings = TrainingRepository::getAllTraining();
+                    // return view('managecategory::Training.excel',['datas' => $dataArray]);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
+                }
             }
         }
     }

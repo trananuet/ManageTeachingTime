@@ -12,12 +12,23 @@ use Modules\ManageCategory\Repositories\TeacherRepository;
 use Modules\ManageCategory\Repositories\TrainingRepository;
 use Illuminate\Support\Facades\Auth;
 use Modules\Data\Repositories\DataGuideRepository;
+use Modules\Data\Entities\DataGuide;
 
 class StatisticGuideController extends Controller
 {
     public function getStatisticGuide()
     {
-        $data = DataGuideRepository::getDataGuide();
+        // $data = DataGuideRepository::getDataGuide();
+        if(Auth::user()->checkTeacher()){
+            $data = DataGuide::selectRaw("data_guides.*,teachers.name as name_teacher,thesis.name as name_thesis")
+            // ->leftjoin('semesters','semesters.semesterID','=','data_teaches.semesterID')
+            ->leftjoin('teachers','teachers.id','=','data_guides.teacherID')
+            ->leftjoin('thesis','thesis.type','=','data_guides.type')
+            ->where('teachers.account',Auth::user()->email)
+            ->get();
+        } else {
+            $data = DataGuideRepository::getDataGuide();
+        }
         $types = DataGuideRepository::getType();
         $arr = [];
         foreach($types as $type){

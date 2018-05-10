@@ -33,11 +33,10 @@ class ManageFunctionsController extends Controller
     {
         $functions = FunctionRepository::save_functions($request);
         if($functions == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
-        return redirect()->back();
     }
 
     /**
@@ -54,9 +53,9 @@ class ManageFunctionsController extends Controller
         ]);
         $functions = FunctionRepository::remove_functions($request);
         if($functions == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 }

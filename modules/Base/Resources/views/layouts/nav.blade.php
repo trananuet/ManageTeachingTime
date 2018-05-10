@@ -11,7 +11,7 @@
         @if(Auth::check())
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
           <div class="menu_section">
-            <h3>Tùy chọn</h3>
+            {{--  <h3>Tùy chọn</h3>  --}}
             <ul class="nav side-menu">
               <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> Trang chủ </a></li>
               <li><a><i class="fa fa-edit"></i> Danh mục <span class="fa fa-chevron-down"></span></a>
@@ -62,7 +62,7 @@
               <li><a><i class="fa fa-bar-chart-o"></i> Thống kê giờ dạy <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   @if(Auth::user()->checkManageStatisticTeach())    
-                    <li><a href="{{route('statistic_teach')}}">Thống kê giờ dạy giảng vien</a></li>
+                    <li><a href="{{route('statistic_teach')}}">Thống kê giờ dạy giảng viên</a></li>
                   @endif
                   @if(Auth::user()->checkManageStatisticGuide())
                     <li><a href="{{route('statistic_guide')}}">Thống kê đề tài hướng dẫn</a></li>
@@ -70,7 +70,7 @@
                   {{--  <li><a href="{{route('statistic')}}">Thống kê giờ dạy</a></li>  --}}
                 </ul>
               </li>
-              @if(Auth::user()->checkMod())
+              @if(Auth::user()->checkAdmin())
               
               <li><a><i class="fa fa-clone"></i>Quản lí hệ thống <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -116,7 +116,7 @@
               @if(Auth::check())
             <li class="">
               <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="images/img.jpg" alt="">{{ Auth::user()->name }}
+                <img src="" alt="">{{ Auth::user()->name }}
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">

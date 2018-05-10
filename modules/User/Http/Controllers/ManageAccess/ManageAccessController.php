@@ -34,11 +34,10 @@ class ManageAccessController extends Controller
     {
         $role_function = RoleRepository::save_role($request);
         if($role_function == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
-        return redirect()->back();
     }
 
     /**
@@ -55,9 +54,9 @@ class ManageAccessController extends Controller
         ]);
         $role = RoleRepository::remove_access($request);
         if($role == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
     

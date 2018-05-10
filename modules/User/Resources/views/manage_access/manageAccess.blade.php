@@ -28,6 +28,11 @@
             </div>
         @endif  
     </div>
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
+        </div>
+    @endif 
     <div class="col-md-4 add-btn-oth">
         <button data-toggle="modal" data-target="#modalAccess" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
     </div>
@@ -68,7 +73,7 @@
         <form method="POST" action="{{route('manage_access.remove')}}" id="formRemoveAccess">
             {{ csrf_field() }}
             <div class="box-remove-all">
-                <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắc chắn muốn xóa phân quyền này?');">Xóa</button>
+                <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắc chắn muốn xóa vai trò này?');">Xóa</button>
             </div>
             <table class="table table-hover table-condensed table-bordered" id="table-manage-system">
                 <thead class ="table-school-year">

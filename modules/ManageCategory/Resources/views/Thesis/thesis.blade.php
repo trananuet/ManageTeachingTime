@@ -31,9 +31,14 @@
             <span>{{Session::get('message')}}</span>
         </div>
     @endif 
-        <div class="add-btn-oth col-md-2">
-            <button data-toggle="modal" data-target="#modalTeacher" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
         </div>
+    @endif 
+    <div class="add-btn-oth col-md-2">
+        <button data-toggle="modal" data-target="#modalTeacher" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
+    </div>
     <!-- LINE MODAL -->
     <div class="modal fade" id="modalTeacher" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -100,7 +105,7 @@
                                     <div class="form-group row">
                                         <label for="" class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
-                                            <b> Trường dữ liệu {name,quota} </b>
+                                            <b> Trường dữ liệu {type, name, quota} </b>
                                         </div>
                                     </div>
                                 </div>
@@ -125,9 +130,9 @@
     <form method="POST" action="{{route('thesis.remove')}}">
         {{ csrf_field() }}
         <div class="box-remove-all">
-            <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa khoa, phòng ban đã chọn?');">Xóa</button>
+            <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa kiểu hướng dẫn đã chọn?');">Xóa</button>
         </div>
-    <table class="table table-hover table-condensed table-bordered" id="table_training">
+    <table class="table table-hover table-condensed table-bordered" id="table-thesis">
         <thead class ="table-school-year">
             <tr>
                 <th class="stt active-display">STT</th>
@@ -172,7 +177,7 @@
                                     <div class="form-group row">
                                         <label for="" class="col-sm-3 col-form-label">Mã đề tài</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="type" class="form-control" id="" placeholder="Mã đề tài" value="{{$thesi->name}}" required>
+                                            <input type="text" name="type" class="form-control" id="" placeholder="Mã đề tài" value="{{$thesi->type}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -205,7 +210,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#table_training').dataTable( {
+            $('#table-thesis').dataTable( {
                 "autoWidth": false
             });
         });

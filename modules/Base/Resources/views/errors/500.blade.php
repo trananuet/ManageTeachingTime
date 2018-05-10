@@ -62,6 +62,7 @@
         <h1><span class="glyphicon glyphicon-fire red"></span> 500 Internal Server Error</h1>
         <p class="lead">The web server is returning an internal error for <em><span id="display-domain"></span></em>.</p>
         <a href="javascript:document.location.reload(true);" class="btn btn-primary btn-lg text-center"><span class=""><i class="fa fa-refresh" aria-hidden="true"></i> Try This Page Again</span></a>
+        <p><a onclick="window.history.back()" class="btn btn-primary btn-lg"><i class="fa fa-undo"></i> Back</a>
     </div>
 </div>
 {{--  <div class="container">

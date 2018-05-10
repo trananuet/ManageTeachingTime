@@ -22,6 +22,7 @@ Route::group([
             Route::get('/teach', 'Teach\TeachController@getTeach')->name('teach');
             Route::post('/teach/save', 'Teach\TeachController@createEditDataTeach')->name('teach.save');
             Route::post('/teach/remove', 'Teach\TeachController@removelDataTeach')->name('teach.remove');
+            Route::post('/teach/import', 'Teach\TeachController@postImport')->name('teach.import');
         });
     });
 });

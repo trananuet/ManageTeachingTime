@@ -39,7 +39,7 @@ class User extends Authenticatable
      /**
      * Check current user has moderator role
      * @author AnTV
-     * @param ROLE_ADMIN == 1 <helpers/DefineHelper.php>
+     * @param ROLE_ADMIN == 2 <helpers/DefineHelper.php>
      * @return boolean
      */
     public function checkMod(){
@@ -48,6 +48,24 @@ class User extends Authenticatable
         $check = false;
         for ($i=0; $i < count($listRole) ; $i++) { 
             if($listRole[$i]->role_id <= ROLE_ADMIN){
+                $check = true;
+                break;
+            }
+        }
+        return $check;
+    }
+     /**
+     * Check current user has moderator role
+     * @author AnTV
+     * @param ID_ADMIN == 1 <helpers/DefineHelper.php>
+     * @return boolean
+     */
+    public function checkAdmin(){
+        $listRole = UserRole::where('user_id', $this->id)
+                            ->get();
+        $check = false;
+        for ($i=0; $i < count($listRole) ; $i++) { 
+            if($listRole[$i]->role_id <= ID_ADMIN){
                 $check = true;
                 break;
             }
@@ -72,6 +90,7 @@ class User extends Authenticatable
         }
         return $check;
     }
+    
 
     /**
     * quan ly he dao tao

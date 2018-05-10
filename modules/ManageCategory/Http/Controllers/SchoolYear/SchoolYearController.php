@@ -31,39 +31,33 @@ class SchoolYearController extends Controller
         if($request->file('imported_file'))
         {
                 $path = $request->file('imported_file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
+                $data = Excel::load($path, function($reader){
+
                 })->get();
 
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
-            {
-              if(!empty($row))
-              {
-                if(!empty($row['name']) && !empty($row['active'])) {
-                $dataArray[] =
-                [
-                  'trainingID' => $request->trainingID,
-                  'name' => $row['name'],
-                  'active' => $row['active']
-                ];
+            if(!empty($data) && $data->count()) {
+                foreach ($data->toArray() as $rows) {
+                    if(!empty($rows)) {
+                        foreach($rows as $row){
+                            if($row['name'] != "" ) {
+                                $dataArray[] =  [
+                                                'trainingID' => $request->trainingID,
+                                                'name' => $row['name'],
+                                                'active' => number_format($row['active'], 0, '.', ',')
+                                            ];
+                            } else {
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
+                            }
+                        }
+                    }
                 }
-                else
+                if(!empty($dataArray))
                 {
-                    return back()->with('message','Sai tên trường dữ liệu !');
+                    SchoolYear::insert($dataArray);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
                 }
-              }
-          } 
-          if(!empty($dataArray))
-          {
-                  
-            SchoolYear::insert($dataArray);
-            return view('managecategory::SchoolYear.excel',['datas' => $data]);
-           }
-         }
-       }
-
+            }
+        }
     }
 
      /**
@@ -76,7 +70,7 @@ class SchoolYearController extends Controller
         // dd($request->active);
         $school_year = SchoolYearRepository::saveSchoolYear($request);
         if($school_year == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -96,9 +90,9 @@ class SchoolYearController extends Controller
         ]);
         $school_year = SchoolYearRepository::removeSchoolYear($request);
         if($school_year == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 

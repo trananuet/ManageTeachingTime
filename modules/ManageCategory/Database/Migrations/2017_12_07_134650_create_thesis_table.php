@@ -17,7 +17,7 @@ class CreateThesisTable extends Migration
             $table->increments('id');
             $table->integer('type')->unique();
             $table->string('name');
-            $table->integer('quota');
+            $table->float('quota', 8, 2)->nullable();
             $table->timestamps();
         });
     }

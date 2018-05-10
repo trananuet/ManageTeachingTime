@@ -26,6 +26,16 @@
             <span>{{$errors->first('checkbox')}}</span>
         </div>
     @endif
+    @if(Session::has('message'))
+            <div class="alert alert-danger">
+                <span>{{Session::get('message')}}</span>
+            </div>
+    @endif
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
+        </div>
+    @endif 
     <div class="row"> 
         <form method="POST" action="{{route('courses.filter')}}" id="formFilterCourses">
                     {{ csrf_field() }}
@@ -65,6 +75,11 @@
                 <button type="sumbit" class="hidden"></button>
             </div>
         </form>
+        <div class="remove-btn-session-other">
+            <a href="{{route('remove_filter.remove_session')}}">
+                <button class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Xóa bộ lọc</button>
+            </a>
+        </div>
     </div>
     <br>
     <div class="col-md-2 add-btn-course">
@@ -128,21 +143,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                    <label for="" class="col-sm-3 col-form-label">Giờ lý thuyết</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="theory" class="form-control" id="" placeholder="Lý thuyết">
+                                        <input type="text" name="theory" class="form-control" id="" placeholder="Giờ lý thuyết">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Thực hành</label>
+                                    <label for="" class="col-sm-3 col-form-label">Giờ thực hành</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="practice" class="form-control" id="" placeholder="Thực hành">
+                                        <input type="text" name="practice" class="form-control" id="" placeholder="Giờ thực hành">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Tự học</label>
+                                    <label for="" class="col-sm-3 col-form-label">GIờ tự học</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="self_study" class="form-control" id="" placeholder="Tự học">
+                                        <input type="text" name="self_study" class="form-control" id="" placeholder="GIờ tự học">
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +212,7 @@
                                 <div class="form-group row">
                                     <label for=" " class="col-sm-3 col-form-label"> </label>
                                     <div class="col-sm-9">
-                                        <b>Trường dữ liệu {name,theory,practice,selfStudy}</b>
+                                        <b>Trường dữ liệu {name,code_name,credit,theory,practice,self_study}</b>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +237,7 @@
             <form method="POST" action="{{route('courses.remove')}}">
                 {{ csrf_field() }}
                 <div class="">
-                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa khoa, phòng ban đã chọn?');">Xóa</button>
+                    <button type="submit" class="btn btn-primary btn-remove pull-right" id="" onclick="return confirm('Bạn chắn chắn muốn xóa môn học đã chọn?');">Xóa</button>
                 </div>
             <table class="table table-hover table-condensed table-bordered" id="table_training">
                 <thead class ="table-school-year">
@@ -231,9 +246,9 @@
                         <th class="th-1">Tên học phần</th>
                         <th class="th-1">Mã LHP</th>
                         <th class="">Tín chỉ</th>
-                        <th class="">Lý thuyết</th>
-                        <th class="">Thực hành</th>
-                        <th class="">Tự học</th>
+                        <th class="">Giờ lý thuyết</th>
+                        <th class="">Giờ thực hành</th>
+                        <th class="">GIờ tự học</th>
                         <th class="cus">Tùy chọn</th>   
                         <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                     </tr>
@@ -315,21 +330,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Giờ lý thuyết</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Lý thuyết" value="{{$course->theory}}">
+                                                        <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Giờ lý thuyết" value="{{$course->theory}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Thực hành</label>
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Giờ thực hành</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Thực hành" value="{{$course->practice}}">
+                                                        <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Giờ thực hành" value="{{$course->practice}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tự học</label>
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">GIờ tự học</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="Tự học" value="{{$course->self_study}}">
+                                                        <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="GIờ tự học" value="{{$course->self_study}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -365,9 +380,9 @@
                         <th class="th-1">Tên học phần</th>
                         <th class="th-1">Mã LHP</th>
                         <th class="">Tín chỉ</th>
-                        <th class="">Lý thuyết</th>
-                        <th class="">Thực hành</th>
-                        <th class="">Tự học</th>
+                        <th class="">Giờ lý thuyết</th>
+                        <th class="">Giờ thực hành</th>
+                        <th class="">GIờ tự học</th>
                         <th class="cus">Tùy chọn</th>   
                         <th class="stt"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                     </tr>
@@ -449,21 +464,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Lý thuyết</label>
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Giờ lý thuyết</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Lý thuyết" value="{{$course->theory}}">
+                                                        <input type="text" name="theory" class="form-control" id="courseCreate" placeholder="Giờ lý thuyết" value="{{$course->theory}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Thực hành</label>
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Giờ thực hành</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Thực hành" value="{{$course->practice}}">
+                                                        <input type="text" name="practice" class="form-control" id="courseCreate" placeholder="Giờ thực hành" value="{{$course->practice}}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="courseCreate" class="col-sm-3 col-form-label">Tự học</label>
+                                                    <label for="courseCreate" class="col-sm-3 col-form-label">GIờ tự học</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="Tự học" value="{{$course->self_study}}">
+                                                        <input type="text" name="self_study" class="form-control" id="courseCreate" placeholder="GIờ tự học" value="{{$course->self_study}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -502,6 +517,8 @@
             $("#formCoursesCreate").validate({
                 rules: {
                         name: "required", 
+                        code_name: "required", 
+                        credit: "required", 
                         semester: "required", 
                         schoolYear: "required", 
                         theory: "required",
@@ -511,6 +528,8 @@
                     },
                 messages: {
                         name: "Vui lòng điền tên môn học.",
+                        code_name: "Vui lòng điền mã học phần.",
+                        credit: "Vui lòng điền số tín chỉ.",
                         semester: "Vui lòng chọn học kỳ.",
                         schoolYear: "Vui lòng chọn năm học.",
                         theory: "Vui lòng điền số giờ lý thuyết.",

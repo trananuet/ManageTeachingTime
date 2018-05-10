@@ -24,7 +24,7 @@ class ThesisController extends Controller
     {
         $thesis = ThesisRepository::saveThesis($request);
         if($thesis == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -40,49 +40,46 @@ class ThesisController extends Controller
         ]);
         $thesis = ThesisRepository::removeThesis($request);
         if($thesis == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 
     public function postImport(Request $request)
     {
-
         if($request->file('imported_file'))
         {
                 $path = $request->file('imported_file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
-                })->get();
-
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
+                $data = Excel::load($path, function($reader) {})->get();
+            if(!empty($data) && $data->count())
             {
-              if(!empty($row))
-              {
-                if(!empty($row['name']) && !empty($row['quota'])) {
-                $dataArray[] =
-                [
-                  'name' => $row['name'],
-                  'quota' => $row['quota']
-                ];
-                }
-                else
+                foreach ($data->toArray() as $rows)
                 {
-                    return back()->with('message','Sai tên trường dữ liệu !');
+                    foreach($rows as $row){
+                        if(!empty($row))
+                        {
+                            if(!empty($row['name']) 
+                                && !empty($row['type'])
+                                && !empty($row['quota']))
+                            {
+                                $dataArray[] =
+                                [
+                                'type' => number_format($row['type'], 0, '.', ','),
+                                'name' => $row['name'],
+                                'quota' => $row['quota'],
+                                ];
+                            } else  { 
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
+                            }
+                        }
+                    }
+                } 
+                if(!empty($dataArray)){             
+                    Thesis::insert($dataArray);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
                 }
-              }
-          } 
-          if(!empty($dataArray))
-          {
-                  
-            Thesis::insert($dataArray);
-            return view('managecategory::Thesis.excel',['datas' => $data]);
-           }
-         }
-       }
-
-    }   
+            }
+        }
+    }
 }

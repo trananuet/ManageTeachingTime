@@ -45,11 +45,10 @@ class GuideController extends Controller
     {
         $data_guide = DataGuideRepository::save_data_guide($request);
         if($data_guide == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
-        return redirect()->back();
     }
 
     public function removeGuide(Request $request){
@@ -60,9 +59,9 @@ class GuideController extends Controller
         ]);
         $data_guide = DataGuideRepository::remove_data_guide($request);
         if($data_guide == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 }

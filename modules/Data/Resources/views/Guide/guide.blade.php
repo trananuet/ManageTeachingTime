@@ -26,6 +26,11 @@
             <span>{{$errors->first('checkbox')}}</span>
         </div>
     @endif 
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
+        </div>
+    @endif 
     <div class="col-md-4 add-btn-1">
         <button data-toggle="modal" data-target="#modalDataGuide" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
     </div>

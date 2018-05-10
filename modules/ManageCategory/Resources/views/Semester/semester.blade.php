@@ -30,6 +30,11 @@
                         <span>{{Session::get('message')}}</span>
                     </div>
             @endif 
+            @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        <span>{{Session::get('success')}}</span>
+                    </div>
+            @endif 
             <div class="row">
                 <div class="dashboard_graph x_panel">
                     <form method="POST" action="{{route('semester.filter')}}" id="formFilterYear">

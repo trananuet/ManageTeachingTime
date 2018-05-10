@@ -26,7 +26,16 @@
             <span>{{$errors->first('checkbox')}}</span>
         </div>
     @endif
-
+    @if(Session::has('message'))
+        <div class="alert alert-danger">
+            <span>{{Session::get('message')}}</span>
+        </div>
+    @endif
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
+        </div>
+    @endif 
     <div class="col-md-4 add-btn-1">
         <button data-toggle="modal" data-target="#modalTeaching" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>
     </div>
@@ -91,6 +100,10 @@
                                         <input type="text" name="theory_group" class="form-control" id="" placeholder="">
                                     </div>
                                     <div class="data_value_teach">
+                                        <i for="" class="data_value_teach col-form-label">Ss/N</i>
+                                        <input type="text" name="number_student_theory" class="form-control" id="" placeholder="" >
+                                    </div>  
+                                    <div class="data_value_teach">
                                         <i for="" class="data_value_teach col-form-label">Sg/N</i>
                                         <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" >
                                     </div>
@@ -106,10 +119,10 @@
                                         <i for="" class="data_value_teach col-form-label">Sg7</i>
                                         <input type="text" name="theory_day_off" class="form-control" id="" placeholder="">
                                     </div>
-                                    <div class="data_value_teach">
+                                    {{--  <div class="data_value_teach">
                                         <i for="" class="data_value_teach col-form-label">QC</i>
                                         <input type="text" name="theory_standard" class="form-control" id="" placeholder="">
-                                    </div>
+                                    </div>   --}}
                                 </div>  
                                 <div class="form-group row data_row_teach">
                                     <label for="" class="data_value_teach col-form-label">Thực Hành</label>
@@ -117,6 +130,10 @@
                                         <i for="" class="data_value_teach col-form-label">N</i>
                                         <input type="text" name="practice_group" class="form-control" id="" placeholder="">
                                     </div>
+                                    <div class="data_value_teach">
+                                        <i for="" class="data_value_teach col-form-label">Ss/N</i>
+                                        <input type="text" name="number_student_practice" class="form-control" id="" placeholder="" >
+                                    </div>  
                                     <div class="data_value_teach">
                                         <i for="" class="data_value_teach col-form-label">Sg/N</i>
                                         <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" >
@@ -133,10 +150,10 @@
                                         <i for="" class="data_value_teach col-form-label">Sg7</i>
                                         <input type="text" name="practice_day_off" class="form-control" id="" placeholder="">
                                     </div>
-                                    <div class="data_value_teach">
+                                    {{--  <div class="data_value_teach">
                                         <i for="" class="data_value_teach col-form-label">QC</i>
                                         <input type="text" name="practice_standard" class="form-control" id="" placeholder="">
-                                    </div>
+                                    </div>  --}}
                                 </div> 
                                 <div class="form-group row data_row_teach">
                                     <label for="" class="data_value_teach_other col-form-label">Tự Học</label>
@@ -144,10 +161,10 @@
                                         <i for="" class="data_value_teach_other col-form-label">Sg</i>
                                         <input type="text" name="self_learning_time" class="form-control" id="" placeholder="">
                                     </div>
-                                    <div class="data_value_teach_other">
+                                    {{--  <div class="data_value_teach_other">
                                         <i for="" class="data_value_teach_other col-form-label">QC</i>
                                         <input type="text" name="self_learning_standard" class="form-control" id="" placeholder="">
-                                    </div>
+                                    </div>   --}}
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -169,7 +186,7 @@
                             <button class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title" id="lineModalLabel">Thêm dữ liệu từ excel</h4>
                         </div>
-                        <form action="" method="post" enctype="multipart/form-data" id="importExcel">
+                        <form action="{{route('teach.import')}}" method="post" enctype="multipart/form-data" id="importExcel">
                         {{csrf_field()}}
                             <div class="modal-body">
                                 <div class="form-group row">
@@ -193,8 +210,8 @@
                                 <div class="form-group row">
                                     <label for="" class="col-sm-3 col-form-label">Trường dữ liệu</label>
                                     <div class="col-sm-9">
-                                        <b style="font-size: 12px;"> {tengv,monhoc,so_sv,nhom,nhom_lt<br/>tronggio_lt,ngoaigio_lt,ngaynghi_lt,quychuan_lt,nhom_th,tronggio_th<br/>
-                                            ngoaigio_th,ngaynghi_th,quychuan_th,gio_tuhoc,quychuan_tuhoc}
+                                        <b style="font-size: 12px;"> {tengv,monhoc,so_sv,nhom,nhom_lt<br/>siso_lythuyet,sogio_lythuyet,tronggio_lt,ngoaigio_lt,ngaynghi_lt,nhom_th,<br/>
+                                            siso_thuchanh,sogio_thuchanh,tronggio_th,ngoaigio_th,ngaynghi_th,<br>gio_tuhoc}
                                         </b>
                                     </div>
                                 </div>
@@ -232,26 +249,25 @@
                         <th class="th3" rowspan="2">Nhóm</th>
                         <th colspan="6" >Lý thuyết</th>
                         <th colspan="6" >Thực hành</th>
-                        <th colspan="2" >Tự học</th>
-                        <th class="th3" rowspan="2">Tổng QC</th>
+                        <th colspan="1" >Tự học</th>
+                        {{--  <th class="th3" rowspan="2">Tổng QC</th>   --}}
                         <th class="th3" rowspan="2">Tùy chọn</th>
                         <th class="stt" rowspan="2"><input type="checkbox" id="checkbox-all" value="" class="checkbox-remove"></th>
                     </tr>
                     <tr>
                         <th>N</th>
-                        <th>Sg/N</th>
+                        <th>Ss/N</th>
+                        <th>Sg/N</th> 
                         <th>SgTr</th>
                         <th>SgNg</th>
                         <th>Sg7</th>
-                        <th>QC</th>
                         <th>N</th>
+                        <th>Ss/N</th>
                         <th>Sg/N</th>
                         <th>SgTr</th>
                         <th>SgNg</th>
                         <th>Sg7</th>
-                        <th>QC</th>
                         <th>Sg</th>
-                        <th>QC</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -263,20 +279,68 @@
                             <td>{{$data_teach->number_of_students}}</td>
                             <td>{{$data_teach->course_group}}</td>
                             <td>{{$data_teach->theory_group}}</td>
+                            <td>{{$data_teach->number_student_theory}}</td>
                             <td>{{$data_teach->sum_theory_hour}}</td>
-                            <td>{{$data_teach->theory_in_hour}}</td>
-                            <td>{{$data_teach->theory_overtime}}</td>
-                            <td>{{$data_teach->theory_day_off}}</td>
-                            <td>{{$data_teach->theory_standard}}</td>
-                            <td>{{$data_teach->practice_group }}</td>
-                            <td>{{$data_teach->sum_practice_hour }}</td>
-                            <td>{{$data_teach->practice_in_hour}}</td>
-                            <td>{{$data_teach->practice_overtime}}</td>
-                            <td>{{$data_teach->practice_day_off}}</td>
-                            <td>{{$data_teach->practice_standard}}</td>
-                            <td>{{$data_teach->self_learning_time}}</td>
-                            <td>{{$data_teach->self_learning_standard}}</td>
-                            <td>{!! number_format(($data_teach->theory_standard)+($data_teach->practice_standard)+($data_teach->self_learning_standard), 0, ',', '.') !!}</td>
+                            @if( $data_teach->theory_in_hour == 0)
+                                <td>    </td>
+                            @else
+                                <td>{{$data_teach->theory_in_hour}}</td>
+                            @endif
+
+                            @if( $data_teach->theory_overtime == 0)
+                                <td>    </td>                            
+                            @else
+                                <td>{{$data_teach->theory_overtime}}</td>
+                            @endif
+                            @if( $data_teach->theory_day_off == 0)
+                                <td></td>                 
+                            @else
+                                <td>{{$data_teach->theory_day_off}}</td>
+                            @endif
+
+                            @if( $data_teach->practice_group == 0)
+                                <td></td>
+                            @else 
+                                <td>{{$data_teach->practice_group }}</td>
+                            @endif
+
+                            @if( $data_teach->number_student_practice == 0)
+                                <td></td>
+                            @else 
+                                <td>{{$data_teach->number_student_practice }}</td>
+                            @endif
+
+                            @if( $data_teach->sum_practice_hour == 0)
+                                <td></td>
+                            @else 
+                                <td>{{$data_teach->sum_practice_hour }}</td>
+                            @endif
+
+                            @if( $data_teach->practice_in_hour == 0)
+                                <td></td>
+                            @else    
+                                <td>{{$data_teach->practice_in_hour}}</td>
+                            @endif
+
+                            @if( $data_teach->practice_overtime == 0)
+                                <td></td>
+                            @else
+                                <td>{{$data_teach->practice_overtime}}</td>
+                            @endif
+                            
+                            @if( $data_teach->practice_day_off == 0)
+                                <td></td>
+                            @else
+                                <td>{{$data_teach->practice_day_off}}</td>
+                            @endif
+                        
+                            @if( $data_teach->self_learning_time == 0)
+                                <td></td>
+                            @else
+                                <td>{{$data_teach->self_learning_time}}</td>
+                            @endif
+
+                            {{--  <td>{{(($data_teach->theory_standard)+($data_teach->practice_standard)+($data_teach->self_learning_standard))}}</td>  --}}
                             <td>
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditDataTeach{{$data_teach->id}}">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -343,6 +407,10 @@
                                                         <input type="text" name="theory_group" class="form-control" id="" placeholder="" value="{{$data_teach->theory_group}}" >
                                                     </div>
                                                     <div class="data_value_teach">
+                                                        <i for="" class="data_value_teach col-form-label">Ss/N</i>
+                                                        <input type="text" name="number_student_theory" class="form-control" id="" placeholder="" value="{{$data_teach->number_student_theory}}">
+                                                    </div> 
+                                                    <div class="data_value_teach">
                                                         <i for="" class="data_value_teach col-form-label">Sg/N</i>
                                                         <input type="text" name="sum_theory_hour" class="form-control" id="" placeholder="" value="{{$data_teach->sum_theory_hour}}">
                                                     </div>
@@ -358,10 +426,10 @@
                                                         <i for="" class="data_value_teach col-form-label">Sg7</i>
                                                         <input type="text" name="theory_day_off" class="form-control" id="" placeholder="" value="{{$data_teach->theory_day_off}}">
                                                     </div>
-                                                    <div class="data_value_teach">
+                                                    {{--  <div class="data_value_teach">
                                                         <i for="" class="data_value_teach col-form-label">QC</i>
                                                         <input type="text" name="theory_standard" class="form-control" id="" placeholder="" value="{{$data_teach->theory_standard}}">
-                                                    </div>
+                                                    </div>  --}}
                                                 </div>  
                                                 <div class="form-group row data_row_teach">
                                                     <label for="" class="data_value_teach col-form-label">Thực Hành</label>
@@ -369,6 +437,10 @@
                                                         <i for="" class="data_value_teach col-form-label">N</i>
                                                         <input type="text" name="practice_group" class="form-control" id="" placeholder="" value="{{$data_teach->practice_group}}">
                                                     </div>
+                                                    <div class="data_value_teach">
+                                                        <i for="" class="data_value_teach col-form-label">Ss/N</i>
+                                                        <input type="text" name="number_student_practice" class="form-control" id="" placeholder="" value="{{$data_teach->number_student_practice}}">
+                                                    </div>  
                                                     <div class="data_value_teach">
                                                         <i for="" class="data_value_teach col-form-label">Sg/N</i>
                                                         <input type="text" name="sum_practice_hour" class="form-control" id="" placeholder="" value="{{$data_teach->sum_practice_hour}}">
@@ -385,10 +457,10 @@
                                                         <i for="" class="data_value_teach col-form-label">Sg7</i>
                                                         <input type="text" name="practice_day_off" class="form-control" id="" placeholder="" value="{{$data_teach->practice_day_off}}">
                                                     </div>
-                                                    <div class="data_value_teach">
+                                                    {{--  <div class="data_value_teach">
                                                         <i for="" class="data_value_teach col-form-label">QC</i>
                                                         <input type="text" name="practice_standard" class="form-control" id="" placeholder="" value="{{$data_teach->practice_standard}}">
-                                                    </div>
+                                                    </div>  --}}
                                                 </div> 
                                                 <div class="form-group row data_row_teach">
                                                     <label for="" class="data_value_teach_other col-form-label">Tự Học</label>
@@ -396,10 +468,10 @@
                                                         <i for="" class="data_value_teach_other col-form-label">Sg</i>
                                                         <input type="text" name="self_learning_time" class="form-control" id="" placeholder="" value="{{$data_teach->self_learning_time}}">
                                                     </div>
-                                                    <div class="data_value_teach_other">
+                                                    {{--  <div class="data_value_teach_other">
                                                         <i for="" class="data_value_teach_other col-form-label">QC</i>
                                                         <input type="text" name="self_learning_standard" class="form-control" id="" placeholder="" value="{{$data_teach->self_learning_standard}}">
-                                                    </div>
+                                                    </div>  --}}
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

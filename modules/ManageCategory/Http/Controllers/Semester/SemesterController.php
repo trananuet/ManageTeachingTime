@@ -33,7 +33,7 @@ class SemesterController extends Controller
     public function createEditSemester(Request $request){
         $semester = SemesterRepository::saveSemester($request);
         if($semester == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -53,9 +53,9 @@ class SemesterController extends Controller
         ]);
         $semester = SemesterRepository::removeSemester($request);
         if($semester == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
     
@@ -101,39 +101,36 @@ class SemesterController extends Controller
     public function postImport(Request $request)
     {
     
-      if($request->file('imported_file'))
-      {
-                $path = $request->file('imported_file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
-                })->get();
-
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
+        if($request->file('imported_file'))
+        {
+            $path = $request->file('imported_file')->getRealPath();
+            $data = Excel::load($path, function($reader)
             {
-              if(!empty($row))
-              {
-                if(!empty($row['name'])) {
-                $dataArray[] =
-                [
-                  'yearID' => $request->yearID,
-                  'name' => $row['name']
-                ];
+            })->get();
+            if(!empty($data) && $data->count()) {
+                foreach ($data->toArray() as $rows) {
+                    if(!empty($rows)) {
+                        foreach($rows as $row){
+                            if(!empty($row['name'])) {
+                                $dataArray[] =
+                                    [
+                                    'yearID' => $request->yearID,
+                                    'name' => $row['name']
+                                    ];
+                            }
+                            else
+                            {
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
+                            }
+                        }
+                    }
+                } 
+                if(!empty($dataArray)){             
+                    Semester::insert($dataArray);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
                 }
-                else
-                {
-                    return back()->with('message','Sai tên trường dữ liệu !');
-                }
-              }
-          } 
-          if(!empty($dataArray))
-          {             
-            Semester::insert($dataArray);
-            return view('managecategory::Semester.excel',['datas' => $data]);
-           }
-         }
-       }
+            }
+        }
     }
 
 }

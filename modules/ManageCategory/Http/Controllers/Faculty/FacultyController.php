@@ -26,7 +26,7 @@ class FacultyController extends Controller
     {
         $faculty = FacultyRepository::saveFaculty($request);
         if($faculty == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -41,51 +41,46 @@ class FacultyController extends Controller
         ]);
         $faculty = FacultyRepository::removeFaculty($request);
         if($faculty == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 
 
     public function postImport(Request $request)
     {
-
         if($request->file('imported_file'))
         {
                 $path = $request->file('imported_file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
-                })->get();
-
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
+                $data = Excel::load($path, function($reader) {})->get();
+            if(!empty($data) && $data->count())
             {
-              if(!empty($row))
-              {
-                if(!empty($row['name'])) {
-                $dataArray[] =
-                [
-                  'name' => $row['name']
-                ];
-                }
-                else
+                foreach ($data->toArray() as $rows)
                 {
-                    return back()->with('message','Sai tên trường dữ liệu !');
+                    foreach($rows as $row)
+                    {
+                        if(!empty($row))
+                        {
+                            if(!empty($row['name'])) {
+                                $dataArray[] =
+                                [
+                                'name' => $row['name'],
+                                ];
+                            } else  { 
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
+                            }
+                        }
+                    }
+                } 
+                if(!empty($dataArray)){             
+                    Faculty::insert($dataArray);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
                 }
-              }
-          } 
-          if(!empty($dataArray))
-          {
-                  
-            Faculty::insert($dataArray);
-            return view('managecategory::Faculty.excel',['datas' => $data]);
-           }
-         }
-       }
-
+            }
+        }
     }
 
+           
 
 }

@@ -70,19 +70,21 @@
                             <th class="th2" rowspan="2">Môn học</th>
                             <th class="th3" rowspan="2">SS</th>
                             <th class="th3" rowspan="2">Nhóm</th>
-                            <th colspan="6" >Lý thuyết</th>
-                            <th colspan="6" >Thực hành</th>
+                            <th colspan="7" >Lý thuyết</th>
+                            <th colspan="7" >Thực hành</th>
                             <th colspan="2" >Tự học</th>
                             <th class="th3" rowspan="2">Tổng QC</th>
                         </tr>
                         <tr>
                             <th>N</th>
+                            <th>Ss/N</th>
                             <th>Sg/N</th>
                             <th>SgTr</th>
                             <th>SgNg</th>
                             <th>Sg7</th>
                             <th>QC</th>
                             <th>N</th>
+                            <th>Ss/N</th>
                             <th>Sg/N</th>
                             <th>SgTr</th>
                             <th>SgNg</th>
@@ -101,25 +103,120 @@
                                 <td>{{$data_teach->number_of_students}}</td>
                                 <td>{{$data_teach->course_group}}</td>
                                 <td>{{$data_teach->theory_group}}</td>
+                                <td>{{$data_teach->number_student_theory}}</td>
                                 <td>{{$data_teach->sum_theory_hour}}</td>
-                                <td>{{$data_teach->theory_in_hour}}</td>
-                                <td>{{$data_teach->theory_overtime}}</td>
-                                <td>{{$data_teach->theory_day_off}}</td>
-                                <td>{{$data_teach->theory_standard}}</td>
-                                <td>{{$data_teach->practice_group }}</td>
-                                <td>{{$data_teach->sum_practice_hour }}</td>
-                                <td>{{$data_teach->practice_in_hour}}</td>
-                                <td>{{$data_teach->practice_overtime}}</td>
-                                <td>{{$data_teach->practice_day_off}}</td>
-                                <td>{{$data_teach->practice_standard}}</td>
-                                <td>{{$data_teach->self_learning_time}}</td>
-                                <td>{{$data_teach->self_learning_standard}}</td>
-                                <td>{!! number_format(($data_teach->theory_standard)+($data_teach->practice_standard)+($data_teach->self_learning_standard), 0, ',', '.') !!}</td>
-                            </tr>
+                                @if( $data_teach->theory_in_hour == 0)
+                                    <td>    </td>
+                                @else
+                                    <td>{{$data_teach->theory_in_hour}}</td>
+                                @endif
+
+                                @if( $data_teach->theory_overtime == 0)
+                                    <td>    </td>                            
+                                @else
+                                    <td>{{$data_teach->theory_overtime}}</td>
+                                @endif
+
+                                @if( $data_teach->theory_day_off == 0)
+                                    <td>    </td>                            
+                                @else
+                                    <td>{{$data_teach->theory_day_off}}</td>
+                                @endif
+
+                                {{--  sĩ số trên nhóm <= 30 thì quy chuẩn x1
+                                sĩ số trên nhóm <= 60 thì quy chuẩn x1,2
+                                sĩ số trên nhóm <= 90 thì quy chuẩn x1,4
+                                sĩ số trên nhóm > 90 thì quy chuẩn x1,5  --}}
+                                @if( $data_teach->number_student_theory <= 30 && $data_teach->number_student_theory > 0)
+                                    <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour}}">
+                                    <td>{{$data_teach->sum_theory_hour}}</td>
+                                @elseif ($data_teach->number_student_theory > 30 && $data_teach->number_student_theory <= 60)
+                                    <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour * 1.2}}">
+                                    <td>{{$data_teach->sum_theory_hour * 1.2}}</td>
+                                @elseif ($data_teach->number_student_theory > 60 && $data_teach->number_student_theory <= 90)
+                                    <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour * 1.4}}">
+                                    <td>{{$data_teach->sum_theory_hour * 1.4}}</td>
+                                @elseif ($data_teach->number_student_theory > 90)
+                                    <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour * 1.5}}">
+                                    <td>{{$data_teach->sum_theory_hour * 1.5}}</td>
+                                @elseif ($data_teach->number_student_theory == 0)
+                                    <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "0">
+                                    <td></td>
+                                @endif
+
+                                @if( $data_teach->practice_group == 0)
+                                    <td></td>
+                                @else 
+                                    <td>{{$data_teach->practice_group }}</td>
+                                @endif
+
+                                @if( $data_teach->number_student_practice == 0)
+                                    <td></td>
+                                @else 
+                                    <td>{{$data_teach->number_student_practice }}</td>
+                                @endif
+
+                                @if( $data_teach->sum_practice_hour == 0)
+                                    <td></td>
+                                @else 
+                                    <td>{{$data_teach->sum_practice_hour }}</td>
+                                @endif
+
+                                @if( $data_teach->practice_in_hour == 0)
+                                    <td></td>
+                                @else    
+                                    <td>{{$data_teach->practice_in_hour}}</td>
+                                @endif
+
+                                @if( $data_teach->practice_overtime == 0)
+                                    <td></td>
+                                @else
+                                    <td>{{$data_teach->practice_overtime}}</td>
+                                @endif
+                                
+                                @if( $data_teach->practice_day_off == 0)
+                                    <td></td>
+                                @else
+                                    <td>{{$data_teach->practice_day_off}}</td>
+                                @endif
+
+                                {{--  sĩ số trên nhóm <= 10 thì quy chuẩn x 0.6
+                                sĩ số trên nhóm <= 20 thì quy chuẩn x 0.7
+                                sĩ số trên nhóm > 20 thì quy chuẩn x 0.8  --}}
+                                @if( $data_teach->number_student_practice <= 10 && $data_teach->number_student_practice > 0)
+                                    <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "{{$data_teach->sum_practice_hour * 0.6}}">
+                                    <td>{{$data_teach->sum_practice_hour * 0.6}}</td>
+                                @elseif ($data_teach->number_student_practice > 10 && $data_teach->number_student_practice <= 20)
+                                    <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "{{$data_teach->sum_practice_hour * 0.7}}">
+                                    <td id="value-stand-pra" data-standard = "{{$data_teach->sum_practice_hour * 0.7}}">{{$data_teach->sum_practice_hour * 0.7}}</td>
+                                @elseif ($data_teach->number_student_practice > 20 )
+                                    <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "{{$data_teach->sum_practice_hour * 0.8}}">
+                                    <td id="value-stand-pra" data-standard = "{{$data_teach->sum_practice_hour * 0.8}}">{{$data_teach->sum_practice_hour * 0.8}}</td>
+                                @elseif ($data_teach->number_student_practice == 0)
+                                    <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "0">
+                                    <td id="value-stand-pra" data-standard = "0"></td>
+                                @endif
+
+                                @if( $data_teach->self_learning_time == 0)
+                                    <td></td>
+                                @else
+                                    <td>{{$data_teach->self_learning_time}}</td>
+                                @endif
+
+                                {{--  quy chuẩn x3  --}}
+                                @if ($data_teach->self_learning_time == 0)
+                                    <input type="text" class="hidden" id="value-stand-self{{$data_teach->id}}" value = "0">
+                                    <td></td>
+                                @else
+                                    <input type="text" class="hidden" id="value-stand-self{{$data_teach->id}}" value = "{{$data_teach->self_learning_time * 3}}"> 
+                                    <td>{{$data_teach->self_learning_time * 3}}</td>
+                                @endif
+                                <td id="sum-standard{{$data_teach->id}}"></td>
                         @endforeach
                     </tbody>
                 </table>
         </div>
+            
      @else  
         <div class="school-content-table1 relative">
             <table class="table table-hover table-condensed table-bordered table-data-teach" id="table-statistic-course">
@@ -130,19 +227,21 @@
                         <th class="th2" rowspan="2">Môn học</th>
                         <th class="th3" rowspan="2">SS</th>
                         <th class="th3" rowspan="2">Nhóm</th>
-                        <th colspan="6" >Lý thuyết</th>
-                        <th colspan="6" >Thực hành</th>
+                        <th colspan="7" >Lý thuyết</th>
+                        <th colspan="7" >Thực hành</th>
                         <th colspan="2" >Tự học</th>
                         <th class="th3" rowspan="2">Tổng QC</th>
                     </tr>
                     <tr>
                         <th>N</th>
+                        <th>Ss/N</th>
                         <th>Sg/N</th>
                         <th>SgTr</th>
                         <th>SgNg</th>
                         <th>Sg7</th>
                         <th>QC</th>
                         <th>N</th>
+                        <th>Ss/N</th>
                         <th>Sg/N</th>
                         <th>SgTr</th>
                         <th>SgNg</th>
@@ -161,29 +260,124 @@
                             <td>{{$data_teach->number_of_students}}</td>
                             <td>{{$data_teach->course_group}}</td>
                             <td>{{$data_teach->theory_group}}</td>
+                            <td>{{$data_teach->number_student_theory}}</td>
                             <td>{{$data_teach->sum_theory_hour}}</td>
-                            <td>{{$data_teach->theory_in_hour}}</td>
-                            <td>{{$data_teach->theory_overtime}}</td>
-                            <td>{{$data_teach->theory_day_off}}</td>
-                            <td>{{$data_teach->theory_standard}}</td>
-                            <td>{{$data_teach->practice_group }}</td>
-                            <td>{{$data_teach->sum_practice_hour }}</td>
-                            <td>{{$data_teach->practice_in_hour}}</td>
-                            <td>{{$data_teach->practice_overtime}}</td>
-                            <td>{{$data_teach->practice_day_off}}</td>
-                            <td>{{$data_teach->practice_standard}}</td>
-                            <td>{{$data_teach->self_learning_time}}</td>
-                            <td>{{$data_teach->self_learning_standard}}</td>
-                            <td>{!! number_format(($data_teach->theory_standard)+($data_teach->practice_standard)+($data_teach->self_learning_standard), 0, ',', '.') !!}</td>
+                            @if( $data_teach->theory_in_hour == 0)
+                                <td>    </td>
+                            @else
+                                <td>{{$data_teach->theory_in_hour}}</td>
+                            @endif
+
+                            @if( $data_teach->theory_overtime == 0)
+                                <td>    </td>                            
+                            @else
+                                <td>{{$data_teach->theory_overtime}}</td>
+                            @endif
+
+                            @if( $data_teach->theory_day_off == 0)
+                                <td>    </td>                            
+                            @else
+                                <td>{{$data_teach->theory_day_off}}</td>
+                            @endif
+
+                            {{--  sĩ số trên nhóm <= 30 thì quy chuẩn x1
+                            sĩ số trên nhóm <= 60 thì quy chuẩn x1,2
+                            sĩ số trên nhóm <= 90 thì quy chuẩn x1,4
+                            sĩ số trên nhóm > 90 thì quy chuẩn x1,5  --}}
+                            @if( $data_teach->number_student_theory <= 30 && $data_teach->number_student_theory > 0)
+                                <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour}}">
+                                <td>{{$data_teach->sum_theory_hour}}</td>
+                            @elseif ($data_teach->number_student_theory > 30 && $data_teach->number_student_theory <= 60)
+                                <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour * 1.2}}">
+                                <td>{{$data_teach->sum_theory_hour * 1.2}}</td>
+                            @elseif ($data_teach->number_student_theory > 60 && $data_teach->number_student_theory <= 90)
+                                <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour * 1.4}}">
+                                <td>{{$data_teach->sum_theory_hour * 1.4}}</td>
+                            @elseif ($data_teach->number_student_theory > 90)
+                                <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "{{$data_teach->sum_theory_hour * 1.5}}">
+                                <td>{{$data_teach->sum_theory_hour * 1.5}}</td>
+                            @elseif ($data_teach->number_student_theory == 0)
+                                <input type="text" class="hidden" id="value-stand-theo{{$data_teach->id}}" value = "0">
+                                <td></td>
+                            @endif
+
+                            @if( $data_teach->practice_group == 0)
+                                <td></td>
+                            @else 
+                                <td>{{$data_teach->practice_group }}</td>
+                            @endif
+
+                            @if( $data_teach->number_student_practice == 0)
+                                <td></td>
+                            @else 
+                                <td>{{$data_teach->number_student_practice }}</td>
+                            @endif
+
+                            @if( $data_teach->sum_practice_hour == 0)
+                                <td></td>
+                            @else 
+                                <td>{{$data_teach->sum_practice_hour }}</td>
+                            @endif
+
+                            @if( $data_teach->practice_in_hour == 0)
+                                <td></td>
+                            @else    
+                                <td>{{$data_teach->practice_in_hour}}</td>
+                            @endif
+
+                            @if( $data_teach->practice_overtime == 0)
+                                <td></td>
+                            @else
+                                <td>{{$data_teach->practice_overtime}}</td>
+                            @endif
+                            
+                            @if( $data_teach->practice_day_off == 0)
+                                <td></td>
+                            @else
+                                <td>{{$data_teach->practice_day_off}}</td>
+                            @endif
+
+                            {{--  sĩ số trên nhóm <= 10 thì quy chuẩn x 0.6
+                            sĩ số trên nhóm <= 20 thì quy chuẩn x 0.7
+                            sĩ số trên nhóm > 20 thì quy chuẩn x 0.8  --}}
+                            @if( $data_teach->number_student_practice <= 10 && $data_teach->number_student_practice > 0)
+                                <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "{{$data_teach->sum_practice_hour * 0.6}}">
+                                <td>{{$data_teach->sum_practice_hour * 0.6}}</td>
+                            @elseif ($data_teach->number_student_practice > 10 && $data_teach->number_student_practice <= 20)
+                                <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "{{$data_teach->sum_practice_hour * 0.7}}">
+                                <td id="value-stand-pra" data-standard = "{{$data_teach->sum_practice_hour * 0.7}}">{{$data_teach->sum_practice_hour * 0.7}}</td>
+                            @elseif ($data_teach->number_student_practice > 20 )
+                                <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "{{$data_teach->sum_practice_hour * 0.8}}">
+                                <td id="value-stand-pra" data-standard = "{{$data_teach->sum_practice_hour * 0.8}}">{{$data_teach->sum_practice_hour * 0.8}}</td>
+                            @elseif ($data_teach->number_student_practice == 0)
+                                <input type="text" class="hidden" id="value-stand-pra{{$data_teach->id}}" value = "0">
+                                <td id="value-stand-pra" data-standard = "0"></td>
+                            @endif
+
+                            @if( $data_teach->self_learning_time == 0)
+                                <td></td>
+                            @else
+                                <td>{{$data_teach->self_learning_time}}</td>
+                            @endif
+
+                            {{--  quy chuẩn x3  --}}
+                            @if ($data_teach->self_learning_time == 0)
+                                <input type="text" class="hidden" id="value-stand-self{{$data_teach->id}}" value = "0">
+                                <td></td>
+                            @else
+                                <input type="text" class="hidden" id="value-stand-self{{$data_teach->id}}" value = "{{$data_teach->self_learning_time * 3}}"> 
+                                <td>{{$data_teach->self_learning_time * 3}}</td>
+                            @endif
+                            <td id="sum-standard{{$data_teach->id}}"></td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     @endif
-    <div class="col-md-4 add-btn-2">
+    {{--  <div class="col-md-4 add-btn-2">
         <button data-toggle="modal" data-target="#modalCourseLecturer" class="btn btn-primary"><i class="fa fa-arrow-right" aria-hidden="true"></i> Xuất file</button>
-    </div>
+    </div>  --}}
     <div class="space">&nbsp;</div>
 
 @endsection
@@ -192,18 +386,26 @@
         $(document).ready(function() {
             $('#table-statistic-course').dataTable( {
                 "autoWidth": false,
-                "ordering" : false
+                "ordering" : false,
+                dom: 'Bfrtip',
+                //buttons: [
+                    //'copy', 'csv', 'excel', 'pdf', 'print'
+                //]
+                buttons: [
+                    'excel' , 'print'
+                ]
             });
         });
     </script>
-   <script>   
+    
+   {{--  <script>   
         $(function() {
             $("#importExcel").validate({
                 rules: {
-                    imported-file: "required"
+                    imported_file: "required"
                     },
                 messages: {
-                    imported-file: "Vui lòng nhập file."
+                    imported_file: "Vui lòng nhập file."
                 }
             });
         });
@@ -223,5 +425,16 @@
                 }
             });
         });
+    </script>  --}}
+    <script>   
+        for(var i = 0; i < 1000; i++){
+        var data_theory = $("input[id=value-stand-theo" + i +"]").attr('value');
+        var data_pra = $("input[id=value-stand-pra" + i +"]").attr('value');
+        var data_self = $("input[id=value-stand-self" + i +"]").attr('value');
+        var sum_standard = parseFloat(data_theory) + parseFloat(data_pra) + parseFloat(data_self);
+            $("#sum-standard" + i).append("<span>" + sum_standard + "</span>");
+        }
+        //var data_pra = $("input[id=value-stand-pra2]").attr('value');
+        //console.log(data_pra);
     </script>  
 @endsection

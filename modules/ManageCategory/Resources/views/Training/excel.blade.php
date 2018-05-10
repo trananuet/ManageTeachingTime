@@ -58,8 +58,8 @@
                     @foreach($datas as $data)
                         <tr>
                             <td class="active-display">{{++$loop->index}}</td>
-                            <td class="text-name">{{$data->name}}</td>
-                            <td class=""><input type="checkbox" name="checkbox[]" id="{{$data->trainingID}}" value="{{$data->trainingID}}" class="checkbox-remove"></td>
+                            <td class="text-name">{{$data['name']}}</td>
+                            {{--  <td class=""><input type="checkbox" name="checkbox[]" id="{{$data->trainingID}}" value="{{$data->trainingID}}" class="checkbox-remove"></td>  --}}
                 </form>
                         </tr>
                     @endforeach

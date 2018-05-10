@@ -29,6 +29,11 @@
             <div class="alert alert-danger">
                 <span>{{Session::get('message')}}</span>
             </div>
+    @endif
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <span>{{Session::get('success')}}</span>
+        </div>
     @endif 
     <div class="add-btn-oth col-md-2">
         <button data-toggle="modal" data-target="#modalFaculty" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Thêm</button>

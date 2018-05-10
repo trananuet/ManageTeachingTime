@@ -20,9 +20,9 @@ class CreateCoursesTable extends Migration
             $table->integer('credit');
             $table->integer('semesterID');
             $table->integer('yearID');
-            $table->integer('theory');
-            $table->integer('practice');
-            $table->integer('self_study');
+            $table->float('theory', 8, 2)->nullable();
+            $table->float('practice', 8, 2)->nullable();
+            $table->float('self_study', 8, 2)->nullable();
             $table->timestamps();
         });
     }

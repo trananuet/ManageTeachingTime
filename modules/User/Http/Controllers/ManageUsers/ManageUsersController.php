@@ -38,11 +38,10 @@ class ManageUsersController extends Controller
 
         $user = UserRepository::save_user($request);
         if($user == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
-        return redirect()->back();
     }
 
     
@@ -60,9 +59,9 @@ class ManageUsersController extends Controller
         ]);
         $user = UserRepository::remove_user($request);
         if($user == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 }

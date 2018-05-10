@@ -28,7 +28,7 @@ class CoursesController extends Controller
     {
         $courses = CoursesRepository::saveCourses($request);
         if($courses == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -44,9 +44,9 @@ class CoursesController extends Controller
         ]);
         $courses = CoursesRepository::removeCourses($request);
         if($courses == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
     /**
@@ -77,41 +77,50 @@ class CoursesController extends Controller
         return redirect()->back();
     }
 
-     public function postImport(Request $request)
+    public function postImport(Request $request)
     {
 
         if($request->file('imported_file'))
         {
-                $path = $request->file('imported_file')->getRealPath();
-                $data = Excel::load($path, function($reader)
-          {
-                })->get();
+            $path = $request->file('imported_file')->getRealPath();
+            $data = Excel::load($path, function($reader){})->get();
 
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
+            if(!empty($data) && $data->count())
             {
-              if(!empty($row))
-              {
-                $dataArray[] =
-                [
-                  'name' => $row['name'],
-                  'semesterID' => $request->semesterID,
-                  'yearID' => $request->yearID,
-                  'theory' => $row['theory'],
-                  'practice' => $row['practice'],
-                  'self_study' => $row['self_study']
-                ];
-              }
-          } 
-          if(!empty($dataArray))
-          {
-                  
-            Courses::insert($dataArray);
-            return back();
-           }
-         }
-       }
-
+                foreach ($data->toArray() as $rows)
+                {
+                    foreach($rows as $row)
+                    {
+                        if(!empty($row))
+                        {
+                            if(!empty($row['name']) 
+                                && !empty($row['code_name'])
+                                && !empty($row['credit']))
+                            {
+                                $dataArray[] =
+                                    [
+                                    'name' => $row['name'],
+                                    'semesterID' => $request->semesterID,
+                                    'code_name' => $row['code_name'],
+                                    'credit' => $row['credit'],
+                                    'yearID' => $request->yearID,
+                                    'theory' => $row['theory'],
+                                    'practice' => $row['practice'],
+                                    'self_study' => $row['self_study']
+                                    ];
+                            } else {
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
+                            }
+                        } 
+                    }
+                }
+                if(!empty($dataArray))
+                {
+                    Courses::insert($dataArray);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
+                }
+            }
+        }
     }
+
 }

@@ -28,7 +28,7 @@ class TitleController extends Controller
     {
         $title = TitleRepository::saveTitle($request);
         if($title == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
@@ -44,9 +44,9 @@ class TitleController extends Controller
         ]);
         $title = TitleRepository::removeTitle($request);
         if($title == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 
@@ -54,41 +54,40 @@ class TitleController extends Controller
     public function postImport(Request $request)
     {
 
-        if($request->file('imported_file'))
-        {
+            if($request->file('imported_file'))
+            {
                 $path = $request->file('imported_file')->getRealPath();
                 $data = Excel::load($path, function($reader)
-          {
+                {
                 })->get();
 
-          if(!empty($data) && $data->count())
-          {
-            foreach ($data->toArray() as $row)
-            {
-              if(!empty($row))
-              {
-                if(!empty($row['name']) && !empty($row['active']) && !empty($row['quota'])) {
-                  $dataArray[] =
-                  [
-                    'name' => $row['name'],
-                    'active' => $row['active'],
-                    'quota' => $row['quota']
-                  ];
-                }
-                else
+           if(!empty($data) && $data->count()) {
+                foreach ($data->toArray() as $rows) {
+                    if(!empty($rows)) {
+                        foreach($rows as $row){
+                            if(!empty($row['name']) && !empty($row['quota'])) {
+                                $dataArray[] =
+                                    [
+                                        'name' => $row['name'],
+                                        'active' => number_format($row['active'], 0, '.', ','),
+                                        'quota' => $row['quota']
+                                    ];
+                            }
+                            else
+                            {
+                                return back()->with('message','Dữ liệu chưa chính xác. Vui lòng kiểm tra lại tên trường dữ liệu hoặc dữ liệu !');
+                            }
+                        }
+                    }
+                } 
+                if(!empty($dataArray))
                 {
-                    return back()->with('message','Sai tên trường dữ liệu !');
+                        
+                    Title::insert($dataArray);
+                    return back()->with('success','Thêm thành công '.count($dataArray).' dữ liệu!');
                 }
-              }
-          } 
-          if(!empty($dataArray))
-          {
-                  
-            Title::insert($dataArray);
-            return view('managecategory::Title.excel',['datas' => $data]);
-           }
-         }
-       }
+            }
+        }
 
     }
 }

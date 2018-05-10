@@ -14,6 +14,7 @@
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datetimepicker/bootstrap-datetimepicker.min.css')}}">  --}}
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/font-awesome/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datatables/datatables.net-dt/css/jquery.dataTables.css')}}">  
+	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/datatables/makepdf/css/buttons.dataTables.min.css')}}">  
 
 	<link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/bootstrap/dist/css/bootstrap.min.css')}}"> 
 	{{--  <link rel="stylesheet" type="text/css" href="{{asset('/node_modules/dashboard2/vendors/font-awesome/css/font-awesome.min.css')}}">   --}}
@@ -96,6 +97,13 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('/node_modules/dashboard2/vendors/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('/node_modules/dashboard2/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+
+{{--  <script src="{{asset('/node_modules/datatables/makepdf/jquery.dataTables.min.js')}}"></script>  --}}
+
+
+
+
 <script src="{{asset('/node_modules/dashboard2/vendors/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{asset('/node_modules/dashboard2/vendors/nprogress/nprogress.js')}}"></script>
 <script src="{{asset('/node_modules/dashboard2/vendors/Chart.js/dist/Chart.min.js')}}"></script>
@@ -129,6 +137,14 @@
 
 <script src="{{asset('/node_modules/confirm/jquery.confirm.min.js')}}"></script>
 <script src="{{asset('/node_modules/datatables/datatables.net/js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/buttons.flash.min.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/jszip.min.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/makepdf.min.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/vps_pdf.min.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/buttons.html5.min.js')}}"></script>
+<script src="{{asset('/node_modules/datatables/makepdf/buttons.print.min.js')}}"></script>
+
 <script src="{{asset('/node_modules/validatejs/jquery.validate.min.js')}}"></script>
 
 <!-- Select -->

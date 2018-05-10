@@ -36,11 +36,11 @@ class ManagePermissionController extends Controller
     {
         $role_functions = RoleFunctionRepository::save_role_function($request);
         if($role_functions == true) {
-            return back();
+            return back()->with('success','Đã cập nhật dữ liệu!');
         } else {
             return \Response::view('base::errors.500',array(),500);
         }
-        return redirect()->back();
+        // return redirect()->back();
     }
     /**
     * remove with check all role functions
@@ -56,9 +56,9 @@ class ManagePermissionController extends Controller
         ]);
         $role_function = RoleFunctionRepository::remove_role_function($request);
         if($role_function == true) {
-            return redirect()->back();
+            return redirect()->back()->with('success','Xóa dữ liệu thành công!');
         } else {
-             return \Response::view('base::errors.500',array(),500);
+            return \Response::view('base::errors.500',array(),500);
         }
     }
 
